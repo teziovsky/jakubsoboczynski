@@ -1,15 +1,25 @@
 <template>
     <div class="card">
-        <div class="card__info">
-            <h2 class="card__title">{{project.title}}</h2>
-            <span class="dot"></span>
-            <p class="card__description">{{project.description}}</p>
-        </div>
-        <div class="card__links">
+        <div
+            data-aos="zoom-out-left"
+            data-aos-delay="300"
+            data-aos-anchor-placement="center-bottom"
+            class="card__links"
+        >
             <button class="card__links__item" @click.prevent="toggleScreen">SCREEN</button>
             <a class="card__links__item" :href="project.github_link">SOURCE</a>
             <a class="card__links__item" :href="project.demo_link">DEMO</a>
         </div>
+        <div data-aos="flip-up" class="card__info">
+            <h2 class="card__title">{{project.title}}</h2>
+            <span class="dot"></span>
+            <p class="card__description">{{project.description}}</p>
+        </div>
+        <!-- <img
+                    class="card__screen"
+                    :src="require('../assets/projects/' + project.image + '.png')"
+                    alt="#"
+        />-->
     </div>
 </template>
 
@@ -44,44 +54,35 @@ button {
 
 .card {
     display: flex;
-    flex-direction: column;
     justify-content: space-between;
     position: relative;
-    background-color: $background-third-color;
-    width: 350px;
+    width: 500px;
     margin: 25px;
-    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
-
-    &__info {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        padding: 30px 20px;
-    }
-
-    &__title {
-        font-size: 24px;
-        font-weight: 300;
-    }
-
-    &__description {
-        text-align: justify;
-    }
 
     &__links {
+        position: absolute;
+        top: 50%;
+        left: -25px;
+        background-color: $background-secondary-color;
+        box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
         display: flex;
+        flex-direction: column;
+        text-align: center;
         justify-content: space-around;
-        border-top: 1px solid rgba($color: $text-primary-color, $alpha: 0.2);
+        z-index: 0;
+
+        &.aos-animate {
+            transform: translateY(-50%) !important;
+        }
 
         &__item {
-            font-size: 14px;
+            font-size: 12px;
             font-weight: 300;
-            padding: 5px 13px;
-            margin: 20px 17px;
+            padding: 6px 9px;
+            margin: 10px 25px 10px 10px;
             background: none;
             transition: color 0.25s, border 0.25s ease;
+            z-index: 2;
             position: relative;
 
             &:hover {
@@ -118,6 +119,32 @@ button {
                 transition: height 0.25s ease-out, width 0.25s ease-out 0.25s;
             }
         }
+    }
+
+    &__info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
+        background-color: $background-third-color;
+        margin-left: 60px;
+        padding: 30px 20px;
+    }
+
+    &__screen {
+        width: 350px;
+        height: auto;
+    }
+
+    &__title {
+        font-size: 24px;
+        font-weight: 300;
+    }
+
+    &__description {
+        text-align: justify;
     }
 }
 </style>

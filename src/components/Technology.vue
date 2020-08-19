@@ -45,7 +45,7 @@ export default {
         }
 
         & > img {
-            width: 110px;
+            max-width: 110px;
             height: 110px;
         }
     }
@@ -57,6 +57,7 @@ export default {
         justify-content: center;
         background-color: $background-third-color;
         min-height: 150px;
+        min-width: 410px;
         margin-left: 140px;
         padding: 20px 20px 20px 25px;
         box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
