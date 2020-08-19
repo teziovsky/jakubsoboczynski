@@ -37,16 +37,16 @@ export default {
                     image: "js",
                 },
                 {
-                    name: "Bootstrap",
-                    subtitle:
-                        "Practical use of Bootstrap components in projects. Ability to personalize components for the needs of the project.",
-                    image: "bootstrap",
-                },
-                {
                     name: "Vue.js",
                     subtitle:
                         "Ability to writing  apps in Vue.js using Vue-Cli, Vuetify, Vuex Store, Vue-Router, Vue-Axios, Vuelidate. Knowledge about transitions and animations.",
                     image: "vue",
+                },
+                {
+                    name: "Bootstrap",
+                    subtitle:
+                        "Practical use of Bootstrap components in projects. Ability to personalize components for the needs of the project.",
+                    image: "bootstrap",
                 },
                 {
                     name: "GIT",
@@ -56,6 +56,12 @@ export default {
                 },
                 {
                     name: "Photoshop",
+                    subtitle:
+                        "Basic photo editing. Creating buttons, banners, icons for websites.",
+                    image: "photoshop",
+                },
+                {
+                    name: "Figma",
                     subtitle:
                         "Basic photo editing. Creating buttons, banners, icons for websites.",
                     image: "photoshop",

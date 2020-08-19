@@ -21,7 +21,7 @@ export default {
                     description:
                         "The front-end developer portfolio writed in Vue.js. In this project i used Vuetify, vuelidate and vue-axios.",
                     github_link:
-                        "https://github.com/teziovsky/Portfolio_Teziovsky",
+                        "https://github.com/teziovsky/Portfolio_Teziovsky#readme",
                     demo_link:
                         "https://teziovsky.github.io/Portfolio_Teziovsky/",
                 },
@@ -30,7 +30,8 @@ export default {
                     title: "Car service book",
                     description:
                         "The car service book website writed in Vue.js. Using vuetify, vuex store, vuelidate, vue-router and vue-axios to connect with MySQL database.",
-                    github_link: "https://github.com/teziovsky/Service-Book_v3",
+                    github_link:
+                        "https://github.com/teziovsky/Service-Book_v3#readme",
                     demo_link: "http://servicebook.ct8.pl/",
                 },
                 {
@@ -38,8 +39,19 @@ export default {
                     title: "Image search engine",
                     description:
                         "The image search engine writed in Vue.js. Using axios to get data from Flickr API and SCSS to add styles to this project.",
-                    github_link: "https://github.com/teziovsky/Images-gallery",
+                    github_link:
+                        "https://github.com/teziovsky/Images-gallery#readme",
                     demo_link: "https://teziovsky.github.io/Images-gallery/",
+                },
+                {
+                    image: "servicebook",
+                    title: "Movies search engine",
+                    description:
+                        "The movie search engine with The Movie DB API. Created for the needs of recruitment to Junior Frontend Developer.",
+                    github_link:
+                        "https://github.com/teziovsky/movie-search-engine#readme",
+                    demo_link:
+                        "https://teziovsky.github.io/movie-search-engine/",
                 },
             ],
         };
