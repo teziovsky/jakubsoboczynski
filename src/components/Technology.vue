@@ -1,9 +1,9 @@
 <template>
     <div class="card">
-        <div class="card__image">
+        <div data-aos="zoom-out-right" data-aos-duration="1000" class="card__image">
             <img :src="require('../assets/technologies/' + technology.image + '.png')" alt="html" />
         </div>
-        <div class="card__info">
+        <div data-aos="zoom-in" class="card__info">
             <h2 class="card__title">{{technology.name}}</h2>
             <span class="dot"></span>
             <p class="card__description">{{technology.subtitle}}</p>
@@ -38,7 +38,11 @@ export default {
         position: absolute;
         top: 50%;
         left: 25px;
-        transform: translateY(-50%);
+        z-index: 1;
+
+        &.aos-animate {
+            transform: translateY(-50%) !important;
+        }
 
         & > img {
             width: 110px;

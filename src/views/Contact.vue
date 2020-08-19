@@ -2,12 +2,12 @@
     <section id="Contact">
         <h1 class="section--title">Contact</h1>
 
-        <p class="contact__info">Don't forget to leave me a message</p>
+        <p data-aos="zoom-in" class="contact__info">Don't forget to leave me a message</p>
 
-        <form class="form">
-            <input class="form__input mail" type="text" placeholder="email" />
-            <input class="form__input title" type="text" placeholder="title" />
-            <textarea class="form__input message" placeholder="message" />
+        <form data-aos="zoom-in" data-aos-delay="100" class="form">
+            <input class="form__input mail" type="text" placeholder="email" v-model="email" />
+            <input class="form__input title" type="text" placeholder="title" v-model="title" />
+            <textarea class="form__input message" placeholder="message" v-model="message" />
             <button class="form__submit" type="submit" @click.prevent="handleSubmit">send</button>
         </form>
         <footer class="footer">
@@ -17,7 +17,12 @@
             </p>
             <p class="footer__copy">&copy; 2020 | Designed by Jakub Soboczyński</p>
             <ul class="footer__links">
-                <li class="footer__links__item">
+                <li
+                    data-aos="flip-left"
+                    data-aos-anchor-placement="bottom-bottom"
+                    data-aos-delay="200"
+                    class="footer__links__item"
+                >
                     <a href="https://github.com/teziovsky">
                         <svg
                             width="36"
@@ -33,7 +38,12 @@
                         </svg>
                     </a>
                 </li>
-                <li class="footer__links__item">
+                <li
+                    data-aos="flip-left"
+                    data-aos-anchor-placement="bottom-bottom"
+                    data-aos-delay="400"
+                    class="footer__links__item"
+                >
                     <a href="https://pl.linkedin.com/in/jakubsoboczynski">
                         <svg
                             width="36"
@@ -49,7 +59,12 @@
                         </svg>
                     </a>
                 </li>
-                <li class="footer__links__item">
+                <li
+                    data-aos="flip-left"
+                    data-aos-anchor-placement="bottom-bottom"
+                    data-aos-delay="600"
+                    class="footer__links__item"
+                >
                     <a href="https://www.facebook.com/Teziovsky">
                         <svg
                             width="36"
@@ -65,7 +80,12 @@
                         </svg>
                     </a>
                 </li>
-                <li class="footer__links__item">
+                <li
+                    data-aos="flip-left"
+                    data-aos-anchor-placement="bottom-bottom"
+                    data-aos-delay="800"
+                    class="footer__links__item"
+                >
                     <a href="https://www.instagram.com/teziovsky/">
                         <svg
                             width="36"
@@ -104,12 +124,10 @@ export default {
         };
     },
     methods: {
-        handleSubmit: () => {
-            console.log("submit");
+        handleSubmit() {
+            console.log(this.email, this.title, this.message);
         },
-        autoExpand: () => {},
     },
-    watch: {},
 };
 </script>
 
@@ -126,7 +144,7 @@ export default {
 .form {
     display: flex;
     flex-direction: column;
-    width: 600px;
+    width: 500px;
     margin: 0 auto;
 
     &__input {
@@ -178,9 +196,9 @@ export default {
         background: none;
         color: $text-primary-color;
         text-transform: uppercase;
-        width: 250px;
-        height: 50px;
-        margin: 30px auto;
+        width: 170px;
+        height: 40px;
+        margin: 20px auto;
         transition: border 0.5s, color 0.5s ease;
 
         &:focus {
