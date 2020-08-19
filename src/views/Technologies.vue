@@ -62,9 +62,8 @@ export default {
                 },
                 {
                     name: "Figma",
-                    subtitle:
-                        "Basic photo editing. Creating buttons, banners, icons for websites.",
-                    image: "photoshop",
+                    subtitle: "Ability to create simple website layouts.",
+                    image: "figma",
                 },
             ],
         };
