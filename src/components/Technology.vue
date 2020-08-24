@@ -61,14 +61,16 @@ export default {
         margin-left: 140px;
         padding: 20px 20px 20px 25px;
         box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
+        font-size: 16px;
     }
 
     &__title {
-        font-size: 24px;
+        font-size: 1.5em;
         font-weight: 300;
     }
 
     &__description {
+        font-size: 1em;
         text-align: justify;
     }
 }
@@ -90,6 +92,72 @@ export default {
         &__info {
             min-width: 200px;
             margin-left: 110px;
+        }
+    }
+}
+
+@media screen and (max-width: 420px) {
+    .card {
+        width: 100%;
+
+        &__image {
+            height: 90px;
+            width: 90px;
+
+            & > img {
+                max-width: 70px;
+                height: 70px;
+            }
+        }
+
+        &__info {
+            min-width: 200px;
+            margin-left: 100px;
+            font-size: 14px;
+        }
+    }
+}
+
+@media screen and (max-width: 375px) {
+    .card {
+        width: 100%;
+
+        &__image {
+            height: 80px;
+            width: 80px;
+
+            & > img {
+                max-width: 60px;
+                height: 60px;
+            }
+        }
+
+        &__info {
+            min-width: 200px;
+            margin-left: 90px;
+            font-size: 12px;
+        }
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .card {
+        width: 100%;
+
+        &__image {
+            height: 70px;
+            width: 70px;
+
+            & > img {
+                max-width: 50px;
+                height: 50px;
+            }
+        }
+
+        &__info {
+            min-width: 200px;
+            margin-left: 80px;
+            font-size: 12px;
         }
     }
 }

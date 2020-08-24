@@ -58,6 +58,7 @@ button {
     position: relative;
     width: 500px;
     margin: 25px;
+    font-size: 12px;
 
     &__links {
         position: absolute;
@@ -76,7 +77,7 @@ button {
         }
 
         &__item {
-            font-size: 12px;
+            font-size: 1em;
             font-weight: 300;
             padding: 6px 9px;
             margin: 10px 25px 10px 10px;
@@ -139,7 +140,7 @@ button {
     }
 
     &__title {
-        font-size: 24px;
+        font-size: 2em;
         font-weight: 300;
     }
 
@@ -152,6 +153,47 @@ button {
     .card {
         width: 100%;
         margin-left: 45px;
+    }
+}
+
+@media screen and (max-width: 420px) {
+    .card {
+        width: 100%;
+        margin-left: 45px;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    .card {
+        width: 100%;
+        margin-left: 45px;
+        font-size: 10px;
+
+        &__info {
+            margin-left: 45px;
+        }
+
+        &__links__item {
+            padding: 6px 9px;
+            margin: 5px 12px 5px 5px;
+        }
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .card {
+        width: 100%;
+        margin-left: 45px;
+        font-size: 10px;
+
+        &__info {
+            margin-left: 45px;
+        }
+
+        &__links__item {
+            padding: 6px 9px;
+            margin: 5px 12px 5px 5px;
+        }
     }
 }
 </style>

@@ -263,4 +263,52 @@ export default {
         width: 90%;
     }
 }
+
+@media screen and (max-width: 420px) {
+    .contact__info {
+        font-size: 24px;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    .contact__info {
+        font-size: 20px;
+    }
+
+    .footer {
+        &__copy {
+            font-size: 16px;
+        }
+
+        &__links__item {
+            margin: 0 8px 30px;
+
+            & svg {
+                width: 25px;
+                height: 25px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .contact__info {
+        font-size: 18px;
+    }
+
+    .footer {
+        &__copy {
+            font-size: 14px;
+        }
+
+        &__links__item {
+            margin: 0 6px 30px;
+
+            & svg {
+                width: 20px;
+                height: 20px;
+            }
+        }
+    }
+}
 </style>

@@ -254,7 +254,7 @@ export default {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 200px;
+    width: max-content;
     margin: 0 auto;
     animation: slideUp 0.5s 1.5s both;
 

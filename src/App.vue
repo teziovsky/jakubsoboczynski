@@ -117,4 +117,34 @@ a {
         font-size: 44px;
     }
 }
+
+@media screen and (max-width: 420px) {
+    .wrapper {
+        max-width: 390px;
+    }
+
+    .section--title {
+        font-size: 36px;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    .wrapper {
+        max-width: 355px;
+    }
+
+    .section--title {
+        font-size: 32px;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .wrapper {
+        max-width: 300px;
+    }
+
+    .section--title {
+        font-size: 28px;
+    }
+}
 </style>
