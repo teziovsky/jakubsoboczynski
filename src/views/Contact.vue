@@ -253,4 +253,14 @@ export default {
         }
     }
 }
+
+@media screen and (max-width: 500px) {
+    .contact__info {
+        font-size: 24px;
+    }
+
+    .form {
+        width: 90%;
+    }
+}
 </style>

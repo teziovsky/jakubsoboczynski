@@ -72,4 +72,25 @@ export default {
         text-align: justify;
     }
 }
+
+@media screen and (max-width: 500px) {
+    .card {
+        width: 100%;
+
+        &__image {
+            height: 100px;
+            width: 100px;
+
+            & > img {
+                max-width: 80px;
+                height: 80px;
+            }
+        }
+
+        &__info {
+            min-width: 200px;
+            margin-left: 110px;
+        }
+    }
+}
 </style>

@@ -70,6 +70,34 @@ export default {
     }
 }
 
+@keyframes slideRight {
+    0% {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+    55% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+    55% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
 @keyframes opacity {
     0% {
         opacity: 0;
@@ -81,12 +109,10 @@ export default {
 
 @keyframes heightImg {
     0% {
-        height: 0;
-        width: 0;
+        transform: scale(0);
     }
     100% {
-        height: 300px;
-        width: 300px;
+        transform: scale(1);
     }
 }
 
@@ -103,6 +129,7 @@ export default {
     justify-content: space-between;
     align-items: center;
     padding: 30px;
+    animation: slideDown 0.5s 1.5s both;
 
     & a {
         transition: color 0.5s ease;
@@ -171,8 +198,10 @@ export default {
         height: 300px;
         border: 3px solid $text-primary-color;
         filter: grayscale(80%);
-        animation: heightImg 0.5s both;
         transition: filter 1s ease;
+        position: relative;
+        z-index: 1;
+        animation: heightImg 0.5s both;
 
         &:hover {
             filter: grayscale(0%);
@@ -190,7 +219,7 @@ export default {
     &__subtitle {
         font-size: 36px;
         font-weight: 300;
-        animation: slideDown 0.75s 1.5s both;
+        animation: slideDown 0.5s 1s both;
     }
 }
 
@@ -199,16 +228,24 @@ export default {
     text-align: center;
     position: relative;
 
-    &:before {
-        content: "";
-        width: 200vw;
+    &:before,
+    &:after {
+        border-top: 2px solid $text-primary-color;
+        display: block;
+        height: 1px;
+        content: " ";
         position: absolute;
-        left: -75vw;
-        top: 50%;
-        height: 2px;
-        background: $text-primary-color;
         z-index: 0;
+        top: 50%;
         animation: opacity 1.5s 0.5s both;
+    }
+    &:after {
+        width: 75vw;
+        left: 150px;
+    }
+    &:before {
+        width: 50vw;
+        right: 160px;
     }
 }
 
@@ -219,6 +256,7 @@ export default {
     align-items: center;
     width: 200px;
     margin: 0 auto;
+    animation: slideUp 0.5s 1.5s both;
 
     &:hover &__title {
         color: $text-third-color;
@@ -254,6 +292,159 @@ export default {
             transform: rotate(0deg);
             top: -12px;
             left: -12px;
+        }
+    }
+}
+
+// Mobile breakpoints
+
+@media screen and (max-width: 500px) {
+    #hero {
+        height: 90vh;
+    }
+
+    .nav {
+        padding: 20px;
+
+        &__logo {
+            font-size: 24px;
+        }
+
+        &__links {
+            display: none;
+        }
+    }
+    .hero {
+        flex-direction: column-reverse;
+        justify-content: space-between;
+
+        &__header {
+            margin-bottom: 5vh;
+            margin-left: 0;
+        }
+
+        &__title {
+            animation: slideLeft 0.5s 0.5s both;
+            font-size: 52px;
+        }
+
+        &__subtitle {
+            animation: slideRight 0.5s 0.5s both;
+            font-size: 26px;
+        }
+
+        &__img {
+            margin-right: 0;
+            width: 60%;
+            height: auto;
+        }
+    }
+
+    .image__container {
+        &:before,
+        &:after {
+            display: none;
+        }
+    }
+
+    .actionBtn {
+        margin-bottom: 10px;
+
+        &__title {
+            font-size: 18px;
+        }
+
+        &__arrows {
+            padding: 8px;
+
+            &::before {
+                top: -6px;
+                left: -6px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 420px) {
+    .nav {
+        &__logo {
+            font-size: 20px;
+        }
+    }
+
+    .hero {
+        &__title {
+            font-size: 42px;
+        }
+
+        &__subtitle {
+            font-size: 21px;
+        }
+    }
+}
+
+@media screen and (max-width: 375px) {
+    .nav {
+        &__logo {
+            font-size: 16px;
+        }
+    }
+
+    .hero {
+        &__title {
+            font-size: 34px;
+        }
+
+        &__subtitle {
+            font-size: 17px;
+        }
+    }
+
+    .actionBtn {
+        &__title {
+            font-size: 16px;
+        }
+
+        &__arrows {
+            padding: 6px;
+
+            &::before {
+                top: -5px;
+                left: -5px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .nav {
+        &__logo {
+            font-size: 14px;
+        }
+    }
+
+    .hero {
+        &__title {
+            font-size: 30px;
+        }
+
+        &__subtitle {
+            font-size: 15px;
+        }
+    }
+
+    .actionBtn {
+        &__title {
+            font-size: 16px;
+        }
+
+        &__arrows {
+            padding: 5px;
+
+            &::before {
+                top: -4px;
+                left: -4px;
+            }
         }
     }
 }

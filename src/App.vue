@@ -1,4 +1,5 @@
 <template>
+    <!-- Uzupełnij informacje o technologiach -->
     <div id="app">
         <Hero />
         <AboutMe />
@@ -24,11 +25,15 @@ export default {
         Projects,
         Contact,
     },
+    created() {
+        history.pushState("", document.title, window.location.pathname);
+    },
 };
 </script>
 
 <style lang="scss">
 @import "./global.scss";
+
 *,
 *::before,
 *::after {
@@ -41,19 +46,23 @@ html {
     scroll-behavior: smooth;
 }
 
+body {
+    overflow-x: hidden;
+}
+
 a {
     text-decoration: none;
     color: $text-primary-color;
 }
 #app {
-    background: $background-primary-color;
+    background-color: $background-primary-color;
     color: $text-primary-color;
     font-family: "Raleway", sans-serif;
     font-variant: small-caps;
 }
 
 .wrapper {
-    max-width: 1800px;
+    max-width: 1200px;
     margin: 0 auto;
     display: flex;
     justify-content: center;
@@ -97,5 +106,15 @@ a {
     background-color: rgba($color: $text-primary-color, $alpha: 0.4);
     display: inline-block;
     margin: 10px 0 15px;
+}
+
+@media screen and (max-width: 500px) {
+    .wrapper {
+        max-width: 450px;
+    }
+
+    .section--title {
+        font-size: 44px;
+    }
 }
 </style>

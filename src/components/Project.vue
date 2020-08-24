@@ -147,4 +147,11 @@ button {
         text-align: justify;
     }
 }
+
+@media screen and (max-width: 500px) {
+    .card {
+        width: 100%;
+        margin-left: 45px;
+    }
+}
 </style>
