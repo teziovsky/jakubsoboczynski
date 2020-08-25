@@ -2,17 +2,27 @@
     <section id="hero">
         <nav class="nav">
             <span class="nav__logo">Jakub Soboczyński</span>
-            <ul class="nav__links">
-                <li class="nav__item">
+            <button
+                class="hamburger"
+                :class="this.openMenu ? 'hamburger--active' : null"
+                aria-label="menu"
+                @click.prevent="toggleMenu"
+            >
+                <span class="hamburger__container" tabindex="-1">
+                    <span class="hamburger__bars"></span>
+                </span>
+            </button>
+            <ul class="nav__links" :class="openMenu ? 'active' : null">
+                <li class="nav__item" @click="handleLinkClick">
                     <a href="#AboutMe">AboutMe</a>
                 </li>
-                <li class="nav__item">
+                <li class="nav__item" @click="handleLinkClick">
                     <a href="#Technologies">Technologies</a>
                 </li>
-                <li class="nav__item">
+                <li class="nav__item" @click="handleLinkClick">
                     <a href="#Projects">Projects</a>
                 </li>
-                <li class="nav__item">
+                <li class="nav__item" @click="handleLinkClick">
                     <a href="#Contact">Contact</a>
                 </li>
             </ul>
@@ -36,6 +46,27 @@
 <script>
 export default {
     name: "Hero",
+    data() {
+        return {
+            openMenu: false,
+        };
+    },
+    methods: {
+        toggleMenu() {
+            const html = document.getElementsByTagName("html");
+            this.openMenu
+                ? (html[0].style.overflow = "auto")
+                : (html[0].style.overflow = "hidden");
+            this.openMenu = !this.openMenu;
+        },
+        handleLinkClick() {
+            const html = document.getElementsByTagName("html");
+            if (this.openMenu) {
+                html[0].style.overflow = "auto";
+                this.openMenu = false;
+            }
+        },
+    },
 };
 </script>
 
@@ -124,6 +155,75 @@ export default {
     justify-content: space-between;
 }
 
+.hamburger {
+    display: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background-color: transparent;
+    cursor: pointer;
+
+    &:focus {
+        & > .hamburger__container {
+            box-shadow: 0 0 2px 2px #51a7e8;
+        }
+    }
+
+    &__container {
+        display: flex;
+        align-items: center;
+        position: relative;
+        width: 30px;
+        height: 30px;
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    &__bars {
+        position: absolute;
+        width: 30px;
+        height: 2px;
+        background-color: $text-primary-color;
+        transition: transform 220ms ease-in-out;
+        &:before,
+        &:after {
+            display: block;
+            position: absolute;
+            width: 30px;
+            height: 2px;
+            background-color: $text-primary-color;
+            content: "";
+        }
+        &:before {
+            top: -10px;
+            transition: top 100ms 250ms ease-in, transform 220ms ease-in-out;
+        }
+        &:after {
+            bottom: -10px;
+            transition: bottom 100ms 250ms ease-in, transform 220ms ease-in-out;
+        }
+    }
+
+    &--active {
+        .hamburger__bars {
+            transform: rotate(225deg);
+            transition: transform 220ms 120ms ease-in-out;
+            &:before {
+                top: 0;
+                transition: top 100ms ease-out;
+            }
+            &:after {
+                bottom: 0;
+                transform: rotate(-90deg);
+                transition: bottom 100ms ease-out,
+                    transform 220ms 120ms ease-in-out;
+            }
+        }
+    }
+}
+
 .nav {
     display: flex;
     justify-content: space-between;
@@ -165,10 +265,10 @@ export default {
     }
 
     &__item {
-        font-size: 24px;
+        font-size: 20px;
         font-weight: 300;
         order: 1;
-        margin: 0 15px;
+        margin: 0px 10px;
         text-transform: uppercase;
 
         &:last-child {
@@ -305,15 +405,47 @@ export default {
         height: 100vh;
     }
 
+    .hamburger {
+        display: flex;
+        position: absolute;
+        z-index: 3;
+        top: 18px;
+        right: 20px;
+    }
+
     .nav {
         padding: 20px;
+        display: block;
+        position: relative;
+        z-index: 2;
 
         &__logo {
             font-size: 24px;
         }
 
         &__links {
-            display: none;
+            position: absolute;
+            z-index: 2 !important;
+            top: 0;
+            left: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            height: 100vh;
+            width: 0;
+            background-color: $background-secondary-color;
+            transition: width 0.5s ease;
+
+            &.active {
+                width: 100vw;
+            }
+        }
+
+        &__item {
+            font-size: 36px;
+            margin: 8px 0;
         }
     }
     .hero {
@@ -372,6 +504,10 @@ export default {
         &__logo {
             font-size: 20px;
         }
+
+        &__item {
+            font-size: 30px;
+        }
     }
 
     .hero {
@@ -389,6 +525,10 @@ export default {
     .nav {
         &__logo {
             font-size: 16px;
+        }
+
+        &__item {
+            font-size: 28px;
         }
     }
 
@@ -422,6 +562,10 @@ export default {
     .nav {
         &__logo {
             font-size: 14px;
+        }
+
+        &__item {
+            font-size: 24px;
         }
     }
 
