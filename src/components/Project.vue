@@ -140,12 +140,14 @@ button {
     }
 
     &__title {
-        font-size: 2em;
-        font-weight: 300;
+        font-size: 2.1em;
+        font-weight: 500;
+        font-variant: small-caps;
     }
 
     &__description {
         text-align: justify;
+        font-size: 1.1em;
     }
 }
 

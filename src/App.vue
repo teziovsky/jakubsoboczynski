@@ -54,11 +54,11 @@ a {
     text-decoration: none;
     color: $text-primary-color;
 }
+
 #app {
     background-color: $background-primary-color;
     color: $text-primary-color;
     font-family: "Raleway", sans-serif;
-    font-variant: small-caps;
 }
 
 .wrapper {

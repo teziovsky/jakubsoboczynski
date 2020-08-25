@@ -1,6 +1,11 @@
 <template>
     <div class="card">
-        <div data-aos="zoom-out-right" data-aos-duration="1000" class="card__image">
+        <div
+            data-aos="zoom-out-right"
+            data-aos-duration="1000"
+            data-aos-anchor-placement="center-bottom"
+            class="card__image"
+        >
             <img :src="require('../assets/technologies/' + technology.image + '.png')" alt="html" />
         </div>
         <div data-aos="zoom-in" class="card__info">
@@ -66,11 +71,13 @@ export default {
 
     &__title {
         font-size: 1.5em;
-        font-weight: 300;
+        font-weight: 500;
+        font-variant: small-caps;
     }
 
     &__description {
         font-size: 1em;
+        font-weight: 300;
         text-align: justify;
     }
 }

@@ -154,6 +154,7 @@ export default {
     &__logo {
         font-size: 36px;
         font-weight: 500;
+        font-variant: small-caps;
     }
 
     &__links {
@@ -189,6 +190,7 @@ export default {
         align-items: center;
         justify-content: center;
         text-shadow: 0px 5px 10px #000000;
+        font-variant: small-caps;
     }
 
     &__img {
@@ -300,7 +302,7 @@ export default {
 
 @media screen and (max-width: 500px) {
     #hero {
-        height: 90vh;
+        height: 100vh;
     }
 
     .nav {
@@ -348,7 +350,7 @@ export default {
     }
 
     .actionBtn {
-        margin-bottom: 10px;
+        margin-bottom: 50px;
 
         &__title {
             font-size: 18px;

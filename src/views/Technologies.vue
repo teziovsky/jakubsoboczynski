@@ -22,7 +22,7 @@ export default {
                     name: "HTML5",
                     subtitle:
                         "Knowledge of HTML document structure. Ability to use semantic tags.",
-                    image: "html5",
+                    image: "html",
                 },
                 {
                     name: "CSS3",

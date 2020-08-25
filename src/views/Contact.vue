@@ -2,9 +2,9 @@
     <section id="Contact">
         <h1 class="section--title">Contact</h1>
 
-        <p data-aos="zoom-in" class="contact__info">Don't forget to leave me a message</p>
+        <p data-aos="zoom-in" class="contact__info">Don't forget to leave me a message!</p>
 
-        <form data-aos="zoom-in" data-aos-delay="100" class="form">
+        <form data-aos="zoom-in" data-aos-delay="100" class="form" autocomplete="off">
             <input class="form__input mail" type="text" placeholder="email" v-model="email" />
             <input class="form__input title" type="text" placeholder="title" v-model="title" />
             <textarea class="form__input message" placeholder="message" v-model="message" />
@@ -19,7 +19,7 @@
             <ul class="footer__links">
                 <li
                     data-aos="flip-left"
-                    data-aos-anchor-placement="bottom-bottom"
+                    data-aos-anchor-placement="top-bottom"
                     data-aos-delay="200"
                     class="footer__links__item"
                 >
@@ -40,7 +40,7 @@
                 </li>
                 <li
                     data-aos="flip-left"
-                    data-aos-anchor-placement="bottom-bottom"
+                    data-aos-anchor-placement="top-bottom"
                     data-aos-delay="400"
                     class="footer__links__item"
                 >
@@ -61,7 +61,7 @@
                 </li>
                 <li
                     data-aos="flip-left"
-                    data-aos-anchor-placement="bottom-bottom"
+                    data-aos-anchor-placement="top-bottom"
                     data-aos-delay="600"
                     class="footer__links__item"
                 >
@@ -82,7 +82,7 @@
                 </li>
                 <li
                     data-aos="flip-left"
-                    data-aos-anchor-placement="bottom-bottom"
+                    data-aos-anchor-placement="top-bottom"
                     data-aos-delay="800"
                     class="footer__links__item"
                 >
@@ -229,6 +229,8 @@ export default {
     &__copy {
         margin: 25px 0;
         font-size: 18px;
+        font-variant: small-caps;
+        font-weight: 500;
     }
 
     &__links {
