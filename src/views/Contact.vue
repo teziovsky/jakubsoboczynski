@@ -4,11 +4,19 @@
 
         <p data-aos="zoom-in" class="contact__info">Don't forget to leave me a message!</p>
 
-        <form data-aos="zoom-in" data-aos-delay="100" class="form" autocomplete="off">
-            <input class="form__input mail" type="text" placeholder="email" v-model="email" />
+        <form
+            @submit.prevent="sendEmail"
+            action="https://formspree.io/xaypgwvk"
+            method="POST"
+            data-aos="zoom-in"
+            data-aos-delay="100"
+            class="form"
+            autocomplete="off"
+        >
+            <input class="form__input mail" type="email" placeholder="email" v-model="email" />
             <input class="form__input title" type="text" placeholder="title" v-model="title" />
             <textarea class="form__input message" placeholder="message" v-model="message" />
-            <button class="form__submit" type="submit" @click.prevent="handleSubmit">send</button>
+            <button class="form__submit" type="submit" :disabled="!email || !title || !message">send</button>
         </form>
         <footer class="footer">
             <p class="footer__separator">
@@ -114,6 +122,8 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
     name: "Contact",
     data() {
@@ -124,8 +134,26 @@ export default {
         };
     },
     methods: {
-        handleSubmit() {
-            console.log(this.email, this.title, this.message);
+        sendEmail() {
+            axios
+                .post("https://formspree.io/xaypgwvk", {
+                    name: this.email,
+                    from: this.email,
+                    _subject: `${this.title}`,
+                    message: this.message,
+                })
+                .then((response) => {
+                    this.email = "";
+                    this.title = "";
+                    this.message = "";
+                });
+        },
+
+        success() {
+            console.log("success");
+        },
+        error() {
+            console.log("error");
         },
     },
 };
@@ -133,6 +161,11 @@ export default {
 
 <style lang="scss" scoped>
 @import "../global.scss";
+
+button:disabled {
+    border: 1px solid rgba($color: $text-primary-color, $alpha: 0.5);
+    color: rgba($color: $text-primary-color, $alpha: 0.5);
+}
 
 .contact__info {
     text-align: center;
@@ -165,12 +198,12 @@ export default {
         }
 
         &::placeholder {
-            color: rgba($color: $text-primary-color, $alpha: 0.8);
+            color: rgba($color: $text-primary-color, $alpha: 0.5);
         }
 
         &.mail {
             background: url("../assets/inputs/Email_ico.svg") no-repeat scroll
-                10px 13px;
+                10px 12px;
             background-size: 20px 20px;
         }
 
@@ -201,12 +234,12 @@ export default {
         margin: 20px auto;
         transition: border 0.5s, color 0.5s ease;
 
-        &:focus {
+        &:focus:enabled {
             outline: none;
             border-width: 2px;
         }
 
-        &:hover {
+        &:hover:enabled {
             border-color: $text-third-color;
             color: $text-third-color;
             cursor: pointer;
@@ -256,7 +289,9 @@ export default {
     }
 }
 
-@media screen and (max-width: 500px) {
+// Mobile breakpoints
+
+@media screen and (max-width: 768px) {
     .contact__info {
         font-size: 24px;
     }

@@ -108,7 +108,9 @@ a {
     margin: 10px 0 15px;
 }
 
-@media screen and (max-width: 500px) {
+// Mobile breakpoints
+
+@media screen and (max-width: 768px) {
     .wrapper {
         max-width: 450px;
     }

@@ -151,7 +151,9 @@ button {
     }
 }
 
-@media screen and (max-width: 500px) {
+// Mobile breakpoints
+
+@media screen and (max-width: 768px) {
     .card {
         width: 100%;
         margin-left: 45px;

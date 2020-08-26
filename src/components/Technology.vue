@@ -82,7 +82,9 @@ export default {
     }
 }
 
-@media screen and (max-width: 500px) {
+// Mobile breakpoints
+
+@media screen and (max-width: 768px) {
     .card {
         width: 100%;
 

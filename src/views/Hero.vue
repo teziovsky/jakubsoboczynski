@@ -281,6 +281,7 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
 
     &__header {
         margin-top: -30px;
@@ -328,26 +329,17 @@ export default {
 .image__container {
     display: block;
     text-align: center;
-    position: relative;
 
-    &:before,
-    &:after {
+    &:before {
         border-top: 2px solid $text-primary-color;
         display: block;
-        height: 1px;
         content: " ";
         position: absolute;
         z-index: 0;
         top: 50%;
+        left: 0;
+        width: 100vw;
         animation: opacity 1.5s 0.5s both;
-    }
-    &:after {
-        width: 75vw;
-        left: 150px;
-    }
-    &:before {
-        width: 50vw;
-        right: 160px;
     }
 }
 
@@ -400,7 +392,13 @@ export default {
 
 // Mobile breakpoints
 
-@media screen and (max-width: 500px) {
+@media (max-width: 920px) and (orientation: landscape) {
+    #hero {
+        height: 150vh;
+    }
+}
+
+@media screen and (max-width: 768px) {
     #hero {
         height: 100vh;
     }
