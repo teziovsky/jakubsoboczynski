@@ -3,8 +3,8 @@
         <h1 class="section--title">Contact</h1>
 
         <p data-aos="zoom-in" class="contact__info">Don't forget to leave me a message!</p>
-
         <form
+            id="form"
             @submit.prevent="sendEmail"
             action="https://formspree.io/xaypgwvk"
             method="POST"
@@ -13,10 +13,54 @@
             class="form"
             autocomplete="off"
         >
-            <input class="form__input mail" type="email" placeholder="email" v-model="email" />
-            <input class="form__input title" type="text" placeholder="title" v-model="title" />
-            <textarea class="form__input message" placeholder="message" v-model="message" />
-            <button class="form__submit" type="submit" :disabled="!email || !title || !message">send</button>
+            <input
+                class="form__input mail"
+                :class="{'error': $v.email.$error}"
+                type="email"
+                placeholder="email"
+                v-model="email"
+                @input="$v.email.$touch()"
+            />
+            <transition name="fade">
+                <span class="error" v-if="$v.email.$dirty && !$v.email.required">email is required.</span>
+                <span
+                    class="error"
+                    v-if="$v.email.$dirty && !$v.email.email"
+                >please write correct adress email.</span>
+            </transition>
+            <input
+                class="form__input title"
+                :class="{'error': $v.title.$error}"
+                type="text"
+                placeholder="title"
+                v-model="title"
+                @input="$v.title.$touch()"
+            />
+            <transition name="fade">
+                <span class="error" v-if="$v.title.$dirty && !$v.title.required">title is required.</span>
+                <span
+                    class="error"
+                    v-if="$v.title.$dirty && !$v.title.minLength"
+                >title must have at least {{$v.title.$params.minLength.min}} letters.</span>
+            </transition>
+            <textarea
+                class="form__input message"
+                :class="{'error': $v.message.$error}"
+                placeholder="message"
+                v-model="message"
+                @input="$v.message.$touch()"
+            />
+            <transition name="fade">
+                <span
+                    class="error"
+                    v-if="$v.message.$dirty && !$v.message.required"
+                >message is required.</span>
+                <span
+                    class="error"
+                    v-if="$v.message.$dirty && !$v.message.minLength"
+                >title must have at least {{$v.message.$params.minLength.min}} letters.</span>
+            </transition>
+            <button class="form__submit" type="submit" :disabled="$v.$invalid">send</button>
         </form>
         <footer class="footer">
             <p class="footer__separator">
@@ -123,8 +167,11 @@
 
 <script>
 import axios from "axios";
+import { validationMixin } from "vuelidate";
+import { required, email, minLength } from "vuelidate/lib/validators";
 
 export default {
+    mixins: [validationMixin],
     name: "Contact",
     data() {
         return {
@@ -143,10 +190,13 @@ export default {
                     message: this.message,
                 })
                 .then((response) => {
-                    this.email = "";
-                    this.title = "";
-                    this.message = "";
+                    this.formReset();
                 });
+        },
+
+        formReset() {
+            const form = document.getElementById("form");
+            form.reset();
         },
 
         success() {
@@ -156,11 +206,34 @@ export default {
             console.log("error");
         },
     },
+    validations: {
+        email: {
+            required,
+            email,
+        },
+        title: {
+            required,
+            minLength: minLength(3),
+        },
+        message: {
+            required,
+            minLength: minLength(3),
+        },
+    },
 };
 </script>
 
 <style lang="scss" scoped>
 @import "../global.scss";
+
+.fade-enter-active,
+.fade-leave-active {
+    transition: max-height 0.5s, opacity 0.5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+    max-height: 0;
+    opacity: 0;
+}
 
 button:disabled {
     border: 1px solid rgba($color: $text-primary-color, $alpha: 0.5);
@@ -172,6 +245,16 @@ button:disabled {
     font-weight: 300;
     font-size: 30px;
     margin: 15px 0 20px;
+}
+
+span {
+    max-height: 30px;
+
+    &.error {
+        color: lightcoral;
+        font-size: smaller;
+        font-style: italic;
+    }
 }
 
 .form {
@@ -199,6 +282,10 @@ button:disabled {
 
         &::placeholder {
             color: rgba($color: $text-primary-color, $alpha: 0.5);
+        }
+
+        &.error {
+            border-color: red;
         }
 
         &.mail {
