@@ -15,13 +15,7 @@
             <span class="dot"></span>
             <p class="card__description">{{project.description}}</p>
         </div>
-        <vue-easy-lightbox
-            moveDisabled
-            :visible="visible"
-            :imgs="imgs"
-            :index="index"
-            @hide="handleHide"
-        ></vue-easy-lightbox>
+        <vue-easy-lightbox :visible="visible" :imgs="imgs" :index="index" @hide="handleHide"></vue-easy-lightbox>
     </div>
 </template>
 

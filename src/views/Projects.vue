@@ -16,7 +16,7 @@ export default {
         return {
             projects: [
                 {
-                    image: "servicebook",
+                    image: "movie_search_engine",
                     title: "Movies search engine",
                     description:
                         "The movie search engine with The Movie DB API. Created for the needs of recruitment to Junior Frontend Developer.",
@@ -26,7 +26,7 @@ export default {
                         "https://teziovsky.github.io/movie-search-engine/",
                 },
                 {
-                    image: "servicebook",
+                    image: "image_search_engine",
                     title: "Image search engine",
                     description:
                         "The image search engine writed in Vue.js. Using axios to get data from Flickr API and SCSS to add styles to this project.",
