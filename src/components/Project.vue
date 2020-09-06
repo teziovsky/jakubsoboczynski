@@ -6,7 +6,7 @@
             data-aos-anchor-placement="center-bottom"
             class="card__links"
         >
-            <button class="card__links__item" @click.prevent="toggleScreen">SCREEN</button>
+            <button class="card__links__item" @click="showSingle(project.image)">SCREEN</button>
             <a class="card__links__item" :href="project.github_link">SOURCE</a>
             <a class="card__links__item" :href="project.demo_link">DEMO</a>
         </div>
@@ -15,21 +15,42 @@
             <span class="dot"></span>
             <p class="card__description">{{project.description}}</p>
         </div>
-        <!-- <img
-                    class="card__screen"
-                    :src="require('../assets/projects/' + project.image + '.png')"
-                    alt="#"
-        />-->
+        <vue-easy-lightbox
+            moveDisabled
+            :visible="visible"
+            :imgs="imgs"
+            :index="index"
+            @hide="handleHide"
+        ></vue-easy-lightbox>
     </div>
 </template>
 
 <script>
+import VueEasyLightbox from "vue-easy-lightbox";
+
 export default {
     props: ["project"],
     name: "Project",
+    components: {
+        VueEasyLightbox,
+    },
+    data() {
+        return {
+            imgs: "",
+            visible: false,
+            index: 0,
+        };
+    },
     methods: {
-        toggleScreen() {
-            console.log("toggled");
+        showSingle(name) {
+            this.imgs = require("../assets/projects/" + name + ".png");
+            this.show();
+        },
+        show() {
+            this.visible = true;
+        },
+        handleHide() {
+            this.visible = false;
         },
     },
 };
