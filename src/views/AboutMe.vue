@@ -1,7 +1,7 @@
 <template>
     <section id="AboutMe">
         <h1 class="section--title">About Me</h1>
-        <h3>
+        <h3 data-aos="zoom-in">
             Hi! My name is Jakub Soboczyński.
             <span>All informations about me in few notes below!</span>
         </h3>
@@ -60,19 +60,31 @@ h3 {
 
     & span {
         display: block;
-        font-size: 22px;
+        font-size: 0.7em;
     }
 }
 
 @media screen and (max-width: 768px) {
+    h3 {
+        font-size: 24px;
+    }
 }
 
 @media screen and (max-width: 420px) {
+    h3 {
+        font-size: 24px;
+    }
 }
 
 @media screen and (max-width: 375px) {
+    h3 {
+        font-size: 20px;
+    }
 }
 
 @media screen and (max-width: 320px) {
+    h3 {
+        font-size: 18px;
+    }
 }
 </style>

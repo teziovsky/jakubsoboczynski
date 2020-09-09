@@ -1,7 +1,7 @@
 <template>
-    <div class="note">
+    <div data-aos="zoom-out-up" class="note">
         <p class="note__title">{{note.title}}</p>
-        <p class="note__description">{{note.description}}</p>
+        <p data-aos="zoom-in" data-aos-delay="400" class="note__description">{{note.description}}</p>
     </div>
 </template>
 
@@ -23,7 +23,8 @@ export default {
     position: relative;
     color: $text-primary-color;
     background: $background-third-color;
-    line-height: 20px;
+    line-height: 1.3em;
+    font-size: 16px;
     text-align: center;
     box-shadow: 0 4px 5px rgba($background-primary-color, 0.4);
 
@@ -31,6 +32,7 @@ export default {
         display: block;
         content: "";
         line-height: 30px;
+        font-size: 16px;
         background: rgba($text-third-color, 0.5);
         width: 130px;
         height: 28px;
@@ -56,6 +58,31 @@ export default {
 
     &__description {
         text-align: justify;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .note {
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 420px) {
+    .note {
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    .note {
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .note {
+        min-height: 120px;
+        font-size: 12px;
     }
 }
 </style>
