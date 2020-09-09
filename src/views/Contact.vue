@@ -264,7 +264,6 @@ span {
     margin: 0 auto;
 
     &__input {
-        background: none;
         font: inherit;
         padding: 12.5px 30px 12.5px 50px;
         margin: 10px 0;
