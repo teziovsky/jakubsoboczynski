@@ -32,7 +32,7 @@ export default {
                         "The image search engine writed in Vue.js. Using axios to get data from Flickr API and SCSS to add styles to this project.",
                     github_link:
                         "https://github.com/teziovsky/Images-gallery#readme",
-                    demo_link: "https://teziovsky.github.io/Images-gallery/",
+                    demo_link: "https://teziovsky.github.io/images-gallery/",
                 },
                 {
                     image: "servicebook",
