@@ -3,7 +3,7 @@
         <h1 class="section--title">Technologies</h1>
         <div class="wrapper">
             <Technology
-                v-for="(technology,index) in technologies"
+                v-for="(technology, index) in technologies"
                 :key="index"
                 :technology="technology"
             />
@@ -55,6 +55,12 @@ export default {
                     image: "git",
                 },
                 {
+                    name: "Gulp",
+                    subtitle:
+                        "Ability to configure Gulp to improve the speed of coding and for prepare production files.",
+                    image: "gulp",
+                },
+                {
                     name: "Photoshop",
                     subtitle:
                         "Basic photo editing. Creating buttons, banners, icons for websites.",
@@ -64,6 +70,11 @@ export default {
                     name: "Figma",
                     subtitle: "Ability to create simple website layouts.",
                     image: "figma",
+                },
+                {
+                    name: "Adobe XD",
+                    subtitle: "Ability to create simple website layouts.",
+                    image: "xd",
                 },
             ],
         };
