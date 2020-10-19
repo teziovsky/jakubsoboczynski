@@ -11,8 +11,6 @@
 
 > The frontend developer portfolio writed in Vue.js, bacause my most important goal is to find a job as Frontend Developer.
 
-### 🏠 [Homepage](https://github.com/teziovsky/portfolio_v2#readme)
-
 ### ✨ [Demo](https://teziovsky.github.io/portfolio_v2/)
 
 ## Install
@@ -34,10 +32,6 @@ npm run serve
 - Website: https://www.jakubsoboczynski.pl
 - Github: [@teziovsky](https://github.com/teziovsky)
 - LinkedIn: [@jakubsoboczynski](https://linkedin.com/in/jakubsoboczynski)
-
-## 🤝 Contributing
-
-Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/teziovsky/portfolio_v2/issues).
 
 ## Show your support
 
