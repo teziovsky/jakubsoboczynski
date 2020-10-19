@@ -2,7 +2,11 @@
     <section id="Projects">
         <h1 class="section--title">Projects</h1>
         <div class="wrapper">
-            <Project v-for="(project,index) in projects" :key="index" :project="project" />
+            <Project
+                v-for="(project, index) in projects"
+                :key="index"
+                :project="project"
+            />
         </div>
     </section>
 </template>
@@ -26,6 +30,24 @@ export default {
                         "https://teziovsky.github.io/movie-search-engine/",
                 },
                 {
+                    image: "servicebook",
+                    title: "Car service book",
+                    description:
+                        "The car service book website writed in Vue.js. Using vuetify, vuex store, vuelidate, vue-router and vue-axios to connect with MySQL database.",
+                    github_link:
+                        "https://github.com/teziovsky/service-book_v2#readme",
+                    demo_link: "http://servicebook.ct8.pl/",
+                },
+                {
+                    image: "lenovo",
+                    title: "Lenovo product card",
+                    description:
+                        "The Lenovo product card website created for the needs of recruitment to Junior Frontend Developer. PSD to HTML using HTML5, CSS3/SASS and RWD.",
+                    github_link:
+                        "https://github.com/teziovsky/product_card#readme",
+                    demo_link: "https://teziovsky.github.io/product_card/",
+                },
+                {
                     image: "image_search_engine",
                     title: "Image search engine",
                     description:
@@ -33,15 +55,6 @@ export default {
                     github_link:
                         "https://github.com/teziovsky/Images-gallery#readme",
                     demo_link: "https://teziovsky.github.io/images-gallery/",
-                },
-                {
-                    image: "servicebook",
-                    title: "Car service book",
-                    description:
-                        "The car service book website writed in Vue.js. Using vuetify, vuex store, vuelidate, vue-router and vue-axios to connect with MySQL database.",
-                    github_link:
-                        "https://github.com/teziovsky/Service-Book_v3#readme",
-                    demo_link: "http://servicebook.ct8.pl/",
                 },
             ],
         };
