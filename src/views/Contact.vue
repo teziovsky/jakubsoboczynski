@@ -221,7 +221,7 @@ span {
 .form {
   display: flex;
   flex-direction: column;
-  width: 500px;
+  max-width: 500px;
   margin: 0 auto;
 
   &__input {
