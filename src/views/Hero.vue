@@ -28,7 +28,7 @@
       </ul>
     </nav>
     <div class="hero">
-      <div class="image__container">
+      <div class="hero__img--container">
         <img
           class="hero__img"
           src="../assets/profile.png"
@@ -36,8 +36,10 @@
         />
       </div>
       <div class="hero__header">
-        <h1 class="hero__title">Hi, I'm Jakub</h1>
-        <h2 class="hero__subtitle">Frontend Developer</h2>
+        <h1 class="hero__title">
+          Hi, I'm Jakub
+          <span class="hero__subtitle">Frontend Developer</span>
+        </h1>
       </div>
     </div>
     <a href="#Projects" class="actionBtn">
@@ -160,74 +162,6 @@ export default {
   justify-content: space-between;
 }
 
-.hamburger {
-  display: none;
-  margin: 0;
-  padding: 0;
-  border: 0;
-  background-color: transparent;
-  cursor: pointer;
-
-  &:focus {
-    & > .hamburger__container {
-      box-shadow: 0 0 2px 2px #51a7e8;
-    }
-  }
-
-  &__container {
-    display: flex;
-    align-items: center;
-    position: relative;
-    width: 30px;
-    height: 30px;
-
-    &:focus {
-      outline: none;
-    }
-  }
-
-  &__bars {
-    position: absolute;
-    width: 30px;
-    height: 2px;
-    background-color: $text-primary-color;
-    transition: transform 220ms ease-in-out;
-    &:before,
-    &:after {
-      display: block;
-      position: absolute;
-      width: 30px;
-      height: 2px;
-      background-color: $text-primary-color;
-      content: "";
-    }
-    &:before {
-      top: -10px;
-      transition: top 100ms 250ms ease-in, transform 220ms ease-in-out;
-    }
-    &:after {
-      bottom: -10px;
-      transition: bottom 100ms 250ms ease-in, transform 220ms ease-in-out;
-    }
-  }
-
-  &--active {
-    .hamburger__bars {
-      transform: rotate(225deg);
-      transition: transform 220ms 120ms ease-in-out;
-      &:before {
-        top: 0;
-        transition: top 100ms ease-out;
-      }
-      &:after {
-        bottom: 0;
-        transform: rotate(-90deg);
-        transition: bottom 100ms ease-out, transform 220ms 120ms ease-in-out;
-      }
-    }
-  }
-}
-
 .nav {
   display: flex;
   justify-content: space-between;
@@ -256,7 +190,7 @@ export default {
   }
 
   &__logo {
-    font-size: 36px;
+    font-size: 2rem;
     font-weight: 500;
     font-variant: small-caps;
   }
@@ -269,14 +203,81 @@ export default {
   }
 
   &__item {
-    font-size: 20px;
+    font-size: 1.25rem;
     font-weight: 300;
-    order: 1;
     margin: 0px 10px;
     text-transform: uppercase;
 
     &:last-child {
       margin-right: 0;
+    }
+  }
+
+  .hamburger {
+    display: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background-color: transparent;
+    cursor: pointer;
+
+    &:focus {
+      & > .hamburger__container {
+        box-shadow: 0 0 2px 2px #51a7e8;
+      }
+    }
+
+    &__container {
+      display: flex;
+      align-items: center;
+      position: relative;
+      width: 30px;
+      height: 30px;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    &__bars {
+      position: absolute;
+      width: 30px;
+      height: 2px;
+      background-color: $text-primary-color;
+      transition: transform 220ms ease-in-out;
+      &:before,
+      &:after {
+        display: block;
+        position: absolute;
+        width: 30px;
+        height: 2px;
+        background-color: $text-primary-color;
+        content: "";
+      }
+      &:before {
+        top: -10px;
+        transition: top 100ms 250ms ease-in, transform 220ms ease-in-out;
+      }
+      &:after {
+        bottom: -10px;
+        transition: bottom 100ms 250ms ease-in, transform 220ms ease-in-out;
+      }
+    }
+
+    &--active {
+      .hamburger__bars {
+        transform: rotate(225deg);
+        transition: transform 220ms 120ms ease-in-out;
+        &:before {
+          top: 0;
+          transition: top 100ms ease-out;
+        }
+        &:after {
+          bottom: 0;
+          transform: rotate(-90deg);
+          transition: bottom 100ms ease-out, transform 220ms 120ms ease-in-out;
+        }
+      }
     }
   }
 }
@@ -300,6 +301,7 @@ export default {
   }
 
   &__img {
+    position: relative;
     border-radius: 50%;
     margin-right: 25px;
     width: 300px;
@@ -307,46 +309,46 @@ export default {
     max-width: 300px;
     max-height: 300px;
     border: 3px solid $text-primary-color;
-    filter: grayscale(80%);
-    transition: filter 1s ease;
-    position: relative;
+    filter: grayscale(60%);
     z-index: 1;
+    transition: filter 1s ease;
     animation: heightImg 0.5s both;
 
     &:hover {
       filter: grayscale(0%);
       border-color: $text-third-color;
     }
+
+    &--container {
+      display: block;
+      text-align: center;
+
+      &:before {
+        border-top: 2px solid $text-primary-color;
+        display: block;
+        content: " ";
+        position: absolute;
+        z-index: 0;
+        top: 50%;
+        left: 0;
+        width: 100vw;
+        animation: opacity 1.5s 0.5s both;
+      }
+    }
   }
 
   &__title {
-    font-size: 64px;
+    font-size: 4rem;
     font-weight: 400;
     position: relative;
     animation: slideUp 0.5s 1s both;
   }
 
   &__subtitle {
-    font-size: 36px;
+    display: block;
+    font-size: 2.25rem;
     font-weight: 300;
     animation: slideDown 0.5s 1s both;
-  }
-}
-
-.image__container {
-  display: block;
-  text-align: center;
-
-  &:before {
-    border-top: 2px solid $text-primary-color;
-    display: block;
-    content: " ";
-    position: absolute;
-    z-index: 0;
-    top: 50%;
-    left: 0;
-    width: 100vw;
-    animation: opacity 1.5s 0.5s both;
   }
 }
 
@@ -369,7 +371,7 @@ export default {
   }
 
   &__title {
-    font-size: 24px;
+    font-size: 1.3rem;
     font-weight: 300;
     text-transform: uppercase;
     margin-bottom: 5px;
@@ -380,7 +382,7 @@ export default {
     border: solid $text-primary-color;
     border-width: 0 2px 2px 0;
     display: inline-block;
-    padding: 15px;
+    padding: 10px;
     transform: rotate(45deg);
     position: relative;
     margin-bottom: 10px;
@@ -391,31 +393,20 @@ export default {
       position: absolute;
       @extend .actionBtn__arrows;
       transform: rotate(0deg);
-      top: -12px;
-      left: -12px;
+      top: -6px;
+      left: -6px;
     }
   }
 }
 
-// Mobile breakpoints
-@media screen and (max-width: 768px) {
-  .hamburger {
-    display: flex;
-    position: absolute;
-    z-index: 3;
-    top: 18px;
-    right: 20px;
-  }
+//* Mobile breakpoints
 
+@media screen and (max-width: 767.98px) {
   .nav {
     padding: 20px;
     display: block;
     position: relative;
     z-index: 2;
-
-    &__logo {
-      font-size: 24px;
-    }
 
     &__links {
       position: absolute;
@@ -438,48 +429,51 @@ export default {
     }
 
     &__item {
-      font-size: 36px;
       margin: 8px 0;
     }
+
+    .hamburger {
+      display: flex;
+      position: absolute;
+      z-index: 3;
+      top: 18px;
+      right: 20px;
+    }
   }
+
   .hero {
     flex-direction: column-reverse;
     justify-content: space-between;
+    padding: 80px 0;
 
     &__header {
-      margin-bottom: 5vh;
+      margin-bottom: 80px;
       margin-left: 0;
     }
 
     &__title {
       animation: slideLeft 0.5s 0.5s both;
-      font-size: 52px;
     }
 
     &__subtitle {
       animation: slideRight 0.5s 0.5s both;
-      font-size: 26px;
     }
 
     &__img {
       margin-right: 0;
       width: 80%;
       height: auto;
-    }
-  }
 
-  .image__container {
-    &:before,
-    &:after {
-      display: none;
+      &--container {
+        &:before,
+        &:after {
+          display: none;
+        }
+      }
     }
   }
 
   .actionBtn {
-    &__title {
-      font-size: 18px;
-    }
-
     &__arrows {
       padding: 8px;
 
@@ -491,97 +485,52 @@ export default {
   }
 }
 
-@media screen and (max-width: 420px) {
-  .nav {
-    &__logo {
-      font-size: 20px;
-    }
-
-    &__item {
-      font-size: 30px;
-    }
-  }
-
+@media screen and (max-width: 575.98px) {
   .hero {
-    &__title {
-      font-size: 42px;
-    }
+    padding: 80px 0;
 
-    &__subtitle {
-      font-size: 21px;
+    &__header {
+      margin-bottom: 60px;
     }
   }
 }
 
-@media screen and (max-width: 375px) {
+@media screen and (max-width: 419.98px) {
   .nav {
-    &__logo {
-      font-size: 16px;
-    }
-
     &__item {
-      font-size: 28px;
     }
   }
 
   .hero {
-    &__title {
-      font-size: 34px;
+    &__header {
+      margin-bottom: 50px;
     }
 
-    &__subtitle {
-      font-size: 17px;
+    &__img {
+      width: 60%;
+    }
+  }
+}
+
+@media screen and (max-width: 374.98px) {
+  .nav {
+    &__item {
+    }
+  }
+
+  .hero {
+    &__header {
+      margin-bottom: 30px;
     }
   }
 
   .actionBtn {
-    &__title {
-      font-size: 16px;
-    }
-
     &__arrows {
       padding: 6px;
 
       &::before {
         top: -5px;
         left: -5px;
-      }
-    }
-  }
-}
-
-@media screen and (max-width: 320px) {
-  .nav {
-    &__logo {
-      font-size: 14px;
-    }
-
-    &__item {
-      font-size: 24px;
-    }
-  }
-
-  .hero {
-    &__title {
-      font-size: 30px;
-    }
-
-    &__subtitle {
-      font-size: 15px;
-    }
-  }
-
-  .actionBtn {
-    &__title {
-      font-size: 16px;
-    }
-
-    &__arrows {
-      padding: 5px;
-
-      &::before {
-        top: -4px;
-        left: -4px;
       }
     }
   }

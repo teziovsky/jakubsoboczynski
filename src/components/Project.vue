@@ -13,8 +13,8 @@
       <a class="card__links__item" :href="project.demo_link">DEMO</a>
     </div>
     <div class="card__info">
-      <h2 class="card__title">{{ project.title }}</h2>
-      <span class="dot"></span>
+      <h3 class="card__title">{{ project.title }}</h3>
+      <span class="divider"></span>
       <p class="card__description">{{ project.description }}</p>
     </div>
     <vue-easy-lightbox
@@ -77,40 +77,28 @@ button {
 .card {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   position: relative;
   width: 500px;
   margin: 25px;
-  font-size: 12px;
+  font-size: 1rem;
 
   &__links {
-    position: absolute;
-    top: 50%;
-    left: -25px;
+    display: block;
     background-color: $background-secondary-color;
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
-    display: flex;
-    flex-direction: column;
     text-align: center;
-    justify-content: space-around;
-    z-index: 0;
-
-    &.aos-animate {
-      transform: translateY(-50%) !important;
-    }
+    padding: 10px 0;
 
     &__item {
-      font-size: 1em;
+      display: block;
+      font-size: 0.8rem;
       font-weight: 300;
       padding: 6px 9px;
-      margin: 10px 25px 10px 10px;
+      margin: 12px 10px;
       background: none;
       transition: color 0.25s, border 0.25s ease;
-      z-index: 2;
       position: relative;
-
-      &:hover {
-        color: $text-third-color;
-      }
 
       &::before,
       &::after {
@@ -124,22 +112,26 @@ button {
         border: 1px solid transparent;
       }
 
-      &:hover::before,
-      &:hover::after {
-        width: 100%;
-        height: 100%;
-      }
+      &:hover {
+        color: $text-third-color;
 
-      &:hover::before {
-        border-top-color: $text-third-color;
-        border-right-color: $text-third-color;
-        transition: height 0.25s ease-out 0.25s, width 0.25s ease-out;
-      }
+        &::before,
+        &::after {
+          width: 100%;
+          height: 100%;
+        }
 
-      &:hover::after {
-        border-bottom-color: $text-third-color;
-        border-left-color: $text-third-color;
-        transition: height 0.25s ease-out, width 0.25s ease-out 0.25s;
+        &::before {
+          border-top-color: $text-third-color;
+          border-right-color: $text-third-color;
+          transition: height 0.25s ease-out 0.25s, width 0.25s ease-out;
+        }
+
+        &::after {
+          border-bottom-color: $text-third-color;
+          border-left-color: $text-third-color;
+          transition: height 0.25s ease-out, width 0.25s ease-out 0.25s;
+        }
       }
     }
   }
@@ -152,7 +144,6 @@ button {
     text-align: center;
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
     background-color: $background-third-color;
-    margin-left: 60px;
     padding: 30px 20px;
     z-index: 1;
   }
@@ -163,64 +154,23 @@ button {
   }
 
   &__title {
-    font-size: 2.1em;
+    font-size: 1.5rem;
     font-weight: 500;
     font-variant: small-caps;
   }
 
   &__description {
     text-align: left;
-    font-size: 1.1em;
+    font-size: 1rem;
+    font-weight: 300;
   }
 }
 
-// Mobile breakpoints
+//* Mobile breakpoints
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767.98px) {
   .card {
     width: 100%;
-    margin-left: 45px;
-  }
-}
-
-@media screen and (max-width: 420px) {
-  .card {
-    width: 100%;
-    margin-left: 45px;
-  }
-}
-
-@media screen and (max-width: 375px) {
-  .card {
-    width: 100%;
-    margin-left: 45px;
-    font-size: 10px;
-
-    &__info {
-      margin-left: 45px;
-    }
-
-    &__links__item {
-      padding: 6px 9px;
-      margin: 5px 12px 5px 5px;
-    }
-  }
-}
-
-@media screen and (max-width: 320px) {
-  .card {
-    width: 100%;
-    margin-left: 45px;
-    font-size: 10px;
-
-    &__info {
-      margin-left: 45px;
-    }
-
-    &__links__item {
-      padding: 6px 9px;
-      margin: 5px 12px 5px 5px;
-    }
   }
 }
 </style>

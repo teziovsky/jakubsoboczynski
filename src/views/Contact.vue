@@ -1,7 +1,6 @@
 <template>
   <section id="Contact">
-    <h1 class="section--title">Contact</h1>
-
+    <h2 class="section--title">Contact</h2>
     <p class="contact__info">Don't forget to leave me a message!</p>
     <form
       id="form"
@@ -196,15 +195,10 @@ export default {
   opacity: 0;
 }
 
-button:disabled {
-  border: 1px solid rgba($color: $text-primary-color, $alpha: 0.5);
-  color: rgba($color: $text-primary-color, $alpha: 0.5);
-}
-
 .contact__info {
   text-align: center;
   font-weight: 300;
-  font-size: 30px;
+  font-size: 1.2rem;
   margin: 15px 0 20px;
 }
 
@@ -213,7 +207,7 @@ span {
 
   &.error {
     color: lightcoral;
-    font-size: smaller;
+    font-size: 0.8rem;
     font-style: italic;
   }
 }
@@ -231,12 +225,11 @@ span {
     border: none;
     border-bottom: 2px solid $text-primary-color;
     color: $text-primary-color;
-    font-size: 16px;
+    font-size: 1rem;
     transition: border 0.5s, color 0.5s ease;
 
     &:focus {
       border-color: $text-third-color;
-      font-size: 16px;
       outline: none;
     }
 
@@ -281,6 +274,11 @@ span {
     margin: 20px auto;
     transition: border 0.5s, color 0.5s ease;
 
+    &:disabled {
+      border: 1px solid rgba($color: $text-primary-color, $alpha: 0.3);
+      color: rgba($color: $text-primary-color, $alpha: 0.3);
+    }
+
     &:focus:enabled {
       outline: none;
       border-width: 2px;
@@ -303,12 +301,12 @@ span {
   &__separator {
     line-height: 20%;
     margin-top: 30px;
-    font-size: 36px;
+    font-size: 2rem;
   }
 
   &__copy {
     margin: 25px 0;
-    font-size: 18px;
+    font-size: 1rem;
     font-variant: small-caps;
     font-weight: 500;
   }
@@ -343,61 +341,22 @@ span {
   }
 }
 
-// Mobile breakpoints
+//* Mobile breakpoints
 
-@media screen and (max-width: 768px) {
-  .contact__info {
-    font-size: 24px;
-  }
-
+@media screen and (max-width: 767.98px) {
   .form {
     width: 90%;
   }
 }
 
-@media screen and (max-width: 420px) {
-  .contact__info {
-    font-size: 24px;
-  }
-}
-
-@media screen and (max-width: 375px) {
-  .contact__info {
-    font-size: 20px;
-  }
-
+@media screen and (max-width: 374.98px) {
   .footer {
-    &__copy {
-      font-size: 16px;
-    }
-
     &__links__item {
-      margin: 0 8px 30px;
+      margin: 0 3px 30px;
 
       & svg {
         width: 25px;
         height: 25px;
-      }
-    }
-  }
-}
-
-@media screen and (max-width: 320px) {
-  .contact__info {
-    font-size: 18px;
-  }
-
-  .footer {
-    &__copy {
-      font-size: 14px;
-    }
-
-    &__links__item {
-      margin: 0 6px 30px;
-
-      & svg {
-        width: 20px;
-        height: 20px;
       }
     }
   }

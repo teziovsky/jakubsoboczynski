@@ -1,6 +1,6 @@
 <template>
   <section id="AboutMe">
-    <h1 class="section--title">About Me</h1>
+    <h2 class="section--title">About Me</h2>
     <h3>
       Hi! My name is Jakub Soboczyński.
       <span>All informations about me in few notes below!</span>
@@ -54,37 +54,17 @@ h3 {
   padding: 10px;
   text-align: center;
   font-weight: 300;
-  font-size: 30px;
+  font-size: 1.875rem;
   margin-bottom: 20px;
   font-variant: small-caps;
 
   & span {
     display: block;
-    font-size: 0.7em;
+    font-size: 1.1rem;
+    font-variant: normal;
+    margin-top: 5px;
   }
 }
 
-@media screen and (max-width: 768px) {
-  h3 {
-    font-size: 24px;
-  }
-}
-
-@media screen and (max-width: 420px) {
-  h3 {
-    font-size: 24px;
-  }
-}
-
-@media screen and (max-width: 375px) {
-  h3 {
-    font-size: 20px;
-  }
-}
-
-@media screen and (max-width: 320px) {
-  h3 {
-    font-size: 18px;
-  }
-}
+//* Mobile breakpoints
 </style>

@@ -26,65 +26,46 @@ export default {
   color: $text-primary-color;
   background: $background-third-color;
   line-height: 1.3em;
-  font-size: 16px;
   text-align: center;
   box-shadow: 0 4px 5px rgba($background-primary-color, 0.4);
 
   &:before {
     display: block;
     content: "";
-    line-height: 30px;
-    font-size: 16px;
     background: rgba($text-third-color, 0.5);
-    width: 130px;
-    height: 28px;
+    width: 150px;
+    height: 35px;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
     border-radius: 6px/18px 0;
     position: absolute;
-    top: -13px;
+    top: -18px;
     left: 50%;
-    transform: rotate(-2deg);
     transform: translateX(-50%);
   }
 
   &__title {
     position: absolute;
-    top: -13px;
+    top: -11px;
     left: 50%;
     transform: translateX(-50%);
-    color: rgba($color: $background-third-color, $alpha: 0.8);
+    color: rgba($color: $background-third-color, $alpha: 1);
     text-transform: lowercase;
+    font-size: 1.1rem;
     font-weight: 500;
-    line-height: 30px;
   }
 
   &__description {
     text-align: left;
+    font-size: 1rem;
+    font-weight: 300;
   }
 }
 
-@media screen and (max-width: 768px) {
-  .note {
-    font-size: 16px;
-  }
-}
+//* Mobile breakpoints
 
-@media screen and (max-width: 420px) {
+@media screen and (max-width: 374.98px) {
   .note {
-    font-size: 16px;
-  }
-}
-
-@media screen and (max-width: 375px) {
-  .note {
-    font-size: 14px;
-  }
-}
-
-@media screen and (max-width: 320px) {
-  .note {
-    min-height: 120px;
-    font-size: 12px;
+    min-height: 100px;
   }
 }
 </style>

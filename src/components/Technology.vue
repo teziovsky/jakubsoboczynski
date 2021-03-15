@@ -12,8 +12,8 @@
       />
     </div>
     <div class="card__info">
-      <h2 class="card__title">{{ technology.name }}</h2>
-      <span class="dot"></span>
+      <h3 class="card__title">{{ technology.name }}</h3>
+      <span class="divider"></span>
       <p class="card__description">{{ technology.subtitle }}</p>
     </div>
   </div>
@@ -33,7 +33,7 @@ export default {
   display: flex;
   position: relative;
   width: 550px;
-  margin: 20px 25px 20px 0;
+  margin: 20px;
 
   &__image {
     display: flex;
@@ -45,7 +45,7 @@ export default {
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
     position: absolute;
     top: 50%;
-    left: 25px;
+    left: 0;
     z-index: 1;
 
     &.aos-animate {
@@ -53,8 +53,8 @@ export default {
     }
 
     & > img {
-      max-width: 110px;
-      height: 110px;
+      max-width: 80%;
+      height: 80%;
     }
   }
 
@@ -66,110 +66,66 @@ export default {
     background-color: $background-third-color;
     min-height: 150px;
     min-width: 410px;
-    margin-left: 140px;
+    width: 100%;
+    margin-left: 115px;
     padding: 20px 20px 20px 25px;
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
-    font-size: 16px;
+    font-size: 1rem;
   }
 
   &__title {
-    font-size: 1.5em;
+    font-size: 1.5rem;
     font-weight: 500;
     font-variant: small-caps;
   }
 
   &__description {
-    font-size: 1em;
+    font-size: 1rem;
     font-weight: 300;
     text-align: left;
   }
 }
 
-// Mobile breakpoints
+//* Mobile breakpoints
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767.98px) {
   .card {
     width: 100%;
 
+    &__image {
+      height: 120px;
+      width: 120px;
+    }
+
+    &__info {
+      min-width: 200px;
+      margin-left: 105px;
+    }
+  }
+}
+
+@media screen and (max-width: 419.98px) {
+  .card {
     &__image {
       height: 100px;
       width: 100px;
-
-      & > img {
-        max-width: 80px;
-        height: 80px;
-      }
     }
 
     &__info {
-      min-width: 200px;
-      margin-left: 110px;
+      margin-left: 85px;
     }
   }
 }
 
-@media screen and (max-width: 420px) {
+@media screen and (max-width: 374.98px) {
   .card {
-    width: 100%;
-
     &__image {
       height: 90px;
       width: 90px;
-
-      & > img {
-        max-width: 70px;
-        height: 70px;
-      }
     }
 
     &__info {
-      min-width: 200px;
-      margin-left: 100px;
-      font-size: 14px;
-    }
-  }
-}
-
-@media screen and (max-width: 375px) {
-  .card {
-    width: 100%;
-
-    &__image {
-      height: 80px;
-      width: 80px;
-
-      & > img {
-        max-width: 60px;
-        height: 60px;
-      }
-    }
-
-    &__info {
-      min-width: 200px;
-      margin-left: 90px;
-      font-size: 12px;
-    }
-  }
-}
-
-@media screen and (max-width: 320px) {
-  .card {
-    width: 100%;
-
-    &__image {
-      height: 70px;
-      width: 70px;
-
-      & > img {
-        max-width: 50px;
-        height: 50px;
-      }
-    }
-
-    &__info {
-      min-width: 200px;
-      margin-left: 80px;
-      font-size: 12px;
+      margin-left: 75px;
     }
   }
 }
