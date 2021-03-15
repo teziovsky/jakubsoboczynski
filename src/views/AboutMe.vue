@@ -54,7 +54,7 @@ h3 {
   padding: 10px;
   text-align: center;
   font-weight: 300;
-  font-size: 1.875rem;
+  font-size: 1.8rem;
   margin-bottom: 20px;
   font-variant: small-caps;
 
@@ -67,4 +67,28 @@ h3 {
 }
 
 //* Mobile breakpoints
+
+@media screen and (max-width: 575.98px) {
+  h3 {
+    font-size: 1.6rem;
+    span {
+      font-size: 1rem;
+    }
+  }
+}
+
+@media screen and (max-width: 419.98px) {
+  h3 {
+    font-size: 1.4rem;
+    span {
+      font-size: 0.9rem;
+    }
+  }
+}
+
+@media screen and (max-width: 374.98px) {
+  h3 {
+    font-size: 1.2rem;
+  }
+}
 </style>

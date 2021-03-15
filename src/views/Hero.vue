@@ -35,12 +35,10 @@
           alt="profile photo"
         />
       </div>
-      <div class="hero__header">
-        <h1 class="hero__title">
-          Hi, I'm Jakub
-          <span class="hero__subtitle">Frontend Developer</span>
-        </h1>
-      </div>
+      <h1 class="hero__title">
+        Hi, I'm Jakub
+        <span class="hero__subtitle">Frontend Developer</span>
+      </h1>
     </div>
     <a href="#Projects" class="actionBtn">
       <p class="actionBtn__title">View projects</p>
@@ -190,7 +188,7 @@ export default {
   }
 
   &__logo {
-    font-size: 2rem;
+    font-size: 1.8rem;
     font-weight: 500;
     font-variant: small-caps;
   }
@@ -203,7 +201,7 @@ export default {
   }
 
   &__item {
-    font-size: 1.25rem;
+    font-size: 1.3rem;
     font-weight: 300;
     margin: 0px 10px;
     text-transform: uppercase;
@@ -289,17 +287,6 @@ export default {
   position: relative;
   padding: 100px 0;
 
-  &__header {
-    margin-top: -30px;
-    margin-left: 25px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-shadow: 0px 5px 10px #000000;
-    font-variant: small-caps;
-  }
-
   &__img {
     position: relative;
     border-radius: 50%;
@@ -338,16 +325,19 @@ export default {
   }
 
   &__title {
-    font-size: 4rem;
+    font-size: 3rem;
     font-weight: 400;
+    text-align: center;
     position: relative;
+    margin-bottom: 15px;
+    margin-left: 40px;
     animation: slideUp 0.5s 1s both;
   }
 
   &__subtitle {
-    display: block;
-    font-size: 2.25rem;
+    font-size: 2rem;
     font-weight: 300;
+    display: block;
     animation: slideDown 0.5s 1s both;
   }
 }
@@ -446,17 +436,16 @@ export default {
     justify-content: space-between;
     padding: 80px 0;
 
-    &__header {
-      margin-bottom: 80px;
-      margin-left: 0;
-    }
-
     &__title {
+      font-size: 2.8rem;
+      margin-left: 0;
+      margin-bottom: 40px;
       animation: slideLeft 0.5s 0.5s both;
     }
 
     &__subtitle {
-      animation: slideRight 0.5s 0.5s both;
+      font-size: 1.9rem;
+      animation: slideRight 0.5s 1s both;
     }
 
     &__img {
@@ -486,24 +475,34 @@ export default {
 }
 
 @media screen and (max-width: 575.98px) {
+  .nav {
+    &__logo {
+      font-size: 1.4rem;
+    }
+  }
+
   .hero {
     padding: 80px 0;
 
-    &__header {
-      margin-bottom: 60px;
+    &__title {
+      font-size: 2.6rem;
+    }
+
+    &__subtitle {
+      font-size: 1.7rem;
     }
   }
 }
 
 @media screen and (max-width: 419.98px) {
-  .nav {
-    &__item {
-    }
-  }
-
   .hero {
-    &__header {
-      margin-bottom: 50px;
+    &__title {
+      margin-bottom: 30px;
+      font-size: 2.2rem;
+    }
+
+    &__subtitle {
+      font-size: 1.3rem;
     }
 
     &__img {
@@ -513,17 +512,6 @@ export default {
 }
 
 @media screen and (max-width: 374.98px) {
-  .nav {
-    &__item {
-    }
-  }
-
-  .hero {
-    &__header {
-      margin-bottom: 30px;
-    }
-  }
-
   .actionBtn {
     &__arrows {
       padding: 6px;

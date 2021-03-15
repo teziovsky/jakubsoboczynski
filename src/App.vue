@@ -71,7 +71,7 @@ a {
 }
 
 .section--title {
-  font-size: 3rem;
+  font-size: 2.8rem;
   font-weight: 100;
   text-transform: uppercase;
   overflow: hidden;
@@ -111,47 +111,47 @@ a {
 //* Mobile breakpoints
 
 @media screen and (max-width: 991.98px) {
-  html {
-    font-size: 15px;
-  }
   .wrapper {
     max-width: 893px;
+  }
+  .section--title {
+    font-size: 2.6rem;
   }
 }
 
 @media screen and (max-width: 767.98px) {
-  html {
-    font-size: 14px;
-  }
   .wrapper {
     max-width: 692px;
+  }
+  .section--title {
+    font-size: 2.4rem;
   }
 }
 
 @media screen and (max-width: 575.98px) {
-  html {
-    font-size: 13px;
-  }
   .wrapper {
     max-width: 519px;
+  }
+  .section--title {
+    font-size: 2.2rem;
   }
 }
 
 @media screen and (max-width: 419.98px) {
-  html {
-    font-size: 12px;
-  }
   .wrapper {
     max-width: 378px;
+  }
+  .section--title {
+    font-size: 2rem;
   }
 }
 
 @media screen and (max-width: 374.98px) {
-  html {
-    font-size: 11px;
-  }
   .wrapper {
     max-width: 338px;
+  }
+  .section--title {
+    font-size: 1.8rem;
   }
 }
 </style>

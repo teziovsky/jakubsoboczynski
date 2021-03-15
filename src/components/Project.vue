@@ -62,7 +62,7 @@ export default {
 
 button {
   color: $text-primary-color;
-  border: 0;
+  border: none;
   font: inherit;
 
   &:focus {
@@ -80,8 +80,7 @@ button {
   align-items: center;
   position: relative;
   width: 500px;
-  margin: 25px;
-  font-size: 1rem;
+  margin: 20px;
 
   &__links {
     display: block;
@@ -154,7 +153,7 @@ button {
   }
 
   &__title {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     font-weight: 500;
     font-variant: small-caps;
   }
@@ -171,6 +170,19 @@ button {
 @media screen and (max-width: 767.98px) {
   .card {
     width: 100%;
+    max-width: 500px;
+
+    &__title {
+      font-size: 1.3rem;
+    }
+  }
+}
+
+@media screen and (max-width: 374.98px) {
+  .card {
+    &__title {
+      font-size: 1.1rem;
+    }
   }
 }
 </style>

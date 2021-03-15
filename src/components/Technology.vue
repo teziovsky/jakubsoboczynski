@@ -32,7 +32,7 @@ export default {
 .card {
   display: flex;
   position: relative;
-  width: 550px;
+  width: 500px;
   margin: 20px;
 
   &__image {
@@ -65,7 +65,6 @@ export default {
     justify-content: center;
     background-color: $background-third-color;
     min-height: 150px;
-    min-width: 410px;
     width: 100%;
     margin-left: 115px;
     padding: 20px 20px 20px 25px;
@@ -74,7 +73,7 @@ export default {
   }
 
   &__title {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     font-weight: 500;
     font-variant: small-caps;
   }
@@ -91,6 +90,7 @@ export default {
 @media screen and (max-width: 767.98px) {
   .card {
     width: 100%;
+    max-width: 500px;
 
     &__image {
       height: 120px;
@@ -100,6 +100,10 @@ export default {
     &__info {
       min-width: 200px;
       margin-left: 105px;
+    }
+
+    &__title {
+      font-size: 1.3rem;
     }
   }
 }
@@ -126,6 +130,10 @@ export default {
 
     &__info {
       margin-left: 75px;
+    }
+
+    &__title {
+      font-size: 1.1rem;
     }
   }
 }

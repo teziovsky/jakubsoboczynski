@@ -25,7 +25,7 @@ export default {
   position: relative;
   color: $text-primary-color;
   background: $background-third-color;
-  line-height: 1.3em;
+  line-height: 1.4em;
   text-align: center;
   box-shadow: 0 4px 5px rgba($background-primary-color, 0.4);
 

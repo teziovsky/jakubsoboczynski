@@ -196,9 +196,9 @@ export default {
 }
 
 .contact__info {
+  font-size: 1.4rem;
   text-align: center;
   font-weight: 300;
-  font-size: 1.2rem;
   margin: 15px 0 20px;
 }
 
@@ -306,7 +306,7 @@ span {
 
   &__copy {
     margin: 25px 0;
-    font-size: 1rem;
+    font-size: 0.8rem;
     font-variant: small-caps;
     font-weight: 500;
   }
@@ -344,15 +344,28 @@ span {
 //* Mobile breakpoints
 
 @media screen and (max-width: 767.98px) {
+  .contact__info {
+    font-size: 1.2rem;
+  }
+
   .form {
     width: 90%;
   }
 }
 
 @media screen and (max-width: 374.98px) {
+  .contact__info {
+    font-size: 1rem;
+  }
+
   .footer {
     &__links__item {
-      margin: 0 3px 30px;
+      margin: 0 5px;
+
+      & > a {
+        width: 25px;
+        height: 25px;
+      }
 
       & svg {
         width: 25px;
