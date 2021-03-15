@@ -59,7 +59,7 @@ export default {
   }
 
   &__description {
-    text-align: justify;
+    text-align: left;
   }
 }
 

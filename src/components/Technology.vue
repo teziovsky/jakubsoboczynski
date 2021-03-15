@@ -81,7 +81,7 @@ export default {
   &__description {
     font-size: 1em;
     font-weight: 300;
-    text-align: justify;
+    text-align: left;
   }
 }
 
