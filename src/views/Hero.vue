@@ -476,8 +476,6 @@ export default {
   }
 
   .actionBtn {
-    margin-bottom: 50px;
-
     &__title {
       font-size: 18px;
     }
