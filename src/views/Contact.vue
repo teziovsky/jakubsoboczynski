@@ -78,7 +78,7 @@
           :data-aos-delay="link.aos_delay"
           class="footer__links__item"
         >
-          <a :href="link.href">
+          <a :href="link.href" :name="link.name">
             <svg
               width="36"
               height="36"
@@ -110,6 +110,8 @@ export default {
       message: "",
       social_links: [
         {
+          id: 1,
+          name: "Github",
           aos_delay: "200",
           href: "https://github.com/teziovsky",
           svg_path_d:
@@ -117,6 +119,8 @@ export default {
           svg_path_fill: "#D4D4DC",
         },
         {
+          id: 2,
+          name: "Linkedin",
           aos_delay: "400",
           href: "https://pl.linkedin.com/in/jakubsoboczynski",
           svg_path_d:
@@ -124,13 +128,17 @@ export default {
           svg_path_fill: "#D4D4DC",
         },
         {
+          id: 3,
+          name: "Facebook",
           aos_delay: "600",
-          href: "https://github.com/teziovsky",
+          href: "https://facebook.com/teziovsky",
           svg_path_d:
             "M0 0V36H36V0H0ZM24 10.5H21.1155C20.1915 10.5 19.5 10.878 19.5 11.8335V13.5H24L23.6415 18H19.5V30H15V18H12V13.5H15V10.6155C15 7.5825 16.596 6 20.1915 6H24V10.5Z",
           svg_path_fill: "#D4D4DC",
         },
         {
+          id: 4,
+          name: "Instagram",
           aos_delay: "800",
           href: "https://www.instagram.com/teziovsky",
           svg_path_d:

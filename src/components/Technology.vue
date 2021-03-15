@@ -8,6 +8,8 @@
     >
       <img
         :src="require('../assets/technologies/' + technology.image + '.png')"
+        width="100%"
+        height="auto"
         alt="html"
       />
     </div>
