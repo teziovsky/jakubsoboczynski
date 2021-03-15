@@ -33,8 +33,8 @@
           class="hero__img"
           src="../assets/profile.png"
           alt="profile photo"
-          width="100%"
-          height="auto"
+          width="300px"
+          height="300px"
         />
       </div>
       <h1 class="hero__title">
