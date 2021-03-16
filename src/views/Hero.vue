@@ -31,7 +31,7 @@
       <div class="hero__img--container">
         <img
           class="hero__img"
-          src="../assets/profile.png"
+          src="../assets/profile.jpg"
           alt="profile photo"
           width="300px"
           height="300px"
@@ -327,11 +327,11 @@ export default {
   }
 
   &__title {
-    font-size: 3rem;
+    font-size: 3.5rem;
     font-weight: 400;
     text-align: center;
     position: relative;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     margin-left: 40px;
     animation: slideUp 0.5s 1s both;
   }
@@ -500,15 +500,6 @@ export default {
   .hero {
     &__title {
       margin-bottom: 30px;
-      font-size: 2.2rem;
-    }
-
-    &__subtitle {
-      font-size: 1.3rem;
-    }
-
-    &__img {
-      width: 60%;
     }
   }
 }

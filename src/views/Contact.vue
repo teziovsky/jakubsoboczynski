@@ -78,7 +78,7 @@
           :data-aos-delay="link.aos_delay"
           class="footer__links__item"
         >
-          <a :href="link.href" :name="link.name">
+          <a :href="link.href" :name="link.name" :alt="link.name">
             <svg
               width="36"
               height="36"
@@ -88,6 +88,7 @@
             >
               <path :d="link.svg_path_d" :fill="link.svg_path_fill" />
             </svg>
+            <span class="sr-only">{{ link.name }}</span>
           </a>
         </li>
       </ul>

@@ -7,7 +7,7 @@
       class="card__image"
     >
       <img
-        :src="require('../assets/technologies/' + technology.image + '.png')"
+        :src="require('../assets/technologies/' + technology.image + '.svg')"
         width="100%"
         height="auto"
         alt="html"
