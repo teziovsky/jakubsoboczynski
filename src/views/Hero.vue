@@ -31,7 +31,7 @@
       <div class="hero__img--container">
         <img
           class="hero__img"
-          src="../assets/profile.jpg"
+          src="../assets/profile.webp"
           alt="profile photo"
           width="300px"
           height="300px"
