@@ -18,4 +18,4 @@ jobs:
           port: ${{ secrets.FTP_PORT }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ${{ secrets.LOCAL_DIR }}
+          local-dir: ${{ secrets.FTP_LOCAL_DIR }}
