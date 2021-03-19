@@ -33,8 +33,8 @@ export default {
           title: "Car service book",
           description:
             "The car service book website writed in Vue.js. Using vuetify, vuex store, vuelidate, vue-router and vue-axios to connect with MySQL database.",
-          github_link: "https://github.com/teziovsky/service-book_v2#readme",
-          demo_link: "http://servicebook.ct8.pl/",
+          github_link: "https://github.com/teziovsky/service-book#readme",
+          demo_link: "https://teziovsky.github.io/service-book/",
         },
         {
           image: "lenovo",
@@ -49,7 +49,7 @@ export default {
           title: "Image search engine",
           description:
             "The image search engine writed in Vue.js. Using axios to get data from Flickr API and SCSS to add styles to this project.",
-          github_link: "https://github.com/teziovsky/Images-gallery#readme",
+          github_link: "https://github.com/teziovsky/images-gallery#readme",
           demo_link: "https://teziovsky.github.io/images-gallery/",
         },
       ],
