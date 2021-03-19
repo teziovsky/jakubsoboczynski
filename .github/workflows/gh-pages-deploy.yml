@@ -11,6 +11,11 @@ jobs:
       - name: 🚚 Get latest code
         uses: actions/checkout@v2.3.2
 
+      - name: Build project
+        run: |
+          npm install
+          npm run build
+
       - name: 📂 Sync FTP files
         uses: SamKirkland/FTP-Deploy-Action@4.0.0
         with:
@@ -18,4 +23,5 @@ jobs:
           port: ${{ secrets.FTP_PORT }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          server-dir: ${{ secrets.FTP_LOCAL_DIR }}
+          server-dir: ${{ secrets.FTP_SERVER_DIR }}
+          local-dir: ${{ secrets.FTP_LOCAL_DIR }}
