@@ -167,13 +167,6 @@ export default {
       const form = document.getElementById("form");
       form.reset();
     },
-
-    success() {
-      console.log("success");
-    },
-    error() {
-      console.log("error");
-    },
   },
   validations: {
     email: {
@@ -237,6 +230,7 @@ span {
     font-size: 1rem;
     transition: border 0.5s, color 0.5s ease;
 
+    &:hover,
     &:focus {
       border-color: $text-third-color;
       outline: none;
@@ -281,19 +275,17 @@ span {
     width: 170px;
     height: 40px;
     margin: 20px auto;
-    transition: border 0.5s, color 0.5s ease;
+    transition: border 0.25s, color 0.25s ease;
 
     &:disabled {
       border: 1px solid rgba($color: $text-primary-color, $alpha: 0.3);
       color: rgba($color: $text-primary-color, $alpha: 0.3);
     }
 
+    &:hover:enabled,
     &:focus:enabled {
       outline: none;
       border-width: 2px;
-    }
-
-    &:hover:enabled {
       border-color: $text-third-color;
       color: $text-third-color;
       cursor: pointer;
@@ -332,19 +324,20 @@ span {
         width: 30px;
         height: 30px;
         display: block;
-      }
 
-      & svg {
-        width: 30px;
-        height: 30px;
-
-        & path {
-          transition: fill 0.5s ease;
+        &:hover svg path,
+        &:focus svg path {
+          fill: #feda6a;
         }
-      }
 
-      &:hover svg path {
-        fill: #feda6a;
+        & svg {
+          width: 30px;
+          height: 30px;
+
+          & path {
+            transition: fill 0.25s ease;
+          }
+        }
       }
     }
   }

@@ -9,7 +9,7 @@
       <button class="card__links__item" @click="showSingle(project.image)">
         SCREEN
       </button>
-      <a class="card__links__item" :href="project.github_link">SOURCE</a>
+      <a :href="project.github_link" class="card__links__item">SOURCE</a>
       <a class="card__links__item" :href="project.demo_link">DEMO</a>
     </div>
     <div class="card__info">
@@ -65,12 +65,10 @@ button {
   border: none;
   font: inherit;
 
+  &:hover,
   &:focus {
-    outline: none;
-  }
-
-  &:hover {
     cursor: pointer;
+    outline: none;
   }
 }
 
@@ -111,7 +109,8 @@ button {
         border: 1px solid transparent;
       }
 
-      &:hover {
+      &:hover,
+      &:focus {
         color: $text-third-color;
 
         &::before,

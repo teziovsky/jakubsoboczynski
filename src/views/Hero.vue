@@ -1,5 +1,5 @@
 <template>
-  <section id="hero">
+  <section id="hero" name="hero">
     <nav class="nav">
       <span class="nav__logo">Jakub Soboczyński</span>
       <button
@@ -13,17 +13,17 @@
         </span>
       </button>
       <ul class="nav__links" :class="openMenu ? 'active' : null">
-        <li class="nav__item" @click="handleLinkClick">
-          <a href="#AboutMe">AboutMe</a>
+        <li class="nav__item">
+          <a href="#AboutMe" @click="handleLinkClick">AboutMe</a>
         </li>
-        <li class="nav__item" @click="handleLinkClick">
-          <a href="#Technologies">Technologies</a>
+        <li class="nav__item">
+          <a href="#Technologies" @click="handleLinkClick">Technologies</a>
         </li>
-        <li class="nav__item" @click="handleLinkClick">
-          <a href="#Projects">Projects</a>
+        <li class="nav__item">
+          <a href="#Projects" @click="handleLinkClick">Projects</a>
         </li>
-        <li class="nav__item" @click="handleLinkClick">
-          <a href="#Contact">Contact</a>
+        <li class="nav__item">
+          <a href="#Contact" @click="handleLinkClick">Contact</a>
         </li>
       </ul>
     </nav>
@@ -59,18 +59,17 @@ export default {
   },
   methods: {
     toggleMenu() {
-      const html = document.getElementsByTagName("html")[0];
+      const body = document.getElementsByTagName("body")[0];
       const scrollBarWidth = window.innerWidth - document.body.clientWidth;
-      console.log(window.innerWidth, document.body.clientWidth, scrollBarWidth);
       this.openMenu = !this.openMenu;
       this.openMenu
-        ? (html.style.cssText = `overflow: hidden; padding-right: ${scrollBarWidth}px`)
-        : html.removeAttribute("style");
+        ? (body.style.cssText = `overflow: hidden; padding-right: ${scrollBarWidth}px`)
+        : body.removeAttribute("style");
     },
     handleLinkClick() {
-      const html = document.getElementsByTagName("html")[0];
+      const body = document.getElementsByTagName("body")[0];
       if (this.openMenu) {
-        html.removeAttribute("style");
+        body.removeAttribute("style");
         this.openMenu = false;
       }
     },
@@ -180,7 +179,8 @@ export default {
       transition: transform 0.5s ease;
     }
 
-    &:hover {
+    &:hover,
+    &:focus {
       color: $text-third-color;
 
       &::after {
@@ -221,9 +221,18 @@ export default {
     background-color: transparent;
     cursor: pointer;
 
+    &:hover,
     &:focus {
-      & > .hamburger__container {
-        box-shadow: 0 0 2px 2px #51a7e8;
+      .hamburger {
+        outline: none;
+        &__bars {
+          background-color: $text-third-color;
+
+          &:before,
+          &:after {
+            background-color: $text-third-color;
+          }
+        }
       }
     }
 
@@ -244,7 +253,9 @@ export default {
       width: 30px;
       height: 2px;
       background-color: $text-primary-color;
-      transition: transform 220ms ease-in-out;
+      transition: transform 0.25s ease-in-out,
+        background-color 0.25s ease-in-out;
+
       &:before,
       &:after {
         display: block;
@@ -256,11 +267,13 @@ export default {
       }
       &:before {
         top: -10px;
-        transition: top 100ms 250ms ease-in, transform 220ms ease-in-out;
+        transition: top 0.1s 0.25s ease-in, transform 0.25s ease-in-out,
+          background-color 0.25s ease-in-out;
       }
       &:after {
         bottom: -10px;
-        transition: bottom 100ms 250ms ease-in, transform 220ms ease-in-out;
+        transition: bottom 0.1s 0.25s ease-in, transform 0.25s ease-in-out,
+          background-color 0.25s ease-in-out;
       }
     }
 
@@ -303,7 +316,8 @@ export default {
     transition: filter 1s ease;
     animation: heightImg 0.5s both;
 
-    &:hover {
+    &:hover,
+    &:focus {
       filter: grayscale(0%);
       border-color: $text-third-color;
     }
@@ -353,11 +367,13 @@ export default {
   margin: 0 auto 20px;
   animation: slideUp 0.5s 1.5s both;
 
-  &:hover &__title {
+  &:hover &__title,
+  &:focus &__title {
     color: $text-third-color;
   }
 
-  &:hover &__arrows {
+  &:hover &__arrows,
+  &:focus &__arrows {
     border: solid $text-third-color;
     border-width: 0 2px 2px 0;
   }
@@ -410,13 +426,15 @@ export default {
       justify-content: center;
       align-items: center;
       overflow: hidden;
+      background-color: $background-secondary-color;
       height: 100vh;
       width: 0;
-      background-color: $background-secondary-color;
-      transition: width 0.5s ease;
+      visibility: hidden;
+      transition: width 0.5s ease, visibility 0.5s ease;
 
       &.active {
         width: 100vw;
+        visibility: visible;
       }
     }
 
