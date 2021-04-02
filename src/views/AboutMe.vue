@@ -3,7 +3,7 @@
     <h2 class="section--title">About Me</h2>
     <h3>
       Hi! My name is Jakub Soboczyński.
-      <span>All informations about me in few notes below!</span>
+      <span>Please just read a few notes below!</span>
     </h3>
     <div class="wrapper">
       <Note v-for="note in notes" :key="note.title" :note="note" />
@@ -44,7 +44,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../global.scss";
+@import '../global.scss';
 
 #AboutMe {
   background-color: $background-secondary-color;

@@ -78,7 +78,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../global.scss";
+@import '../global.scss';
 
 @keyframes slideUp {
   0% {
@@ -173,7 +173,7 @@ export default {
 
     &::after {
       display: block;
-      content: "";
+      content: '';
       border-bottom: solid 1px $text-third-color;
       transform: scaleX(0);
       transition: transform 0.5s ease;
@@ -262,7 +262,7 @@ export default {
         width: 30px;
         height: 2px;
         background-color: $text-primary-color;
-        content: "";
+        content: '';
       }
       &:before {
         top: -10px;
@@ -328,7 +328,7 @@ export default {
       &:before {
         border-top: 2px solid $text-primary-color;
         display: block;
-        content: " ";
+        content: ' ';
         position: absolute;
         z-index: 0;
         top: 50%;
@@ -396,7 +396,7 @@ export default {
     transition: border 0.5s ease;
 
     &::before {
-      content: "";
+      content: '';
       position: absolute;
       @extend .actionBtn__arrows;
       transform: rotate(0deg);

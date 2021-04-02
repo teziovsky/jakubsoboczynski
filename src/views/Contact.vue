@@ -19,11 +19,9 @@
         @input="$v.email.$touch()"
       />
       <transition name="fade">
-        <span v-if="$v.email.$dirty && !$v.email.required" class="error"
-        >email is required.</span
-        >
+        <span v-if="$v.email.$dirty && !$v.email.required" class="error">email is required.</span>
         <span v-if="$v.email.$dirty && !$v.email.email" class="error"
-        >please write correct address email.</span
+          >please write correct address email.</span
         >
       </transition>
       <input
@@ -35,12 +33,9 @@
         @input="$v.title.$touch()"
       />
       <transition name="fade">
-        <span v-if="$v.title.$dirty && !$v.title.required" class="error"
-        >title is required.</span
-        >
+        <span v-if="$v.title.$dirty && !$v.title.required" class="error">title is required.</span>
         <span v-if="$v.title.$dirty && !$v.title.minLength" class="error"
-        >title must have at least
-          {{ $v.title.$params.minLength.min }} letters.</span
+          >title must have at least {{ $v.title.$params.minLength.min }} letters.</span
         >
       </transition>
       <textarea
@@ -52,21 +47,18 @@
       />
       <transition name="fade">
         <span v-if="$v.message.$dirty && !$v.message.required" class="error"
-        >message is required.</span
+          >message is required.</span
         >
         <span v-if="$v.message.$dirty && !$v.message.minLength" class="error"
-        >title must have at least
-          {{ $v.message.$params.minLength.min }} letters.</span
+          >title must have at least {{ $v.message.$params.minLength.min }} letters.</span
         >
       </transition>
-      <button :disabled="$v.$invalid" class="form__submit" type="submit">
-        send
-      </button>
+      <button :disabled="$v.$invalid" class="form__submit" type="submit">send</button>
     </form>
     <footer class="footer">
       <p class="footer__separator">
         ~
-        <br/>~
+        <br />~
       </p>
       <p class="footer__copy">&copy; 2020 | Designed by Jakub Soboczyński</p>
       <ul class="footer__links">
@@ -86,7 +78,7 @@
               width="36"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <path :d="link.svg_path_d" :fill="link.svg_path_fill"/>
+              <path :d="link.svg_path_d" :fill="link.svg_path_fill" />
             </svg>
             <span class="sr-only">{{ link.name }}</span>
           </a>
@@ -186,14 +178,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../global.scss";
+@import '../global.scss';
 
 .fade-enter-active,
 .fade-leave-active {
   transition: max-height 0.5s, opacity 0.5s;
 }
 
-.fade-enter, .fade-leave-to {
+.fade-enter,
+.fade-leave-to {
   max-height: 0;
   opacity: 0;
 }
@@ -246,17 +239,17 @@ span {
     }
 
     &.mail {
-      background: url("../assets/inputs/Email_ico.svg") no-repeat scroll 10px 12px;
+      background: url('../assets/inputs/Email_ico.svg') no-repeat scroll 10px 12px;
       background-size: 20px 20px;
     }
 
     &.title {
-      background: url("../assets/inputs/Title_ico.svg") no-repeat scroll 9px 11px;
+      background: url('../assets/inputs/Title_ico.svg') no-repeat scroll 9px 11px;
       background-size: 23px 23px;
     }
 
     &.message {
-      background: url("../assets/inputs/Message_ico.svg") no-repeat scroll 11px 13px;
+      background: url('../assets/inputs/Message_ico.svg') no-repeat scroll 11px 13px;
       background-size: 18px 18px;
       min-height: 150px;
       max-height: 450px;

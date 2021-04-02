@@ -9,7 +9,7 @@
   </a>
 </p>
 
-> The frontend developer portfolio writed in Vue.js, bacause my most important goal is to find a job as Frontend Developer.
+> The frontend developer portfolio wrote in Vue.js, because my most important goal is to find a job as Frontend Developer.
 
 ### ✨ [Demo](https://teziovsky.github.io/portfolio_v2/)
 
