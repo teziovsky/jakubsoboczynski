@@ -9,14 +9,14 @@
 </template>
 
 <script>
-import Hero from "./views/Hero";
-import AboutMe from "./views/AboutMe";
-import Technologies from "./views/Technologies";
-import Projects from "./views/Projects";
-import Contact from "./views/Contact";
+import Hero from './views/Hero.vue';
+import AboutMe from './views/AboutMe.vue';
+import Technologies from './views/Technologies.vue';
+import Projects from './views/Projects.vue';
+import Contact from './views/Contact.vue';
 
 export default {
-  name: "App",
+  name: 'App',
   components: {
     Hero,
     AboutMe,
@@ -25,7 +25,7 @@ export default {
     Contact,
   },
   created() {
-    history.pushState("", document.title, window.location.pathname);
+    history.pushState('', document.title, window.location.pathname);
   },
 };
 </script>

@@ -6,9 +6,7 @@
       data-aos-anchor-placement="center-bottom"
       class="card__links"
     >
-      <button class="card__links__item" @click="showSingle(project.image)">
-        SCREEN
-      </button>
+      <button class="card__links__item" @click="showSingle(project.image)">SCREEN</button>
       <a :href="project.github_link" class="card__links__item">SOURCE</a>
       <a class="card__links__item" :href="project.demo_link">DEMO</a>
     </div>
@@ -27,24 +25,24 @@
 </template>
 
 <script>
-import VueEasyLightbox from "vue-easy-lightbox";
+import VueEasyLightbox from 'vue-easy-lightbox';
 
 export default {
-  props: ["project"],
-  name: "Project",
+  props: ['project'],
+  name: 'Project',
   components: {
     VueEasyLightbox,
   },
   data() {
     return {
-      imgs: "",
+      imgs: '',
       visible: false,
       index: 0,
     };
   },
   methods: {
     showSingle(name) {
-      this.imgs = require("../assets/projects/" + name + ".png");
+      this.imgs = require(`../assets/projects/${name}.png`);
       this.show();
     },
     show() {
@@ -83,7 +81,7 @@ button {
   &__links {
     display: block;
     background-color: $background-secondary-color;
-    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
     text-align: center;
     padding: 10px 0;
 
@@ -140,7 +138,7 @@ button {
     align-items: center;
     justify-content: center;
     text-align: center;
-    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
     background-color: $background-third-color;
     padding: 30px 20px;
     z-index: 1;

@@ -23,8 +23,8 @@
 
 <script>
 export default {
-  props: ["technology"],
-  name: "Technology",
+  props: ['technology'],
+  name: 'Technology',
 };
 </script>
 
@@ -44,7 +44,7 @@ export default {
     width: 130px;
     height: 130px;
     background-color: $background-secondary-color;
-    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
     position: absolute;
     top: 50%;
     left: 0;
@@ -70,7 +70,7 @@ export default {
     width: 100%;
     margin-left: 115px;
     padding: 20px 20px 20px 25px;
-    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
     font-size: 1rem;
   }
 

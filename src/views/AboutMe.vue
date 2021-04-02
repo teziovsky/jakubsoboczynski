@@ -12,24 +12,25 @@
 </template>
 
 <script>
-import Note from "../components/Note";
+import Note from '../components/Note.vue';
+
 export default {
-  name: "AboutMe",
+  name: 'AboutMe',
   data() {
     return {
       notes: [
         {
-          title: "general",
+          title: 'general',
           description:
             "I'm a final year student of WSB University in Poznan in the faculty of informatics. I currently live in Plewiska near Poznań and I focus all my attention on developing my skills and learning about new technologies that will make my projects even better.",
         },
         {
-          title: "experience",
+          title: 'experience',
           description:
-            "I have no commercial experience, but I still improve my programming skills by writing new web applications. My main goal is to find a job as a frontend developer that will help me gain experience needed in everyday work faster.",
+            'I have no commercial experience, but I still improve my programming skills by writing new web applications. My main goal is to find a job as a frontend developer that will help me gain experience needed in everyday work faster.',
         },
         {
-          title: "interests",
+          title: 'interests',
           description:
             "I love electronic music festivals, especially techno, trance and house sub genres. I also like to read news about android-based mobile devices and all new IT articles collected in the news aggregator - Inoreader. Since I bought my second car, I'm also interested in cars.",
         },
@@ -52,7 +53,6 @@ export default {
 h3 {
   text-align: center;
   padding: 10px;
-  text-align: center;
   font-weight: 300;
   font-size: 1.8rem;
   margin-bottom: 20px;

@@ -12,69 +12,68 @@
 </template>
 
 <script>
-import Technology from "../components/Technology";
+import Technology from '../components/Technology.vue';
+
 export default {
-  name: "Technologies",
+  name: 'Technologies',
   data() {
     return {
       technologies: [
         {
-          name: "HTML5",
+          name: 'HTML5',
+          subtitle: 'Knowledge of HTML document structure. Ability to use semantic tags.',
+          image: 'html',
+        },
+        {
+          name: 'CSS3',
           subtitle:
-            "Knowledge of HTML document structure. Ability to use semantic tags.",
-          image: "html",
+            'Knowledge of CSS. Using BEM methodology and SASS preprocessors in projects. Creating responsive websites using grid, flex and media queries.',
+          image: 'css',
         },
         {
-          name: "CSS3",
+          name: 'JavaScript',
           subtitle:
-            "Knowledge of CSS. Using BEM methodology and SASS preprocessors in projects. Creating responsive websites using grid, flex and media queries.",
-          image: "css",
+            'Creating basic and medium JavaScript scripts also with using jQuery. Knowledge of spread operator, arrow functions and other ES6 functions. Knowledge of Vue.js and basic knowledge of React.js.',
+          image: 'js',
         },
         {
-          name: "JavaScript",
+          name: 'Vue.js',
           subtitle:
-            "Creating basic and medium JavaScript scripts also with using jQuery. Knowledge of spread operator, arrow functions and other ES6 functions. Knowledge of Vue.js and basic knowledge of React.js.",
-          image: "js",
+            'Ability to writing  apps in Vue.js using Vue-Cli, Vuetify, Vuex Store, Vue-Router, Vue-Axios, Vuelidate. Knowledge about transitions and animations.',
+          image: 'vue',
         },
         {
-          name: "Vue.js",
+          name: 'Bootstrap',
           subtitle:
-            "Ability to writing  apps in Vue.js using Vue-Cli, Vuetify, Vuex Store, Vue-Router, Vue-Axios, Vuelidate. Knowledge about transitions and animations.",
-          image: "vue",
+            'Practical use of Bootstrap components in projects. Ability to personalize components for the needs of the project.',
+          image: 'bootstrap',
         },
         {
-          name: "Bootstrap",
+          name: 'GIT',
           subtitle:
-            "Practical use of Bootstrap components in projects. Ability to personalize components for the needs of the project.",
-          image: "bootstrap",
+            'Ability to use the local and remote version-control system like GIT  and GitHub. Knowledge of git commands.',
+          image: 'git',
         },
         {
-          name: "GIT",
+          name: 'Gulp',
           subtitle:
-            "Ability to use the local and remote version-control system like GIT  and GitHub. Knowledge of git commands.",
-          image: "git",
+            'Ability to configure Gulp to improve the speed of coding and for prepare production files.',
+          image: 'gulp',
         },
         {
-          name: "Gulp",
-          subtitle:
-            "Ability to configure Gulp to improve the speed of coding and for prepare production files.",
-          image: "gulp",
+          name: 'Photoshop',
+          subtitle: 'Basic photo editing. Creating buttons, banners, icons for websites.',
+          image: 'photoshop',
         },
         {
-          name: "Photoshop",
-          subtitle:
-            "Basic photo editing. Creating buttons, banners, icons for websites.",
-          image: "photoshop",
+          name: 'Figma',
+          subtitle: 'Ability to create simple website layouts.',
+          image: 'figma',
         },
         {
-          name: "Figma",
-          subtitle: "Ability to create simple website layouts.",
-          image: "figma",
-        },
-        {
-          name: "Adobe XD",
-          subtitle: "Ability to create simple website layouts.",
-          image: "xd",
+          name: 'Adobe XD',
+          subtitle: 'Ability to create simple website layouts.',
+          image: 'xd',
         },
       ],
     };

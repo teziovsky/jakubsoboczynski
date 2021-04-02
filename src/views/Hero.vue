@@ -1,5 +1,5 @@
 <template>
-  <section id="hero" name="hero">
+  <section id="hero">
     <nav class="nav">
       <span class="nav__logo">Jakub Soboczyński</span>
       <button
@@ -33,8 +33,8 @@
           class="hero__img"
           src="../assets/profile.webp"
           alt="profile photo"
-          width="300px"
-          height="300px"
+          width="550"
+          height="550"
         />
       </div>
       <h1 class="hero__title">
@@ -51,7 +51,7 @@
 
 <script>
 export default {
-  name: "Hero",
+  name: 'Hero',
   data() {
     return {
       openMenu: false,
@@ -59,17 +59,17 @@ export default {
   },
   methods: {
     toggleMenu() {
-      const body = document.getElementsByTagName("body")[0];
+      const body = document.getElementsByTagName('body')[0];
       const scrollBarWidth = window.innerWidth - document.body.clientWidth;
       this.openMenu = !this.openMenu;
       this.openMenu
         ? (body.style.cssText = `overflow: hidden; padding-right: ${scrollBarWidth}px`)
-        : body.removeAttribute("style");
+        : body.removeAttribute('style');
     },
     handleLinkClick() {
-      const body = document.getElementsByTagName("body")[0];
+      const body = document.getElementsByTagName('body')[0];
       if (this.openMenu) {
-        body.removeAttribute("style");
+        body.removeAttribute('style');
         this.openMenu = false;
       }
     },
@@ -205,7 +205,7 @@ export default {
   &__item {
     font-size: 1.3rem;
     font-weight: 300;
-    margin: 0px 10px;
+    margin: 0 10px;
     text-transform: uppercase;
 
     &:last-child {
@@ -253,8 +253,7 @@ export default {
       width: 30px;
       height: 2px;
       background-color: $text-primary-color;
-      transition: transform 0.25s ease-in-out,
-        background-color 0.25s ease-in-out;
+      transition: transform 0.25s ease-in-out, background-color 0.25s ease-in-out;
 
       &:before,
       &:after {

@@ -9,8 +9,8 @@
 
 <script>
 export default {
-  props: ["note"],
-  name: "Note",
+  props: ['note'],
+  name: 'Note',
 };
 </script>
 
