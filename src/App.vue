@@ -25,13 +25,14 @@ export default {
     Contact,
   },
   created() {
+    // eslint-disable-next-line no-restricted-globals
     history.pushState('', document.title, window.location.pathname);
   },
 };
 </script>
 
 <style lang="scss">
-@import "./global.scss";
+@import './global.scss';
 
 *,
 *::before,
@@ -53,7 +54,7 @@ body {
 #app {
   background-color: $background-primary-color;
   color: $text-primary-color;
-  font-family: "Raleway", sans-serif;
+  font-family: 'Raleway', sans-serif;
 }
 
 a {
@@ -92,7 +93,7 @@ a {
   &::before,
   &::after {
     background-color: $text-primary-color;
-    content: "";
+    content: '';
     display: inline-block;
     height: 1px;
     position: relative;

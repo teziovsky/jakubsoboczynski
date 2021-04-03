@@ -62,6 +62,7 @@ export default {
       const body = document.getElementsByTagName('body')[0];
       const scrollBarWidth = window.innerWidth - document.body.clientWidth;
       this.openMenu = !this.openMenu;
+      // eslint-disable-next-line no-unused-expressions
       this.openMenu
         ? (body.style.cssText = `overflow: hidden; padding-right: ${scrollBarWidth}px`)
         : body.removeAttribute('style');

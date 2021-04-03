@@ -71,6 +71,7 @@ h3 {
 @media screen and (max-width: 575.98px) {
   h3 {
     font-size: 1.6rem;
+
     span {
       font-size: 1rem;
     }
@@ -80,6 +81,7 @@ h3 {
 @media screen and (max-width: 419.98px) {
   h3 {
     font-size: 1.4rem;
+
     span {
       font-size: 0.9rem;
     }

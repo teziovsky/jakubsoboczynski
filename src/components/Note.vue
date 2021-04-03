@@ -15,7 +15,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../global.scss";
+@import '../global.scss';
 
 .note {
   width: 350px;
@@ -31,7 +31,7 @@ export default {
 
   &:before {
     display: block;
-    content: "";
+    content: '';
     background: rgba($text-third-color, 0.5);
     width: 150px;
     height: 35px;

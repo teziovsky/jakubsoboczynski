@@ -57,7 +57,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../global.scss";
+@import '../global.scss';
 
 #Projects {
   background-color: $background-secondary-color;

@@ -29,7 +29,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../global.scss";
+@import '../global.scss';
 
 .card {
   display: flex;

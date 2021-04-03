@@ -1,3 +1,4 @@
+/* eslint-disable import/no-dynamic-require */
 <template>
   <div class="card">
     <div
@@ -56,7 +57,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../global.scss";
+@import '../global.scss';
 
 button {
   color: $text-primary-color;
@@ -98,7 +99,7 @@ button {
       &::before,
       &::after {
         display: block;
-        content: "";
+        content: '';
         position: absolute;
         top: 0;
         left: 0;

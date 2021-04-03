@@ -27,7 +27,7 @@ export default {
         {
           name: 'CSS3',
           subtitle:
-            'Knowledge of CSS. Using BEM methodology and SASS preprocessors in projects. Creating responsive websites using grid, flex and media queries.',
+            'Knowledge of CSS. Using BEM methodology and SASS preprocessor in projects. Creating responsive websites using grid, flex and media queries.',
           image: 'css',
         },
         {
@@ -85,7 +85,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../global.scss";
+@import '../global.scss';
 
 #Technologies {
   padding-bottom: 50px;
