@@ -1,4 +1,3 @@
-/* eslint-disable import/no-dynamic-require */
 <template>
   <div class="card">
     <div
