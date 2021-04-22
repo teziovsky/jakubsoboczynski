@@ -1,16 +1,16 @@
 <template>
   <div class="card">
     <div
-      data-aos="zoom-out-right"
-      data-aos-duration="1000"
-      data-aos-anchor-placement="center-bottom"
       class="card__image"
+      data-aos="zoom-out-right"
+      data-aos-anchor-placement="center-bottom"
+      data-aos-duration="1000"
     >
       <img
         :src="require('../assets/technologies/' + technology.image + '.svg')"
-        width="100%"
-        height="auto"
         alt="html"
+        height="auto"
+        width="100%"
       />
     </div>
     <div class="card__info">
@@ -32,23 +32,23 @@ export default {
 @import '../global.scss';
 
 .card {
-  display: flex;
   position: relative;
+  display: flex;
   width: 500px;
   margin: 20px;
 
   &__image {
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    left: 0;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     width: 130px;
     height: 130px;
     background-color: $background-secondary-color;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
-    position: absolute;
-    top: 50%;
-    left: 0;
-    z-index: 1;
 
     &.aos-animate {
       transform: translateY(-50%) !important;
@@ -61,17 +61,17 @@ export default {
   }
 
   &__info {
+    font-size: 1rem;
     display: flex;
-    flex-direction: column;
     align-items: center;
+    flex-direction: column;
     justify-content: center;
-    background-color: $background-third-color;
-    min-height: 150px;
     width: 100%;
+    min-height: 150px;
     margin-left: 115px;
     padding: 20px 20px 20px 25px;
+    background-color: $background-third-color;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
-    font-size: 1rem;
   }
 
   &__title {
@@ -95,8 +95,8 @@ export default {
     max-width: 500px;
 
     &__image {
-      height: 120px;
       width: 120px;
+      height: 120px;
     }
 
     &__info {
@@ -113,8 +113,8 @@ export default {
 @media screen and (max-width: 419.98px) {
   .card {
     &__image {
-      height: 100px;
       width: 100px;
+      height: 100px;
     }
 
     &__info {
@@ -126,8 +126,8 @@ export default {
 @media screen and (max-width: 374.98px) {
   .card {
     &__image {
-      height: 90px;
       width: 90px;
+      height: 90px;
     }
 
     &__info {

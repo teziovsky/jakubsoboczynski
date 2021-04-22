@@ -51,17 +51,17 @@ export default {
 }
 
 h3 {
-  text-align: center;
-  padding: 10px;
-  font-weight: 300;
   font-size: 1.8rem;
-  margin-bottom: 20px;
+  font-weight: 300;
   font-variant: small-caps;
+  margin-bottom: 20px;
+  padding: 10px;
+  text-align: center;
 
   & span {
-    display: block;
     font-size: 1.1rem;
     font-variant: normal;
+    display: block;
     margin-top: 5px;
   }
 }

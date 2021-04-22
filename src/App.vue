@@ -37,14 +37,14 @@ export default {
 *,
 *::before,
 *::after {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 
 html {
-  scroll-behavior: smooth;
   font-size: 16px;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -52,9 +52,9 @@ body {
 }
 
 #app {
-  background-color: $background-primary-color;
-  color: $text-primary-color;
   font-family: 'Raleway', sans-serif;
+  color: $text-primary-color;
+  background-color: $background-primary-color;
 }
 
 a {
@@ -64,41 +64,41 @@ a {
 
 .sr-only {
   position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
   border: 0;
 }
 
 .wrapper {
-  max-width: 1200px;
-  margin: 0 auto;
   display: flex;
-  justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+  justify-content: center;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .section--title {
   font-size: 2.8rem;
   font-weight: 100;
-  text-transform: uppercase;
   overflow: hidden;
-  text-align: center;
   padding: 50px 0 20px;
+  text-align: center;
+  text-transform: uppercase;
 
   &::before,
   &::after {
-    background-color: $text-primary-color;
-    content: '';
-    display: inline-block;
-    height: 1px;
     position: relative;
-    vertical-align: middle;
+    display: inline-block;
     width: 50%;
+    height: 1px;
+    content: '';
+    vertical-align: middle;
+    background-color: $text-primary-color;
   }
 
   &:before {
@@ -113,11 +113,11 @@ a {
 }
 
 .divider {
-  height: 1px;
-  width: 30px;
-  background-color: rgba($color: $text-primary-color, $alpha: 0.4);
   display: inline-block;
+  width: 30px;
+  height: 1px;
   margin: 10px 0 15px;
+  background-color: rgba($color: $text-primary-color, $alpha: 0.4);
 }
 
 //* Mobile breakpoints

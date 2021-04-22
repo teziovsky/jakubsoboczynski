@@ -1,14 +1,14 @@
 <template>
   <div class="card">
     <div
-      data-aos="zoom-out-left"
-      data-aos-delay="300"
-      data-aos-anchor-placement="center-bottom"
       class="card__links"
+      data-aos="zoom-out-left"
+      data-aos-anchor-placement="center-bottom"
+      data-aos-delay="300"
     >
       <button class="card__links__item" @click="showSingle(project.image)">SCREEN</button>
       <a :href="project.github_link" class="card__links__item">SOURCE</a>
-      <a class="card__links__item" :href="project.demo_link">DEMO</a>
+      <a :href="project.demo_link" class="card__links__item">DEMO</a>
     </div>
     <div class="card__info">
       <h3 class="card__title">{{ project.title }}</h3>
@@ -16,9 +16,9 @@
       <p class="card__description">{{ project.description }}</p>
     </div>
     <vue-easy-lightbox
-      :visible="visible"
       :imgs="imgs"
       :index="index"
+      :visible="visible"
       @hide="handleHide"
     ></vue-easy-lightbox>
   </div>
@@ -59,9 +59,9 @@ export default {
 @import '../global.scss';
 
 button {
+  font: inherit;
   color: $text-primary-color;
   border: none;
-  font: inherit;
 
   &:hover,
   &:focus {
@@ -71,39 +71,39 @@ button {
 }
 
 .card {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   width: 500px;
   margin: 20px;
 
   &__links {
     display: block;
+    padding: 10px 0;
+    text-align: center;
     background-color: $background-secondary-color;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
-    text-align: center;
-    padding: 10px 0;
 
     &__item {
-      display: block;
       font-size: 0.8rem;
       font-weight: 300;
-      padding: 6px 9px;
-      margin: 12px 10px;
-      background: none;
-      transition: color 0.25s, border 0.25s ease;
       position: relative;
+      display: block;
+      margin: 12px 10px;
+      padding: 6px 9px;
+      transition: color 0.25s, border 0.25s ease;
+      background: none;
 
       &::before,
       &::after {
-        display: block;
-        content: '';
         position: absolute;
         top: 0;
         left: 0;
+        display: block;
         width: 0;
         height: 0;
+        content: '';
         border: 1px solid transparent;
       }
 
@@ -118,30 +118,30 @@ button {
         }
 
         &::before {
+          transition: height 0.25s ease-out 0.25s, width 0.25s ease-out;
           border-top-color: $text-third-color;
           border-right-color: $text-third-color;
-          transition: height 0.25s ease-out 0.25s, width 0.25s ease-out;
         }
 
         &::after {
+          transition: height 0.25s ease-out, width 0.25s ease-out 0.25s;
           border-bottom-color: $text-third-color;
           border-left-color: $text-third-color;
-          transition: height 0.25s ease-out, width 0.25s ease-out 0.25s;
         }
       }
     }
   }
 
   &__info {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
-    background-color: $background-third-color;
-    padding: 30px 20px;
     z-index: 1;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    padding: 30px 20px;
+    text-align: center;
+    background-color: $background-third-color;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
   }
 
   &__screen {
@@ -156,9 +156,9 @@ button {
   }
 
   &__description {
-    text-align: left;
     font-size: 1rem;
     font-weight: 300;
+    text-align: left;
   }
 }
 

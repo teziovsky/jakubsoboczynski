@@ -60,7 +60,7 @@ export default {
 @import '../global.scss';
 
 #Projects {
-  background-color: $background-secondary-color;
   padding-bottom: 50px;
+  background-color: $background-secondary-color;
 }
 </style>
