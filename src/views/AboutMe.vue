@@ -1,5 +1,5 @@
 <template>
-  <section v-if="notes" id="AboutMe">
+  <section v-if="notes" id="aboutme">
     <h2 class="section--title">About Me</h2>
     <h3>
       Hi! My name is Jakub Soboczyński.

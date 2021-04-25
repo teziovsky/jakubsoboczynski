@@ -1,5 +1,5 @@
 <template>
-  <section v-if="projects" id="Projects">
+  <section v-if="projects" id="projects">
     <h2 class="section--title">Projects</h2>
     <div class="wrapper">
       <Project v-for="(project, index) in projects.allProjects" :key="index" :project="project" />
