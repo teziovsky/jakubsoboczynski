@@ -9,8 +9,15 @@
 
 <script>
 export default {
-  props: ['note'],
   name: 'Note',
+  props: {
+    note: {
+      type: [Array, Object],
+      default: function () {
+        return {};
+      },
+    },
+  },
 };
 </script>
 

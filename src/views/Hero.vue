@@ -3,7 +3,7 @@
     <nav class="nav">
       <span class="nav__logo">Jakub Soboczyński</span>
       <button
-        :class="this.openMenu ? 'hamburger--active' : null"
+        :class="openMenu ? 'hamburger--active' : null"
         aria-label="menu"
         class="hamburger"
         @click.prevent="toggleMenu"

@@ -6,25 +6,27 @@
       data-aos-anchor-placement="center-bottom"
       data-aos-duration="1000"
     >
-      <img
-        :src="require('../assets/technologies/' + technology.image + '.svg')"
-        alt="html"
-        height="auto"
-        width="100%"
-      />
+      <img :src="technology.image.url" alt="html" height="auto" width="100%" />
     </div>
     <div class="card__info">
-      <h3 class="card__title">{{ technology.name }}</h3>
+      <h3 class="card__title">{{ technology.title }}</h3>
       <span class="divider"></span>
-      <p class="card__description">{{ technology.subtitle }}</p>
+      <p class="card__description">{{ technology.description }}</p>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  props: ['technology'],
   name: 'Technology',
+  props: {
+    technology: {
+      type: [Array, Object],
+      default: function () {
+        return {};
+      },
+    },
+  },
 };
 </script>
 

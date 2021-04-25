@@ -6,9 +6,9 @@
       data-aos-anchor-placement="center-bottom"
       data-aos-delay="300"
     >
-      <button class="card__links__item" @click="showSingle(project.image)">SCREEN</button>
-      <a :href="project.github_link" class="card__links__item">SOURCE</a>
-      <a :href="project.demo_link" class="card__links__item">DEMO</a>
+      <button class="card__links__item" @click="showSingle(project.screen.url)">SCREEN</button>
+      <a :href="project.source" class="card__links__item">SOURCE</a>
+      <a :href="project.demo" class="card__links__item">DEMO</a>
     </div>
     <div class="card__info">
       <h3 class="card__title">{{ project.title }}</h3>
@@ -28,10 +28,17 @@
 import VueEasyLightbox from 'vue-easy-lightbox';
 
 export default {
-  props: ['project'],
   name: 'Project',
   components: {
     VueEasyLightbox,
+  },
+  props: {
+    project: {
+      type: [Array, Object],
+      default: function () {
+        return {};
+      },
+    },
   },
   data() {
     return {
@@ -41,8 +48,8 @@ export default {
     };
   },
   methods: {
-    showSingle(name) {
-      this.imgs = require(`../assets/projects/${name}.png`);
+    showSingle(value) {
+      this.imgs = value;
       this.show();
     },
     show() {
