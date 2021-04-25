@@ -1,5 +1,5 @@
 <template>
-  <section v-if="technologies" id="Technologies">
+  <section v-if="technologies" id="technologies">
     <h2 class="section--title">Technologies</h2>
     <div class="wrapper">
       <Technology

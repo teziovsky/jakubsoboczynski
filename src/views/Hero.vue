@@ -14,16 +14,16 @@
       </button>
       <ul :class="openMenu ? 'active' : null" class="nav__links">
         <li class="nav__item">
-          <a href="#AboutMe" @click="handleLinkClick">AboutMe</a>
+          <a href="#aboutme" @click="handleLinkClick">AboutMe</a>
         </li>
         <li class="nav__item">
-          <a href="#Technologies" @click="handleLinkClick">Technologies</a>
+          <a href="#technologies" @click="handleLinkClick">Technologies</a>
         </li>
         <li class="nav__item">
-          <a href="#Projects" @click="handleLinkClick">Projects</a>
+          <a href="#projects" @click="handleLinkClick">Projects</a>
         </li>
         <li class="nav__item">
-          <a href="#Contact" @click="handleLinkClick">Contact</a>
+          <a href="#contact" @click="handleLinkClick">Contact</a>
         </li>
       </ul>
     </nav>
@@ -42,7 +42,7 @@
         <span class="hero__subtitle">Frontend Developer</span>
       </h1>
     </div>
-    <a class="actionBtn" href="#Projects">
+    <a class="actionBtn" href="#projects">
       <p class="actionBtn__title">View projects</p>
       <span class="actionBtn__arrows"></span>
     </a>

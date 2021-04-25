@@ -1,5 +1,5 @@
 <template>
-  <section id="Contact">
+  <section id="contact">
     <h2 class="section--title">Contact</h2>
     <p class="contact__info">Don't forget to leave me a message!</p>
     <form
