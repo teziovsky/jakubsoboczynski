@@ -1,4 +1,4 @@
-<h1 align="center">Welcome to portfolio_v2 👋</h1>
+<h1 align="center">Welcome to portfolio 👋</h1>
 <p>
   <img alt="Version" src="https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000" />
   <a href="https://github.com/teziovsky/portfolio_v2#readme" target="_blank">
@@ -9,7 +9,7 @@
   </a>
 </p>
 
-> The frontend developer portfolio wrote in Vue.js, because my most important goal is to find a job as Frontend Developer.
+> The frontend developer portfolio wrote in Vue.js.
 
 ### ✨ [Demo](https://teziovsky.github.io/portfolio_v2/)
 
