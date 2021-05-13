@@ -1,16 +1,16 @@
 {
-  "name": "portfolio",
+  "name": "jakubsoboczynski",
   "version": "1.0.0",
   "private": true,
-  "description": "The frontend developer portfolio wrote in Vue.js, because my most important goal was to find a job as Frontend Developer.",
+  "description": "The frontend developer portfolio wrote in Vue.js.",
   "author": "Jakub Soboczyński",
-  "homepage": "https://github.com/teziovsky/portfolio#readme",
+  "homepage": "https://github.com/teziovsky/jakubsoboczynski#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/teziovsky/portfolio.git"
+    "url": "git+https://github.com/teziovsky/jakubsoboczynski.git"
   },
   "bugs": {
-    "url": "https://github.com/teziovsky/portfolio/issues"
+    "url": "https://github.com/teziovsky/jakubsoboczynski/issues"
   },
   "scripts": {
     "serve": "vue-cli-service serve",
