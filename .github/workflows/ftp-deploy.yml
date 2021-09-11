@@ -1,11 +1,8 @@
 name: 🚀 Deploy website - FTP
 on:
-  push:
-    branches:
-      - master
   pull_request:
     branches:
-      - master
+      - main
   repository_dispatch:
     types:
       - Build_on_datocms_webhook
