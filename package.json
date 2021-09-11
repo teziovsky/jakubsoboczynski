@@ -1,10 +1,8 @@
 {
   "name": "jakubsoboczynski",
   "version": "1.0.0",
-  "private": true,
-  "description": "The frontend developer portfolio wrote in Vue.js.",
+  "description": "My own website.",
   "author": "Jakub Soboczyński",
-  "homepage": "https://github.com/teziovsky/jakubsoboczynski#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/teziovsky/jakubsoboczynski.git"
