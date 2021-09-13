@@ -3,9 +3,6 @@ on:
   pull_request:
     branches:
       - main
-  repository_dispatch:
-    types:
-      - Build_on_datocms_webhook
 jobs:
   web-deploy:
     name: 🎉 Deploy
@@ -22,7 +19,7 @@ jobs:
       - name: Create .env.local file
         run: |
           touch .env
-          echo VUE_APP_CMS_DATOCMS_API_TOKEN=${{ secrets.DATOCMS_API_KEY }} >> .env
+          echo AIRTABLE_API_KEY=${{ secrets.AIRTABLE_API_KEY }} >> .env
           cat .env
 
       - name: Build project
