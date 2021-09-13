@@ -22,9 +22,6 @@
         <li class="nav__item">
           <a href="#projects" @click="handleLinkClick">Projects</a>
         </li>
-        <li class="nav__item">
-          <a href="#contact" @click="handleLinkClick">Contact</a>
-        </li>
       </ul>
     </nav>
     <div class="hero">
@@ -62,9 +59,8 @@ export default {
       const body = document.getElementsByTagName('body')[0];
       const scrollBarWidth = window.innerWidth - document.body.clientWidth;
       this.openMenu = !this.openMenu;
-      // eslint-disable-next-line no-unused-expressions
       this.openMenu
-        ? (body.style.cssText = `overflow: hidden; padding-right: ${scrollBarWidth}px`)
+        ? (body.style.cssText = `overflow: hidden; padding-right: ${ scrollBarWidth }px`)
         : body.removeAttribute('style');
     },
     handleLinkClick() {
@@ -270,13 +266,13 @@ export default {
       &:before {
         top: -10px;
         transition: top 0.1s 0.25s ease-in, transform 0.25s ease-in-out,
-          background-color 0.25s ease-in-out;
+        background-color 0.25s ease-in-out;
       }
 
       &:after {
         bottom: -10px;
         transition: bottom 0.1s 0.25s ease-in, transform 0.25s ease-in-out,
-          background-color 0.25s ease-in-out;
+        background-color 0.25s ease-in-out;
       }
     }
 

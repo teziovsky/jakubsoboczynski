@@ -6,14 +6,14 @@
       <span>Please just read a few notes below!</span>
     </h3>
     <div class="wrapper">
-      <Note v-for="note in notes.allAboutmes" :key="note.title" :note="note" />
+      <Note v-for="note in notes" :key="note.id" :note="note" />
     </div>
   </section>
 </template>
 
 <script>
-import { request } from '@/lib/datocms';
 import Note from '../components/Note.vue';
+import Airtable from 'airtable';
 
 export default {
   name: 'AboutMe',
@@ -25,16 +25,17 @@ export default {
       notes: [],
     };
   },
-  async mounted() {
-    this.notes = await request({
-      query: `
-        {
-          allAboutmes(orderBy: order_ASC) {
-            title
-            description
-          }
-        }
-      `,
+  mounted() {
+    const base = new Airtable({ apiKey: 'keyARCmM79wgxzEKF' }).base('appQyH2lhdVfa8dLf');
+    base('about_me').select({ view: 'Grid view' }).eachPage((records, fetchNextPage) => {
+      const result = records.map(item => item.fields);
+      this.notes.push(...result);
+      fetchNextPage();
+    }, (error) => {
+      if (error) {
+        console.error(error);
+        return false;
+      }
     });
   },
 };

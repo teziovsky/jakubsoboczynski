@@ -2,14 +2,14 @@
   <section v-if="projects" id="projects">
     <h2 class="section--title">Projects</h2>
     <div class="wrapper">
-      <Project v-for="(project, index) in projects.allProjects" :key="index" :project="project" />
+      <Project v-for="project in projects" :key="project.id" :project="project" />
     </div>
   </section>
 </template>
 
 <script>
-import { request } from '@/lib/datocms';
 import Project from '../components/Project.vue';
+import Airtable from 'airtable';
 
 export default {
   name: 'Projects',
@@ -21,21 +21,17 @@ export default {
       projects: [],
     };
   },
-  async mounted() {
-    this.projects = await request({
-      query: `
-        {
-          allProjects(orderBy: order_ASC) {
-            title
-            description
-            source
-            demo
-            screen {
-              url
-            }
-          }
-        }
-      `,
+  mounted() {
+    const base = new Airtable({ apiKey: 'keyARCmM79wgxzEKF' }).base('appQyH2lhdVfa8dLf');
+    base('projects').select({ view: 'Grid view' }).eachPage((records, fetchNextPage) => {
+      const result = records.map(item => item.fields);
+      this.projects.push(...result);
+      fetchNextPage();
+    }, (error) => {
+      if (error) {
+        console.error(error);
+        return false;
+      }
     });
   },
 };

@@ -4,7 +4,7 @@
     <AboutMe />
     <Technologies />
     <Projects />
-    <Contact />
+    <Footer />
   </div>
 </template>
 
@@ -13,7 +13,7 @@ import Hero from './views/Hero.vue';
 import AboutMe from './views/AboutMe.vue';
 import Technologies from './views/Technologies.vue';
 import Projects from './views/Projects.vue';
-import Contact from './views/Contact.vue';
+import Footer from './views/Footer.vue';
 
 export default {
   name: 'App',
@@ -22,10 +22,9 @@ export default {
     AboutMe,
     Technologies,
     Projects,
-    Contact,
+    Footer,
   },
   created() {
-    // eslint-disable-next-line no-restricted-globals
     history.pushState('', document.title, window.location.pathname);
   },
 };

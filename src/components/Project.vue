@@ -6,7 +6,7 @@
       data-aos-anchor-placement="center-bottom"
       data-aos-delay="300"
     >
-      <button class="card__links__item" @click="showSingle(project.screen.url)">SCREEN</button>
+      <button class="card__links__item" @click="showSingle(project.image[0].url)">SCREEN</button>
       <a :href="project.source" class="card__links__item">SOURCE</a>
       <a :href="project.demo" class="card__links__item">DEMO</a>
     </div>

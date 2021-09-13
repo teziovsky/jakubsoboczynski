@@ -11,12 +11,7 @@
 export default {
   name: 'Note',
   props: {
-    note: {
-      type: [Array, Object],
-      default: function () {
-        return {};
-      },
-    },
+    note: Object,
   },
 };
 </script>

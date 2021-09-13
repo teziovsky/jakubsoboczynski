@@ -6,7 +6,7 @@
       data-aos-anchor-placement="center-bottom"
       data-aos-duration="1000"
     >
-      <img :src="technology.image.url" alt="html" height="auto" width="100%" />
+      <img :src="technology.image[0].url" alt="html" height="auto" width="100%" />
     </div>
     <div class="card__info">
       <h3 class="card__title">{{ technology.title }}</h3>
