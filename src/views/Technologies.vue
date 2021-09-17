@@ -3,17 +3,15 @@
     <h2 class="section--title">Technologies</h2>
     <div class="wrapper">
       <Technology
-        v-for="(technology, index) in technologies.allTechnologies"
-        :key="index"
-        :technology="technology"
-      />
+        v-for="technology in technologies"
+        :key="technology.id" :technology="technology" />
     </div>
   </section>
 </template>
 
 <script>
-import { request } from '@/lib/datocms';
 import Technology from '../components/Technology.vue';
+import Airtable from 'airtable';
 
 export default {
   name: 'Technologies',
@@ -25,19 +23,17 @@ export default {
       technologies: [],
     };
   },
-  async mounted() {
-    this.technologies = await request({
-      query: `
-        {
-          allTechnologies(orderBy: order_ASC) {
-            title
-            description
-            image {
-              url
-            }
-          }
-        }
-      `,
+  mounted() {
+    const base = new Airtable({ apiKey: 'keyARCmM79wgxzEKF' }).base('appQyH2lhdVfa8dLf');
+    base('technologies').select({ view: 'Grid view' }).eachPage((records, fetchNextPage) => {
+      const result = records.map(item => item.fields);
+      this.technologies.push(...result);
+      fetchNextPage();
+    }, (error) => {
+      if (error) {
+        console.error(error);
+        return false;
+      }
     });
   },
 };
