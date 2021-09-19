@@ -1,16 +1,18 @@
 <template>
-  <h2>Hero</h2>
+  <div>
+    BlogCard
+  </div>
 </template>
 
 <script>
 export default {
-  name: 'Hero',
+  name: 'BlogCard',
   data() {
     return {};
   },
-  computed: {},
 };
 </script>
 
 <style scoped>
+
 </style>

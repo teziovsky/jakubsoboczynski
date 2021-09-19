@@ -1,13 +1,25 @@
-import Vue from 'vue';
-import AOS from 'aos';
-import Lightbox from 'vue-easy-lightbox';
-import App from './App.vue';
-import 'aos/dist/aos.css';
+// This is the main.js file. Import global CSS and scripts here.
+// The Client API can be used here. Learn more: gridsome.org/docs/client-api
 
-Vue.use(Lightbox);
-AOS.init();
-Vue.config.productionTip = false;
+import HomepageLayout from '~/layouts/Homepage.vue';
+import 'normalize.css';
+import '~/assets/main.scss';
 
-new Vue({
-  render: (h) => h(App),
-}).$mount('#app');
+export default function (Vue, { router, head, isClient }) {
+  Vue.component('HomepageLayout', HomepageLayout);
+
+  head.link.push({
+    rel: 'preconnect',
+    href: 'https://fonts.googleapis.com',
+  });
+
+  head.link.push({
+    rel: 'preconnect',
+    href: 'https://fonts.gstatic.com',
+  });
+
+  head.link.push({
+    rel: 'stylesheet',
+    href: 'https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;700&family=Space+Mono:wght@400;700&display=swap',
+  });
+}

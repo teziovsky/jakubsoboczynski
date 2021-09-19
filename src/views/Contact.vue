@@ -1,19 +1,20 @@
 <template>
-  <section id="o_mnie">
-    <h2>O mnie</h2>
-    {{ AboutMe }}
+  <section id="kontakt">
+    <h2>Kontakt</h2>
+    {{ Contact }}
   </section>
 </template>
 
 <script>
 export default {
-  name: 'AboutMe',
+  name: 'Contact',
   props: {
-    AboutMe: Array,
+    Contact: Array,
   },
   data() {
     return {};
   },
+  computed: {},
 };
 </script>
 
