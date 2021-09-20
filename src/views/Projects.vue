@@ -1,22 +1,26 @@
 <template>
-  <section id="projekty">
-    <h2>Projekty</h2>
-    {{ Projects }}
+  <section id="projekty" class="projects">
+    <h2 class="section_header">Projekty</h2>
+    <ProjectCard v-for="project in projects" :key="project.node.id" :project="project.node" />
   </section>
 </template>
 
 <script>
+import ProjectCard from '~/components/ProjectCard.vue';
+
 export default {
   name: 'Projects',
   props: {
-    Projects: Array,
+    projects: Array,
   },
-  data() {
-    return {};
+  components: {
+    ProjectCard,
   },
-  computed: {},
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+.projects {
+  min-height: 100vh;
+}
 </style>

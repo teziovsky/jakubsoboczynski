@@ -1,16 +1,144 @@
 <template>
-  <h2>Hero</h2>
+  <section id="hero" class="hero">
+    <div class="hero__wrapper">
+      <p class="hero__greet">Cześć, jestem</p>
+      <h1 class="hero__title">Jakub</h1>
+      <p class="hero__subtitle">Frontend developer</p>
+    </div>
+    <a class="hero__cta" href="#projekty">
+      <span>Przejdź do projektów</span>
+      <svg class="hero__diamant"
+           fill="none"
+           height="36"
+           viewBox="0 0 17 36"
+           width="17"
+           xmlns="http://www.w3.org/2000/svg">
+        <g filter="url(#filter0_i)">
+          <path class="hero__diamant_path"
+                d="M24.2716 27.66L14.5216 57L4.79141 27.72M24.2716 27.66L27.0431 19.32L14.5216 3L2 19.32L4.79141 27.72M24.2716 27.66L14.5216 15L4.79141 27.72"
+                stroke="white"
+                stroke-width="3" />
+        </g>
+        <defs>
+          <filter id="filter0_i"
+                  color-interpolation-filters="sRGB"
+                  filterUnits="userSpaceOnUse"
+                  height="61.2207"
+                  width="28.3918"
+                  x="0.325684"
+                  y="0.535828">
+            <feFlood flood-opacity="0" result="BackgroundImageFix" />
+            <feBlend in="SourceGraphic" in2="BackgroundImageFix" mode="normal" result="shape" />
+            <feColorMatrix in="SourceAlpha"
+                           result="hardAlpha"
+                           type="matrix"
+                           values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" />
+            <feOffset />
+            <feGaussianBlur stdDeviation="50" />
+            <feComposite in2="hardAlpha" k2="-1" k3="1" operator="arithmetic" />
+            <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0" />
+            <feBlend in2="shape" mode="normal" result="effect1_innerShadow" />
+          </filter>
+        </defs>
+      </svg>
+    </a>
+  </section>
 </template>
 
 <script>
 export default {
   name: 'Hero',
-  data() {
-    return {};
-  },
-  computed: {},
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+.hero {
+  position: relative;
+  min-height: calc(100vh - 170px);
+
+  &__wrapper {
+    position: absolute;
+    top: 60px;
+    left: 50%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    transform: translateX(-50%);
+  }
+
+  &__greet {
+    font-family: var(--font-family-secondary);
+    font-size: 26px;
+    font-weight: 400;
+    line-height: 26px;
+    margin-bottom: 10px;
+  }
+
+  &__title {
+    font-family: var(--font-family-primary);
+    font-size: 96px;
+    font-weight: 400;
+    line-height: 96px;
+    position: relative;
+    margin-bottom: 15px;
+    padding-bottom: 30px;
+
+    &:after {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 40px;
+      height: 1px;
+      content: '';
+      transform: translateX(-50%);
+      background-color: var(--font-color);
+    }
+  }
+
+  &__subtitle {
+    font-family: var(--font-family-secondary);
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 18px;
+    opacity: 0.3;
+  }
+
+  &__cta {
+    position: absolute;
+    bottom: 80px;
+    left: 50%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: 0 auto;
+    cursor: pointer;
+    transform: translateX(-50%);
+
+    &:hover,
+    &:focus {
+      span {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    span {
+      font-family: var(--font-family-secondary);
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 14px;
+      margin-bottom: 21px;
+      transition: opacity 0.2s, transform 0.2s;
+      transform: translateY(70px);
+      opacity: 0;
+      color: var(--font-color);
+    }
+  }
+
+  &__diamant {
+    &_path {
+      transform: scale(0.6);
+    }
+  }
+}
 </style>

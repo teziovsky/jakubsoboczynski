@@ -1,7 +1,7 @@
 <template>
-  <section id="kontakt">
+  <section id="kontakt" class="contact">
     <h2>Kontakt</h2>
-    {{ Contact }}
+    {{ contact }}
   </section>
 </template>
 
@@ -9,7 +9,7 @@
 export default {
   name: 'Contact',
   props: {
-    Contact: Array,
+    contact: Array,
   },
   data() {
     return {};
@@ -18,5 +18,8 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+.contact {
+  min-height: 50vh;
+}
 </style>
