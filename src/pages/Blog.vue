@@ -5,6 +5,22 @@
   </BlogLayout>
 </template>
 
+<script>
+import BlogLayout from '~/layouts/Blog.vue';
+
+export default {
+  metaInfo: {
+    title: 'Blog',
+  },
+  components: {
+    BlogLayout,
+  },
+  data() {
+    return {};
+  },
+};
+</script>
+
 <page-query>
 query {
   Blog: allBlog(sortBy: "date", order: DESC) {
@@ -24,19 +40,3 @@ query {
   }
 }
 </page-query>
-
-<script>
-import BlogLayout from '~/layouts/Blog.vue';
-
-export default {
-  metaInfo: {
-    title: 'Blog',
-  },
-  components: {
-    BlogLayout,
-  },
-  data() {
-    return {};
-  },
-};
-</script>
