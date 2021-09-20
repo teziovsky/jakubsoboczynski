@@ -18,11 +18,11 @@
   },
   "dependencies": {
     "@gridsome/source-airtable": "0.2.0",
-    "gridsome": "^0.7.17",
-    "normalize.css": "^8.0.1"
+    "gridsome": "^0.7.17"
   },
   "devDependencies": {
     "sass": "^1.41.1",
-    "sass-loader": "^10.2.0"
+    "sass-loader": "^10.2.0",
+    "vue-svg-loader": "^0.16.0"
   }
 }
