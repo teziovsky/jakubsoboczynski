@@ -22,5 +22,6 @@ export default {
 <style lang="scss" scoped>
 .projects {
   min-height: 100vh;
+  padding: 100px 0;
 }
 </style>

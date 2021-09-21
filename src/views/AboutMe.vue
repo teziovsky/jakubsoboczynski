@@ -42,7 +42,7 @@ export default {
 <style lang="scss" scoped>
 .aboutMe {
   min-height: 100vh;
-  padding: 30px 0;
+  padding: 100px 0;
 
   &__image {
     display: block;
@@ -55,6 +55,7 @@ export default {
   &__categories {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
     justify-content: center;
     margin-bottom: 20px;
     column-gap: 50px;

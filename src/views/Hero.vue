@@ -54,31 +54,32 @@ export default {
 <style lang="scss" scoped>
 .hero {
   position: relative;
-  min-height: calc(100vh - 170px);
+  min-height: 100vh;
 
   &__wrapper {
     position: absolute;
-    top: 60px;
+    top: 45%;
     left: 50%;
     display: flex;
     align-items: center;
     flex-direction: column;
-    transform: translateX(-50%);
+    width: 100%;
+    transform: translate(-50%, -50%);
   }
 
   &__greet {
     font-family: var(--font-family-secondary);
-    font-size: 26px;
+    font-size: clamp(1rem, 0.5566rem + 1.6694vw, 1.625rem);
     font-weight: 400;
-    line-height: 26px;
+    line-height: clamp(1rem, 0.5566rem + 1.6694vw, 1.625rem);
     margin-bottom: 10px;
   }
 
   &__title {
     font-family: var(--font-family-primary);
-    font-size: 96px;
+    font-size: clamp(3.5rem, 1.7262rem + 6.6778vw, 6rem);
     font-weight: 400;
-    line-height: 96px;
+    line-height: clamp(3.5rem, 1.7262rem + 6.6778vw, 6rem);
     position: relative;
     margin-bottom: 15px;
     padding-bottom: 30px;
@@ -97,39 +98,48 @@ export default {
 
   &__subtitle {
     font-family: var(--font-family-secondary);
-    font-size: 18px;
+    font-size: clamp(0.875rem, 0.6976rem + 0.6678vw, 1.125rem);
     font-weight: 400;
-    line-height: 18px;
+    line-height: clamp(0.875rem, 0.6976rem + 0.6678vw, 1.125rem);
     opacity: 0.3;
   }
 
   &__cta {
     position: absolute;
-    bottom: 80px;
+    bottom: 60px;
     left: 50%;
     display: flex;
     align-items: center;
     flex-direction: column;
     margin: 0 auto;
+    padding: 10px 20px;
     cursor: pointer;
     transform: translateX(-50%);
 
     &:hover,
     &:focus {
       span {
-        transform: translateY(0);
+        transform: translate(-50%, -70px);
         opacity: 1;
       }
     }
 
+    &:focus {
+      outline: 2px dotted var(--third-color);
+    }
+
     span {
       font-family: var(--font-family-secondary);
-      font-size: 14px;
+      font-size: clamp(0.75rem, 0.6613rem + 0.3339vw, 0.875rem);
       font-weight: 400;
-      line-height: 14px;
-      margin-bottom: 21px;
+      line-height: clamp(0.75rem, 0.6613rem + 0.3339vw, 0.875rem);
+      position: absolute;
+      bottom: 0;
+      left: 50%;
       transition: opacity 0.2s, transform 0.2s;
-      transform: translateY(70px);
+      transform: translate(-50%, 0);
+      white-space: nowrap;
+      pointer-events: none;
       opacity: 0;
       color: var(--font-color);
     }
