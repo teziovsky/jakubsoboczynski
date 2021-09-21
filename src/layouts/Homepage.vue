@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="homepage">
     <HeaderHome />
     <SocialLinks />
     <PageProgress />
@@ -31,7 +31,17 @@ export default {
 </script>
 
 <style lang="scss">
-.container {
-  padding: 0 120px;
+.homepage {
+  padding: 0 20px;
+}
+
+@media screen and (min-width: 768px) {
+  .homepage {
+    padding: 0 50px;
+  }
+
+  .container {
+    padding: 0 50px;
+  }
 }
 </style>
