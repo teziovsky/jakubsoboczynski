@@ -11,9 +11,10 @@
       <path d="M0 10.6931L1.47018 10.7698C1.61081 8.92888 2.96591 7.84223 4.78125 7.85501C6.07244 7.85501 6.92899 8.4303 8.05399 9.26126C9.35796 10.2712 10.4702 10.9999 12.0554 10.9999C14.3693 11.0127 16.3764 9.54251 16.7088 6.79393L15.2386 6.65331C14.983 8.41751 13.7173 9.54251 12.0426 9.54251C10.9048 9.52973 10.125 9.00558 9.03836 8.1874C7.7216 7.17746 6.5071 6.39763 4.75568 6.38484C2.27556 6.37206 0.178977 7.90615 0 10.6931Z"
             fill="white" />
     </svg>
+    <SocialLinks />
     <div class="footer__copyrights">
       <p>© 2021
-        <a href="https://www.jakubsoboczynski.pl">Jakub Soboczyński</a>
+        <a class="link" href="https://www.jakubsoboczynski.pl">Jakub Soboczyński</a>
       </p>
       <svg class="footer__diamant"
            fill="none"
@@ -55,8 +56,13 @@
 </template>
 
 <script>
+import SocialLinks from '~/components/SocialLinks.vue';
+
 export default {
   name: 'Footer',
+  components: {
+    SocialLinks,
+  },
 };
 </script>
 
@@ -73,6 +79,18 @@ export default {
     transform: scale(0.8);
   }
 
+  .socialLinks {
+    position: static;
+    top: unset;
+    left: unset;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 25px;
+    transform: none;
+    row-gap: unset;
+    column-gap: 40px;
+  }
+
   &__copyrights {
     font-family: var(--font-family-primary);
     font-size: 14px;
@@ -87,6 +105,14 @@ export default {
 
     &_path {
       transform: scale(0.47);
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .footer {
+    .socialLinks {
+      display: none;
     }
   }
 }
