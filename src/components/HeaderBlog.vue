@@ -42,20 +42,41 @@ export default {
 
 <style lang="scss" scoped>
 .header {
-  position: relative;
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  left: 0;
 
   .nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 64px 50px;
+    padding: 40px 20px;
   }
 
   .logo {
     position: absolute;
     top: 34px;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(-50%) scale(1);
+    transform-origin: top;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .header {
+    .nav {
+      padding: 40px 50px;
+    }
+
+    .logo {
+      position: absolute;
+      top: 34px;
+      left: 50%;
+      transform: translateX(-50%) scale(1);
+      transform-origin: top;
+    }
   }
 }
 </style>
