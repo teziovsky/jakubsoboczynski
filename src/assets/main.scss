@@ -62,14 +62,64 @@ a {
 }
 
 .button {
+  font-family: var(--font-family-secondary);
   display: flex;
   align-items: center;
   flex-direction: row;
   justify-content: center;
   padding: 12px 22px;
+  cursor: pointer;
   text-transform: uppercase;
   color: var(--third-color);
   border: 1px solid var(--third-color);
+  background: none;
+
+  &:hover,
+  &:focus {
+  }
+
+  &:focus {
+    outline: 2px dotted var(--third-color);
+    outline-offset: 7px;
+  }
+}
+
+.link {
+  position: relative;
+  transition: background-position 0.2s;
+  background: linear-gradient(to right, var(--third-color), var(--third-color) 50%, var(--font-color) 50%) 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  background-size: 200% 100%;
+  -webkit-text-fill-color: transparent;
+
+  &:after {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 80%;
+    height: 1px;
+    content: '';
+    transition: transform 0.2s 0.3s, opacity 0.2s 0.3s;
+    transform: translateX(-50%);
+    opacity: 0;
+    background-color: var(--third-color);
+  }
+
+  &:hover,
+  &:focus {
+    background-position: 0 100%;
+
+    &:after {
+      transform: translateX(-50%) translateY(2px);
+      opacity: 1;
+    }
+  }
+
+  &:focus {
+    outline: 2px dotted var(--third-color);
+    outline-offset: 7px;
+  }
 }
 
 // TRANSITIONS
