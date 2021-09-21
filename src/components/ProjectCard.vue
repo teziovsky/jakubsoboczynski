@@ -53,7 +53,7 @@ export default {
 .projectCard {
   position: relative;
   max-width: 600px;
-  margin: 40px auto;
+  margin: 60px auto;
   padding-bottom: 40px;
 
   &__title {

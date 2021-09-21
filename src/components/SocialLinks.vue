@@ -26,7 +26,7 @@ export default {
   position: fixed;
   top: 50%;
   left: 50px;
-  display: flex;
+  display: none;
   align-items: center;
   flex-direction: column;
   justify-content: center;
@@ -39,16 +39,32 @@ export default {
   }
 
   &__link {
-    display: block;
+    display: flex;
     width: 100%;
     height: 100%;
     cursor: pointer;
+
+    &:hover,
+    &:focus {
+
+    }
+
+    &:focus {
+      outline: 2px dotted var(--third-color);
+      outline-offset: 7px;
+    }
   }
 
   &__image {
     width: 100%;
     height: 100%;
     object-fit: contain;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .socialLinks {
+    display: flex;
   }
 }
 </style>

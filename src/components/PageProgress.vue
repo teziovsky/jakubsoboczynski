@@ -1,6 +1,6 @@
 <template>
   <ul class="pageProgress">
-    <li v-for="section in sections" class="pageProgress__section">
+    <li v-for="section in sections" class="pageProgress__element">
       <button></button>
     </li>
   </ul>
@@ -26,14 +26,14 @@ export default {
   position: fixed;
   top: 50%;
   right: 50px;
-  display: flex;
+  display: none;
   align-items: center;
   flex-direction: column;
   justify-content: center;
   transform: translateY(-50%);
   row-gap: 40px;
 
-  &__section {
+  &__element {
     button {
       display: block;
       width: 20px;
@@ -43,7 +43,23 @@ export default {
       border-radius: 100%;
       outline: none;
       background: none;
+
+      &:hover,
+      &:focus {
+
+      }
+
+      &:focus {
+        outline: 2px dotted var(--third-color);
+        outline-offset: 7px;
+      }
     }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .pageProgress {
+    display: flex;
   }
 }
 </style>
