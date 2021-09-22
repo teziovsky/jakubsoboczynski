@@ -2,7 +2,7 @@
 // The Client API can be used here. Learn more: gridsome.org/docs/client-api
 
 import HomepageLayout from '~/layouts/Homepage.vue';
-import '~/assets/main.scss';
+import '~/assets/css/main.scss';
 
 export default function (Vue, { router, head, isClient }) {
   Vue.component('HomepageLayout', HomepageLayout);
