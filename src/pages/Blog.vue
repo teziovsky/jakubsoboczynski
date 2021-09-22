@@ -1,7 +1,9 @@
 <template>
   <BlogLayout>
-    <h1>Blog page</h1>
-    {{ $page.Blog }}
+    <section>
+      <h1>Blog page</h1>
+      {{ $page.Blog }}
+    </section>
   </BlogLayout>
 </template>
 

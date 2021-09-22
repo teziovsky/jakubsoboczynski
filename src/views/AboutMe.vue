@@ -41,7 +41,6 @@ export default {
 
 <style lang="scss" scoped>
 .aboutMe {
-  min-height: 100vh;
   padding: 100px 0;
 
   &__image {

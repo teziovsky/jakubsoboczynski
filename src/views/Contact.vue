@@ -3,7 +3,9 @@
     <h2 class="section_header">Kontakt</h2>
     <h3 class="contact__title">{{ contact[0].node.title }}</h3>
     <p class="contact__description">{{ contact[0].node.description }}</p>
-    <button class="button button--contact">Cześć</button>
+    <a class="button button--contact" href="mailto:kontakt@jakubsoboczynski.pl" rel="noopener nofollow" target="_blank">
+      Cześć
+    </a>
   </section>
 </template>
 
@@ -18,8 +20,7 @@ export default {
 
 <style lang="scss" scoped>
 .contact {
-  min-height: calc(100vh - 130px);
-  padding: 100px 0;
+  padding: 150px 0;
 
   &__title {
     font-family: var(--font-family-primary);

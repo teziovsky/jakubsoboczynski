@@ -1,11 +1,9 @@
 <template>
-  <div>
+  <div class="layout">
     <HeaderBlog />
-    <transition appear name="scale">
-      <main>
-        <slot />
-      </main>
-    </transition>
+    <main class="container">
+      <slot />
+    </main>
     <Footer />
   </div>
 </template>

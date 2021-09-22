@@ -35,7 +35,6 @@ export default {
 
   &__item {
     width: 20px;
-
   }
 
   &__link {
@@ -46,7 +45,7 @@ export default {
 
     &:hover,
     &:focus {
-
+      animation: bounce-x 2s 0.2s ease-out infinite;
     }
 
     &:focus {

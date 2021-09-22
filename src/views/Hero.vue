@@ -1,46 +1,11 @@
 <template>
   <section id="hero" class="hero">
-    <div class="hero__wrapper">
-      <p class="hero__greet">Cześć, jestem</p>
-      <h1 class="hero__title">Jakub</h1>
-      <p class="hero__subtitle">Frontend developer</p>
-    </div>
+    <p class="hero__greet">Cześć, jestem</p>
+    <h1 class="hero__title">Jakub</h1>
+    <p class="hero__subtitle">Frontend developer</p>
     <a class="hero__cta" href="#projekty">
       <span>Przejdź do projektów</span>
-      <svg class="hero__diamant"
-           fill="none"
-           height="36"
-           viewBox="0 0 17 36"
-           width="17"
-           xmlns="http://www.w3.org/2000/svg">
-        <g filter="url(#filter0_i)">
-          <path class="hero__diamant_path"
-                d="M24.2716 27.66L14.5216 57L4.79141 27.72M24.2716 27.66L27.0431 19.32L14.5216 3L2 19.32L4.79141 27.72M24.2716 27.66L14.5216 15L4.79141 27.72"
-                stroke="white"
-                stroke-width="3" />
-        </g>
-        <defs>
-          <filter id="filter0_i"
-                  color-interpolation-filters="sRGB"
-                  filterUnits="userSpaceOnUse"
-                  height="61.2207"
-                  width="28.3918"
-                  x="0.325684"
-                  y="0.535828">
-            <feFlood flood-opacity="0" result="BackgroundImageFix" />
-            <feBlend in="SourceGraphic" in2="BackgroundImageFix" mode="normal" result="shape" />
-            <feColorMatrix in="SourceAlpha"
-                           result="hardAlpha"
-                           type="matrix"
-                           values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" />
-            <feOffset />
-            <feGaussianBlur stdDeviation="50" />
-            <feComposite in2="hardAlpha" k2="-1" k3="1" operator="arithmetic" />
-            <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0" />
-            <feBlend in2="shape" mode="normal" result="effect1_innerShadow" />
-          </filter>
-        </defs>
-      </svg>
+      <g-image class="hero__diamant" src="~/assets/images/icons/diamant.webp" />
     </a>
   </section>
 </template>
@@ -52,8 +17,36 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@keyframes bounce-down {
+  0% {
+    transform: translateX(-50%) translateY(0);
+  }
+  10% {
+    transform: translateX(-50%) translateY(0);
+  }
+  30% {
+    transform: translateX(-50%) translateY(20px);
+  }
+  50% {
+    transform: translateX(-50%) translateY(0);
+  }
+  57% {
+    transform: translateX(-50%) translateY(0);
+  }
+  64% {
+    transform: translateX(-50%) translateY(0);
+  }
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
 .hero {
   position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
   min-height: 100vh;
 
   &__wrapper {
@@ -98,15 +91,15 @@ export default {
 
   &__subtitle {
     font-family: var(--font-family-secondary);
-    font-size: clamp(0.875rem, 0.6976rem + 0.6678vw, 1.125rem);
+    font-size: clamp(0.75rem, 0.61280484rem + 0.585366vw, 1.125rem);
     font-weight: 400;
-    line-height: clamp(0.875rem, 0.6976rem + 0.6678vw, 1.125rem);
+    line-height: clamp(0.75rem, 0.61280484rem + 0.585366vw, 1.125rem);
     opacity: 0.3;
   }
 
   &__cta {
     position: absolute;
-    bottom: 60px;
+    bottom: 110px;
     left: 50%;
     display: flex;
     align-items: center;
@@ -118,8 +111,11 @@ export default {
 
     &:hover,
     &:focus {
+      animation: bounce-down 2s 0.2s ease-out infinite;
+
       span {
-        transform: translate(-50%, -70px);
+        top: -20px;
+        transform: translateX(-50%);
         opacity: 1;
       }
     }
@@ -134,10 +130,10 @@ export default {
       font-weight: 400;
       line-height: clamp(0.75rem, 0.6613rem + 0.3339vw, 0.875rem);
       position: absolute;
-      bottom: 0;
+      top: -90px;
       left: 50%;
-      transition: opacity 0.2s, transform 0.2s;
-      transform: translate(-50%, 0);
+      transition: opacity 0.2s, top 0.45s ease-out;
+      transform: translateX(-50%);
       white-space: nowrap;
       pointer-events: none;
       opacity: 0;
@@ -146,8 +142,14 @@ export default {
   }
 
   &__diamant {
-    &_path {
-      transform: scale(0.6);
+    width: 20px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .hero {
+    &__cta {
+      bottom: 60px;
     }
   }
 }

@@ -1,13 +1,11 @@
 <template>
-  <div class="homepage">
+  <div class="layout">
     <HeaderHome />
     <SocialLinks />
     <PageProgress />
-    <transition appear name="scale">
-      <main class="container">
-        <slot />
-      </main>
-    </transition>
+    <main class="container">
+      <slot />
+    </main>
     <Footer />
   </div>
 </template>
@@ -31,17 +29,4 @@ export default {
 </script>
 
 <style lang="scss">
-.homepage {
-  padding: 0 20px;
-}
-
-@media screen and (min-width: 768px) {
-  .homepage {
-    padding: 0 50px;
-  }
-
-  .container {
-    padding: 0 50px;
-  }
-}
 </style>
