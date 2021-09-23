@@ -1,5 +1,6 @@
 module.exports = {
   siteName: 'Jakub Soboczyński',
+  titleTemplate: '%s | Jakub Soboczyński',
   plugins: [
     {
       use: '@gridsome/source-airtable',
@@ -40,12 +41,11 @@ module.exports = {
         ],
       },
     },
+    {
+      use: 'gridsome-plugin-sass-resources-loader',
+      options: {
+        resources: '@/assets/scss/main.scss',
+      },
+    },
   ],
-  chainWebpack: config => {
-    const svgRule = config.module.rule('svg');
-    svgRule.uses.clear();
-    svgRule
-      .use('vue-svg-loader')
-      .loader('vue-svg-loader');
-  },
 };
