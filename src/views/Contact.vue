@@ -20,7 +20,7 @@ export default {
 
 <style lang="scss" scoped>
 .contact {
-  padding: 150px 0;
+  padding: 50px 0 150px;
 
   &__title {
     font-family: var(--font-family-primary);

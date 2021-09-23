@@ -1,11 +1,22 @@
 <template>
   <section id="hero" class="hero">
-    <p class="hero__greet">Cześć, jestem</p>
-    <h1 class="hero__title">Jakub</h1>
-    <p class="hero__subtitle">Frontend developer</p>
-    <a class="hero__cta" href="#projekty">
+    <div class="hero__wrapper">
+      <p class="hero__greet">Cześć, jestem</p>
+      <h1 class="hero__title">Jakub</h1>
+      <p class="hero__subtitle">Frontend developer</p>
+    </div>
+    <a v-smooth-scroll class="hero__cta" href="#projekty">
       <span>Przejdź do projektów</span>
-      <g-image class="hero__diamant" src="~/assets/images/icons/diamant.webp" />
+      <svg class="hero__diamant"
+           fill="none"
+           height="62"
+           viewBox="0 0 29 62"
+           width="29"
+           xmlns="http://www.w3.org/2000/svg">
+        <path d="M24.2716 27.66L14.5216 57L4.79141 27.72M24.2716 27.66L27.0431 19.32L14.5216 3L2 19.32L4.79141 27.72M24.2716 27.66L14.5216 15L4.79141 27.72"
+              stroke="white"
+              stroke-width="3" />
+      </svg>
     </a>
   </section>
 </template>
@@ -17,36 +28,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@keyframes bounce-down {
-  0% {
-    transform: translateX(-50%) translateY(0);
-  }
-  10% {
-    transform: translateX(-50%) translateY(0);
-  }
-  30% {
-    transform: translateX(-50%) translateY(20px);
-  }
-  50% {
-    transform: translateX(-50%) translateY(0);
-  }
-  57% {
-    transform: translateX(-50%) translateY(0);
-  }
-  64% {
-    transform: translateX(-50%) translateY(0);
-  }
-  100% {
-    transform: translateX(-50%) translateY(0);
-  }
-}
-
 .hero {
   position: relative;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: center;
   min-height: 100vh;
 
   &__wrapper {
@@ -105,8 +88,7 @@ export default {
     align-items: center;
     flex-direction: column;
     margin: 0 auto;
-    padding: 10px 20px;
-    cursor: pointer;
+    padding: 5px 20px;
     transform: translateX(-50%);
 
     &:hover,
@@ -114,14 +96,14 @@ export default {
       animation: bounce-down 2s 0.2s ease-out infinite;
 
       span {
-        top: -20px;
+        top: -30px;
         transform: translateX(-50%);
         opacity: 1;
       }
     }
 
     &:focus {
-      outline: 2px dotted var(--third-color);
+      outline: var(--outline-size) dotted var(--third-color);
     }
 
     span {
@@ -132,7 +114,7 @@ export default {
       position: absolute;
       top: -90px;
       left: 50%;
-      transition: opacity 0.2s, top 0.45s ease-out;
+      transition: opacity 0.2s cubic-bezier(0.19, 1, 0.22, 1), top 0.45s ease-out;
       transform: translateX(-50%);
       white-space: nowrap;
       pointer-events: none;

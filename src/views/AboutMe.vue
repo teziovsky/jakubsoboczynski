@@ -1,9 +1,11 @@
 <template>
   <section id="o_mnie" class="aboutMe">
     <h2 class="section_header">O mnie</h2>
-    <g-image class="aboutMe__image"
-             fit="contain"
-             src="~/assets/images/profile.webp" />
+    <div class="aboutMe__wrapper">
+      <g-image class="aboutMe__image"
+               fit="contain"
+               src="~/assets/images/profile.webp" />
+    </div>
     <div class="aboutMe__categories">
       <button v-for="category in aboutMe"
               :key="category.node.id"
@@ -43,19 +45,20 @@ export default {
 .aboutMe {
   padding: 100px 0;
 
+  &__wrapper {
+    position: relative;
+    @include image-overlay;
+  }
+
   &__image {
     display: block;
     max-width: 250px;
     margin: 40px auto 50px;
-    background-color: var(--primary-color);
-    mix-blend-mode: luminosity;
   }
 
   &__categories {
-    display: flex;
-    align-items: center;
+    @include flex-center;
     flex-wrap: wrap;
-    justify-content: center;
     margin-bottom: 20px;
     column-gap: 50px;
   }
@@ -66,12 +69,8 @@ export default {
     line-height: 25px;
     position: relative;
     padding: 12px 22px;
-    cursor: pointer;
     text-transform: capitalize;
     color: var(--font-color);
-    border: none;
-    outline: none;
-    background: none;
 
     &:after {
       position: absolute;
@@ -80,7 +79,7 @@ export default {
       width: 40px;
       height: 1px;
       content: '';
-      transition: opacity 0.8s;
+      transition: opacity 0.8s cubic-bezier(0.19, 1, 0.22, 1);
       transform: translateX(-50%);
       opacity: 0;
       background-color: var(--font-color);
