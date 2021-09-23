@@ -25,7 +25,7 @@ export default {
 .pageProgress {
   position: fixed;
   top: 50%;
-  right: 50px;
+  right: 45px;
   display: none;
   align-items: center;
   flex-direction: column;
@@ -35,14 +35,21 @@ export default {
 
   &__element {
     button {
-      display: block;
-      width: 20px;
-      height: 20px;
-      cursor: pointer;
-      border: 2px solid var(--font-color);
-      border-radius: 100%;
-      outline: none;
-      background: none;
+      position: relative;
+      width: 30px;
+      height: 30px;
+
+      &:before {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 20px;
+        height: 20px;
+        content: '';
+        transform: translate(-50%, -50%);
+        border: 2px solid var(--font-color);
+        border-radius: 100%;
+      }
 
       &:hover,
       &:focus {
@@ -50,8 +57,8 @@ export default {
       }
 
       &:focus {
-        outline: 2px dotted var(--third-color);
-        outline-offset: 7px;
+        outline: var(--outline-size) dotted var(--third-color);
+        outline-offset: var(--outline-offset);
       }
     }
   }

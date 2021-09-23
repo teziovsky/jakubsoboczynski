@@ -1,20 +1,40 @@
 <template>
   <header class="header">
     <nav class="nav">
+      <button class="nav__burger" @click="toggleMenu"><span></span></button>
       <div class="nav__wrapper">
-        <a class="nav__link link" href="#o_mnie">o mnie</a>
-        <a class="nav__link link" href="#projekty">projekty</a>
-        <a class="nav__link link" href="#kontakt">kontakt</a>
+        <a v-smooth-scroll class="nav__link link" href="#o_mnie" @click="handleNavClick">o mnie</a>
+        <a v-smooth-scroll class="nav__link link" href="#projekty" @click="handleNavClick">projekty</a>
+        <a v-smooth-scroll class="nav__link link" href="#kontakt" @click="handleNavClick">kontakt</a>
       </div>
       <g-link class="button" to="/blog/">Blog</g-link>
     </nav>
-    <g-image class="logo" src="~/assets/images/logo.webp" />
+    <svg class="header__logo"
+         fill="none"
+         height="113"
+         viewBox="0 0 93 113"
+         width="93"
+         xmlns="http://www.w3.org/2000/svg">
+      <path d="M46.7376 104.089V112M46.7376 112H38.0787L24.3421 91.3683L2 73.516L10.6055 56.5724M46.7376 112H55.2896L69.0262 91.3683L91.3683 73.516L82.7629 56.5724M10.6055 56.5724L8.89505 2L10.6055 2.05345L38.0787 30.0078M10.6055 56.5724L38.0787 30.0078M10.6055 56.5724L46.7376 78.1127M82.7629 56.5724L46.7376 78.1127M82.7629 56.5724L84.4733 2.00001H82.7629L55.2896 30.0078M82.7629 56.5724L55.2896 30.0078M38.0787 30.0078H46.7376M46.7376 78.1127L55.436 51.9757M46.7376 78.1127L38.0569 52.0292M46.7376 30.0078L35.5666 44.5462L38.0569 52.0292M46.7376 30.0078L57.9086 44.5462L55.436 51.9757M46.7376 30.0078H55.2896M55.436 51.9757L46.7376 40.6978L38.0569 52.0292M66.1399 66.4072H74.0505L67.5296 72.1263L54.274 73.8902L65.1778 67.1555M27.5491 66.4072H19.6385L26.1594 72.1263L39.415 73.8902L28.5112 67.1555L27.5491 66.4072Z"
+            stroke="white"
+            stroke-width="2" />
+    </svg>
   </header>
 </template>
 
 <script>
 export default {
   name: 'HeaderHome',
+  methods: {
+    toggleMenu() {
+      document.querySelector('.nav__wrapper').classList.toggle('opened');
+      document.querySelector('.nav__burger').classList.toggle('opened');
+    },
+    handleNavClick() {
+      document.querySelector('.nav__wrapper').classList.remove('opened');
+      document.querySelector('.nav__burger').classList.remove('opened');
+    },
+  },
 };
 </script>
 
@@ -32,21 +52,107 @@ export default {
     justify-content: space-between;
     padding: 40px 20px;
 
+    &__burger {
+      position: relative;
+      z-index: 5;
+      width: 48px;
+      height: 38px;
+
+      &:hover,
+      &:focus {
+        span,
+        span:before,
+        span:after {
+          background-color: var(--third-color);
+        }
+      }
+
+      span {
+        position: relative;
+        display: block;
+        width: 100%;
+        height: 3px;
+        margin: 0 auto;
+        transition: background 0.4s;
+        text-align: center;
+        border-radius: 3px;
+        background-color: var(--font-color);
+
+        &:before,
+        &:after {
+          position: absolute;
+          left: 0;
+          width: 100%;
+          height: 3px;
+          content: '';
+          transition: background 0.5s, transform 0.5s, top 0.5s;
+          border-radius: 3px;
+          background-color: var(--font-color);
+        }
+
+        &:before {
+          top: -10px;
+          transition: background 0.2s, transform 0.5s, top 0.5s;
+        }
+
+        &:after {
+          bottom: -10px;
+          transition: background 0.6s, transform 0.5s, top 0.5s;
+        }
+      }
+
+      &.opened {
+        span {
+          background: rgba(var(--font-color-rgb), 0);
+
+          &:before {
+            top: 0;
+            transform: rotate(135deg);
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+          }
+
+          &:after {
+            top: 0;
+            transform: rotate(225deg);
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+          }
+        }
+      }
+    }
+
     &__wrapper {
+      font-size: 24px;
+      position: fixed;
+      z-index: 2;
+      top: 0;
+      left: 0;
       display: flex;
+      visibility: hidden;
+      align-items: center;
       flex-direction: column;
-      row-gap: 15px;
+      justify-content: center;
+      width: 100%;
+      height: 50%;
+      padding: 120px 20px 80px;
+      transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1), visibility 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+      transform: translateX(-100%);
+      background-color: var(--secondary-color);
+      row-gap: 30px;
+
+      &.opened {
+        visibility: visible;
+        transform: translateX(0);
+      }
     }
 
     &__link {
       font-family: var(--font-family-secondary);
-      display: inline-block;
-      padding: 2px 4px;
-      cursor: pointer;
+      width: max-content;
+      padding: 5px 0;
     }
   }
 
-  .logo {
+  &__logo {
     position: absolute;
     top: 34px;
     left: 50%;
@@ -61,8 +167,20 @@ export default {
     .nav {
       padding: 40px 50px;
 
+      &__burger {
+        display: none;
+      }
+
       &__wrapper {
+        font-size: 16px;
+        position: static;
+        visibility: visible;
         flex-direction: row;
+        width: unset;
+        height: unset;
+        padding: 0;
+        transform: translateX(0);
+        background: none;
         row-gap: unset;
         column-gap: 32px;
       }
