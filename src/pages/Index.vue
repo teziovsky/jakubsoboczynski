@@ -15,6 +15,9 @@ import Contact from '~/views/Contact.vue';
 
 export default {
   name: 'Homepage',
+  metaInfo: {
+    title: 'Portfolio',
+  },
   components: {
     Hero,
     AboutMe,
