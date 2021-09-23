@@ -1,0 +1,44 @@
+@keyframes bounce-x {
+  0% {
+    transform: translateX(0);
+  }
+  10% {
+    transform: translateX(0);
+  }
+  30% {
+    transform: translateX(3px);
+  }
+  50% {
+    transform: translateX(0);
+  }
+  70% {
+    transform: translateX(-3px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes bounce-down {
+  0% {
+    transform: translateX(-50%) translateY(0);
+  }
+  10% {
+    transform: translateX(-50%) translateY(0);
+  }
+  30% {
+    transform: translateX(-50%) translateY(20px);
+  }
+  50% {
+    transform: translateX(-50%) translateY(0);
+  }
+  57% {
+    transform: translateX(-50%) translateY(0);
+  }
+  64% {
+    transform: translateX(-50%) translateY(0);
+  }
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+}
