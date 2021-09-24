@@ -2,8 +2,8 @@
 // The Client API can be used here. Learn more: gridsome.org/docs/client-api
 
 import HomepageLayout from '~/layouts/Homepage.vue';
-import '~/assets/scss/main.scss';
 import VueSmoothScroll from 'vue2-smooth-scroll';
+import '~/assets/scss/main.scss';
 
 export default function (Vue, { router, head, isClient }) {
   Vue.component('HomepageLayout', HomepageLayout);

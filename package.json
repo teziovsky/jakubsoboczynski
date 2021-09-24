@@ -25,6 +25,7 @@
   "devDependencies": {
     "sass": "^1.41.1",
     "sass-loader": "^10.2.0",
+    "style-resources-loader": "^1.4.1",
     "vue-svg-loader": "^0.16.0"
   }
 }
