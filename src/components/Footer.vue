@@ -69,19 +69,19 @@ export default {
   }
 
   &__copyrights {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     font-family: var(--font-family-primary);
     font-size: 14px;
-    font-weight: 200;
     line-height: 14px;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
+    font-weight: 200;
     row-gap: 20px;
   }
 
   &__diamant {
-    display: none;
     width: 13px;
+    display: none;
   }
 }
 

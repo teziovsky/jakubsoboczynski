@@ -54,12 +54,12 @@ export default {
   padding-bottom: 40px;
 
   &__title {
+    text-align: center;
     font-family: var(--font-family-secondary);
     font-size: 24px;
-    font-weight: 400;
     line-height: 26px;
+    font-weight: 400;
     margin-bottom: 30px;
-    text-align: center;
   }
 
   &__wrapper {
@@ -68,32 +68,26 @@ export default {
   }
 
   &__image {
-    display: block;
     width: 100%;
+    display: block;
   }
 
   &__source {
     position: absolute;
     bottom: 0;
     left: 0;
-    display: block;
     width: 32px;
     height: 32px;
-    padding: 5px;
+    display: block;
     background-color: var(--primary-color);
+    padding: 5px;
 
-    &:hover,
-    &:focus {
+    @include hover {
       animation: bounce-x 2s 0.2s ease-out infinite;
 
       path {
         stroke: var(--third-color);
       }
-    }
-
-    &:focus {
-      outline: var(--outline-size) dotted var(--third-color);
-      outline-offset: var(--outline-offset);
     }
 
     svg {
@@ -112,38 +106,38 @@ export default {
     right: 50px;
     bottom: -5px;
     left: 50px;
-    padding: clamp(0.625rem, 0.16768281rem + 1.95122vw, 1.875rem) clamp(1.25rem, 0.79268281rem + 1.95122vw, 2.5rem);
     background-color: var(--secondary-color);
+    padding: clamp(0.625rem, 0.16768281rem + 1.95122vw, 1.875rem) clamp(1.25rem, 0.79268281rem + 1.95122vw, 2.5rem);
   }
 
   &__description {
+    text-align: center;
     font-family: var(--font-family-primary);
     font-size: clamp(0.75rem, 0.70426828rem + 0.195122vw, 0.875rem);
-    font-weight: 600;
     line-height: 18px;
-    text-align: center;
+    font-weight: 600;
   }
 
   &__technologies {
+    position: relative;
+    opacity: 0.8;
+    text-align: center;
     font-family: var(--font-family-primary);
     font-size: clamp(0.625rem, 0.57926828rem + 0.195122vw, 0.75rem);
-    font-weight: 400;
     line-height: 18px;
-    position: relative;
+    font-weight: 400;
     margin-top: 15px;
     padding-top: 15px;
-    text-align: center;
-    opacity: 0.8;
 
     &:before {
+      content: '';
       position: absolute;
       top: 0;
       left: 50%;
       width: 40px;
       height: 1px;
-      content: '';
-      transform: translateX(-50%);
       background-color: var(--font-color);
+      transform: translateX(-50%);
     }
   }
 
@@ -151,23 +145,17 @@ export default {
     position: absolute;
     right: 0;
     bottom: 5px;
-    display: block;
     width: 27px;
     height: 27px;
+    display: block;
     padding: 5px;
 
-    &:hover,
-    &:focus {
+    @include hover {
       animation: bounce-x 2s 0.2s ease-out infinite;
 
       path {
         stroke: var(--third-color);
       }
-    }
-
-    &:focus {
-      outline: var(--outline-size) dotted var(--third-color);
-      outline-offset: var(--outline-offset);
     }
 
     svg {

@@ -32,8 +32,8 @@ export default {
 
   .nav {
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
     padding: 40px 20px;
   }
 

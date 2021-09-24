@@ -24,9 +24,9 @@ export default {
   top: 50%;
   left: 45px;
   display: none;
-  align-items: center;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   transform: translateY(-50%);
   row-gap: 40px;
 
@@ -35,23 +35,17 @@ export default {
     height: 30px;
   }
 
-  &__link::v-deep {
+  &__link {
     @include flex-center;
     width: 100%;
     height: 100%;
 
-    &:hover,
-    &:focus {
+    @include hover {
       animation: bounce-x 2s 0.2s ease-out infinite;
 
       path {
         stroke: var(--third-color);
       }
-    }
-
-    &:focus {
-      outline: var(--outline-size) dotted var(--third-color);
-      outline-offset: var(--outline-offset);
     }
 
     svg {

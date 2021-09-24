@@ -48,8 +48,8 @@ export default {
 
   .nav {
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
     padding: 40px 20px;
 
     &__burger {
@@ -58,8 +58,7 @@ export default {
       width: 48px;
       height: 38px;
 
-      &:hover,
-      &:focus {
+      @include hover {
         span,
         span:before,
         span:after {
@@ -69,25 +68,25 @@ export default {
 
       span {
         position: relative;
-        display: block;
         width: 100%;
         height: 3px;
+        display: block;
+        text-align: center;
+        background-color: var(--font-color);
+        border-radius: 3px;
         margin: 0 auto;
         transition: background 0.4s;
-        text-align: center;
-        border-radius: 3px;
-        background-color: var(--font-color);
 
         &:before,
         &:after {
+          content: '';
           position: absolute;
           left: 0;
           width: 100%;
           height: 3px;
-          content: '';
-          transition: background 0.5s, transform 0.5s, top 0.5s;
-          border-radius: 3px;
           background-color: var(--font-color);
+          border-radius: 3px;
+          transition: background 0.5s, transform 0.5s, top 0.5s;
         }
 
         &:before {
@@ -107,36 +106,36 @@ export default {
 
           &:before {
             top: 0;
-            transform: rotate(135deg);
             box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+            transform: rotate(135deg);
           }
 
           &:after {
             top: 0;
-            transform: rotate(225deg);
             box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+            transform: rotate(225deg);
           }
         }
       }
     }
 
     &__wrapper {
-      font-size: 24px;
       position: fixed;
       z-index: 2;
       top: 0;
       left: 0;
-      display: flex;
-      visibility: hidden;
-      align-items: center;
-      flex-direction: column;
-      justify-content: center;
       width: 100%;
       height: 50%;
-      padding: 120px 20px 80px;
-      transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1), visibility 0.5s cubic-bezier(0.19, 1, 0.22, 1);
-      transform: translateX(-100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      visibility: hidden;
+      font-size: 24px;
       background-color: var(--secondary-color);
+      padding: 120px 20px 80px;
+      transform: translateX(-100%);
+      transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1), visibility 0.5s cubic-bezier(0.19, 1, 0.22, 1);
       row-gap: 30px;
 
       &.opened {
@@ -146,8 +145,8 @@ export default {
     }
 
     &__link {
-      font-family: var(--font-family-secondary);
       width: max-content;
+      font-family: var(--font-family-secondary);
       padding: 5px 0;
     }
   }
@@ -172,15 +171,15 @@ export default {
       }
 
       &__wrapper {
-        font-size: 16px;
         position: static;
-        visibility: visible;
-        flex-direction: row;
         width: unset;
         height: unset;
+        flex-direction: row;
+        visibility: visible;
+        font-size: 16px;
+        background: none;
         padding: 0;
         transform: translateX(0);
-        background: none;
         row-gap: unset;
         column-gap: 32px;
       }

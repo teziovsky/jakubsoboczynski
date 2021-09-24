@@ -14,7 +14,7 @@
               @click="active = category.node.id">{{ category.node.title }}
       </button>
     </div>
-    <transition mode="out-in" name="fade">
+    <transition mode="out-in" name="shrink">
       <p :key="selectedDescription.node.id"
          class="aboutMe__description"
          v-html="selectedDescription.node.description"></p>
@@ -51,38 +51,44 @@ export default {
   }
 
   &__image {
+    max-width: clamp(12.5rem, 11.35670727rem + 4.878049vw, 15.625rem);
     display: block;
-    max-width: 250px;
-    margin: 40px auto 50px;
+    margin: clamp(1.875rem, 1.64634141rem + 0.97561vw, 2.5rem) auto clamp(1.875rem, 1.41768281rem + 1.95122vw, 3.125rem);
   }
 
   &__categories {
     @include flex-center;
+    flex-direction: column;
     flex-wrap: wrap;
     margin-bottom: 20px;
-    column-gap: 50px;
+    column-gap: 30px;
+    row-gap: 15px;
   }
 
   &__category {
+    position: relative;
     font-family: var(--font-family-secondary);
     font-size: 18px;
     line-height: 25px;
-    position: relative;
-    padding: 12px 22px;
     text-transform: capitalize;
     color: var(--font-color);
+    padding: 12px 22px;
+
+    @include hover {
+
+    }
 
     &:after {
+      content: '';
       position: absolute;
       bottom: 0;
       left: 50%;
       width: 40px;
       height: 1px;
-      content: '';
-      transition: opacity 0.8s cubic-bezier(0.19, 1, 0.22, 1);
-      transform: translateX(-50%);
       opacity: 0;
       background-color: var(--font-color);
+      transform: translateX(-50%);
+      transition: opacity 0.8s cubic-bezier(0.19, 1, 0.22, 1);
     }
 
     &.active {
@@ -93,13 +99,25 @@ export default {
   }
 
   &__description {
+    max-width: 700px;
+    text-align: center;
     font-family: var(--font-family-primary);
     font-size: 18px;
-    font-weight: 300;
     line-height: 25px;
-    max-width: 700px;
+    font-weight: 300;
     margin: 0 auto;
-    text-align: justify;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .aboutMe {
+    &__categories {
+      flex-direction: row;
+    }
+
+    &__description {
+      text-align: justify;
+    }
   }
 }
 </style>

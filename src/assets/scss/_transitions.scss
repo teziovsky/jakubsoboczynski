@@ -1,12 +1,25 @@
+// SLIDE
 .slide-enter-active {
-  transition: all 0.5s  cubic-bezier(0.19, 1, 0.22, 1);
+  transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 .slide-leave-active {
-  transition: all 0.5s  cubic-bezier(0.19, 1, 0.22, 1);
+  transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 .slide-enter, .slide-leave-to {
   overflow: hidden;
   transform: translateX(100vw);
+}
+
+// SHRINK
+.shrink-enter,
+.shrink-leave-to {
+  opacity: 0;
+  transform: scale(1.12);
+}
+
+.shrink-enter-active,
+.shrink-leave-active {
+  transition: transform 0.5s, opacity 0.3s;
 }

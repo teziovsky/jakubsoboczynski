@@ -15,3 +15,15 @@
   align-items: center;
   justify-content: center;
 }
+
+@mixin hover {
+  &:hover,
+  &:focus {
+    @content;
+  }
+
+  &:focus {
+    outline: var(--outline-size) dotted var(--third-color);
+    outline-offset: var(--outline-offset);
+  }
+}

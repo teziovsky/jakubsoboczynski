@@ -27,9 +27,9 @@ export default {
   top: 50%;
   right: 45px;
   display: none;
-  align-items: center;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   transform: translateY(-50%);
   row-gap: 40px;
 
@@ -40,25 +40,19 @@ export default {
       height: 30px;
 
       &:before {
+        content: '';
         position: absolute;
         top: 50%;
         left: 50%;
         width: 20px;
         height: 20px;
-        content: '';
-        transform: translate(-50%, -50%);
         border: 2px solid var(--font-color);
         border-radius: 100%;
+        transform: translate(-50%, -50%);
       }
 
-      &:hover,
-      &:focus {
+      @include hover {
 
-      }
-
-      &:focus {
-        outline: var(--outline-size) dotted var(--third-color);
-        outline-offset: var(--outline-offset);
       }
     }
   }
