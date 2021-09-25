@@ -18,7 +18,8 @@
     </a>
     <div v-if="project.description || project.technologies" class="projectCard__info">
       <p v-if="project.description" class="projectCard__description">{{ project.description }}</p>
-      <p v-if="project.technologies" class="projectCard__technologies">{{ project.technologies|splitString(' ') }}</p>
+      <p v-if="project.technologies" class="projectCard__technologies">{{ project.technologies | splitString(',', ' ')
+        }}</p>
     </div>
     <a v-if="project.demo" :href="project.demo" class="projectCard__demo" rel="nofollow noopener" target="_blank">
       <svg fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
@@ -38,11 +39,6 @@ export default {
     project: Object,
   },
   name: 'ProjectCard',
-  filters: {
-    splitString(value, join) {
-      return value.split(',').join(join);
-    },
-  },
 };
 </script>
 
@@ -95,7 +91,7 @@ export default {
       height: 22px;
 
       path {
-        transition: stroke 0.2s cubic-bezier(0.19, 1, 0.22, 1);
+        transition: stroke var(--transition-duration) var(--transition-timing-function);
       }
     }
   }
@@ -163,7 +159,7 @@ export default {
       height: 17px;
 
       path {
-        transition: stroke 0.2s cubic-bezier(0.19, 1, 0.22, 1);
+        transition: stroke var(--transition-duration) var(--transition-timing-function);
       }
     }
   }

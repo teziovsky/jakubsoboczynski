@@ -1,7 +1,12 @@
 <template>
   <ul class="pageProgress">
     <li v-for="section in sections" class="pageProgress__element">
-      <button></button>
+      <a v-smooth-scroll
+         :data-section="section.id"
+         :href="'#' + section.id"
+         class="pageProgress__link"><span class="sr-only">Przejdź do sekcji {{
+          section.id | splitString('', ' ') }}</span>
+      </a>
     </li>
   </ul>
 </template>
@@ -16,7 +21,7 @@ export default {
   },
   mounted() {
     this.sections = document.querySelectorAll('section');
-    console.log(document.querySelectorAll('section'));
+    console.log('this.sections: ', this.sections);
   },
 };
 </script>
@@ -34,25 +39,30 @@ export default {
   row-gap: 40px;
 
   &__element {
-    button {
-      position: relative;
-      width: 30px;
-      height: 30px;
+  }
 
+  &__link {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    display: block;
+
+    &:before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 20px;
+      height: 20px;
+      border: 2px solid var(--font-color);
+      border-radius: 100%;
+      transform: translate(-50%, -50%);
+      transition: border var(--transition-duration) var(--transition-timing-function);
+    }
+
+    @include hover {
       &:before {
-        content: '';
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 20px;
-        height: 20px;
-        border: 2px solid var(--font-color);
-        border-radius: 100%;
-        transform: translate(-50%, -50%);
-      }
-
-      @include hover {
-
+        border-color: var(--third-color);
       }
     }
   }
