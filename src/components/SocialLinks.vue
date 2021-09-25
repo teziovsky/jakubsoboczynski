@@ -35,7 +35,7 @@ export default {
     height: 30px;
   }
 
-  &__link {
+  &__link::v-deep {
     @include flex-center;
     width: 100%;
     height: 100%;
@@ -53,7 +53,7 @@ export default {
       height: 20px;
 
       path {
-        transition: stroke 0.2s cubic-bezier(0.19, 1, 0.22, 1);
+        transition: stroke var(--transition-duration) var(--transition-timing-function);
       }
     }
   }

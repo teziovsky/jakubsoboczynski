@@ -3,9 +3,9 @@
     <nav class="nav">
       <button class="nav__burger" @click="toggleMenu"><span></span></button>
       <div class="nav__wrapper">
-        <a v-smooth-scroll class="nav__link link" href="#o_mnie" @click="handleNavClick">o mnie</a>
-        <a v-smooth-scroll class="nav__link link" href="#projekty" @click="handleNavClick">projekty</a>
-        <a v-smooth-scroll class="nav__link link" href="#kontakt" @click="handleNavClick">kontakt</a>
+        <a v-smooth-scroll class="nav__link link" href="#o_mnie" @click="hideMenu">o mnie</a>
+        <a v-smooth-scroll class="nav__link link" href="#projekty" @click="hideMenu">projekty</a>
+        <a v-smooth-scroll class="nav__link link" href="#kontakt" @click="hideMenu">kontakt</a>
       </div>
       <g-link class="button" to="/blog/">Blog</g-link>
     </nav>
@@ -26,14 +26,30 @@
 export default {
   name: 'HeaderHome',
   methods: {
+    detectMobile() {
+      const width = (window.innerWidth > 0) ? window.innerWidth : document.documentElement.clientWidth;
+      const nav = document.querySelector('.nav__wrapper');
+      if (width > 768) {
+        nav.classList.remove('mobile');
+        this.hideMenu();
+      } else {
+        nav.classList.add('mobile');
+      }
+    },
     toggleMenu() {
       document.querySelector('.nav__wrapper').classList.toggle('opened');
       document.querySelector('.nav__burger').classList.toggle('opened');
+      document.querySelector('body').classList.toggle('opened');
     },
-    handleNavClick() {
+    hideMenu() {
       document.querySelector('.nav__wrapper').classList.remove('opened');
       document.querySelector('.nav__burger').classList.remove('opened');
+      document.querySelector('body').removeAttribute('class');
     },
+  },
+  mounted() {
+    this.detectMobile();
+    window.addEventListener('resize', this.detectMobile);
   },
 };
 </script>
@@ -75,7 +91,7 @@ export default {
         background-color: var(--font-color);
         border-radius: 3px;
         margin: 0 auto;
-        transition: background 0.4s;
+        transition: background 0.4s var(--transition-timing-function);
 
         &:before,
         &:after {
@@ -86,17 +102,17 @@ export default {
           height: 3px;
           background-color: var(--font-color);
           border-radius: 3px;
-          transition: background 0.5s, transform 0.5s, top 0.5s;
+          transition: background 0.4s var(--transition-timing-function), transform 0.4s var(--transition-timing-function), top 0.4s var(--transition-timing-function);
         }
 
         &:before {
           top: -10px;
-          transition: background 0.2s, transform 0.5s, top 0.5s;
+          transition: background 0.2s var(--transition-timing-function), transform 0.2s var(--transition-timing-function), top 0.2s var(--transition-timing-function);
         }
 
         &:after {
           bottom: -10px;
-          transition: background 0.6s, transform 0.5s, top 0.5s;
+          transition: background 0.6s var(--transition-timing-function), transform 0.6s var(--transition-timing-function), top 0.6s var(--transition-timing-function);
         }
       }
 
@@ -125,7 +141,7 @@ export default {
       top: 0;
       left: 0;
       width: 100%;
-      height: 50%;
+      height: 100%;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -135,12 +151,15 @@ export default {
       background-color: var(--secondary-color);
       padding: 120px 20px 80px;
       transform: translateX(-100%);
-      transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1), visibility 0.5s cubic-bezier(0.19, 1, 0.22, 1);
       row-gap: 30px;
 
       &.opened {
         visibility: visible;
         transform: translateX(0);
+      }
+
+      &.mobile {
+        transition: transform 0.5s var(--transition-timing-function), visibility 0.5s var(--transition-timing-function);
       }
     }
 
