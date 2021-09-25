@@ -13,6 +13,7 @@ function addStyleResource(rule) {
 module.exports = {
   siteName: 'Jakub Soboczyński',
   titleTemplate: '%s | Jakub Soboczyński',
+  siteUrl: 'https://www.jakubsoboczynski.pl',
   plugins: [
     {
       use: '@gridsome/source-airtable',
@@ -22,31 +23,31 @@ module.exports = {
         tables: [
           {
             name: 'links',
-            typeName: 'links',
+            typeName: 'Links',
             select: {},
             links: [],
           },
           {
             name: 'about_me',
-            typeName: 'about_me',
+            typeName: 'AboutMe',
             select: {},
             links: [],
           },
           {
             name: 'projects',
-            typeName: 'projects',
+            typeName: 'Projects',
             select: {},
             links: [],
           },
           {
             name: 'contact',
-            typeName: 'contact',
+            typeName: 'Contact',
             select: {},
             links: [],
           },
           {
             name: 'blog',
-            typeName: 'blog',
+            typeName: 'BlogPost',
             select: {},
             links: [],
           },
@@ -60,6 +61,9 @@ module.exports = {
       },
     },
   ],
+  templates: {
+    BlogPost: '/blog/:id',
+  },
   chainWebpack(config) {
     const types = ['vue-modules', 'vue', 'normal-modules', 'normal'];
     types.forEach(type => {
