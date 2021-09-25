@@ -4,8 +4,8 @@
       <a v-smooth-scroll
          :data-section="section.id"
          :href="'#' + section.id"
-         class="pageProgress__link"><span class="sr-only">Przejdź do sekcji {{
-          section.id | splitString('', ' ') }}</span>
+         class="pageProgress__link">
+        <span class="sr-only">Przejdź do sekcji {{ section.id | splitString('', ' ') }}</span>
       </a>
     </li>
   </ul>
@@ -29,13 +29,12 @@ export default {
 <style lang="scss" scoped>
 .pageProgress {
   position: fixed;
-  top: 50%;
+  top: calc(50% - 120px);
   right: 45px;
   display: none;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  transform: translateY(-50%);
   row-gap: 40px;
 
   &__element {

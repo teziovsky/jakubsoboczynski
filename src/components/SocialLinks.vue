@@ -1,12 +1,15 @@
 <template>
-  <ul class="socialLinks">
-    <li v-for="link in $static.Links.edges" :key="link.node.id" class="socialLinks__item">
-      <a :href="link.node.url"
+  <ul v-if="$static.Links.edges.length" class="socialLinks">
+    <li v-for="link in $static.Links.edges"
+        :key="link.node.id"
+        class="socialLinks__item">
+      <a :aria-label="link.node.title"
+         :href="link.node.url"
          class="socialLinks__link"
          rel="nofollow noopener"
          target="_blank"
          v-html="link.node.image">
-        <span class="sr-only">{{ link.node.description }}</span>
+        <span class="sr-only">{{ link.node.title }}</span>
       </a>
     </li>
   </ul>
@@ -21,13 +24,12 @@ export default {
 <style lang="scss" scoped>
 .socialLinks {
   position: fixed;
-  top: 50%;
+  top: calc(50% - 120px);
   left: 45px;
   display: none;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  transform: translateY(-50%);
   row-gap: 40px;
 
   &__item {
@@ -74,7 +76,7 @@ query {
         id
         name
         url
-        description
+        title
         image
       }
     }
