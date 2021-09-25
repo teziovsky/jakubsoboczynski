@@ -1,17 +1,17 @@
 // This is the main.js file. Import global CSS and scripts here.
 // The Client API can be used here. Learn more: gridsome.org/docs/client-api
 
-import HomepageLayout from '~/layouts/Homepage.vue';
+import Default from '~/layouts/Default.vue';
 import VueSmoothScroll from 'vue2-smooth-scroll';
 import '~/assets/scss/main.scss';
 
 export default function (Vue, { router, head, isClient }) {
-  Vue.component('HomepageLayout', HomepageLayout);
+  Vue.component('Layout', Default);
   Vue.filter('splitString', (value, split, join) => {
     return value.split(split).join(join);
   });
   Vue.use(VueSmoothScroll, {
-    duration: 1500,
+    duration: 1000,
     easingFunction: 'easeOutCubic',
   });
 

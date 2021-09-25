@@ -1,14 +1,16 @@
 <template>
   <section id="o_mnie" class="aboutMe">
-    <h2 class="section_header">O mnie</h2>
+    <h2 class="sectionHeader">O mnie</h2>
     <div class="aboutMe__wrapper">
-      <g-image class="aboutMe__image"
+      <g-image alt="Moje zdjęcie profilowe"
+               class="aboutMe__image"
                fit="contain"
                src="~/assets/images/profile.webp" />
     </div>
     <div class="aboutMe__categories">
       <button v-for="category in aboutMe"
               :key="category.node.id"
+              :aria-label="'Wyświetl treść kategorii - ' + category.node.title"
               :class="{'active': active === category.node.id}"
               class="aboutMe__category"
               @click="active = category.node.id">{{ category.node.title }}
@@ -48,12 +50,13 @@ export default {
   &__wrapper {
     position: relative;
     @include image-overlay;
+    margin-bottom: 30px;
   }
 
   &__image {
     max-width: clamp(12.5rem, 11.35670727rem + 4.878049vw, 15.625rem);
     display: block;
-    margin: clamp(1.875rem, 1.64634141rem + 0.97561vw, 2.5rem) auto clamp(1.875rem, 1.41768281rem + 1.95122vw, 3.125rem);
+    margin: 0 auto;
   }
 
   &__categories {
@@ -73,9 +76,11 @@ export default {
     text-transform: capitalize;
     color: var(--font-color);
     padding: 12px 22px;
+    transition: box-shadow var(--transition-duration) var(--transition-timing-function), color var(--transition-duration) var(--transition-timing-function);
 
     @include hover {
-
+      color: var(--third-color);
+      box-shadow: inset 0 0 20px rgba(var(--third-color-rgb), 0.5);
     }
 
     &:after {
@@ -83,10 +88,10 @@ export default {
       position: absolute;
       bottom: 0;
       left: 50%;
-      width: 40px;
+      width: calc(80% - 44px);
       height: 1px;
       opacity: 0;
-      background-color: var(--font-color);
+      background-color: var(--third-color);
       transform: translateX(-50%);
       transition: opacity 0.8s var(--transition-timing-function);
     }

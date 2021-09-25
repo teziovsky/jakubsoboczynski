@@ -1,6 +1,6 @@
 <template>
   <section id="projekty" class="projects">
-    <h2 class="section_header">Projekty</h2>
+    <h2 class="sectionHeader">Projekty</h2>
     <ProjectCard v-for="project in projects" :key="project.node.id" :project="project.node" />
   </section>
 </template>
