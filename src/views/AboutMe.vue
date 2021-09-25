@@ -88,7 +88,7 @@ export default {
       opacity: 0;
       background-color: var(--font-color);
       transform: translateX(-50%);
-      transition: opacity 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+      transition: opacity 0.8s var(--transition-timing-function);
     }
 
     &.active {

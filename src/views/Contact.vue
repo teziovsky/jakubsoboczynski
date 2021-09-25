@@ -3,9 +3,11 @@
     <h2 class="section_header">Kontakt</h2>
     <h3 class="contact__title">{{ contact[0].node.title }}</h3>
     <p class="contact__description">{{ contact[0].node.description }}</p>
-    <a class="button button--contact" href="mailto:kontakt@jakubsoboczynski.pl" rel="noopener nofollow" target="_blank">
-      Cześć
-    </a>
+    <div class="contact__button">
+      <a class="button" href="mailto:kontakt@jakubsoboczynski.pl" rel="noopener nofollow" target="_blank">
+        Cześć
+      </a>
+    </div>
   </section>
 </template>
 
@@ -23,25 +25,26 @@ export default {
   padding: 50px 0 150px;
 
   &__title {
+    text-align: center;
     font-family: var(--font-family-primary);
     font-size: 24px;
-    font-weight: 200;
     line-height: 24px;
+    font-weight: 200;
     margin: 50px 0 30px;
-    text-align: center;
   }
 
   &__description {
+    max-width: 700px;
+    text-align: center;
     font-family: var(--font-family-primary);
     font-size: 18px;
-    font-weight: 200;
     line-height: 24px;
-    max-width: 700px;
+    font-weight: 200;
     margin: 0 auto 30px;
   }
-}
 
-.button--contact {
-  margin: 0 auto;
+  &__button {
+    @include flex-center;
+  }
 }
 </style>

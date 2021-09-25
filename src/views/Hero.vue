@@ -36,48 +36,48 @@ export default {
     position: absolute;
     top: 45%;
     left: 50%;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     transform: translate(-50%, -50%);
   }
 
   &__greet {
     font-family: var(--font-family-secondary);
     font-size: clamp(1rem, 0.5566rem + 1.6694vw, 1.625rem);
-    font-weight: 400;
     line-height: clamp(1rem, 0.5566rem + 1.6694vw, 1.625rem);
+    font-weight: 400;
     margin-bottom: 10px;
   }
 
   &__title {
+    position: relative;
     font-family: var(--font-family-primary);
     font-size: clamp(3.5rem, 1.7262rem + 6.6778vw, 6rem);
-    font-weight: 400;
     line-height: clamp(3.5rem, 1.7262rem + 6.6778vw, 6rem);
-    position: relative;
+    font-weight: 400;
     margin-bottom: 15px;
     padding-bottom: 30px;
 
     &:after {
+      content: '';
       position: absolute;
       bottom: 0;
       left: 50%;
       width: 40px;
       height: 1px;
-      content: '';
-      transform: translateX(-50%);
       background-color: var(--font-color);
+      transform: translateX(-50%);
     }
   }
 
   &__subtitle {
+    opacity: 0.3;
     font-family: var(--font-family-secondary);
     font-size: clamp(0.75rem, 0.61280484rem + 0.585366vw, 1.125rem);
-    font-weight: 400;
     line-height: clamp(0.75rem, 0.61280484rem + 0.585366vw, 1.125rem);
-    opacity: 0.3;
+    font-weight: 400;
   }
 
   &__cta {
@@ -85,41 +85,36 @@ export default {
     bottom: 110px;
     left: 50%;
     display: flex;
-    align-items: center;
     flex-direction: column;
+    align-items: center;
     margin: 0 auto;
     padding: 5px 20px;
     transform: translateX(-50%);
 
-    &:hover,
-    &:focus {
+    @include hover {
       animation: bounce-down 2s 0.2s ease-out infinite;
 
       span {
         top: -30px;
-        transform: translateX(-50%);
         opacity: 1;
+        transform: translateX(-50%);
       }
     }
 
-    &:focus {
-      outline: var(--outline-size) dotted var(--third-color);
-    }
-
     span {
-      font-family: var(--font-family-secondary);
-      font-size: clamp(0.75rem, 0.6613rem + 0.3339vw, 0.875rem);
-      font-weight: 400;
-      line-height: clamp(0.75rem, 0.6613rem + 0.3339vw, 0.875rem);
       position: absolute;
       top: -90px;
       left: 50%;
-      transition: opacity 0.2s cubic-bezier(0.19, 1, 0.22, 1), top 0.45s ease-out;
-      transform: translateX(-50%);
-      white-space: nowrap;
       pointer-events: none;
       opacity: 0;
+      font-family: var(--font-family-secondary);
+      font-size: clamp(0.75rem, 0.6613rem + 0.3339vw, 0.875rem);
+      line-height: clamp(0.75rem, 0.6613rem + 0.3339vw, 0.875rem);
+      font-weight: 400;
+      white-space: nowrap;
       color: var(--font-color);
+      transform: translateX(-50%);
+      transition: opacity var(--transition-duration) var(--transition-timing-function), top 0.45s ease-out;
     }
   }
 
