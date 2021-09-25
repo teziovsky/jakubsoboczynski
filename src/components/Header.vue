@@ -1,13 +1,38 @@
 <template>
   <header class="header">
     <nav class="nav">
-      <button class="nav__burger" @click="toggleMenu"><span></span></button>
-      <div class="nav__wrapper">
-        <a v-smooth-scroll class="nav__link link" href="#o_mnie" @click="hideMenu">o mnie</a>
-        <a v-smooth-scroll class="nav__link link" href="#projekty" @click="hideMenu">projekty</a>
-        <a v-smooth-scroll class="nav__link link" href="#kontakt" @click="hideMenu">kontakt</a>
+      <button v-show="$route.name === 'home'"
+              aria-label="Pokaż/Ukryj nawigację"
+              class="nav__burger"
+              @click="toggleMenu"><span></span></button>
+      <div v-show="$route.name === 'home'" class="nav__wrapper">
+        <a v-smooth-scroll
+           aria-label="Przejdź do sekcji o mnie"
+           class="nav__link link"
+           href="#o_mnie"
+           @click="hideMenu">o
+          mnie
+        </a>
+        <a v-smooth-scroll
+           aria-label="Przejdź do sekcji projekty"
+           class="nav__link link"
+           href="#projekty"
+           @click="hideMenu">
+          projekty
+        </a>
+        <a v-smooth-scroll
+           aria-label="Przejdź do sekcji kontakt"
+           class="nav__link link"
+           href="#kontakt"
+           @click="hideMenu">
+          kontakt
+        </a>
       </div>
-      <g-link class="button" to="/blog/">Blog</g-link>
+      <g-link :aria-label="$route.name === 'home' ? 'Przejdź do podstrony zawierającej blog' : 'Przejdź do portfolio'"
+              :to="$route.name === 'home' ? '/blog/' : '/'"
+              class="button">
+        {{ $route.name === 'home' ? 'Blog' : 'Portfolio' }}
+      </g-link>
     </nav>
     <svg class="header__logo"
          fill="none"
@@ -15,6 +40,7 @@
          viewBox="0 0 93 113"
          width="93"
          xmlns="http://www.w3.org/2000/svg">
+      <title>Logo serwisu jakubsoboczynski.pl</title>
       <path d="M46.7376 104.089V112M46.7376 112H38.0787L24.3421 91.3683L2 73.516L10.6055 56.5724M46.7376 112H55.2896L69.0262 91.3683L91.3683 73.516L82.7629 56.5724M10.6055 56.5724L8.89505 2L10.6055 2.05345L38.0787 30.0078M10.6055 56.5724L38.0787 30.0078M10.6055 56.5724L46.7376 78.1127M82.7629 56.5724L46.7376 78.1127M82.7629 56.5724L84.4733 2.00001H82.7629L55.2896 30.0078M82.7629 56.5724L55.2896 30.0078M38.0787 30.0078H46.7376M46.7376 78.1127L55.436 51.9757M46.7376 78.1127L38.0569 52.0292M46.7376 30.0078L35.5666 44.5462L38.0569 52.0292M46.7376 30.0078L57.9086 44.5462L55.436 51.9757M46.7376 30.0078H55.2896M55.436 51.9757L46.7376 40.6978L38.0569 52.0292M66.1399 66.4072H74.0505L67.5296 72.1263L54.274 73.8902L65.1778 67.1555M27.5491 66.4072H19.6385L26.1594 72.1263L39.415 73.8902L28.5112 67.1555L27.5491 66.4072Z"
             stroke="white"
             stroke-width="2" />
@@ -24,7 +50,7 @@
 
 <script>
 export default {
-  name: 'HeaderHome',
+  name: 'Header',
   methods: {
     detectMobile() {
       const width = (window.innerWidth > 0) ? window.innerWidth : document.documentElement.clientWidth;
@@ -102,17 +128,17 @@ export default {
           height: 3px;
           background-color: var(--font-color);
           border-radius: 3px;
-          transition: background 0.4s var(--transition-timing-function), transform 0.4s var(--transition-timing-function), top 0.4s var(--transition-timing-function);
+          transition: background 1.5s var(--transition-timing-function), transform 1.5s var(--transition-timing-function), top 1.5s var(--transition-timing-function);
         }
 
         &:before {
           top: -10px;
-          transition: background 0.2s var(--transition-timing-function), transform 0.2s var(--transition-timing-function), top 0.2s var(--transition-timing-function);
+          transition: background 1s var(--transition-timing-function), transform 1s var(--transition-timing-function), top 1s var(--transition-timing-function);
         }
 
         &:after {
           bottom: -10px;
-          transition: background 0.6s var(--transition-timing-function), transform 0.6s var(--transition-timing-function), top 0.6s var(--transition-timing-function);
+          transition: background 2s var(--transition-timing-function), transform 2s var(--transition-timing-function), top 2s var(--transition-timing-function);
         }
       }
 
@@ -159,20 +185,25 @@ export default {
       }
 
       &.mobile {
-        transition: transform 0.5s var(--transition-timing-function), visibility 0.5s var(--transition-timing-function);
+        transition: transform 0.75s var(--transition-timing-function), visibility 0.75s var(--transition-timing-function);
       }
     }
 
     &__link {
       width: max-content;
       font-family: var(--font-family-secondary);
-      padding: 5px 0;
+      padding: 10px 15px;
+
+      &:after {
+        bottom: 5px;
+        width: calc(80% - 30px);
+      }
     }
   }
 
   &__logo {
     position: absolute;
-    top: 34px;
+    top: clamp(0.9375rem, 0.50304867rem + 1.853659vw, 2.125rem);
     left: 50%;
     width: clamp(4.375rem, 3.68902445rem + 2.926829vw, 6.25rem);
     transform: translateX(-50%);
@@ -200,7 +231,7 @@ export default {
         padding: 0;
         transform: translateX(0);
         row-gap: unset;
-        column-gap: 32px;
+        column-gap: 15px;
       }
 
       &__link {
