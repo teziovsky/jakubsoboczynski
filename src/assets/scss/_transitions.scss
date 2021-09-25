@@ -1,10 +1,10 @@
 // SLIDE
 .slide-enter-active {
-  transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+  transition: all 0.5s var(--transition-timing-function);
 }
 
 .slide-leave-active {
-  transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+  transition: all 0.5s var(--transition-timing-function);
 }
 
 .slide-enter, .slide-leave-to {
@@ -16,10 +16,11 @@
 .shrink-enter,
 .shrink-leave-to {
   opacity: 0;
+  overflow: hidden;
   transform: scale(1.12);
 }
 
 .shrink-enter-active,
 .shrink-leave-active {
-  transition: transform 0.5s, opacity 0.3s;
+  transition: transform 0.4s var(--transition-timing-function), opacity 0.2s var(--transition-timing-function);
 }
