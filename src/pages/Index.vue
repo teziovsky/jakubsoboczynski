@@ -1,10 +1,10 @@
 <template>
-  <HomepageLayout>
+  <Layout>
     <Hero />
     <AboutMe :aboutMe="$page.aboutMe.edges" />
     <Projects :projects="$page.projects.edges" />
     <Contact :contact="$page.contact.edges" />
-  </HomepageLayout>
+  </Layout>
 </template>
 
 <script>
