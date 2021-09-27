@@ -16,12 +16,13 @@
       </svg>
     </div>
     <div class="blogCard__content">
-      <div class="blogCard__metatags">
-        <span class="blogCard__category">{{ post.node.category }}</span>
-        <span class="blogCard__date">{{ post.node.date }}</span>
+      <div v-if="post.node.category || post.node.date" class="blogCard__metatags">
+        <span v-if="post.node.category" class="blogCard__category">{{ post.node.category }}</span>
+        <span v-if="post.node.date" class="blogCard__date">{{ post.node.date }}</span>
       </div>
-      <h2 class="blogCard__title">{{ post.node.title }}</h2>
-      <p class="blogCard__short">{{ post.node.short }}</p></div>
+      <h2 v-if="post.node.title" class="blogCard__title">{{ post.node.title }}</h2>
+      <p v-if="post.node.short" class="blogCard__short">{{ post.node.short }}</p>
+    </div>
   </a>
 </template>
 
@@ -41,17 +42,38 @@ export default {
   display: flex;
   flex-direction: column;
   background-color: var(--secondary-color);
+  transform-origin: center;
+  transition-timing-function: var(--transition-timing-function);
+  transition-duration: var(--transition-duration);
+  transition-property: background, transform, box-shadow;
+
+  @include hover {
+    box-shadow: 0 2px 0 rgba(var(--third-color-rgb), 0.5);
+    transform: scale(1.05) translateY(-10px);
+
+  }
 
   &__wrapper {
+    background-color: var(--secondary-color);
     @include flex-center;
+    border-bottom: 2px solid rgba(var(--third-color-rgb), 0.5);
+    transition: background var(--transition-duration) var(--transition-timing-function), border var(--transition-duration) var(--transition-timing-function);
+    aspect-ratio: 1.8;
   }
 
   &__image {
-
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   &__logo {
+    opacity: 0.3;
 
+    path {
+      transition: stroke var(--transition-duration) var(--transition-timing-function);
+      stroke: var(--font-color);
+    }
   }
 
   &__content {
@@ -69,6 +91,7 @@ export default {
   &__category {
     font-family: var(--font-family-secondary);
     color: var(--third-color);
+    transition: color var(--transition-duration) var(--transition-timing-function);
   }
 
   &__date {
@@ -84,9 +107,30 @@ export default {
   }
 
   &__short {
+    display: -webkit-box;
+    overflow: hidden;
     font-family: var(--font-family-primary);
     font-size: 14px;
     line-height: 18px;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+  }
+}
+
+@supports not (aspect-ratio: 1 / 1) {
+  .blogCard {
+    &__wrapper::before {
+      float: left;
+      padding-top: 55.55%;
+      content: "";
+    }
+
+    &__wrapper::after {
+      display: block;
+      content: "";
+      clear: both;
+    }
   }
 }
 </style>

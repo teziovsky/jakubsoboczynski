@@ -86,6 +86,7 @@ export default {
     display: block;
     background-color: var(--primary-color);
     padding: 5px;
+    transition: background var(--transition-duration) var(--transition-timing-function);
 
     @include hover {
       animation: bounce-x 2s 0.2s ease-out infinite;
@@ -101,18 +102,20 @@ export default {
 
       path {
         transition: stroke var(--transition-duration) var(--transition-timing-function);
+        stroke: var(--font-color);
       }
     }
   }
 
   &__info {
-    position: absolute;
+    position: relative;
     z-index: 1;
-    right: 50px;
-    bottom: -5px;
-    left: 50px;
+    right: 0;
+    bottom: 0;
+    left: 0;
     background-color: var(--secondary-color);
     padding: clamp(0.625rem, 0.16768281rem + 1.95122vw, 1.875rem) clamp(1.25rem, 0.79268281rem + 1.95122vw, 2.5rem);
+    transition: background var(--transition-duration) var(--transition-timing-function);
   }
 
   &__description {
@@ -143,6 +146,7 @@ export default {
       height: 1px;
       background-color: var(--font-color);
       transform: translateX(-50%);
+      transition: background var(--transition-duration) var(--transition-timing-function);
     }
   }
 
@@ -169,7 +173,19 @@ export default {
 
       path {
         transition: stroke var(--transition-duration) var(--transition-timing-function);
+        stroke: var(--font-color);
       }
+    }
+  }
+}
+
+@media screen and (min-width: 425px) {
+  .projectCard {
+    &__info {
+      position: absolute;
+      right: 50px;
+      bottom: -5px;
+      left: 50px;
     }
   }
 }

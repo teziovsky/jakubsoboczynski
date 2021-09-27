@@ -117,7 +117,7 @@ export default {
         background-color: var(--font-color);
         border-radius: 3px;
         margin: 0 auto;
-        transition: background 0.4s var(--transition-timing-function);
+        transition: background 2s var(--transition-timing-function);
 
         &:before,
         &:after {
@@ -128,17 +128,20 @@ export default {
           height: 3px;
           background-color: var(--font-color);
           border-radius: 3px;
-          transition: background 1.5s var(--transition-timing-function), transform 1.5s var(--transition-timing-function), top 1.5s var(--transition-timing-function);
         }
 
         &:before {
           top: -10px;
-          transition: background 1s var(--transition-timing-function), transform 1s var(--transition-timing-function), top 1s var(--transition-timing-function);
+          transition-timing-function: var(--transition-timing-function);
+          transition-duration: 2s;
+          transition-property: background, top, box-shadow, transform;
         }
 
         &:after {
           bottom: -10px;
-          transition: background 2s var(--transition-timing-function), transform 2s var(--transition-timing-function), top 2s var(--transition-timing-function);
+          transition-timing-function: var(--transition-timing-function);
+          transition-duration: 2s;
+          transition-property: background, bottom, box-shadow, transform;
         }
       }
 
@@ -185,7 +188,9 @@ export default {
       }
 
       &.mobile {
-        transition: transform 0.75s var(--transition-timing-function), visibility 0.75s var(--transition-timing-function);
+        transition-timing-function: var(--transition-timing-function);
+        transition-duration: 0.75s;
+        transition-property: transform, visibility, background;
       }
     }
 
@@ -208,6 +213,11 @@ export default {
     width: clamp(4.375rem, 3.68902445rem + 2.926829vw, 6.25rem);
     transform: translateX(-50%);
     transform-origin: top;
+
+    path {
+      transition: stroke var(--transition-duration) var(--transition-timing-function);
+      stroke: var(--font-color);
+    }
   }
 }
 

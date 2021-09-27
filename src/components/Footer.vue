@@ -64,6 +64,11 @@ export default {
   &__separator {
     width: 18px;
     margin: 0 7px 15px 0;
+
+    path {
+      transition: stroke var(--transition-duration) var(--transition-timing-function);
+      stroke: var(--font-color);
+    }
   }
 
   .socialLinks {
@@ -92,6 +97,11 @@ export default {
   &__diamant {
     width: 13px;
     display: none;
+
+    path {
+      transition: stroke var(--transition-duration) var(--transition-timing-function);
+      stroke: var(--font-color);
+    }
   }
 }
 

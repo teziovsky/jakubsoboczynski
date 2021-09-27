@@ -42,20 +42,21 @@ export default {
     width: 100%;
     height: 100%;
 
-    @include hover {
-      animation: bounce-x 2s 0.2s ease-out infinite;
-
-      path {
-        stroke: var(--third-color);
-      }
-    }
-
     svg {
       width: 20px;
       height: 20px;
 
       path {
+        stroke: var(--font-color);
         transition: stroke var(--transition-duration) var(--transition-timing-function);
+      }
+    }
+
+    @include hover {
+      animation: bounce-x 2s 0.2s ease-out infinite;
+
+      path {
+        stroke: var(--third-color);
       }
     }
   }
