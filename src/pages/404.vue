@@ -1,7 +1,12 @@
 <template>
-  <div>
-    404
-  </div>
+  <Layout>
+    <section id="error" class="error">
+      <h1 class="sectionHeader">Błąd 404</h1>
+      <transition mode="out-in" name="slide-down">
+        <p class="error--info">Strona nie istnieje ¯\_(ツ)_/¯</p>
+      </transition>
+    </section>
+  </Layout>
 </template>
 
 <script>
@@ -10,6 +15,21 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+.error {
+  min-height: calc(100vh - 230px);
+  padding-top: 180px;
 
+  &--info {
+    text-align: center;
+    font-family: var(--font-family-primary);
+    font-size: 32px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .error {
+    min-height: calc(100vh - 200px);
+  }
+}
 </style>
