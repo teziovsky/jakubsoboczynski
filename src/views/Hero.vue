@@ -69,6 +69,7 @@ export default {
       height: 1px;
       background-color: var(--font-color);
       transform: translateX(-50%);
+      transition: background var(--transition-duration) var(--transition-timing-function);
     }
   }
 
@@ -114,12 +115,17 @@ export default {
       white-space: nowrap;
       color: var(--font-color);
       transform: translateX(-50%);
-      transition: opacity var(--transition-duration) var(--transition-timing-function), top 0.45s ease-out;
+      transition: opacity var(--transition-duration) var(--transition-timing-function), color var(--transition-duration) var(--transition-timing-function), top 0.45s ease-out;
     }
   }
 
   &__diamant {
     width: 20px;
+
+    path {
+      transition: stroke var(--transition-duration) var(--transition-timing-function);
+      stroke: var(--font-color);
+    }
   }
 }
 

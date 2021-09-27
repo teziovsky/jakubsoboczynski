@@ -37,8 +37,11 @@ export default {
   },
   computed: {
     selectedDescription() {
-      if (this.aboutMe?.length) return this.aboutMe.find(item => item.node.id === this.active);
+      if (this.aboutMe.length && !!this.active) return this.aboutMe.find(item => item.node.id === this.active);
     },
+  },
+  mounted() {
+    this.active = this.aboutMe[0].node.id;
   },
 };
 </script>
@@ -93,7 +96,7 @@ export default {
       opacity: 0;
       background-color: var(--third-color);
       transform: translateX(-50%);
-      transition: opacity 0.8s var(--transition-timing-function);
+      transition: opacity 0.8s var(--transition-timing-function), background var(--transition-duration) var(--transition-timing-function);
     }
 
     &.active {

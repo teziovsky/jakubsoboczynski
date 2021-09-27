@@ -1,10 +1,16 @@
 <template>
   <Layout>
-    <section class="article">
+    <section class="blogPost">
       <Breadcrumbs />
-      <article>
-        <h1>{{ $page.Post.title }}</h1>
-        <p>{{ $page.Post.content }}</p>
+      <article class="blogPost__article">
+        <h1 class="sectionHeader">{{ $page.Post.title }}</h1>
+        <g-image :src="$page.Post.image[0].url" class="blogPost__image" />
+        <div class="blogPost__content" v-html="$page.Post.content"></div>
+        <hr class="blogPost__separator" />
+        <div class="blogPost__metatags">
+          <span class="blogPost__category">{{ $page.Post.category }}</span>
+          <span class="blogPost__date">{{ $page.Post.date }}</span>
+        </div>
       </article>
     </section>
   </Layout>
@@ -18,8 +24,9 @@ export default {
   components: {
     Breadcrumbs,
   },
-  created() {
+  mounted() {
     console.log('this.$route: ', this.$route);
+    console.log('this.$page.Post: ', this.$page.Post);
   },
   metaInfo() {
     return {
@@ -63,13 +70,13 @@ export default {
         },
         {
           name: 'og:image',
-          content: this.$page.post.image[0].url,
+          content: this.$page.Post.image.length && this.$page.Post.image[0].url,
         },
       ],
       link: [
         {
           rel: 'canonical',
-          content: this.$static.metadata.baseURL + this.$page.post.path,
+          content: this.$static.metadata.siteUrl + this.$page.Post.path,
         },
       ],
     };
@@ -78,8 +85,54 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.article {
+.blogPost {
   padding-top: 180px;
+
+  &__article {
+    max-width: 50em;
+    margin: 0 auto;
+  }
+
+  &__image {
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+  }
+
+  &__content {
+    text-align: justify;
+    font-family: var(--font-family-primary);
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: 0.5px;
+  }
+
+  &__separator {
+    display: block;
+    opacity: 0.8;
+    margin: 20px 0;
+  }
+
+  &__metatags {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__category {
+    opacity: 0.8;
+    font-family: var(--font-family-secondary);
+    font-size: 14px;
+    color: var(--third-color);
+    transition: color var(--transition-duration) var(--transition-timing-function);
+  }
+
+  &__date {
+    display: block;
+    opacity: 0.8;
+    text-align: center;
+    font-family: var(--font-family-primary);
+    font-size: 14px;
+  }
 }
 </style>
 
