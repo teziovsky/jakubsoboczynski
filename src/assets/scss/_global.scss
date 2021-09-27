@@ -2,6 +2,9 @@ body {
   overflow-x: hidden;
   color: var(--font-color);
   background-color: var(--primary-color);
+  transition-timing-function: var(--transition-timing-function);
+  transition-duration: var(--transition-duration);
+  transition-property: background-color, color;
 
   &.opened {
     overflow: hidden;
@@ -13,6 +16,7 @@ a {
   cursor: pointer;
   text-decoration: none;
   color: var(--font-color);
+  transition: color var(--transition-duration) var(--transition-timing-function);
 }
 
 button {
@@ -68,6 +72,7 @@ img {
     opacity: 0.3;
     background-color: var(--font-color);
     transform: translateX(-50%);
+    transition: background var(--transition-duration) var(--transition-timing-function);
   }
 }
 
@@ -102,7 +107,7 @@ img {
   -webkit-background-clip: text;
   background-clip: text;
   background-size: 200% 100%;
-  transition: background-position var(--transition-duration) var(--transition-timing-function);
+  transition: background var(--transition-duration) var(--transition-timing-function);
   -webkit-text-fill-color: transparent;
 
   &:after {
@@ -115,7 +120,7 @@ img {
     opacity: 0;
     background-color: var(--third-color);
     transform: translateX(-50%);
-    transition: transform var(--transition-duration) 0.5s var(--transition-timing-function), opacity var(--transition-duration) 0.5s var(--transition-timing-function);
+    transition: background var(--transition-duration) var(--transition-timing-function), transform var(--transition-duration) 0.5s var(--transition-timing-function), opacity var(--transition-duration) 0.5s var(--transition-timing-function);
   }
 
   @include hover {
@@ -138,6 +143,9 @@ img {
   border-left: 3px solid var(--third-color);
   margin: 0 auto;
   padding: 24px 28px;
+  transition-timing-function: var(--transition-timing-function);
+  transition-duration: var(--transition-duration);
+  transition-property: color, background-color, border-left;
 }
 
 @media screen and (min-width: 768px) {
