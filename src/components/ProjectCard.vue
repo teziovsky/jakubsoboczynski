@@ -84,12 +84,11 @@ export default {
     width: 32px;
     height: 32px;
     display: block;
-    background-color: var(--primary-color);
     padding: 5px;
-    transition: background var(--transition-duration) var(--transition-timing-function);
+    transition: transform var(--transition-duration) var(--transition-timing-function);
 
     @include hover {
-      animation: bounce-x 2s 0.2s ease-out infinite;
+      transform: scale(1.12) translateY(5px);
 
       path {
         stroke: var(--third-color);
@@ -120,7 +119,6 @@ export default {
 
   &__description {
     text-align: center;
-    font-family: var(--font-family-primary);
     font-size: clamp(0.75rem, 0.70426828rem + 0.195122vw, 0.875rem);
     line-height: 18px;
     font-weight: 600;
@@ -130,7 +128,6 @@ export default {
     position: relative;
     opacity: 0.8;
     text-align: center;
-    font-family: var(--font-family-primary);
     font-size: clamp(0.625rem, 0.57926828rem + 0.195122vw, 0.75rem);
     line-height: 18px;
     font-weight: 400;
@@ -158,9 +155,10 @@ export default {
     height: 27px;
     display: block;
     padding: 5px;
+    transition: transform var(--transition-duration) var(--transition-timing-function);
 
     @include hover {
-      animation: bounce-x 2s 0.2s ease-out infinite;
+      transform: scale(1.12) translateY(5px);
 
       path {
         stroke: var(--third-color);

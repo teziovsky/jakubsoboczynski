@@ -41,19 +41,20 @@ export default {
     @include flex-center;
     width: 100%;
     height: 100%;
+    transition: transform var(--transition-duration) var(--transition-timing-function);
 
     svg {
       width: 20px;
       height: 20px;
 
       path {
-        stroke: var(--font-color);
         transition: stroke var(--transition-duration) var(--transition-timing-function);
+        stroke: var(--font-color);
       }
     }
 
     @include hover {
-      animation: bounce-x 2s 0.2s ease-out infinite;
+      transform: scale(1.12) translateY(-5px);
 
       path {
         stroke: var(--third-color);
