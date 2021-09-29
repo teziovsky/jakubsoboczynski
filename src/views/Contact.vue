@@ -30,7 +30,6 @@ export default {
 
   &__title {
     text-align: center;
-    font-family: var(--font-family-primary);
     font-size: 24px;
     line-height: 24px;
     font-weight: 200;
@@ -40,7 +39,6 @@ export default {
   &__description {
     max-width: 700px;
     text-align: center;
-    font-family: var(--font-family-primary);
     font-size: 18px;
     line-height: 24px;
     font-weight: 200;

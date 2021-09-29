@@ -22,7 +22,6 @@ export default {
 
   &--info {
     text-align: center;
-    font-family: var(--font-family-primary);
     font-size: 32px;
   }
 }

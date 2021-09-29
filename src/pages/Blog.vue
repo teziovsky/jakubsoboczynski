@@ -2,7 +2,7 @@
   <Layout>
     <section id="blog" class="blog">
       <h1 class="sectionHeader">Blog</h1>
-      <div class="blog__categories">
+      <div v-if="categories.length" class="blog__categories">
         <button v-for="category in categories"
                 :key="category"
                 :aria-label="'Wyświetl posty z kategorii - ' + category"

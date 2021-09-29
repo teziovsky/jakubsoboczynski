@@ -87,7 +87,6 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-family: var(--font-family-primary);
     font-size: 14px;
     line-height: 14px;
     font-weight: 200;

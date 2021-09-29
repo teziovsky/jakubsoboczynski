@@ -109,7 +109,6 @@ export default {
   &__description {
     max-width: 700px;
     text-align: center;
-    font-family: var(--font-family-primary);
     font-size: 18px;
     line-height: 25px;
     font-weight: 300;

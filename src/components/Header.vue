@@ -99,6 +99,7 @@ export default {
       z-index: 5;
       width: 48px;
       height: 38px;
+      font-family: inherit;
 
       @include hover {
         span,

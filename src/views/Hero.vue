@@ -53,7 +53,6 @@ export default {
 
   &__title {
     position: relative;
-    font-family: var(--font-family-primary);
     font-size: clamp(3.5rem, 1.7262rem + 6.6778vw, 6rem);
     line-height: clamp(3.5rem, 1.7262rem + 6.6778vw, 6rem);
     font-weight: 400;

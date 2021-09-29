@@ -96,11 +96,9 @@ export default {
 
   &__date {
     opacity: 0.65;
-    font-family: var(--font-family-primary);
   }
 
   &__title {
-    font-family: var(--font-family-primary);
     font-size: 18px;
     line-height: 21px;
     margin-bottom: 10px;
@@ -109,7 +107,6 @@ export default {
   &__short {
     display: -webkit-box;
     overflow: hidden;
-    font-family: var(--font-family-primary);
     font-size: 14px;
     line-height: 18px;
     text-overflow: ellipsis;
