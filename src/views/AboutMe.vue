@@ -1,5 +1,5 @@
 <template>
-  <section id="o_mnie" class="aboutMe">
+  <section v-if="aboutMe.length" id="o_mnie" class="aboutMe">
     <h2 class="sectionHeader">O mnie</h2>
     <div class="aboutMe__wrapper">
       <g-image alt="Moje zdjęcie profilowe"
@@ -17,7 +17,8 @@
       </button>
     </div>
     <transition mode="out-in" name="shrink">
-      <p :key="selectedDescription.node.id"
+      <p v-if="selectedDescription"
+         :key="selectedDescription.node.id"
          class="aboutMe__description"
          v-html="selectedDescription.node.description"></p>
     </transition>
@@ -37,7 +38,7 @@ export default {
   },
   computed: {
     selectedDescription() {
-      if (this.aboutMe.length && !!this.active) return this.aboutMe.find(item => item.node.id === this.active);
+      if (this.aboutMe.length && this.active) return this.aboutMe.find(item => item.node.id === this.active);
     },
   },
   mounted() {
