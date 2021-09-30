@@ -18,7 +18,7 @@
         <a aria-label="Przejdź do konta w serwisie GitHub.pl"
            class="link"
            href="https://www.github.com/teziovsky"
-           rel="nofollow noopener"
+           rel="noreferrer nofollow noopener"
            target="_blank">Jakub
           Soboczyński
         </a>

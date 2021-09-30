@@ -21,7 +21,6 @@ export default {
   },
   mounted() {
     this.sections = document.querySelectorAll('section');
-    console.log('this.sections: ', this.sections);
   },
 };
 </script>
@@ -45,6 +44,7 @@ export default {
     width: 30px;
     height: 30px;
     display: block;
+    transition: transform var(--transition-duration) var(--transition-timing-function);
 
     &:before {
       content: '';
@@ -56,10 +56,12 @@ export default {
       border: 2px solid var(--font-color);
       border-radius: 100%;
       transform: translate(-50%, -50%);
-      transition: border var(--transition-duration) var(--transition-timing-function);
+      transition: border var(--transition-duration) var(--transition-timing-function),;
     }
 
     @include hover {
+      transform: scale(1.12) translateY(-5px);
+
       &:before {
         border-color: var(--third-color);
       }

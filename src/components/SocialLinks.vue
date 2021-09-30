@@ -6,7 +6,7 @@
       <a :aria-label="link.node.title"
          :href="link.node.url"
          class="socialLinks__link"
-         rel="nofollow noopener"
+         rel="noreferrer nofollow noopener"
          target="_blank"
          v-html="link.node.image">
         <span class="sr-only">{{ link.node.title }}</span>
