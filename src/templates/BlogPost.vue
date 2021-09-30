@@ -301,16 +301,16 @@ export default {
 <page-query>
 query blogPost ($id: ID!) {
   Post: blogPost(id: $id) {
-    id
     path
-    image {
-      url
-    }
+    id
     title
+    content
     short
     date
     category
-    content
+    image {
+      url
+    }
   }
 }
 </page-query>

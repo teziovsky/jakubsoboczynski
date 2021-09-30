@@ -2,7 +2,7 @@
   <Layout>
     <section id="blog" class="blog">
       <h1 class="sectionHeader">Blog</h1>
-      <div v-if="categories.length" class="blog__categories">
+      <div v-if="filteredPosts.length" class="blog__categories">
         <button v-for="category in categories"
                 :key="category"
                 :aria-label="'Wyświetl posty z kategorii - ' + category"
@@ -14,7 +14,6 @@
       <transition mode="out-in" name="slide-down">
         <transition-group v-if="filteredPosts.length" class="blog__wrapper" mode="out-in" name="blog-bottom" tag="div">
           <BlogCard v-for="post in filteredPosts"
-                    v-if="post.node.date < actualDate"
                     :key="post.node.id"
                     :post="post" />
         </transition-group>
@@ -47,7 +46,7 @@ export default {
       return new Date().toISOString().split('T')[0];
     },
     filteredPosts() {
-      return this.$page.Blog.edges.filter(item => item.node.category.includes(this.activeCategory));
+      return this.$page.Blog.edges.filter(item => item.node.category.includes(this.activeCategory) && item.node.date < this.actualDate);
     },
   },
   methods: {
@@ -147,14 +146,14 @@ query {
       node {
         id
         path
-        image {
-          url
-        }
         title
+        content
         short
         date
         category
-        content
+        image {
+          url
+        }
       }
     }
   }

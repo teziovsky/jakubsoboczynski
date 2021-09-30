@@ -58,7 +58,6 @@ query {
     edges {
       node {
         id
-        title
         description
       }
     }
