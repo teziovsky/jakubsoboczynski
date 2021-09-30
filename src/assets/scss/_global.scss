@@ -1,0 +1,160 @@
+body {
+  overflow-x: hidden;
+  font-family: var(--font-family-primary);
+  color: var(--font-color);
+  background-color: var(--primary-color);
+  transition-timing-function: var(--transition-timing-function);
+  transition-duration: var(--transition-duration);
+  transition-property: background-color, color;
+
+  &.opened {
+    overflow: hidden;
+    touch-action: none;
+  }
+}
+
+a {
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--font-color);
+  transition: color var(--transition-duration) var(--transition-timing-function);
+}
+
+button {
+  cursor: pointer;
+  background: none;
+  border: none;
+  outline: none;
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+#ghostery-tracker-tally {
+  display: none !important;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  white-space: nowrap;
+  border-width: 0;
+  margin: -1px;
+  padding: 0;
+  clip: rect(0, 0, 0, 0);
+}
+
+.layout {
+  padding: 0 30px;
+}
+
+.sectionHeader {
+  position: relative;
+  text-align: center;
+  font-family: var(--font-family-secondary);
+  font-size: 26px;
+  line-height: 26px;
+  font-weight: 400;
+  margin-bottom: 50px;
+  padding-bottom: 30px;
+
+  &:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 40px;
+    height: 1px;
+    display: block;
+    opacity: 0.3;
+    background-color: var(--font-color);
+    transform: translateX(-50%);
+    transition: background var(--transition-duration) var(--transition-timing-function);
+  }
+}
+
+.button {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  font-family: var(--font-family-secondary);
+  font-size: clamp(0.75rem, 0.65853656rem + 0.390244vw, 1rem);
+  text-transform: uppercase;
+  color: var(--third-color);
+  border: 1px solid transparent;
+  outline: 1px solid rgba(var(--third-color-rgb), .5);
+  outline-offset: 0;
+  padding: 12px 22px;
+  text-shadow: none;
+  transition: all 1.5s var(--transition-timing-function);
+
+  @include hover {
+    outline-color: rgba(var(--third-color-rgb), 0);
+    outline-offset: 15px;
+    box-shadow: inset 0 0 20px rgba(var(--third-color-rgb), 0.5);
+  }
+}
+
+.link {
+  position: relative;
+  background: linear-gradient(to right, var(--third-color), var(--third-color) 50%, var(--font-color) 50%) 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  background-size: 200% 100%;
+  transition: background var(--transition-duration) var(--transition-timing-function);
+  -webkit-text-fill-color: transparent;
+
+  &:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 80%;
+    height: 1px;
+    opacity: 0;
+    background-color: var(--third-color);
+    transform: translateX(-50%);
+    transition: background var(--transition-duration) var(--transition-timing-function), transform var(--transition-duration) 0.5s var(--transition-timing-function), opacity var(--transition-duration) 0.5s var(--transition-timing-function);
+  }
+
+  @include hover {
+    background-position: 0 100%;
+
+    &:after {
+      opacity: 1;
+      transform: translateX(-50%) translateY(2px);
+    }
+  }
+}
+
+.alert {
+  position: relative;
+  width: 100%;
+  max-width: 580px;
+  display: block;
+  color: var(--third-color);
+  background-color: rgba(var(--third-color-rgb), 0.2);
+  border-left: 3px solid var(--third-color);
+  margin: 0 auto;
+  padding: 24px 28px;
+  transition-timing-function: var(--transition-timing-function);
+  transition-duration: var(--transition-duration);
+  transition-property: color, background-color, border-left;
+}
+
+@media screen and (min-width: 768px) {
+  .layout {
+    padding: 0 50px;
+  }
+
+  .container {
+    padding: 0 50px;
+  }
+}
