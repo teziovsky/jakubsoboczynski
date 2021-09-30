@@ -26,7 +26,7 @@ jobs:
       - name: Build project
         run: |
           npm install
-          gridsome build
+          npm run build
 
       - name: 📂 Sync FTP files
         uses: SamKirkland/FTP-Deploy-Action@4.0.0
