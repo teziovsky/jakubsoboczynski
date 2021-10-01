@@ -56,7 +56,7 @@
 
 .shrink-enter-active,
 .shrink-leave-active {
-  transition: transform 0.5s var(--transition-timing-function), opacity 0.75s var(--transition-timing-function);
+  transition: transform 0.5s var(--transition-timing-function), opacity 0.5s var(--transition-timing-function);
 }
 
 // BLOG BOTTOM
