@@ -23,10 +23,6 @@ export default {
   components: {
     Breadcrumbs,
   },
-  mounted() {
-    console.log('this.$route: ', this.$route);
-    console.log('this.$page.Post: ', this.$page.Post);
-  },
   metaInfo() {
     return {
       title: this.$page.Post.title,
