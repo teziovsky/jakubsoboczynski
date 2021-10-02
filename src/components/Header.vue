@@ -10,8 +10,8 @@
            aria-label="Przejdź do sekcji o mnie"
            class="nav__link link"
            href="#o_mnie"
-           @click="hideMenu">o
-          mnie
+           @click="hideMenu">
+          o mnie
         </a>
         <a v-smooth-scroll
            aria-label="Przejdź do sekcji projekty"

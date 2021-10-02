@@ -11,14 +11,12 @@
                 @click="handleChangeCategory(category)">{{ category }}
         </button>
       </div>
-      <transition mode="out-in" name="slide-down">
-        <transition-group v-if="filteredPosts.length" class="blog__wrapper" mode="out-in" name="blog-bottom" tag="div">
-          <BlogCard v-for="post in filteredPosts"
-                    :key="post.node.id"
-                    :post="post" />
-        </transition-group>
-        <div v-else key="noArticles" class="alert">Brak artykułów. Wpadnij tu za tydzień!</div>
-      </transition>
+      <transition-group v-if="filteredPosts.length" class="blog__wrapper" mode="out-in" name="blog-bottom" tag="div">
+        <BlogCard v-for="post in filteredPosts"
+                  :key="post.node.id"
+                  :post="post" />
+      </transition-group>
+      <div v-else key="noArticles" class="alert">Brak artykułów. Wpadnij tu za tydzień!</div>
     </section>
   </Layout>
 </template>
