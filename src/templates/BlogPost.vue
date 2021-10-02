@@ -8,7 +8,7 @@
           <span class="blogPost__date">{{ $page.Post.date }}</span>
           <span class="blogPost__category">{{ $page.Post.category }}</span>
         </div>
-        <g-image v-if="$page.Post.image.length" :src="$page.Post.image[0].url" class="blogPost__image" />
+        <img v-if="$page.Post.image.length" :src="$page.Post.image[0].url" class="blogPost__image" />
         <div class="blogPost__content" v-html="$page.Post.content"></div>
       </article>
     </section>
