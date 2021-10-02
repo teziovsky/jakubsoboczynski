@@ -7,9 +7,11 @@ import '~/assets/scss/main.scss';
 
 export default function (Vue, { router, head, isClient }) {
   Vue.component('Layout', Default);
+
   Vue.filter('splitString', (value, split, join) => {
     return value.split(split).join(join);
   });
+
   Vue.use(VueSmoothScroll, {
     duration: 1000,
     easingFunction: 'easeOutCubic',

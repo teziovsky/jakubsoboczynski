@@ -1,22 +1,12 @@
 <template>
   <div class="layout">
-    <transition appear name="slide-top">
-      <Header :key="$route.name" />
-    </transition>
-    <transition appear name="slide-left">
-      <SocialLinks v-if="$route.name === 'home'" />
-    </transition>
-    <transition appear name="slide-right">
-      <PageProgress v-if="$route.name === 'home'" />
-    </transition>
-    <transition appear name="slide-bottom">
-      <main class="container">
-        <slot />
-      </main>
-    </transition>
-    <transition appear name="slide-bottom">
-      <Footer :key="$route.name" />
-    </transition>
+    <Header />
+    <SocialLinks v-if="$route.name === 'home'" />
+    <PageProgress v-if="$route.name === 'home'" />
+    <main class="container">
+      <slot />
+    </main>
+    <Footer />
   </div>
 </template>
 
