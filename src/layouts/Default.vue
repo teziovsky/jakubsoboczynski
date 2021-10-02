@@ -1,20 +1,20 @@
 <template>
   <div class="layout">
-    <transition appear mode="out-in" name="slide-top">
+    <transition appear name="slide-top">
       <Header :key="$route.name" />
     </transition>
-    <transition appear mode="out-in" name="slide-left">
+    <transition appear name="slide-left">
       <SocialLinks v-if="$route.name === 'home'" />
     </transition>
-    <transition appear mode="out-in" name="slide-right">
+    <transition appear name="slide-right">
       <PageProgress v-if="$route.name === 'home'" />
     </transition>
-    <transition appear mode="out-in" name="slide-bottom">
+    <transition appear name="slide-bottom">
       <main class="container">
         <slot />
       </main>
     </transition>
-    <transition appear mode="out-in" name="slide-bottom">
+    <transition appear name="slide-bottom">
       <Footer :key="$route.name" />
     </transition>
   </div>
