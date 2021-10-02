@@ -2,9 +2,7 @@
   <Layout>
     <section id="error" class="error">
       <h1 class="sectionHeader">Błąd 404</h1>
-      <transition mode="out-in" name="slide-down">
         <p class="error--info">Strona nie istnieje ¯\_(ツ)_/¯</p>
-      </transition>
     </section>
   </Layout>
 </template>
