@@ -1,10 +1,10 @@
 <template>
   <div class="layout">
     <transition appear mode="out-in" name="slide-top">
-      <Header />
+      <Header :key="$route.name" />
     </transition>
     <transition appear mode="out-in" name="slide-left">
-      <SocialLinks v-if="$route.name === 'home'" :key="$route.name" />
+      <SocialLinks v-if="$route.name === 'home'" />
     </transition>
     <transition appear mode="out-in" name="slide-right">
       <PageProgress v-if="$route.name === 'home'" />
@@ -15,7 +15,7 @@
       </main>
     </transition>
     <transition appear mode="out-in" name="slide-bottom">
-      <Footer />
+      <Footer :key="$route.name" />
     </transition>
   </div>
 </template>

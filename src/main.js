@@ -15,6 +15,8 @@ export default function (Vue, { router, head, isClient }) {
     easingFunction: 'easeOutCubic',
   });
 
+  head.htmlAttrs = { lang: 'pl' };
+
   head.link.push({
     rel: 'preconnect',
     href: 'https://fonts.googleapis.com',
