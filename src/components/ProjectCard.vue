@@ -2,7 +2,7 @@
   <div class="projectCard">
     <h3 v-if="project.title" class="projectCard__title">{{ project.title }}</h3>
     <div v-if="project.image[0].url" class="projectCard__wrapper">
-      <g-image :alt="project.image_alt"
+      <img :alt="project.image_alt"
                :src="project.image[0].url"
                class="projectCard__image" />
     </div>

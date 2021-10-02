@@ -1,7 +1,7 @@
 <template>
   <a :href="post.node.path" aria-label="test" class="blogCard">
     <div class="blogCard__wrapper">
-      <g-image v-if="post.node.image.length" :src="post.node.image[0].url" alt="" class="blogCard__image" />
+      <img v-if="post.node.image.length" :src="post.node.image[0].url" alt="" class="blogCard__image" />
       <svg v-else
            class="blogCard__logo"
            fill="none"
