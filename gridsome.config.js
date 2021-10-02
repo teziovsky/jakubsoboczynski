@@ -65,7 +65,6 @@ module.exports = {
     BlogPost: '/blog/:id',
   },
   chainWebpack(config) {
-    config.mode('development');
     const types = ['vue-modules', 'vue', 'normal-modules', 'normal'];
     types.forEach(type => {
       addStyleResource(config.module.rule('scss').oneOf(type));

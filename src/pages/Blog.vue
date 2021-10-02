@@ -2,25 +2,23 @@
   <Layout>
     <section id="blog" class="blog">
       <h1 class="sectionHeader">Blog</h1>
-      <transition appear mode="out-in" name="slide-bottom">
-        <div v-if="filteredPosts.length" class="blog__container">
-          <div class="blog__categories">
-            <button v-for="category in categories"
-                    :key="category"
-                    :aria-label="'Wyświetl posty z kategorii - ' + category"
-                    :class="{'active': activeCategory === category}"
-                    class="blog__category"
-                    @click="handleChangeCategory(category)">{{ category }}
-            </button>
-          </div>
-          <transition-group class="blog__wrapper" mode="out-in" name="blog-bottom" tag="div">
-            <BlogCard v-for="post in filteredPosts"
-                      :key="post.node.id"
-                      :post="post" />
-          </transition-group>
+      <div v-if="filteredPosts.length" class="blog__container">
+        <div class="blog__categories">
+          <button v-for="category in categories"
+                  :key="category"
+                  :aria-label="'Wyświetl posty z kategorii - ' + category"
+                  :class="{'active': activeCategory === category}"
+                  class="blog__category"
+                  @click="handleChangeCategory(category)">{{ category }}
+          </button>
         </div>
-        <div v-else key="noArticles" class="alert">Brak artykułów. Wpadnij tu za tydzień!</div>
-      </transition>
+        <transition-group class="blog__wrapper" mode="out-in" name="blog-bottom" tag="div">
+          <BlogCard v-for="post in filteredPosts"
+                    :key="post.node.id"
+                    :post="post" />
+        </transition-group>
+      </div>
+      <div v-else key="noArticles" class="alert">Brak artykułów. Wpadnij tu za tydzień!</div>
     </section>
   </Layout>
 </template>

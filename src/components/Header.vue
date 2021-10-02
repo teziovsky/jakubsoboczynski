@@ -1,11 +1,11 @@
 <template>
   <header class="header">
     <nav class="nav">
-      <button v-show="$route.name === 'home'"
+      <button v-if="$route.name === 'home'"
               aria-label="Pokaż/Ukryj nawigację"
               class="nav__burger"
               @click="toggleMenu"><span></span></button>
-      <div v-show="$route.name === 'home'" class="nav__wrapper">
+      <div v-if="$route.name === 'home'" class="nav__wrapper">
         <a v-smooth-scroll
            aria-label="Przejdź do sekcji o mnie"
            class="nav__link link"
