@@ -2,9 +2,9 @@
   <div class="projectCard">
     <h3 v-if="project.title" class="projectCard__title">{{ project.title }}</h3>
     <div v-if="project.image[0].url" class="projectCard__wrapper">
-      <img :alt="project.image_alt"
-               :src="project.image[0].url"
-               class="projectCard__image" />
+      <img :alt="project.imageAlt"
+           :src="project.image[0].url"
+           class="projectCard__image" />
     </div>
     <a v-if="project.source"
        :aria-label="'Przejdź do plików źródłowych projektu - ' + project.title"
