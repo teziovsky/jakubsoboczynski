@@ -28,11 +28,11 @@
           kontakt
         </a>
       </div>
-      <g-link :aria-label="$route.name === 'home' ? 'Przejdź do podstrony zawierającej blog' : 'Przejdź do portfolio'"
-              :to="$route.name === 'home' ? '/blog/' : '/'"
-              class="button">
+      <a :aria-label="$route.name === 'home' ? 'Przejdź do podstrony zawierającej blog' : 'Przejdź do portfolio'"
+         :href="$route.name === 'home' ? '/blog/' : '/'"
+         class="button">
         {{ $route.name === 'home' ? 'Blog' : 'Portfolio' }}
-      </g-link>
+      </a>
     </nav>
     <svg class="header__logo"
          fill="none"
@@ -56,21 +56,27 @@ export default {
       const width = (window.innerWidth > 0) ? window.innerWidth : document.documentElement.clientWidth;
       const nav = document.querySelector('.nav__wrapper');
       if (width > 768) {
-        nav.classList.remove('mobile');
+        if (nav) nav.classList.remove('mobile');
         this.hideMenu();
       } else {
-        nav.classList.add('mobile');
+        if (nav) nav.classList.add('mobile');
       }
     },
     toggleMenu() {
-      document.querySelector('.nav__wrapper').classList.toggle('opened');
-      document.querySelector('.nav__burger').classList.toggle('opened');
-      document.querySelector('body').classList.toggle('opened');
+      const wrapper = document.querySelector('.nav__wrapper');
+      if (wrapper) wrapper.classList.toggle('opened');
+      const burger = document.querySelector('.nav__burger');
+      if (burger) burger.classList.toggle('opened');
+      const body = document.querySelector('body');
+      if (body) body.classList.toggle('opened');
     },
     hideMenu() {
-      document.querySelector('.nav__wrapper').classList.remove('opened');
-      document.querySelector('.nav__burger').classList.remove('opened');
-      document.querySelector('body').removeAttribute('class');
+      const wrapper = document.querySelector('.nav__wrapper');
+      if (wrapper) wrapper.classList.remove('opened');
+      const burger = document.querySelector('.nav__burger');
+      if (burger) burger.classList.remove('opened');
+      const body = document.querySelector('body');
+      if (body) body.removeAttribute('class');
     },
   },
   mounted() {

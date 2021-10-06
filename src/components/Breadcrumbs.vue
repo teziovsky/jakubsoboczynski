@@ -1,10 +1,10 @@
 <template>
   <div class="breadcrumbs">
-    <g-link aria-label="Przejdź do podstrony zawierającej blog"
-            class="breadcrumbs__item"
-            to="/blog/">
+    <a aria-label="Przejdź do podstrony zawierającej blog"
+       class="breadcrumbs__item"
+       href="/blog/">
       Blog
-    </g-link>
+    </a>
     <span class="breadcrumbs__separator">></span>
     <span class="breadcrumbs__item">{{ postTitle }}</span>
   </div>
