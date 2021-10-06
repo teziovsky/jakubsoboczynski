@@ -33,4 +33,64 @@ export default function (Vue, { router, head, isClient }) {
     rel: 'stylesheet',
     href: 'https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;700&family=Space+Mono:wght@400;700&display=swap',
   });
+
+  head.meta.push({
+    name: 'description',
+    content: 'Jakub Soboczyński – Frontend Developer Portfolio',
+  });
+
+  head.meta.push({
+    name: 'og:description',
+    content: 'Jakub Soboczyński – Frontend Developer Portfolio',
+  });
+
+  head.meta.push({
+    name: 'twitter:description',
+    content: 'Jakub Soboczyński – Frontend Developer Portfolio',
+  });
+
+  head.meta.push({
+    name: 'keywords',
+    content: 'Jakub Soboczyński, Portfolio, Front-End Developer,Frontend Developer, Front-End, Frontend, Developer',
+  });
+
+  head.meta.push({
+    name: 'og:title',
+    content: 'Portfolio | Jakub Soboczyński',
+  });
+
+  head.meta.push({
+    name: 'twitter:title',
+    content: 'Portfolio | Jakub Soboczyński',
+  });
+
+  head.meta.push({
+    name: 'robots',
+    content: 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1',
+  });
+
+  head.meta.push({
+    name: 'og:url',
+    content: 'https://www.jakubsoboczynski.pl',
+  });
+
+  head.meta.push({
+    name: 'og:type',
+    content: 'website',
+  });
+
+  head.meta.push({
+    name: 'og:locale',
+    content: 'pl_PL',
+  });
+
+  head.meta.push({
+    name: 'twitter:card',
+    content: 'summary_large_image',
+  });
+
+  head.meta.push({
+    name: 'twitter:creator',
+    content: '@teziovsky',
+  });
 }
