@@ -16,6 +16,14 @@ module.exports = {
   siteUrl: 'https://www.jakubsoboczynski.pl',
   plugins: [
     {
+      use: '@gridsome/source-filesystem',
+      options: {
+        path: 'blog/posts/**/*.md',
+        typeName: 'BlogPost',
+        remark: {},
+      },
+    },
+    {
       use: '@gridsome/source-airtable',
       options: {
         apiKey: process.env.AIRTABLE_KEY,
@@ -45,12 +53,6 @@ module.exports = {
             select: {},
             links: [],
           },
-          {
-            name: 'blog',
-            typeName: 'BlogPost',
-            select: {},
-            links: [],
-          },
         ],
       },
     },
@@ -61,11 +63,37 @@ module.exports = {
       },
     },
   ],
+  transformers: {
+    remark: {
+      plugins: [
+        [
+          'remark-autolink-headings',
+          {
+            behavior: 'wrap',
+            linkProperties: {
+              ariaHidden: 'true',
+              tabIndex: -1,
+            },
+          },
+        ],
+        [
+          'gridsome-plugin-remark-prismjs-all',
+          {
+            showLineNumbers: true,
+            aliases: {
+              vue: 'html',
+              cmd: 'bash',
+              dos: 'bash',
+            },
+          },
+        ],
+      ],
+    },
+  },
   templates: {
-    BlogPost: '/blog/:id',
+    BlogPost: '/blog/:slug',
   },
   chainWebpack(config) {
-    config.mode('development');
     const types = ['vue-modules', 'vue', 'normal-modules', 'normal'];
     types.forEach(type => {
       addStyleResource(config.module.rule('scss').oneOf(type));

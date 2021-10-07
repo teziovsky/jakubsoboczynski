@@ -4,6 +4,9 @@ dist
 .cache
 src/.temp
 
+# Blog
+/blog/.obsidian/
+/blog/templates/
 
 # local env files
 .env

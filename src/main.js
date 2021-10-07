@@ -5,6 +5,10 @@ import Default from '~/layouts/Default.vue';
 import VueSmoothScroll from 'vue2-smooth-scroll';
 import '~/assets/scss/main.scss';
 
+require('gridsome-plugin-remark-prismjs-all/themes/night-owl.css');
+require('prismjs/plugins/line-numbers/prism-line-numbers.css');
+require('prismjs/plugins/command-line/prism-command-line.css');
+
 export default function (Vue, { router, head, isClient }) {
   Vue.component('Layout', Default);
 
