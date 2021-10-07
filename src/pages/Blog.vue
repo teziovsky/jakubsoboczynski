@@ -42,11 +42,11 @@ export default {
     };
   },
   computed: {
-    actualDate() {
-      return new Date().toISOString().split('T')[0];
-    },
+    // actualDate() {
+    //   return new Date().toISOString().split('T')[0];
+    // },
     filteredPosts() {
-      return this.$page.Blog.edges.filter(item => item.node.category.includes(this.activeCategory) && item.node.date < this.actualDate);
+      return this.$page.Blog.edges.filter(item => item.node.category.includes(this.activeCategory));
     },
   },
   methods: {
@@ -141,20 +141,18 @@ export default {
 
 <page-query>
 query {
-  Blog: allBlogPost(sortBy: "date", order: DESC) {
+  Blog: allBlogPost(sortBy: "date_published", order: DESC) {
     edges {
       node {
         id
-        path
         title
-        content
         short
-        date
+        content
         category
-        image {
-          url
-        }
-        imageAlt
+        date_published
+        image
+        image_alt
+        path
       }
     }
   }

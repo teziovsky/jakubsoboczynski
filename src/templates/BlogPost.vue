@@ -5,10 +5,13 @@
       <article class="blogPost__article">
         <h1 class="sectionHeader">{{ $page.Post.title }}</h1>
         <div class="blogPost__metatags">
-          <span class="blogPost__date">{{ $page.Post.date }}</span>
+          <span class="blogPost__date">{{ $page.Post.date_published }}</span>
           <span class="blogPost__category">{{ $page.Post.category }}</span>
         </div>
-        <img v-if="$page.Post.image.length" :src="$page.Post.image[0].url" alt="image" class="blogPost__image" />
+        <img v-if="$page.Post.image"
+             :alt="$page.Post.image_alt"
+             :src="$page.Post.image"
+             class="blogPost__image" />
         <div class="blogPost__content" v-html="$page.Post.content"></div>
       </article>
     </section>
@@ -33,7 +36,7 @@ export default {
         },
         {
           name: 'description',
-          content: this.$page.Post.content,
+          content: this.$page.Post.short,
         },
         {
           name: 'twitter:title',
@@ -41,7 +44,7 @@ export default {
         },
         {
           name: 'twitter:description',
-          content: this.$page.Post.content,
+          content: this.$page.Post.short,
         },
         {
           name: 'twitter:card',
@@ -49,11 +52,7 @@ export default {
         },
         {
           name: 'twitter:creator',
-          content: 'teziovsky',
-        },
-        {
-          name: 'twitter:site',
-          content: 'teziovsky',
+          content: '@teziovsky',
         },
         {
           name: 'og:title',
@@ -61,11 +60,11 @@ export default {
         },
         {
           name: 'og:description',
-          content: this.$page.Post.content,
+          content: this.$page.Post.short,
         },
         {
           name: 'og:image',
-          content: this.$page.Post.image.length && this.$page.Post.image[0].url,
+          content: this.$page.Post.image,
         },
       ],
       link: [
@@ -180,32 +179,8 @@ export default {
       }
     }
 
-    pre {
-      overflow: auto;
-      font-family: var(--font-family-secondary);
-      background-color: var(--secondary-color);
-      border: 2px solid rgba(var(--font-color-rgb), 0.2);
-      margin: 1em 0;
-      padding: 1rem clamp(1rem, 0.63414625rem + 1.560976vw, 2rem);
-
-      code {
-        color: var(--font-color);
-      }
-    }
-
     code {
-      width: 100%;
-      display: block;
-      overflow-x: auto;
-      text-align: left;
       font-family: var(--font-family-secondary);
-      line-height: 1.5;
-      word-spacing: normal;
-      word-wrap: break-word;
-      word-break: break-word;
-      white-space: pre;
-      color: var(--third-color);
-      hyphens: none;
     }
 
     hr {
@@ -297,16 +272,15 @@ export default {
 <page-query>
 query blogPost ($id: ID!) {
   Post: blogPost(id: $id) {
-    path
     id
     title
-    content
     short
-    date
+    content
     category
-    image {
-      url
-    }
+    date_published
+    image
+    image_alt
+    path
   }
 }
 </page-query>

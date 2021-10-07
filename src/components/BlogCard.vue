@@ -1,9 +1,9 @@
 <template>
   <g-link :to="post.node.path" aria-label="test" class="blogCard">
     <div class="blogCard__wrapper">
-      <img v-if="post.node.image.length"
-           :alt="post.node.imageAlt"
-           :src="post.node.image[0].url"
+      <img v-if="post.node.image"
+           :alt="post.node.image_alt"
+           :src="post.node.image"
            class="blogCard__image" />
       <svg v-else
            class="blogCard__logo"
@@ -19,9 +19,9 @@
       </svg>
     </div>
     <div class="blogCard__content">
-      <div v-if="post.node.category || post.node.date" class="blogCard__metatags">
+      <div v-if="post.node.category || post.node.date_published" class="blogCard__metatags">
         <span v-if="post.node.category" class="blogCard__category">{{ post.node.category }}</span>
-        <span v-if="post.node.date" class="blogCard__date">{{ post.node.date }}</span>
+        <span v-if="post.node.date_published" class="blogCard__date">{{ post.node.date_published }}</span>
       </div>
       <h2 v-if="post.node.title" class="blogCard__title">{{ post.node.title }}</h2>
       <p v-if="post.node.short" class="blogCard__short">{{ post.node.short }}</p>
