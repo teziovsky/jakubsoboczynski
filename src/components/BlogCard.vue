@@ -1,5 +1,5 @@
 <template>
-  <a :href="post.node.path" aria-label="test" class="blogCard">
+  <g-link :to="post.node.path" aria-label="test" class="blogCard">
     <div class="blogCard__wrapper">
       <img v-if="post.node.image.length"
            :alt="post.node.imageAlt"
@@ -26,7 +26,7 @@
       <h2 v-if="post.node.title" class="blogCard__title">{{ post.node.title }}</h2>
       <p v-if="post.node.short" class="blogCard__short">{{ post.node.short }}</p>
     </div>
-  </a>
+  </g-link>
 </template>
 
 <script>

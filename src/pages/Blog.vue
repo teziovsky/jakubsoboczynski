@@ -154,6 +154,7 @@ query {
         image {
           url
         }
+        imageAlt
       }
     }
   }
