@@ -28,11 +28,18 @@
           kontakt
         </a>
       </div>
-      <a :aria-label="$route.name === 'home' ? 'Przejdź do podstrony zawierającej blog' : 'Przejdź do portfolio'"
-         :href="$route.name === 'home' ? '/blog/' : '/'"
-         class="button">
-        {{ $route.name === 'home' ? 'Blog' : 'Portfolio' }}
-      </a>
+      <g-link v-if="$route.name === 'home'"
+              aria-label="Przejdź do podstrony zawierającej blog"
+              class="button"
+              to="/blog/">
+        Blog
+      </g-link>
+      <g-link v-if="$route.name !== 'home'"
+              aria-label="Przejdź do portfolio"
+              class="button"
+              to="/">
+        Portfolio
+      </g-link>
     </nav>
     <svg class="header__logo"
          fill="none"
