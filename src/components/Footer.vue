@@ -15,7 +15,7 @@
     <SocialLinks />
     <div class="footer__copyrights">
       <p>© {{ actualYear }}
-        <a aria-label="Przejdź do konta w serwisie GitHub.pl"
+        <a aria-label="Przejdź do konta Teziovsky w serwisie GitHub.pl"
            class="link"
            href="https://www.github.com/teziovsky"
            rel="noreferrer nofollow noopener"

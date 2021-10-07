@@ -42,11 +42,11 @@ export default {
     };
   },
   computed: {
-    // actualDate() {
-    //   return new Date().toISOString().split('T')[0];
-    // },
+    actualDate() {
+      return new Date().toISOString().split('T')[0];
+    },
     filteredPosts() {
-      return this.$page.Blog.edges.filter(item => item.node.category.includes(this.activeCategory));
+      return this.$page.Blog.edges.filter(item => item.node.category.includes(this.activeCategory) && item.node.date_published <= this.actualDate);
     },
   },
   methods: {
