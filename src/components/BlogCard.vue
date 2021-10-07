@@ -1,10 +1,10 @@
 <template>
-  <g-link :to="post.node.path" aria-label="test" class="blogCard">
+  <g-link :aria-label="'Przejdź do artykułu: ' + post.node.title" :to="post.node.path" class="blogCard">
     <div class="blogCard__wrapper">
-      <img v-if="post.node.image"
-           :alt="post.node.image_alt"
-           :src="post.node.image"
-           class="blogCard__image" />
+      <g-image v-if="post.node.image"
+               :alt="post.node.image_alt"
+               :src="post.node.image"
+               class="blogCard__image" />
       <svg v-else
            class="blogCard__logo"
            fill="none"

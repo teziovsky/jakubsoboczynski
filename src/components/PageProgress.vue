@@ -5,7 +5,7 @@
          :data-section="section.id"
          :href="'#' + section.id"
          class="pageProgress__link">
-        <span class="sr-only">Przejdź do sekcji {{ section.id | splitString('', ' ') }}</span>
+        <span class="sr-only">Przejdź do sekcji {{ section.id | splitString('_', ' ') }}</span>
       </a>
     </li>
   </ul>

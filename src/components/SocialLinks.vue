@@ -9,7 +9,6 @@
          rel="noreferrer nofollow noopener"
          target="_blank"
          v-html="link.node.image">
-        <span class="sr-only">{{ link.node.title }}</span>
       </a>
     </li>
   </ul>

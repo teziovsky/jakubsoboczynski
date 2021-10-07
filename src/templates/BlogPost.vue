@@ -8,10 +8,10 @@
           <span class="blogPost__date">{{ $page.Post.date_published }}</span>
           <span class="blogPost__category">{{ $page.Post.category }}</span>
         </div>
-        <img v-if="$page.Post.image"
-             :alt="$page.Post.image_alt"
-             :src="$page.Post.image"
-             class="blogPost__image" />
+        <g-image v-if="$page.Post.image"
+                 :alt="$page.Post.image_alt"
+                 :src="$page.Post.image"
+                 class="blogPost__image" />
         <div class="blogPost__content" v-html="$page.Post.content"></div>
       </article>
     </section>
@@ -107,17 +107,40 @@ export default {
     h2 {
       position: relative;
       text-align: left;
-      font-size: clamp(1.125rem, 1.03353656rem + 0.390244vw, 1.375rem);
+      font-size: clamp(1.25rem, 1.11280484rem + 0.585366vw, 1.625rem);
       line-height: clamp(1.5rem, 1.36280484rem + 0.585366vw, 1.875rem);
+      font-weight: bold;
       word-break: break-word;
       margin-bottom: 1.2em;
     }
 
     h3 {
       position: relative;
-      font-size: clamp(1rem, 0.95426828rem + 0.195122vw, 1.125rem);
-      line-height: clamp(1.25rem, 1.11280484rem + 0.585366vw, 1.625rem);
+      font-size: clamp(1.125rem, 0.98780484rem + 0.585366vw, 1.5rem);
+      line-height: clamp(1.375rem, 1.23780484rem + 0.585366vw, 1.75rem);
+      font-weight: bold;
       word-break: break-word;
+      margin-bottom: 1em;
+    }
+
+    h4 {
+      font-size: clamp(1rem, 0.95426828rem + 0.195122vw, 1.125rem);
+      line-height: clamp(1.25rem, 1.20426828rem + 0.195122vw, 1.375rem);
+      font-weight: 700;
+      margin-bottom: 1em;
+    }
+
+    h5 {
+      font-size: clamp(0.9375rem, 0.89176828rem + 0.195122vw, 1.0625rem);
+      line-height: clamp(1.1875rem, 1.14176828rem + 0.195122vw, 1.3125rem);
+      font-weight: 700;
+      margin-bottom: 1em;
+    }
+
+    h6 {
+      font-size: clamp(0.875rem, 0.82926828rem + 0.195122vw, 1rem);
+      line-height: clamp(1.125rem, 1.07926828rem + 0.195122vw, 1.25rem);
+      font-weight: 700;
       margin-bottom: 1em;
     }
 

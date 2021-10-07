@@ -2,7 +2,7 @@
   <header class="header">
     <nav class="nav">
       <button v-if="$route.name === 'home'"
-              aria-label="Pokaż/Ukryj nawigację"
+              aria-label="Pokaż/Ukryj nawigację serwisu"
               class="nav__burger"
               @click="toggleMenu"><span></span></button>
       <div v-if="$route.name === 'home'" class="nav__wrapper">
@@ -25,7 +25,7 @@
            @click="hideMenu">kontakt
         </a>
       </div>
-      <g-link :aria-label="$route.name === 'home' ?  'Przejdź do podstrony zawierającej blog' : 'Przejdź do portfolio'"
+      <g-link :aria-label="$route.name === 'home' ?  'Przejdź do bloga' : 'Przejdź do portfolio'"
               :to="$route.name === 'home' ?  '/blog/' : '/'"
               class="button">
         {{ $route.name === 'home' ? 'Blog' : 'Portfolio' }}

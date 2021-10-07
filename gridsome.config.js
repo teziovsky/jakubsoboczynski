@@ -67,16 +67,6 @@ module.exports = {
     remark: {
       plugins: [
         [
-          'remark-autolink-headings',
-          {
-            behavior: 'wrap',
-            linkProperties: {
-              ariaHidden: 'true',
-              tabIndex: -1,
-            },
-          },
-        ],
-        [
           'gridsome-plugin-remark-prismjs-all',
           {
             showLineNumbers: true,

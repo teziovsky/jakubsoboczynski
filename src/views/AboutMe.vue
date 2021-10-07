@@ -2,9 +2,9 @@
   <section v-if="aboutMe.length" id="o_mnie" class="aboutMe">
     <h2 class="sectionHeader">O mnie</h2>
     <div class="aboutMe__wrapper">
-      <img alt="Moje zdjęcie profilowe"
-           class="aboutMe__image"
-           src="../assets/images/profile.webp" />
+      <g-image alt="Moje zdjęcie profilowe"
+               class="aboutMe__image"
+               src="../assets/images/profile.webp" />
     </div>
     <div class="aboutMe__categories">
       <button v-for="category in aboutMe"
