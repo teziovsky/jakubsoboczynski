@@ -36,6 +36,23 @@ img {
   display: none !important;
 }
 
+::-webkit-scrollbar {
+  width: 15px;
+
+  &-track {
+    border-radius: 0;
+  }
+
+  &-thumb {
+    background: rgba(var(--third-color-rgb), 0.2);
+    border-radius: 0;
+
+    &:hover {
+      background: rgba(var(--third-color-rgb), 0.4);
+    }
+  }
+}
+
 .sr-only {
   position: absolute;
   width: 1px;

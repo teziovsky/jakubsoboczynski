@@ -10,26 +10,26 @@
            aria-label="Przejdź do sekcji o mnie"
            class="nav__link link"
            href="#o_mnie"
-           @click="hideMenu">o mnie</a>
+           @click="hideMenu">o mnie
+        </a>
         <a v-smooth-scroll
            aria-label="Przejdź do sekcji projekty"
            class="nav__link link"
            href="#projekty"
-           @click="hideMenu">projekty</a>
+           @click="hideMenu">projekty
+        </a>
         <a v-smooth-scroll
            aria-label="Przejdź do sekcji kontakt"
            class="nav__link link"
            href="#kontakt"
-           @click="hideMenu">kontakt</a>
+           @click="hideMenu">kontakt
+        </a>
       </div>
-<!--      <g-link v-if="$route.name === 'home'"-->
-      <!--              aria-label="Przejdź do podstrony zawierającej blog"-->
-      <!--              class="button"-->
-      <!--              to="/blog/">Blog</g-link>-->
-      <!--      <g-link v-if="$route.name !== 'home'"-->
-      <!--              aria-label="Przejdź do portfolio"-->
-      <!--              class="button"-->
-      <!--              to="/">Portfolio</g-link>-->
+      <g-link :aria-label="$route.name === 'home' ?  'Przejdź do podstrony zawierającej blog' : 'Przejdź do portfolio'"
+              :to="$route.name === 'home' ?  '/blog/' : '/'"
+              class="button">
+        {{ $route.name === 'home' ? 'Blog' : 'Portfolio' }}
+      </g-link>
     </nav>
     <svg class="header__logo"
          fill="none"
