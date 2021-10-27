@@ -62,6 +62,14 @@ module.exports = {
         resources: '@/assets/scss/main.scss',
       },
     },
+    {
+      use: 'gridsome-plugin-gtm',
+      options: {
+        id: 'GTM-58GTFS3',
+        enabled: true,
+        debug: true,
+      },
+    },
   ],
   transformers: {
     remark: {
