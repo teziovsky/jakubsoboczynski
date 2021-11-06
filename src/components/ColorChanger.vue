@@ -101,8 +101,8 @@ export default {
 
       Object.entries(codes).forEach(([key, value]) => {
         const property = '--' + key.split(/(?=[A-Z])/).join('-').toLowerCase();
-        root.style.setProperty(property, value);
-        localStorage.setItem('theme', id);
+        process.isClient ? root.style.setProperty(property, value) : false;
+        process.isClient ? localStorage.setItem('theme', id) : false;
       });
     },
     detectMobile() {
