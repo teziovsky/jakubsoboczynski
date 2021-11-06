@@ -115,7 +115,8 @@ export default {
     window.addEventListener('resize', this.detectMobile);
   },
   created() {
-    const actualTheme = this.colors.find(item => item.id === Number(localStorage.getItem('theme')));
+    const storageTheme = process.isClient ? !localStorage.getItem('theme') : 1;
+    const actualTheme = this.colors.find(item => item.id === Number(storageTheme));
     this.changeColor(actualTheme);
   },
 };
