@@ -36,9 +36,6 @@ export default {
   align-items: center;
   row-gap: 40px;
 
-  &__element {
-  }
-
   &__link {
     position: relative;
     width: 30px;

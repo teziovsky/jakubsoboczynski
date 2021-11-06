@@ -13,6 +13,7 @@
             fill="white" />
     </svg>
     <SocialLinks />
+    <ColorChanger />
     <div class="footer__copyrights">
       <p>© {{ actualYear }}
         <a aria-label="Przejdź do konta Teziovsky w serwisie GitHub.pl"
@@ -41,11 +42,13 @@
 
 <script>
 import SocialLinks from '~/components/SocialLinks.vue';
+import ColorChanger from './ColorChanger.vue';
 
 export default {
   name: 'Footer',
   components: {
     SocialLinks,
+    ColorChanger,
   },
   computed: {
     actualYear() {
@@ -83,6 +86,22 @@ export default {
     column-gap: 40px;
   }
 
+  .colorChanger {
+    position: static;
+    top: unset;
+    left: unset;
+    display: flex;
+    flex-direction: row;
+    margin: 0 0 25px 0;
+    transform: none;
+    row-gap: unset;
+
+    &__list {
+      margin-right: 0;
+      margin-left: 10px;
+    }
+  }
+
   &__copyrights {
     display: flex;
     flex-direction: column;
@@ -107,6 +126,10 @@ export default {
 @media screen and (min-width: 768px) {
   .footer {
     .socialLinks {
+      display: none;
+    }
+
+    .colorChanger {
       display: none;
     }
 
