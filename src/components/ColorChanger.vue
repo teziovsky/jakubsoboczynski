@@ -152,7 +152,7 @@ export default {
 
       path {
         transition: fill var(--transition-duration) var(--transition-timing-function);
-        fill: var(--secondary-color);
+        fill: rgba(var(--font-color-rgb), 0.4);
       }
     }
 
