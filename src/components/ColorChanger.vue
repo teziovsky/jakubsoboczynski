@@ -1,17 +1,17 @@
 <template>
-  <div class="ColorChanger">
-    <button :class="{'active': opened}" class="ColorChanger__toggle" @click="toggleList">
+  <div class="colorChanger">
+    <button :class="{'active': opened}" class="colorChanger__toggle" @click="toggleList">
       <svg fill="none" height="35" viewBox="0 0 35 35" width="35" xmlns="http://www.w3.org/2000/svg">
         <path d="M31.2337 22.0459C31.0605 22.1664 27.4674 25.9685 27.4674 28.6369C27.4674 31.4503 29.2545 33.2468 31.2337 33.3447C32.9398 33.4276 35 31.6668 35 28.6369C35 25.8122 31.407 22.1664 31.2337 22.0459ZM11.6227 33.3447C12.3346 34.0565 13.2799 34.4482 14.2855 34.4482C15.2911 34.4482 16.2364 34.0565 16.9482 33.3447L30.1302 20.1628L28.7988 18.8314L14.2855 4.31803L9.96745 0L7.30469 2.66276L11.6227 6.98079L1.10352 17.5C0.391693 18.2118 0 19.1572 0 20.1628C0 21.1684 0.391693 22.1137 1.10352 22.8255L11.6227 33.3447ZM14.2855 9.64355L24.8047 20.1628H3.76628L14.2855 9.64355Z"
               fill="white" />
       </svg>
     </button>
-    <ul class="ColorChanger__list">
+    <ul class="colorChanger__list">
       <li v-for="(color, index) in colors"
           :key="color.id"
           :class="{'show': opened}"
           :data-index="index + 1"
-          class="ColorChanger__listItem">
+          class="colorChanger__listItem">
         <button :aria-label="'Zmień motyw na – ' + color.name"
                 :style="'--primary-color: ' + color.codes.primaryColor"
                 @click="changeColor(color)"></button>
@@ -105,6 +105,14 @@ export default {
         localStorage.setItem('theme', id);
       });
     },
+    detectMobile() {
+      const width = (window.innerWidth > 0) ? window.innerWidth : document.documentElement.clientWidth;
+      this.opened = width <= 768;
+    },
+  },
+  mounted() {
+    this.detectMobile();
+    window.addEventListener('resize', this.detectMobile);
   },
   created() {
     const actualTheme = this.colors.find(item => item.id === Number(localStorage.getItem('theme')));
@@ -114,17 +122,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@keyframes theme-slide {
-
-}
-
-.ColorChanger {
+.colorChanger {
   position: fixed;
   z-index: 2;
   right: 45px;
   bottom: 45px;
-  /*display: none;*/
-  display: flex;
+  display: none;
   flex-direction: row-reverse;
   justify-content: center;
   align-items: center;
@@ -132,6 +135,7 @@ export default {
   &__toggle {
     width: 30px;
     height: 30px;
+    display: none;
     transition: transform var(--transition-duration) var(--transition-timing-function);
 
     &.active {
@@ -163,13 +167,13 @@ export default {
 
   &__list {
     display: flex;
-    margin-right: 10px;
     column-gap: 5px;
 
     &Item {
       width: 30px;
       height: 30px;
       display: grid;
+      place-items: center;
       opacity: 0;
       visibility: hidden;
       transform: translateX(-20px);
@@ -219,10 +223,21 @@ export default {
           }
         }
       }
-
-      place-items: center;
     }
   }
+}
 
+@media screen and (min-width: 768px) {
+  .colorChanger {
+    display: flex;
+
+    &__toggle {
+      display: block;
+    }
+
+    &__list {
+      margin-right: 10px;
+    }
+  }
 }
 </style>
