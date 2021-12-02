@@ -25,11 +25,11 @@
            @click="hideMenu">kontakt
         </a>
       </div>
-      <g-link :aria-label="$route.name === 'home' ?  'Przejdź do bloga' : 'Przejdź do portfolio'"
-              :to="$route.name === 'home' ?  '/blog/' : '/'"
-              class="button">
-        {{ $route.name === 'home' ? 'Blog' : 'Portfolio' }}
-      </g-link>
+      <!--      <g-link :aria-label="$route.name === 'home' ?  'Przejdź do bloga' : 'Przejdź do portfolio'"-->
+      <!--              :to="$route.name === 'home' ?  '/blog/' : '/'"-->
+      <!--              class="button">-->
+      <!--        {{ $route.name === 'home' ? 'Blog' : 'Portfolio' }}-->
+      <!--      </g-link>-->
     </nav>
     <svg class="header__logo"
          fill="none"
