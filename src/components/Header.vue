@@ -48,6 +48,10 @@
 <script>
 export default {
   name: 'Header',
+  mounted() {
+    this.detectMobile();
+    window.addEventListener('resize', this.detectMobile);
+  },
   methods: {
     detectMobile() {
       const width = (window.innerWidth > 0) ? window.innerWidth : document.documentElement.clientWidth;
@@ -75,10 +79,6 @@ export default {
       const body = document.querySelector('body');
       if (body) body.removeAttribute('class');
     },
-  },
-  mounted() {
-    this.detectMobile();
-    window.addEventListener('resize', this.detectMobile);
   },
 };
 </script>

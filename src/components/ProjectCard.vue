@@ -44,10 +44,10 @@
 
 <script>
 export default {
+  name: 'ProjectCard',
   props: {
     project: Object,
   },
-  name: 'ProjectCard',
 };
 </script>
 

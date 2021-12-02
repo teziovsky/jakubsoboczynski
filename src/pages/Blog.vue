@@ -28,6 +28,7 @@ import Layout from '~/layouts/Default.vue';
 import BlogCard from '~/components/BlogCard.vue';
 
 export default {
+  name: 'Blog',
   metaInfo: {
     title: 'Blog',
   },
@@ -49,6 +50,10 @@ export default {
       return this.$page.Blog.edges.filter(item => item.node.category.includes(this.activeCategory) && item.node.date_published <= this.actualDate);
     },
   },
+  mounted() {
+    this.categories = [...new Set(this.$page.Blog.edges.map(item => item.node.category))];
+    this.activeCategory = localStorage.getItem('blogCategory') ? localStorage.getItem('blogCategory') : '';
+  },
   methods: {
     handleChangeCategory(category) {
       if (this.activeCategory === '') {
@@ -62,10 +67,6 @@ export default {
         localStorage.removeItem('blogCategory');
       }
     },
-  },
-  mounted() {
-    this.categories = [...new Set(this.$page.Blog.edges.map(item => item.node.category))];
-    this.activeCategory = localStorage.getItem('blogCategory') ? localStorage.getItem('blogCategory') : '';
   },
 };
 </script>
