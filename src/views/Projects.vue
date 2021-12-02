@@ -10,11 +10,11 @@ import ProjectCard from '~/components/ProjectCard.vue';
 
 export default {
   name: 'Projects',
-  props: {
-    projects: Array,
-  },
   components: {
     ProjectCard,
+  },
+  props: {
+    projects: Array,
   },
 };
 </script>
