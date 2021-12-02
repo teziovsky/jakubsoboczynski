@@ -31,10 +31,10 @@
 
 <script>
 export default {
+  name: 'BlogCard',
   props: {
     post: Object,
   },
-  name: 'BlogCard',
 };
 </script>
 

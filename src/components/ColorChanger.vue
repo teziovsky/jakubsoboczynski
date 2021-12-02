@@ -91,6 +91,15 @@ export default {
       ],
     };
   },
+  created() {
+    const storageTheme = process.isClient ? localStorage.getItem('theme') : 1;
+    const actualTheme = this.colors.find(item => item.id === Number(storageTheme));
+    this.changeColor(actualTheme);
+  },
+  mounted() {
+    this.detectMobile();
+    window.addEventListener('resize', this.detectMobile);
+  },
   methods: {
     toggleList() {
       this.opened = !this.opened;
@@ -109,15 +118,6 @@ export default {
       const width = (window.innerWidth > 0) ? window.innerWidth : document.documentElement.clientWidth;
       this.opened = width <= 768;
     },
-  },
-  mounted() {
-    this.detectMobile();
-    window.addEventListener('resize', this.detectMobile);
-  },
-  created() {
-    const storageTheme = process.isClient ? !localStorage.getItem('theme') : 1;
-    const actualTheme = this.colors.find(item => item.id === Number(storageTheme));
-    this.changeColor(actualTheme);
   },
 };
 </script>
