@@ -8,10 +8,11 @@
           <span class="blogPost__date">{{ $page.Post.date_published }}</span>
           <span class="blogPost__category">{{ $page.Post.category }}</span>
         </div>
-        <g-image v-if="$page.Post.image"
-                 :alt="$page.Post.image_alt"
-                 :src="$page.Post.image"
-                 class="blogPost__image" />
+        <g-image
+          v-if="$page.Post.image"
+          :alt="$page.Post.image_alt"
+          :src="$page.Post.image"
+          class="blogPost__image" />
         <div class="blogPost__content" v-html="$page.Post.content"></div>
       </article>
     </section>
@@ -292,6 +293,7 @@ export default {
 }
 </style>
 
+<!--language=GRAPHQL-->
 <page-query>
 query blogPost ($id: ID!) {
   Post: blogPost(id: $id) {
@@ -308,10 +310,11 @@ query blogPost ($id: ID!) {
 }
 </page-query>
 
+<!--language=GRAPHQL-->
 <static-query>
 query {
   metadata {
-   siteUrl
+    siteUrl
   }
 }
 </static-query>
