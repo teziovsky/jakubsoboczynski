@@ -27,6 +27,7 @@ export default {
 };
 </script>
 
+<!--language=GRAPHQL-->
 <page-query>
 query {
   aboutMe: allAboutMe(sortBy: "id", order: ASC) {

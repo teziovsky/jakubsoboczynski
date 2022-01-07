@@ -7,6 +7,7 @@ src/.temp
 # Blog
 /blog/.obsidian/
 /blog/templates/
+/blog/.obsidian
 
 # local env files
 .env

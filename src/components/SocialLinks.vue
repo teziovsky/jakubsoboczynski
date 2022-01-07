@@ -1,14 +1,16 @@
 <template>
   <ul v-if="$static.Links.edges.length" class="socialLinks">
-    <li v-for="link in $static.Links.edges"
-        :key="link.node.id"
-        class="socialLinks__item">
-      <a :aria-label="link.node.title"
-         :href="link.node.url"
-         class="socialLinks__link"
-         rel="noreferrer nofollow noopener"
-         target="_blank"
-         v-html="link.node.image">
+    <li
+      v-for="link in $static.Links.edges"
+      :key="link.node.id"
+      class="socialLinks__item">
+      <a
+        :aria-label="link.node.title"
+        :href="link.node.url"
+        class="socialLinks__link"
+        rel="noreferrer nofollow noopener"
+        target="_blank"
+        v-html="link.node.image">
       </a>
     </li>
   </ul>
@@ -69,6 +71,7 @@ export default {
 }
 </style>
 
+<!--language=GRAPHQL-->
 <static-query>
 query {
   Links: allLinks(sortBy: "id", order: ASC) {

@@ -3,11 +3,12 @@
     <h2 class="sectionHeader">Kontakt</h2>
     <p class="contact__description" v-html="contact[0].node.description"></p>
     <div class="contact__button">
-      <a aria-label="Wyślij e-maila na adres kontakt@jakubsoboczynski.pl"
-         class="button"
-         href="mailto:kontakt@jakubsoboczynski.pl"
-         rel="noreferrer nofollow noopener"
-         target="_blank">
+      <a
+        aria-label="Wyślij e-maila na adres kontakt@jakubsoboczynski.pl"
+        class="button"
+        href="mailto:kontakt@jakubsoboczynski.pl"
+        rel="noreferrer nofollow noopener"
+        target="_blank">
         Cześć
       </a>
     </div>

@@ -2,24 +2,27 @@
   <section v-if="aboutMe.length" id="o_mnie" class="aboutMe">
     <h2 class="sectionHeader">O mnie</h2>
     <div class="aboutMe__wrapper">
-      <g-image alt="Moje zdjęcie profilowe"
-               class="aboutMe__image"
-               src="../assets/images/profile.webp" />
+      <g-image
+        alt="Moje zdjęcie profilowe"
+        class="aboutMe__image"
+        src="../assets/images/profile.webp" />
     </div>
     <div class="aboutMe__categories">
-      <button v-for="category in aboutMe"
-              :key="category.node.id"
-              :aria-label="'Wyświetl treść kategorii - ' + category.node.title"
-              :class="{'active': active === category.node.id}"
-              class="aboutMe__category"
-              @click="active = category.node.id">{{ category.node.title }}
+      <button
+        v-for="category in aboutMe"
+        :key="category.node.id"
+        :aria-label="'Wyświetl treść kategorii - ' + category.node.title"
+        :class="{'active': active === category.node.id}"
+        class="aboutMe__category"
+        @click="active = category.node.id">{{ category.node.title }}
       </button>
     </div>
     <transition mode="out-in" name="shrink">
-      <p v-if="selectedDescription"
-         :key="selectedDescription.node.id"
-         class="aboutMe__description"
-         v-html="selectedDescription.node.description"></p>
+      <p
+        v-if="selectedDescription"
+        :key="selectedDescription.node.id"
+        class="aboutMe__description"
+        v-html="selectedDescription.node.description"></p>
     </transition>
   </section>
 </template>

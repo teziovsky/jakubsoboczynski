@@ -1,10 +1,11 @@
 <template>
   <ul class="pageProgress">
     <li v-for="section in sections" class="pageProgress__element">
-      <a v-smooth-scroll
-         :data-section="section.id"
-         :href="'#' + section.id"
-         class="pageProgress__link">
+      <a
+        v-smooth-scroll
+        :data-section="section.id"
+        :href="'#' + section.id"
+        class="pageProgress__link">
         <span class="sr-only">Przejdź do sekcji {{ section.id | splitString('_', ' ') }}</span>
       </a>
     </li>
