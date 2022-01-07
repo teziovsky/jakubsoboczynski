@@ -109,7 +109,7 @@ export default {
     },
     changeColor({ id, codes }) {
       this.activeColor = id;
-      const root = document.documentElement;
+      const root = process.isClient ? document.documentElement : false;
 
       Object.entries(codes).forEach(([key, value]) => {
         const property = '--' + key.split(/(?=[A-Z])/).join('-').toLowerCase();
