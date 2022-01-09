@@ -10,6 +10,9 @@
 <script>
 export default {
   name: '404',
+  metaInfo: {
+    title: 'Error',
+  },
 };
 </script>
 
