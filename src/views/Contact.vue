@@ -4,9 +4,9 @@
     <p class="contact__description" v-html="contact[0].node.description"></p>
     <div class="contact__button">
       <a
-        aria-label="Wyślij e-maila na adres kontakt@jakubsoboczynski.pl"
+        aria-label="Wyślij e-maila na adres jakub.soboczynski@icloud.com"
         class="button"
-        href="mailto:kontakt@jakubsoboczynski.pl"
+        href="mailto:jakub.soboczynski@icloud.com"
         rel="noreferrer nofollow noopener"
         target="_blank">
         Cześć
