@@ -2,15 +2,26 @@
   "name": "jakubsoboczynski",
   "version": "1.0.0",
   "description": "My own website.",
-  "author": "Jakub Soboczyński",
+  "homepage": "https://www.jakubsoboczynski.pl/",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/teziovsky/jakubsoboczynski.git"
+    "url": "git@github.com:teziovsky/jakubsoboczynski.git"
+  },
+  "engines": {
+    "node": ">=v14.0.0",
+    "npm": ">=v6.0.0"
+  },
+  "bugs": {
+    "url": "https://github.com/teziovsky/jakubsoboczynski/issues",
+    "email": "teziovsky@gmail.com"
+  },
+  "license": "MIT License",
+  "author": {
+    "name": "Jakub Soboczyński",
+    "email": "jakub.soboczynski@icloud.com",
+    "url": "https://www.jakubsoboczynski.pl"
   },
   "private": true,
-  "bugs": {
-    "url": "https://github.com/teziovsky/jakubsoboczynski/issues"
-  },
   "scripts": {
     "build": "gridsome build",
     "develop": "gridsome develop",
