@@ -26,6 +26,7 @@
     "build": "gridsome build",
     "develop": "gridsome develop",
     "explore": "gridsome explore",
+    "postversion": "git push && git push --tags",
     "prepare": "husky install"
   },
   "dependencies": {
