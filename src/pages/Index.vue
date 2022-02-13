@@ -8,15 +8,15 @@
 </template>
 
 <script>
-import Hero from '~/views/Hero.vue';
-import AboutMe from '~/views/AboutMe.vue';
-import Projects from '~/views/Projects.vue';
-import Contact from '~/views/Contact.vue';
+import Hero from "~/views/Hero.vue";
+import AboutMe from "~/views/AboutMe.vue";
+import Projects from "~/views/Projects.vue";
+import Contact from "~/views/Contact.vue";
 
 export default {
-  name: 'Homepage',
+  name: "Homepage",
   metaInfo: {
-    title: 'Hello!',
+    title: "Hello!",
   },
   components: {
     Hero,

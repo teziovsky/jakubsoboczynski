@@ -18,14 +18,15 @@
     <SocialLinks />
     <ColorChanger />
     <div class="footer__copyrights">
-      <p>© {{ actualYear }}
+      <p>
+        © {{ actualYear }}
         <a
           aria-label="Przejdź do konta Teziovsky w serwisie GitHub.pl"
           class="link"
           href="https://www.github.com/teziovsky"
           rel="noreferrer nofollow noopener"
-          target="_blank">Jakub
-          Soboczyński
+          target="_blank"
+          >Jakub Soboczyński
         </a>
       </p>
       <svg
@@ -47,11 +48,11 @@
 </template>
 
 <script>
-import SocialLinks from '~/components/SocialLinks.vue';
-import ColorChanger from './ColorChanger.vue';
+import SocialLinks from "~/components/SocialLinks.vue";
+import ColorChanger from "./ColorChanger.vue";
 
 export default {
-  name: 'Footer',
+  name: "Footer",
   components: {
     SocialLinks,
     ColorChanger,

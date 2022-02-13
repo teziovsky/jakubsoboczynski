@@ -25,7 +25,8 @@
   "scripts": {
     "build": "gridsome build",
     "develop": "gridsome develop",
-    "explore": "gridsome explore"
+    "explore": "gridsome explore",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@gridsome/source-airtable": "0.2.0",
@@ -38,9 +39,15 @@
     "vue2-smooth-scroll": "^1.5.1"
   },
   "devDependencies": {
+    "husky": "^7.0.4",
+    "lint-staged": "^12.3.4",
+    "prettier": "^2.5.1",
     "sass": "^1.41.1",
     "sass-loader": "^10.2.0",
     "style-resources-loader": "^1.4.1",
     "vue-svg-loader": "^0.16.0"
+  },
+  "lint-staged": {
+    "*.{vue,js,jsx,ts,tsx,css,md}": "prettier --write"
   }
 }

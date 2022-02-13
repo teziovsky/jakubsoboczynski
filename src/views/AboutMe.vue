@@ -2,19 +2,17 @@
   <section v-if="aboutMe.length" id="o_mnie" class="aboutMe">
     <h2 class="sectionHeader">O mnie</h2>
     <div class="aboutMe__wrapper">
-      <g-image
-        alt="Moje zdjęcie profilowe"
-        class="aboutMe__image"
-        src="../assets/images/profile.webp" />
+      <g-image alt="Moje zdjęcie profilowe" class="aboutMe__image" src="../assets/images/profile.webp" />
     </div>
     <div class="aboutMe__categories">
       <button
         v-for="category in aboutMe"
         :key="category.node.id"
         :aria-label="'Wyświetl treść kategorii - ' + category.node.title"
-        :class="{'active': active === category.node.id}"
+        :class="{ active: active === category.node.id }"
         class="aboutMe__category"
-        @click="active = category.node.id">{{ category.node.title }}
+        @click="active = category.node.id">
+        {{ category.node.title }}
       </button>
     </div>
     <transition mode="out-in" name="shrink">
@@ -29,18 +27,18 @@
 
 <script>
 export default {
-  name: 'AboutMe',
+  name: "AboutMe",
   props: {
     aboutMe: Array,
   },
   data() {
     return {
-      active: '1',
+      active: "1",
     };
   },
   computed: {
     selectedDescription() {
-      if (this.aboutMe.length && this.active) return this.aboutMe.find(item => item.node.id === this.active);
+      if (this.aboutMe.length && this.active) return this.aboutMe.find((item) => item.node.id === this.active);
     },
   },
   mounted() {
@@ -82,7 +80,8 @@ export default {
     text-transform: capitalize;
     color: var(--font-color);
     padding: 12px 22px;
-    transition: box-shadow var(--transition-duration) var(--transition-timing-function), color var(--transition-duration) var(--transition-timing-function);
+    transition: box-shadow var(--transition-duration) var(--transition-timing-function),
+      color var(--transition-duration) var(--transition-timing-function);
 
     @include hover {
       color: var(--third-color);
@@ -90,7 +89,7 @@ export default {
     }
 
     &:after {
-      content: '';
+      content: "";
       position: absolute;
       bottom: 0;
       left: 50%;
@@ -99,7 +98,8 @@ export default {
       opacity: 0;
       background-color: var(--third-color);
       transform: translateX(-50%);
-      transition: opacity 0.8s var(--transition-timing-function), background var(--transition-duration) var(--transition-timing-function);
+      transition: opacity 0.8s var(--transition-timing-function),
+        background var(--transition-duration) var(--transition-timing-function);
     }
 
     &.active {

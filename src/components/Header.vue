@@ -5,28 +5,28 @@
         v-if="$route.name === 'home'"
         aria-label="Pokaż/Ukryj nawigację serwisu"
         class="nav__burger"
-        @click="toggleMenu"><span></span></button>
+        @click="toggleMenu">
+        <span></span>
+      </button>
       <div v-if="$route.name === 'home'" class="nav__wrapper">
-        <a
-          v-smooth-scroll
-          aria-label="Przejdź do sekcji o mnie"
-          class="nav__link link"
-          href="#o_mnie"
-          @click="hideMenu">o mnie
+        <a v-smooth-scroll aria-label="Przejdź do sekcji o mnie" class="nav__link link" href="#o_mnie" @click="hideMenu"
+          >o mnie
         </a>
         <a
           v-smooth-scroll
           aria-label="Przejdź do sekcji projekty"
           class="nav__link link"
           href="#projekty"
-          @click="hideMenu">projekty
+          @click="hideMenu"
+          >projekty
         </a>
         <a
           v-smooth-scroll
           aria-label="Przejdź do sekcji kontakt"
           class="nav__link link"
           href="#kontakt"
-          @click="hideMenu">kontakt
+          @click="hideMenu"
+          >kontakt
         </a>
       </div>
       <!--      <g-link :aria-label="$route.name === 'home' ?  'Przejdź do bloga' : 'Przejdź do portfolio'"-->
@@ -53,37 +53,37 @@
 
 <script>
 export default {
-  name: 'Header',
+  name: "Header",
   mounted() {
     this.detectMobile();
-    window.addEventListener('resize', this.detectMobile);
+    window.addEventListener("resize", this.detectMobile);
   },
   methods: {
     detectMobile() {
-      const width = (window.innerWidth > 0) ? window.innerWidth : document.documentElement.clientWidth;
-      const nav = document.querySelector('.nav__wrapper');
+      const width = window.innerWidth > 0 ? window.innerWidth : document.documentElement.clientWidth;
+      const nav = document.querySelector(".nav__wrapper");
       if (width > 768) {
-        if (nav) nav.classList.remove('mobile');
+        if (nav) nav.classList.remove("mobile");
         this.hideMenu();
       } else {
-        if (nav) nav.classList.add('mobile');
+        if (nav) nav.classList.add("mobile");
       }
     },
     toggleMenu() {
-      const wrapper = document.querySelector('.nav__wrapper');
-      if (wrapper) wrapper.classList.toggle('opened');
-      const burger = document.querySelector('.nav__burger');
-      if (burger) burger.classList.toggle('opened');
-      const body = document.querySelector('body');
-      if (body) body.classList.toggle('opened');
+      const wrapper = document.querySelector(".nav__wrapper");
+      if (wrapper) wrapper.classList.toggle("opened");
+      const burger = document.querySelector(".nav__burger");
+      if (burger) burger.classList.toggle("opened");
+      const body = document.querySelector("body");
+      if (body) body.classList.toggle("opened");
     },
     hideMenu() {
-      const wrapper = document.querySelector('.nav__wrapper');
-      if (wrapper) wrapper.classList.remove('opened');
-      const burger = document.querySelector('.nav__burger');
-      if (burger) burger.classList.remove('opened');
-      const body = document.querySelector('body');
-      if (body) body.removeAttribute('class');
+      const wrapper = document.querySelector(".nav__wrapper");
+      if (wrapper) wrapper.classList.remove("opened");
+      const burger = document.querySelector(".nav__burger");
+      if (burger) burger.classList.remove("opened");
+      const body = document.querySelector("body");
+      if (body) body.removeAttribute("class");
     },
   },
 };
@@ -131,7 +131,7 @@ export default {
 
         &:before,
         &:after {
-          content: '';
+          content: "";
           position: absolute;
           left: 0;
           width: 100%;

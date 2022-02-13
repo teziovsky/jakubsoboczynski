@@ -2,10 +2,7 @@
   <div class="projectCard">
     <h3 v-if="project.title" class="projectCard__title">{{ project.title }}</h3>
     <div v-if="project.image[0].url" class="projectCard__wrapper">
-      <g-image
-        :alt="project.imageAlt"
-        :src="project.image[0].url"
-        class="projectCard__image" />
+      <g-image :alt="project.imageAlt" :src="project.image[0].url" class="projectCard__image" />
     </div>
     <a
       v-if="project.source"
@@ -26,7 +23,8 @@
     <div v-if="project.description || project.technologies" class="projectCard__info">
       <p v-if="project.description" class="projectCard__description">{{ project.description }}</p>
       <p v-if="project.technologies" class="projectCard__technologies">
-        {{ project.technologies | splitString(',', '   ') }}</p>
+        {{ project.technologies | splitString(",", "   ") }}
+      </p>
     </div>
     <a
       v-if="project.demo"
@@ -49,7 +47,7 @@
 
 <script>
 export default {
-  name: 'ProjectCard',
+  name: "ProjectCard",
   props: {
     project: Object,
   },
@@ -140,7 +138,7 @@ export default {
     padding-top: 15px;
 
     &:before {
-      content: '';
+      content: "";
       position: absolute;
       top: 0;
       left: 50%;

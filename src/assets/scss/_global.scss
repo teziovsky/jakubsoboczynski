@@ -80,7 +80,7 @@ img {
   padding-bottom: 30px;
 
   &:after {
-    content: '';
+    content: "";
     position: absolute;
     bottom: 0;
     left: 50%;
@@ -106,7 +106,7 @@ img {
   text-transform: uppercase;
   color: var(--third-color);
   border: 1px solid transparent;
-  outline: 1px solid rgba(var(--third-color-rgb), .5);
+  outline: 1px solid rgba(var(--third-color-rgb), 0.5);
   outline-offset: 0;
   padding: 12px 22px;
   text-shadow: none;
@@ -129,7 +129,7 @@ img {
   -webkit-text-fill-color: transparent;
 
   &:after {
-    content: '';
+    content: "";
     position: absolute;
     bottom: 0;
     left: 50%;
@@ -138,7 +138,9 @@ img {
     opacity: 0;
     background-color: var(--third-color);
     transform: translateX(-50%);
-    transition: background var(--transition-duration) var(--transition-timing-function), transform var(--transition-duration) 0.5s var(--transition-timing-function), opacity var(--transition-duration) 0.5s var(--transition-timing-function);
+    transition: background var(--transition-duration) var(--transition-timing-function),
+      transform var(--transition-duration) 0.5s var(--transition-timing-function),
+      opacity var(--transition-duration) 0.5s var(--transition-timing-function);
   }
 
   @include hover {

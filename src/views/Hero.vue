@@ -25,7 +25,7 @@
 
 <script>
 export default {
-  name: 'Hero',
+  name: "Hero",
 };
 </script>
 
@@ -62,7 +62,7 @@ export default {
     padding-bottom: 30px;
 
     &:after {
-      content: '';
+      content: "";
       position: absolute;
       bottom: 0;
       left: 50%;
@@ -116,7 +116,8 @@ export default {
       white-space: nowrap;
       color: var(--font-color);
       transform: translateX(-50%);
-      transition: opacity var(--transition-duration) var(--transition-timing-function), color var(--transition-duration) var(--transition-timing-function), top 0.45s ease-out;
+      transition: opacity var(--transition-duration) var(--transition-timing-function),
+        color var(--transition-duration) var(--transition-timing-function), top 0.45s ease-out;
     }
   }
 
