@@ -1,12 +1,8 @@
 <template>
   <ul class="pageProgress">
     <li v-for="section in sections" class="pageProgress__element">
-      <a
-        v-smooth-scroll
-        :data-section="section.id"
-        :href="'#' + section.id"
-        class="pageProgress__link">
-        <span class="sr-only">Przejdź do sekcji {{ section.id | splitString('_', ' ') }}</span>
+      <a v-smooth-scroll :data-section="section.id" :href="'#' + section.id" class="pageProgress__link">
+        <span class="sr-only">Przejdź do sekcji {{ section.id | splitString("_", " ") }}</span>
       </a>
     </li>
   </ul>
@@ -14,14 +10,14 @@
 
 <script>
 export default {
-  name: 'PageProgress',
+  name: "PageProgress",
   data() {
     return {
       sections: [],
     };
   },
   mounted() {
-    this.sections = document.querySelectorAll('section');
+    this.sections = document.querySelectorAll("section");
   },
 };
 </script>
@@ -45,7 +41,7 @@ export default {
     transition: transform var(--transition-duration) var(--transition-timing-function);
 
     &:before {
-      content: '';
+      content: "";
       position: absolute;
       top: 50%;
       left: 50%;
@@ -54,7 +50,7 @@ export default {
       border: 2px solid var(--font-color);
       border-radius: 100%;
       transform: translate(-50%, -50%);
-      transition: border var(--transition-duration) var(--transition-timing-function),;
+      transition: border var(--transition-duration) var(--transition-timing-function);
     }
 
     @include hover {

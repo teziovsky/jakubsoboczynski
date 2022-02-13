@@ -25,7 +25,8 @@
 // SLIDE BOTTOM
 .slide-bottom-enter-active,
 .slide-bottom-leave-active {
-  transition: transform 1.5s 0.75s var(--transition-timing-function), opacity 1.5s 0.75s var(--transition-timing-function);
+  transition: transform 1.5s 0.75s var(--transition-timing-function),
+    opacity 1.5s 0.75s var(--transition-timing-function);
 }
 
 .slide-bottom-enter,

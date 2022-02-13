@@ -1,9 +1,6 @@
 <template>
   <ul v-if="$static.Links.edges.length" class="socialLinks">
-    <li
-      v-for="link in $static.Links.edges"
-      :key="link.node.id"
-      class="socialLinks__item">
+    <li v-for="link in $static.Links.edges" :key="link.node.id" class="socialLinks__item">
       <a
         :aria-label="link.node.title"
         :href="link.node.url"
@@ -18,7 +15,7 @@
 
 <script>
 export default {
-  name: 'SocialLinks',
+  name: "SocialLinks",
 };
 </script>
 

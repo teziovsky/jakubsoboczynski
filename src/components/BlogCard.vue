@@ -1,11 +1,7 @@
 <template>
   <g-link :aria-label="'Przejdź do artykułu: ' + post.node.title" :to="post.node.path" class="blogCard">
     <div class="blogCard__wrapper">
-      <g-image
-        v-if="post.node.image"
-        :alt="post.node.image_alt"
-        :src="post.node.image"
-        class="blogCard__image" />
+      <g-image v-if="post.node.image" :alt="post.node.image_alt" :src="post.node.image" class="blogCard__image" />
       <svg
         v-else
         class="blogCard__logo"
@@ -34,7 +30,7 @@
 
 <script>
 export default {
-  name: 'BlogCard',
+  name: "BlogCard",
   props: {
     post: Object,
   },
@@ -56,14 +52,14 @@ export default {
   @include hover {
     box-shadow: 0 2px 0 rgba(var(--third-color-rgb), 0.5);
     transform: scale(1.05) translateY(-10px);
-
   }
 
   &__wrapper {
     background-color: var(--secondary-color);
     @include flex-center;
     border-bottom: 2px solid rgba(var(--third-color-rgb), 0.5);
-    transition: background var(--transition-duration) var(--transition-timing-function), border var(--transition-duration) var(--transition-timing-function);
+    transition: background var(--transition-duration) var(--transition-timing-function),
+      border var(--transition-duration) var(--transition-timing-function);
     aspect-ratio: 1.8;
   }
 

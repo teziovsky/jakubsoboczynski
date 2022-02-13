@@ -8,11 +8,7 @@
           <span class="blogPost__date">{{ $page.Post.date_published }}</span>
           <span class="blogPost__category">{{ $page.Post.category }}</span>
         </div>
-        <g-image
-          v-if="$page.Post.image"
-          :alt="$page.Post.image_alt"
-          :src="$page.Post.image"
-          class="blogPost__image" />
+        <g-image v-if="$page.Post.image" :alt="$page.Post.image_alt" :src="$page.Post.image" class="blogPost__image" />
         <div class="blogPost__content" v-html="$page.Post.content"></div>
       </article>
     </section>
@@ -20,10 +16,10 @@
 </template>
 
 <script>
-import Breadcrumbs from '~/components/Breadcrumbs.vue';
+import Breadcrumbs from "~/components/Breadcrumbs.vue";
 
 export default {
-  name: 'Post',
+  name: "Post",
   components: {
     Breadcrumbs,
   },
@@ -32,45 +28,45 @@ export default {
       title: this.$page.Post.title,
       meta: [
         {
-          name: 'author',
-          content: 'Jakub Soboczyński',
+          name: "author",
+          content: "Jakub Soboczyński",
         },
         {
-          name: 'description',
+          name: "description",
           content: this.$page.Post.short,
         },
         {
-          name: 'twitter:title',
+          name: "twitter:title",
           content: this.$page.Post.title,
         },
         {
-          name: 'twitter:description',
+          name: "twitter:description",
           content: this.$page.Post.short,
         },
         {
-          name: 'twitter:card',
-          content: 'summary_large_image',
+          name: "twitter:card",
+          content: "summary_large_image",
         },
         {
-          name: 'twitter:creator',
-          content: '@teziovsky',
+          name: "twitter:creator",
+          content: "@teziovsky",
         },
         {
-          name: 'og:title',
+          name: "og:title",
           content: this.$page.Post.title,
         },
         {
-          name: 'og:description',
+          name: "og:description",
           content: this.$page.Post.short,
         },
         {
-          name: 'og:image',
+          name: "og:image",
           content: this.$page.Post.image,
         },
       ],
       link: [
         {
-          rel: 'canonical',
+          rel: "canonical",
           content: this.$static.metadata.siteUrl + this.$page.Post.path,
         },
       ],
