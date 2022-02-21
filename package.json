@@ -50,5 +50,9 @@
   },
   "lint-staged": {
     "*.{vue,js,jsx,ts,tsx,css,md}": "prettier --write"
+  },
+  "volta": {
+    "node": "16.14.0",
+    "npm": "8.5.1"
   }
 }
