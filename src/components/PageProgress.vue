@@ -1,6 +1,6 @@
 <template>
   <ul class="pageProgress">
-    <li v-for="section in sections" class="pageProgress__element">
+    <li v-for="section in sections" ref="circle" class="pageProgress__element">
       <a v-smooth-scroll :data-section="section.id" :href="'#' + section.id" class="pageProgress__link">
         <span class="sr-only">Przejdź do sekcji {{ section.id | splitString("_", " ") }}</span>
       </a>
@@ -9,15 +9,34 @@
 </template>
 
 <script>
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
 export default {
   name: "PageProgress",
   data() {
     return {
       sections: [],
+      circles: [],
     };
   },
   mounted() {
+    gsap.registerPlugin(ScrollTrigger);
     this.sections = document.querySelectorAll("section");
+    this.$nextTick(() => {
+      this.circles = document.querySelectorAll(".pageProgress__link");
+      this.circles.forEach((circle, index) => {
+        gsap.to(circle, {
+          backgroundColor: `rgba(${document.documentElement.style.getPropertyValue("--third-color-rgb")}, 0.3)`,
+          scrollTrigger: {
+            trigger: this.sections[index],
+            start: "-450px top",
+            end: "-250px top",
+            scrub: true,
+          },
+        });
+      });
+    });
   },
 };
 </script>
@@ -33,32 +52,30 @@ export default {
   align-items: center;
   row-gap: 40px;
 
-  &__link {
-    position: relative;
+  &__element {
     width: 30px;
     height: 30px;
-    display: block;
-    transition: transform var(--transition-duration) var(--transition-timing-function);
+    padding: 3px;
+  }
 
-    &:before {
-      content: "";
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 20px;
-      height: 20px;
-      border: 2px solid var(--font-color);
-      border-radius: 100%;
-      transform: translate(-50%, -50%);
-      transition: border var(--transition-duration) var(--transition-timing-function);
+  &__link {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: block;
+    border: 2px solid var(--font-color);
+    border-radius: 50%;
+    transition: border var(--transition-duration) var(--transition-timing-function),
+      transform var(--transition-duration) var(--transition-timing-function);
+
+    &.hover {
+      border-color: var(--third-color);
+      transform: scale(1.12) translateY(-5px);
     }
 
     @include hover {
+      border-color: var(--third-color);
       transform: scale(1.12) translateY(-5px);
-
-      &:before {
-        border-color: var(--third-color);
-      }
     }
   }
 }
