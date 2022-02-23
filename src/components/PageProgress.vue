@@ -22,17 +22,19 @@ export default {
   },
   mounted() {
     gsap.registerPlugin(ScrollTrigger);
+
     this.sections = document.querySelectorAll("section");
+
     this.$nextTick(() => {
-      this.circles = document.querySelectorAll(".pageProgress__link");
-      this.circles.forEach((circle, index) => {
-        gsap.to(circle, {
+      gsap.utils.toArray(".pageProgress__link").forEach((element, index) => {
+        gsap.to(element, {
           backgroundColor: `rgba(${document.documentElement.style.getPropertyValue("--third-color-rgb")}, 0.3)`,
+          ease: "none",
           scrollTrigger: {
             trigger: this.sections[index],
-            start: "-450px top",
-            end: "-250px top",
-            scrub: true,
+            start: "top 30%",
+            end: "bottom 30%",
+            toggleActions: "play reverse play reverse",
           },
         });
       });
