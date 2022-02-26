@@ -35,7 +35,6 @@ export default {
             start: "top 45%",
             end: "bottom 45%",
             toggleActions: "play reverse play reverse",
-            markers: true,
           },
         });
       });
