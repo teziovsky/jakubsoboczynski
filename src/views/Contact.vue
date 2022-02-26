@@ -26,7 +26,7 @@ export default {
 
 <style lang="scss" scoped>
 .contact {
-  padding: 50px 0 clamp(3.75rem, 2.83536586rem + 3.902439vw, 6.25rem);
+  padding: 100px 0 clamp(3.75rem, 2.83536586rem + 3.902439vw, 6.25rem);
 
   &__description {
     max-width: 700px;
