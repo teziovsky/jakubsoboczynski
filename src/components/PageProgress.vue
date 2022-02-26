@@ -32,9 +32,10 @@ export default {
           ease: "none",
           scrollTrigger: {
             trigger: this.sections[index],
-            start: "top 30%",
-            end: "bottom 30%",
+            start: "top 45%",
+            end: "bottom 45%",
             toggleActions: "play reverse play reverse",
+            markers: true,
           },
         });
       });
