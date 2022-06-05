@@ -1,13 +1,18 @@
 <template>
   <div class="projectCard">
-    <h3 v-if="project.title" class="projectCard__title">{{ project.title }}</h3>
-    <div v-if="project.image[0].url" class="projectCard__wrapper">
-      <g-image :alt="project.imageAlt" :src="project.image[0].url" class="projectCard__image" />
+    <h3 v-if="project.properties.title.title[0].text.content" class="projectCard__title">
+      {{ project.properties.title.title[0].text.content }}
+    </h3>
+    <div v-if="project.properties.image.files[0].file.url" class="projectCard__wrapper">
+      <g-image
+        :alt="project.properties.image_alt.rich_text[0].text.content"
+        :src="project.properties.image.files[0].file.url"
+        class="projectCard__image" />
     </div>
     <a
-      v-if="project.source"
-      :aria-label="'Przejdź do plików źródłowych projektu - ' + project.title"
-      :href="project.source"
+      v-if="project.properties.source.url"
+      :aria-label="'Przejdź do plików źródłowych projektu - ' + project.properties.title.title[0].text.content"
+      :href="project.properties.source.url"
       class="projectCard__source"
       rel="noreferrer nofollow noopener"
       target="_blank">
@@ -20,16 +25,22 @@
           stroke-width="2" />
       </svg>
     </a>
-    <div v-if="project.description || project.technologies" class="projectCard__info">
-      <p v-if="project.description" class="projectCard__description">{{ project.description }}</p>
-      <p v-if="project.technologies" class="projectCard__technologies">
-        {{ project.technologies | splitString(",", "   ") }}
+    <div
+      v-if="
+        project.properties.description.rich_text[0].text.content || project.properties.technologies.multi_select.length
+      "
+      class="projectCard__info">
+      <p v-if="project.properties.description.rich_text[0].text.content" class="projectCard__description">
+        {{ project.properties.description.rich_text[0].text.content }}
+      </p>
+      <p v-if="project.properties.technologies.multi_select.length" class="projectCard__technologies">
+        {{ joinArray(project.properties.technologies.multi_select, " ") }}
       </p>
     </div>
     <a
-      v-if="project.demo"
-      :aria-label="'Przejdź do prezentacji projektu - ' + project.title"
-      :href="project.demo"
+      v-if="project.properties.demo.url"
+      :aria-label="'Przejdź do prezentacji projektu - ' + project.properties.title.title[0].text.content"
+      :href="project.properties.demo.url"
       class="projectCard__demo"
       rel="noreferrer nofollow noopener"
       target="_blank">
@@ -50,6 +61,11 @@ export default {
   name: "ProjectCard",
   props: {
     project: Object,
+  },
+  methods: {
+    joinArray(value, join) {
+      return value.map((item) => item.name).join(join);
+    },
   },
 };
 </script>

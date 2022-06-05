@@ -1,7 +1,7 @@
 <template>
   <section v-if="contact.length" id="kontakt" class="contact">
     <h2 class="sectionHeader">Kontakt</h2>
-    <p class="contact__description" v-html="contact[0].node.description"></p>
+    <p class="contact__description" v-html="contact[0].node.properties.description.title[0].text.content"></p>
     <div class="contact__button">
       <a
         aria-label="Wyślij e-maila na adres jakub.soboczynski@icloud.com"

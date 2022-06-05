@@ -24,10 +24,10 @@
 </template>
 
 <script>
-import Header from "~/components/Header.vue";
-import SocialLinks from "~/components/SocialLinks.vue";
-import PageProgress from "~/components/PageProgress.vue";
 import Footer from "~/components/Footer.vue";
+import Header from "~/components/Header.vue";
+import PageProgress from "~/components/PageProgress.vue";
+import SocialLinks from "~/components/SocialLinks.vue";
 import ColorChanger from "../components/ColorChanger.vue";
 
 export default {

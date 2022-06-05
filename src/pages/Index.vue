@@ -8,12 +8,12 @@
 </template>
 
 <script>
-import Hero from "~/views/Hero.vue";
-import AboutMe from "~/views/AboutMe.vue";
-import Projects from "~/views/Projects.vue";
-import Contact from "~/views/Contact.vue";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import AboutMe from "~/views/AboutMe.vue";
+import Contact from "~/views/Contact.vue";
+import Hero from "~/views/Hero.vue";
+import Projects from "~/views/Projects.vue";
 
 export default {
   name: "Homepage",
@@ -60,36 +60,90 @@ export default {
 <!--language=GRAPHQL-->
 <page-query>
 query {
-  aboutMe: allAboutMe(sortBy: "id", order: ASC) {
+  aboutMe: allAboutMe(sortBy: "properties.sort.number", order: ASC) {
     edges {
       node {
         id
-        title
-        description
-      }
-    }
-  }
-  projects: allProjects(sortBy: "id", order: ASC) {
-    edges {
-      node {
-        id
-        title
-        description
-        technologies
-        source
-        demo
-        image {
-          url
+        properties {
+          title {
+            title {
+              text {
+                content
+              }
+            }
+          }
+          description {
+            rich_text {
+              text {
+                content
+              }
+            }
+          }
         }
-        imageAlt
       }
     }
   }
-  contact: allContact {
+  projects: allProjects(sortBy: "properties.sort.number", order: ASC) {
     edges {
       node {
         id
-        description
+        properties {
+          title {
+            title {
+              text {
+                content
+              }
+            }
+          }
+          description {
+            rich_text {
+              text {
+                content
+              }
+            }
+          }
+          technologies {
+            multi_select {
+              name
+            }
+          }
+          source {
+            url
+          }
+          demo {
+            url
+          }
+          image {
+            files {
+              file {
+                url
+              }
+            }
+          }
+          image_alt {
+            rich_text {
+              text {
+                content
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  contact: allContact(sortBy: "properties.sort.number", order: ASC) {
+    edges {
+      node {
+        id
+        properties {
+          description {
+            title {
+              text {
+                content
+              }
+            }
+          }
+        }
       }
     }
   }

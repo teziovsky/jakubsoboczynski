@@ -23,36 +23,39 @@ module.exports = {
       },
     },
     {
-      use: "@gridsome/source-airtable",
+      use: "gridsome-source-notion",
       options: {
-        apiKey: process.env.AIRTABLE_KEY,
-        baseId: process.env.AIRTABLE_BASE,
-        tables: [
-          {
-            name: "links",
-            typeName: "Links",
-            select: {},
-            links: [],
-          },
-          {
-            name: "about_me",
-            typeName: "AboutMe",
-            select: {},
-            links: [],
-          },
-          {
-            name: "projects",
-            typeName: "Projects",
-            select: {},
-            links: [],
-          },
-          {
-            name: "contact",
-            typeName: "Contact",
-            select: {},
-            links: [],
-          },
-        ],
+        notionKey: process.env.NOTION_INTEGRATION_SECRET,
+        notionToken: process.env.NOTION_TOKEN,
+        databaseId: process.env.NOTION_LINKS_ID,
+        typeName: "links",
+      },
+    },
+    {
+      use: "gridsome-source-notion",
+      options: {
+        notionKey: process.env.NOTION_INTEGRATION_SECRET,
+        notionToken: process.env.NOTION_TOKEN,
+        databaseId: process.env.NOTION_ABOUT_ME_ID,
+        typeName: "aboutMe",
+      },
+    },
+    {
+      use: "gridsome-source-notion",
+      options: {
+        notionKey: process.env.NOTION_INTEGRATION_SECRET,
+        notionToken: process.env.NOTION_TOKEN,
+        databaseId: process.env.NOTION_PROJECTS_ID,
+        typeName: "projects",
+      },
+    },
+    {
+      use: "gridsome-source-notion",
+      options: {
+        notionKey: process.env.NOTION_INTEGRATION_SECRET,
+        notionToken: process.env.NOTION_TOKEN,
+        databaseId: process.env.NOTION_CONTACT_ID,
+        typeName: "contact",
       },
     },
     {
@@ -66,7 +69,7 @@ module.exports = {
       options: {
         id: "GTM-58GTFS3",
         enabled: true,
-        debug: true,
+        debug: false,
       },
     },
   ],

@@ -2,7 +2,7 @@
   <ul class="pageProgress">
     <li v-for="section in sections" ref="circle" class="pageProgress__element">
       <a v-smooth-scroll :data-section="section.id" :href="'#' + section.id" class="pageProgress__link">
-        <span class="sr-only">Przejdź do sekcji {{ section.id | splitString("_", " ") }}</span>
+        <span class="sr-only">Przejdź do sekcji {{ splitString(section.id, "_", " ") }}</span>
       </a>
     </li>
   </ul>
@@ -19,6 +19,11 @@ export default {
       sections: [],
       circles: [],
     };
+  },
+  methods: {
+    splitString(value, split, join) {
+      return value.split(split).join(join);
+    },
   },
   mounted() {
     gsap.registerPlugin(ScrollTrigger);

@@ -25,8 +25,8 @@
           class="link"
           href="https://www.github.com/teziovsky"
           rel="noreferrer nofollow noopener"
-          target="_blank"
-          >Jakub Soboczyński
+          target="_blank">
+          Jakub Soboczyński
         </a>
       </p>
       <svg
