@@ -9,24 +9,29 @@
         <span></span>
       </button>
       <div v-if="$route.name === 'home'" class="nav__wrapper">
-        <a v-smooth-scroll aria-label="Przejdź do sekcji o mnie" class="nav__link link" href="#o_mnie" @click="hideMenu"
-          >o mnie
+        <a
+          v-smooth-scroll
+          aria-label="Przejdź do sekcji o mnie"
+          class="nav__link link"
+          href="#o_mnie"
+          @click="hideMenu">
+          o mnie
         </a>
         <a
           v-smooth-scroll
           aria-label="Przejdź do sekcji projekty"
           class="nav__link link"
           href="#projekty"
-          @click="hideMenu"
-          >projekty
+          @click="hideMenu">
+          projekty
         </a>
         <a
           v-smooth-scroll
           aria-label="Przejdź do sekcji kontakt"
           class="nav__link link"
           href="#kontakt"
-          @click="hideMenu"
-          >kontakt
+          @click="hideMenu">
+          kontakt
         </a>
       </div>
       <!--      <g-link :aria-label="$route.name === 'home' ?  'Przejdź do bloga' : 'Przejdź do portfolio'"-->

@@ -1,6 +1,6 @@
 {
   "name": "jakubsoboczynski",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "description": "My own website.",
   "homepage": "https://www.jakubsoboczynski.pl/",
   "repository": {
@@ -23,10 +23,10 @@
   },
   "private": true,
   "scripts": {
+    "dev": "gridsome develop",
     "build": "gridsome build",
-    "develop": "gridsome develop",
     "explore": "gridsome explore",
-    "clean": "rm -rf ./node_modules ./package-lock.json ./dist",
+    "clean": "rm -rf ./node_modules ./pnpm-lock.yaml ./package-lock.json ./.pnpm-debug.log ./dist",
     "postversion": "git push && git push --tags",
     "prepare": "husky install"
   },
@@ -38,6 +38,7 @@
     "gridsome-plugin-gtm": "^0.1.1",
     "gridsome-plugin-remark-prismjs-all": "^0.4.8",
     "gridsome-plugin-sass-resources-loader": "0.0.3",
+    "gridsome-source-notion": "^1.1.2",
     "gsap": "^3.9.1",
     "vue2-smooth-scroll": "^1.6.0"
   },

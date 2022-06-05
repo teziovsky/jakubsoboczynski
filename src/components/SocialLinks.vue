@@ -2,12 +2,12 @@
   <ul v-if="$static.Links.edges.length" class="socialLinks">
     <li v-for="link in $static.Links.edges" :key="link.node.id" class="socialLinks__item">
       <a
-        :aria-label="link.node.title"
-        :href="link.node.url"
+        :aria-label="link.node.properties.title.rich_text[0].text.content"
+        :href="link.node.properties.url.url"
         class="socialLinks__link"
         rel="noreferrer nofollow noopener"
         target="_blank"
-        v-html="link.node.image">
+        v-html="link.node.properties.image.rich_text[0].text.content">
       </a>
     </li>
   </ul>
@@ -71,14 +71,36 @@ export default {
 <!--language=GRAPHQL-->
 <static-query>
 query {
-  Links: allLinks(sortBy: "id", order: ASC) {
+  Links: allLinks(sortBy: "properties.sort.number", order: ASC) {
     edges {
       node {
         id
-        name
-        url
-        title
-        image
+        properties {
+          title {
+            rich_text {
+              text {
+                content
+              }
+            }
+          }
+          name {
+            title {
+              text {
+                content
+              }
+            }
+          }
+          url {
+            url
+          }
+          image {
+            rich_text {
+              text {
+                content
+              }
+            }
+          }
+        }
       }
     }
   }

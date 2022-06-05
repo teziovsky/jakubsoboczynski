@@ -24,8 +24,8 @@
 </template>
 
 <script>
-import Layout from "~/layouts/Default.vue";
 import BlogCard from "~/components/BlogCard.vue";
+import Layout from "~/layouts/Default.vue";
 
 export default {
   name: "Blog",

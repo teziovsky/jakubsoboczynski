@@ -8,11 +8,11 @@
       <button
         v-for="category in aboutMe"
         :key="category.node.id"
-        :aria-label="'Wyświetl treść kategorii - ' + category.node.title"
+        :aria-label="'Wyświetl treść kategorii - ' + category.node.properties.title.title[0].text.content"
         :class="{ active: active === category.node.id }"
         class="aboutMe__category"
         @click="active = category.node.id">
-        {{ category.node.title }}
+        {{ category.node.properties.title.title[0].text.content }}
       </button>
     </div>
     <transition mode="out-in" name="shrink">
@@ -20,7 +20,7 @@
         v-if="selectedDescription"
         :key="selectedDescription.node.id"
         class="aboutMe__description"
-        v-html="selectedDescription.node.description"></p>
+        v-html="selectedDescription.node.properties.description.rich_text[0].text.content"></p>
     </transition>
   </section>
 </template>
