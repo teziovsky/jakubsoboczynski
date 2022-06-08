@@ -14,8 +14,8 @@ collections:
     slug: "{{slug}}"
     fields:
       - { label: "Sort", name: "sort", widget: "number", value_type: "int" }
-      - { label: "Name", name: "name", widget: "string" }
       - { label: "Title", name: "title", widget: "string" }
+      - { label: "Button Title", name: "button_title", widget: "string" }
       - { label: "URL", name: "url", widget: "string" }
       - { label: "Icon", name: "icon", widget: "string" }
 
@@ -25,6 +25,7 @@ collections:
     create: true
     slug: "{{slug}}"
     fields:
+      - { label: "Sort", name: "sort", widget: "number", value_type: "int" }
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Description", name: "description", widget: "text" }
 
