@@ -1,7 +1,10 @@
 <template>
   <section v-if="projects.length" id="projekty" class="projects">
     <h2 class="sectionHeader">Projekty</h2>
-    <ProjectCard v-for="project in projects" :key="project.node.id" :project="project.node" />
+    <pre>
+      {{ projects }}
+    </pre>
+    <!--    <ProjectCard v-for="project in projects" :key="project.node.id" :project="project.node" />-->
   </section>
 </template>
 

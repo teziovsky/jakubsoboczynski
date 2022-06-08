@@ -17,45 +17,48 @@ module.exports = {
     {
       use: "@gridsome/source-filesystem",
       options: {
+        path: "content/social_links/*.md",
+        typeName: "SocialLinks",
+        remark: {},
+      },
+    },
+    {
+      use: "@gridsome/source-filesystem",
+      options: {
+        path: "content/about_me/*.md",
+        typeName: "AboutMe",
+        remark: {},
+      },
+    },
+    {
+      use: "@gridsome/source-filesystem",
+      options: {
+        path: "content/projects/*.md",
+        typeName: "Projects",
+        remark: {},
+      },
+    },
+    {
+      use: "@gridsome/source-filesystem",
+      options: {
+        path: "content/contact/*.md",
+        typeName: "Contact",
+        remark: {},
+      },
+    },
+    {
+      use: "@gridsome/source-filesystem",
+      options: {
         path: "blog/posts/**/*.md",
         typeName: "BlogPost",
         remark: {},
       },
     },
     {
-      use: "gridsome-source-notion",
+      use: `gridsome-plugin-netlify-cms`,
       options: {
-        notionKey: process.env.NOTION_INTEGRATION_SECRET,
-        notionToken: process.env.NOTION_TOKEN,
-        databaseId: process.env.NOTION_LINKS_ID,
-        typeName: "links",
-      },
-    },
-    {
-      use: "gridsome-source-notion",
-      options: {
-        notionKey: process.env.NOTION_INTEGRATION_SECRET,
-        notionToken: process.env.NOTION_TOKEN,
-        databaseId: process.env.NOTION_ABOUT_ME_ID,
-        typeName: "aboutMe",
-      },
-    },
-    {
-      use: "gridsome-source-notion",
-      options: {
-        notionKey: process.env.NOTION_INTEGRATION_SECRET,
-        notionToken: process.env.NOTION_TOKEN,
-        databaseId: process.env.NOTION_PROJECTS_ID,
-        typeName: "projects",
-      },
-    },
-    {
-      use: "gridsome-source-notion",
-      options: {
-        notionKey: process.env.NOTION_INTEGRATION_SECRET,
-        notionToken: process.env.NOTION_TOKEN,
-        databaseId: process.env.NOTION_CONTACT_ID,
-        typeName: "contact",
+        publicPath: `/admin`,
+        modulePath: `src/admin/index.js`,
       },
     },
     {

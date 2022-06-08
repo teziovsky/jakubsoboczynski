@@ -1,9 +1,9 @@
 <template>
   <Layout>
     <Hero />
-    <AboutMe :aboutMe="$page.aboutMe.edges" />
-    <Projects :projects="$page.projects.edges" />
-    <Contact :contact="$page.contact.edges" />
+    <!--    <AboutMe :aboutMe="$page.aboutMe.edges" />-->
+    <!--    <Projects :projects="$page.projects.edges" />-->
+    <!--    <Contact :contact="$page.contact.edges" />-->
   </Layout>
 </template>
 
@@ -58,94 +58,23 @@ export default {
 </script>
 
 <!--language=GRAPHQL-->
-<page-query>
-query {
-  aboutMe: allAboutMe(sortBy: "properties.sort.number", order: ASC) {
-    edges {
-      node {
-        id
-        properties {
-          title {
-            title {
-              text {
-                content
-              }
-            }
-          }
-          description {
-            rich_text {
-              text {
-                content
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-  projects: allProjects(sortBy: "properties.sort.number", order: ASC) {
-    edges {
-      node {
-        id
-        properties {
-          title {
-            title {
-              text {
-                content
-              }
-            }
-          }
-          description {
-            rich_text {
-              text {
-                content
-              }
-            }
-          }
-          technologies {
-            multi_select {
-              name
-            }
-          }
-          source {
-            url
-          }
-          demo {
-            url
-          }
-          image {
-            files {
-              file {
-                url
-              }
-            }
-          }
-          image_alt {
-            rich_text {
-              text {
-                content
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-  contact: allContact(sortBy: "properties.sort.number", order: ASC) {
-    edges {
-      node {
-        id
-        properties {
-          description {
-            title {
-              text {
-                content
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-}
-</page-query>
+<!--<page-query>-->
+<!--query {-->
+<!--  aboutMe: allAboutMe(sortBy: "properties.sort.number", order: ASC) {-->
+<!--    edges {-->
+<!--      node {-->
+<!--      }-->
+<!--    }-->
+<!--  }-->
+<!--  projects: allProjects(sortBy: "properties.sort.number", order: ASC) {-->
+<!--    edges {-->
+
+<!--    }-->
+<!--  }-->
+<!--  contact: allContact(sortBy: "properties.sort.number", order: ASC) {-->
+<!--    edges {-->
+
+<!--    }-->
+<!--  }-->
+<!--}-->
+<!--</page-query>-->

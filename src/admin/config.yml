@@ -1,0 +1,68 @@
+backend:
+  name: github
+  branch: main
+  repo: teziovsky/jakubsoboczynski
+
+media_folder: "static/uploads"
+public_folder: "uploads"
+
+collections:
+  - name: "social_links"
+    label: "Social Links"
+    folder: "content/social_links"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Sort", name: "sort", widget: "number", value_type: "int" }
+      - { label: "Name", name: "name", widget: "string" }
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "URL", name: "url", widget: "string" }
+      - { label: "Icon", name: "icon", widget: "string" }
+
+  - name: "about_me"
+    label: "About Me"
+    folder: "content/about_me"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Description", name: "description", widget: "text" }
+
+  - name: "projects"
+    label: "Projects"
+    folder: "content/projects"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Sort", name: "sort", widget: "number", value_type: "int" }
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Description", name: "description", widget: "string" }
+      - { label: "Technologies", name: "technologies", widget: "string" }
+      - { label: "Source", name: "source", widget: "string" }
+      - { label: "Demo", name: "demo", widget: "string" }
+      - { label: "Image", name: "image", widget: "image" }
+      - { label: "Image Alt", name: "image_alt", widget: "string" }
+
+  - name: "contact"
+    label: "Contact"
+    folder: "content/contact"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Sort", name: "sort", widget: "number", value_type: "int" }
+      - { label: "Description", name: "description", widget: "text" }
+
+  - name: "posts"
+    label: "Posts"
+    folder: "blog/posts/{{category}}"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Slug", name: "slug", widget: "string" }
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Short", name: "short", widget: "string" }
+      - { label: "Category", name: "category", widget: "string" }
+      - { label: "Publish Date", name: "date_published", widget: "datetime" }
+      - { label: "Image", name: "image", widget: "image" }
+      - { label: "Image Alt", name: "image_alt", widget: "string" }
+      - { label: "Body", name: "body", widget: "markdown" }
