@@ -4,24 +4,27 @@
     <div class="aboutMe__wrapper">
       <g-image alt="Moje zdjęcie profilowe" class="aboutMe__image" src="../assets/images/profile.webp" />
     </div>
-    <div class="aboutMe__categories">
-      <button
-        v-for="category in aboutMe"
-        :key="category.node.id"
-        :aria-label="'Wyświetl treść kategorii - ' + category.node.properties.title.title[0].text.content"
-        :class="{ active: active === category.node.id }"
-        class="aboutMe__category"
-        @click="active = category.node.id">
-        {{ category.node.properties.title.title[0].text.content }}
-      </button>
-    </div>
-    <transition mode="out-in" name="shrink">
-      <p
-        v-if="selectedDescription"
-        :key="selectedDescription.node.id"
-        class="aboutMe__description"
-        v-html="selectedDescription.node.properties.description.rich_text[0].text.content"></p>
-    </transition>
+    <pre>
+      {{ aboutMe }}
+    </pre>
+    <!--    <div class="aboutMe__categories">-->
+    <!--      <button-->
+    <!--        v-for="category in aboutMe"-->
+    <!--        :key="category.node.id"-->
+    <!--        :aria-label="'Wyświetl treść kategorii - ' + category.node.properties.title.title[0].text.content"-->
+    <!--        :class="{ active: active === category.node.id }"-->
+    <!--        class="aboutMe__category"-->
+    <!--        @click="active = category.node.id">-->
+    <!--        {{ category.node.properties.title.title[0].text.content }}-->
+    <!--      </button>-->
+    <!--    </div>-->
+    <!--    <transition mode="out-in" name="shrink">-->
+    <!--      <p-->
+    <!--        v-if="selectedDescription"-->
+    <!--        :key="selectedDescription.node.id"-->
+    <!--        class="aboutMe__description"-->
+    <!--        v-html="selectedDescription.node.properties.description.rich_text[0].text.content"></p>-->
+    <!--    </transition>-->
   </section>
 </template>
 
