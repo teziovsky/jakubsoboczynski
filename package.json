@@ -1,6 +1,6 @@
 {
   "name": "jakubsoboczynski",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "My own website.",
   "homepage": "https://www.jakubsoboczynski.pl/",
   "repository": {
@@ -8,8 +8,8 @@
     "url": "git@github.com:teziovsky/jakubsoboczynski.git"
   },
   "engines": {
-    "node": ">=v14.0.0",
-    "npm": ">=v6.0.0"
+    "node": ">=v16.0.0",
+    "npm": ">=v8.0.0"
   },
   "bugs": {
     "url": "https://github.com/teziovsky/jakubsoboczynski/issues",
@@ -21,39 +21,48 @@
     "email": "jakub.soboczynski@icloud.com",
     "url": "https://www.jakubsoboczynski.pl"
   },
-  "private": true,
   "scripts": {
-    "dev": "gridsome develop",
-    "build": "gridsome build",
-    "explore": "gridsome explore",
-    "clean": "rm -rf ./node_modules ./pnpm-lock.yaml ./package-lock.json ./.pnpm-debug.log ./dist",
-    "postversion": "git push && git push --tags",
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "generate": "nuxt generate",
+    "start": "nuxt start",
+    "clean": "rm -rf ./node_modules ./dist ./package-lock.json ./.nuxt",
+    "prettier": "prettier --check '**/*.{vue,js,jsx,ts,tsx,json,html}'",
+    "prettier:fix": "prettier --write '**/*.{vue,js,jsx,ts,tsx,json,html}'",
+    "eslint": "eslint . --ext .vue,.js,.jsx,.ts,.tsx",
+    "eslint:fix": "eslint . --fix --ext .vue,.js,.jsx,.ts,.tsx",
+    "lint": "npm run prettier && npm run eslint",
+    "lint:fix": "npm run prettier:fix && npm run eslint:fix",
     "prepare": "husky install"
   },
+  "lint-staged": {
+    "*.{vue,js,jsx,ts,tsx,json,html}": "prettier --write --ignore-unknown",
+    "*.{vue,js,jsx,ts,tsx}": "eslint --cache --fix"
+  },
   "dependencies": {
-    "@gridsome/source-airtable": "0.2.0",
-    "@gridsome/source-filesystem": "^0.6.2",
-    "@gridsome/transformer-remark": "^0.6.4",
-    "gridsome": "^0.7.23",
-    "gridsome-plugin-gtm": "^0.1.1",
-    "gridsome-plugin-netlify-cms": "^1.0.9",
-    "gridsome-plugin-remark-prismjs-all": "^0.4.8",
-    "gridsome-plugin-sass-resources-loader": "0.0.3",
+    "@nuxt/content": "^1.15.1",
+    "@nuxtjs/gtm": "^2.4.0",
     "gsap": "^3.10.4",
-    "netlify-cms": "^2.10.192",
-    "vue2-smooth-scroll": "^1.6.0"
+    "nuxt": "^2.15.8"
   },
   "devDependencies": {
+    "@babel/eslint-parser": "^7.18.2",
+    "@nuxtjs/color-mode": "^2.1.1",
+    "@nuxtjs/eslint-config": "^10.0.0",
+    "@nuxtjs/eslint-module": "^3.1.0",
+    "@nuxtjs/svg": "^0.4.0",
+    "eslint": "^8.14.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-nuxt": "^3.2.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-vue": "^9.1.0",
     "husky": "^8.0.1",
-    "lint-staged": "^13.0.0",
+    "lint-staged": "^13.0.1",
+    "netlify-cli": "^10.1.0",
     "prettier": "^2.6.2",
-    "sass": "^1.52.2",
-    "sass-loader": "^10.0.0",
-    "style-resources-loader": "^1.5.0",
-    "vue-svg-loader": "^0.16.0"
-  },
-  "lint-staged": {
-    "*.{vue,js,jsx,ts,tsx,css,md}": "prettier --write"
+    "sass": "^1.52.3",
+    "sass-loader": "^10.2.1",
+    "webpack": "^4.46.0"
   },
   "volta": {
     "node": "16.14.0",

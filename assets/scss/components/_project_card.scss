@@ -1,0 +1,135 @@
+.projectCard {
+  position: relative;
+  max-width: 550px;
+  margin: 0 auto 60px;
+  padding-bottom: 40px;
+
+  &__title {
+    text-align: center;
+    font-family: var(--font-family-secondary);
+    font-size: 24px;
+    line-height: 26px;
+    font-weight: 400;
+    margin-bottom: 30px;
+  }
+
+  &__wrapper {
+    position: relative;
+    @include image-overlay;
+  }
+
+  &__image {
+    width: 100%;
+    display: block;
+  }
+
+  &__source {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 32px;
+    height: 32px;
+    display: block;
+    padding: 5px;
+    transition: transform var(--transition-duration) var(--transition-timing-function);
+
+    @include hover {
+      transform: scale(1.12) translateY(5px);
+
+      path {
+        stroke: var(--third-color);
+      }
+    }
+
+    svg {
+      width: 22px;
+      height: 22px;
+
+      path {
+        transition: stroke var(--transition-duration) var(--transition-timing-function);
+        stroke: var(--font-color);
+      }
+    }
+  }
+
+  &__info {
+    position: relative;
+    z-index: 1;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: var(--secondary-color);
+    padding: clamp(0.625rem, 0.16768281rem + 1.95122vw, 1.875rem) clamp(1.25rem, 0.79268281rem + 1.95122vw, 2.5rem);
+    transition: background var(--transition-duration) var(--transition-timing-function);
+  }
+
+  &__description {
+    text-align: center;
+    font-size: clamp(0.75rem, 0.70426828rem + 0.195122vw, 0.875rem);
+    line-height: 18px;
+    font-weight: 600;
+  }
+
+  &__technologies {
+    position: relative;
+    opacity: 0.8;
+    text-align: center;
+    font-size: clamp(0.625rem, 0.57926828rem + 0.195122vw, 0.75rem);
+    line-height: 18px;
+    font-weight: 400;
+    margin-top: 15px;
+    padding-top: 15px;
+
+    &:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 40px;
+      height: 1px;
+      background-color: var(--font-color);
+      transform: translateX(-50%);
+      transition: background var(--transition-duration) var(--transition-timing-function);
+    }
+  }
+
+  &__demo {
+    position: absolute;
+    right: 0;
+    bottom: 5px;
+    width: 27px;
+    height: 27px;
+    display: block;
+    padding: 5px;
+    transition: transform var(--transition-duration) var(--transition-timing-function);
+
+    @include hover {
+      transform: scale(1.12) translateY(5px);
+
+      path {
+        stroke: var(--third-color);
+      }
+    }
+
+    svg {
+      width: 17px;
+      height: 17px;
+
+      path {
+        transition: stroke var(--transition-duration) var(--transition-timing-function);
+        stroke: var(--font-color);
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 425px) {
+  .projectCard {
+    &__info {
+      position: absolute;
+      right: 50px;
+      bottom: -5px;
+      left: 50px;
+    }
+  }
+}
