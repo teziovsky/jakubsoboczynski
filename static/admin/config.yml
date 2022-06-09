@@ -41,7 +41,7 @@ collections:
     slug: "{{slug}}"
     fields:
       - { label: "Title", name: "title", widget: "string" }
-      - { label: "About Me Picture", name: "about-me-picture", widget: "image" }
+      - { label: "About Me Picture", name: "image", widget: "image" }
 
   - name: "project"
     label: "Project"
