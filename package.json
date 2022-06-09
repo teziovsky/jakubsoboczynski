@@ -62,7 +62,7 @@
     "prettier": "^2.6.2",
     "sass": "^1.52.3",
     "sass-loader": "^10.2.1",
-    "webpack": "^4.46.0"
+    "webpack": "^5.73.0"
   },
   "volta": {
     "node": "16.14.0",
