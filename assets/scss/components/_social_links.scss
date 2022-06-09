@@ -1,0 +1,21 @@
+.socialLinks {
+  position: fixed;
+  top: calc(50% - 120px);
+  left: 45px;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 40px;
+
+  &__item {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .socialLinks {
+    display: flex;
+  }
+}

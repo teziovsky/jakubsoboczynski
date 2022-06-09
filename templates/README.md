@@ -1,0 +1,1 @@
+Plik BlogPost.vue skopiowany z projektu Gridsome. W momencie wdrażania bloga na stronę użyj go jako komponentu.

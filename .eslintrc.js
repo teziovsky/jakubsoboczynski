@@ -1,0 +1,43 @@
+module.exports = {
+  root: true,
+  env: {
+    es6: true,
+    browser: true,
+    node: true,
+  },
+  extends: ["@nuxtjs", "plugin:nuxt/recommended", "eslint:recommended", "plugin:prettier/recommended"],
+  parserOptions: {
+    parser: "@babel/eslint-parser",
+    requireConfigFile: false,
+  },
+  plugins: ["prettier"],
+  rules: {
+    "prettier/prettier": [
+      "error",
+      {
+        arrowParens: "always",
+        bracketSameLine: true,
+        bracketSpacing: true,
+        embeddedLanguageFormatting: "auto",
+        htmlWhitespaceSensitivity: "css",
+        insertPragma: false,
+        jsxSingleQuote: false,
+        printWidth: 120,
+        proseWrap: "preserve",
+        quoteProps: "as-needed",
+        requirePragma: false,
+        semi: true,
+        singleQuote: false,
+        tabWidth: 2,
+        trailingComma: "es5",
+        useTabs: false,
+        vueIndentScriptAndStyle: false,
+      },
+    ],
+    "no-console": process.env.NODE_ENV === "production" ? "error" : "warn",
+    "no-debugger": process.env.NODE_ENV === "production" ? "error" : "warn",
+    "no-shadow": "off",
+    "vue/multi-word-component-names": "off",
+  },
+  ignorePatterns: ["node_modules", "dist"],
+};
