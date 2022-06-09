@@ -25,7 +25,7 @@ Install dependencies
 Start the application!
 
 ```bash
-  gridsome develop
+  npm run dev
 ```
 
 ## Author 🙎🏼‍
