@@ -11,16 +11,16 @@
     <div class="aboutMe__categories">
       <button
         v-for="category in aboutMe"
-        :key="category.createdAt"
+        :key="category.sort"
         :aria-label="'Wyświetl treść kategorii - ' + category.title"
-        :class="{ active: active === category.createdAt }"
+        :class="{ active: active === category.sort }"
         class="aboutMe__category"
-        @click="active = category.createdAt">
+        @click="active = category.sort">
         {{ category.title }}
       </button>
     </div>
     <transition mode="out-in" name="shrink">
-      <p v-if="selectedDescription" :key="selectedDescription.createdAt" class="aboutMe__description">
+      <p v-if="selectedDescription" :key="selectedDescription.sort" class="aboutMe__description">
         {{ selectedDescription.description }}
       </p>
     </transition>
@@ -42,17 +42,17 @@ export default {
   },
   data() {
     return {
-      active: "",
+      active: 1,
     };
   },
   computed: {
     selectedDescription() {
-      if (this.aboutMe.length && this.active) return this.aboutMe.find((item) => item.createdAt === this.active);
+      if (this.aboutMe.length && this.active) return this.aboutMe.find((item) => item.sort === this.active);
       return {};
     },
   },
   mounted() {
-    this.active = this.aboutMe?.[0]?.createdAt;
+    this.active = this.aboutMe?.[0]?.sort;
   },
 };
 </script>

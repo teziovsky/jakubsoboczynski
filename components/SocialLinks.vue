@@ -1,6 +1,6 @@
 <template>
   <ul v-if="socialLinks.length" class="socialLinks">
-    <li v-for="link in socialLinks" :key="link.createdAt" class="socialLinks__item">
+    <li v-for="link in socialLinks" :key="link.sort" class="socialLinks__item">
       <a
         :aria-label="link.button_title"
         :href="link.url"

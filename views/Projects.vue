@@ -1,7 +1,7 @@
 <template>
   <section v-if="projects.length" id="projekty" class="projects">
     <h2 class="sectionHeader">Projekty</h2>
-    <ProjectCard v-for="project in projects" :key="project.createdAt" :project="project" />
+    <ProjectCard v-for="project in projects" :key="project.sort" :project="project" />
   </section>
 </template>
 
