@@ -75,6 +75,19 @@ export default {
   modules: ["@nuxt/content", "@nuxtjs/gtm"],
   build: {
     extractCSS: true,
+    optimization: {
+      minimize: true,
+      splitChunks: {
+        cacheGroups: {
+          styles: {
+            name: "styles",
+            test: /\.(scss|css|vue)$/,
+            chunks: "all",
+            enforce: true,
+          },
+        },
+      },
+    },
     transpile: ["gsap"],
     extend(config, ctx) {},
   },
