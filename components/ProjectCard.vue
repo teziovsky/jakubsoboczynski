@@ -4,7 +4,7 @@
       {{ project.title }}
     </h3>
     <div v-if="project.image" class="projectCard__wrapper">
-      <img :alt="project.image_alt" :src="project.image" class="projectCard__image" />
+      <img :alt="project.image_alt" :src="project.image" class="projectCard__image" loading="lazy" />
     </div>
     <a
       v-if="project.source"

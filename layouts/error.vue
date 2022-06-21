@@ -10,7 +10,7 @@
           <h1 class="sectionHeader">Wystąpił błąd</h1>
           <p class="error--info">Spróbuj ponownie ¯\_(ツ)_/¯</p>
         </template>
-        <nuxt-link class="button" :to="{ name: 'index' }">Pokaż mi drogę</nuxt-link>
+        <nuxt-link :to="{ name: 'index' }" class="button">Pokaż mi drogę</nuxt-link>
       </section>
     </main>
   </transition>

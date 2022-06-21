@@ -9,11 +9,11 @@
         <span></span>
       </button>
       <div v-if="$route.name === 'index'" class="nav__wrapper">
-        <a aria-label="Przejdź do sekcji o mnie" class="nav__link link" href="#o_mnie" @click="hideMenu"> o mnie </a>
+        <a aria-label="Przejdź do sekcji o mnie" class="nav__link link" href="#o_mnie" @click="hideMenu"> o mnie</a>
         <a aria-label="Przejdź do sekcji projekty" class="nav__link link" href="#projekty" @click="hideMenu">
           projekty
         </a>
-        <a aria-label="Przejdź do sekcji kontakt" class="nav__link link" href="#kontakt" @click="hideMenu"> kontakt </a>
+        <a aria-label="Przejdź do sekcji kontakt" class="nav__link link" href="#kontakt" @click="hideMenu"> kontakt</a>
       </div>
       <!--      <g-link :aria-label="$route.name === 'index' ?  'Przejdź do bloga' : 'Przejdź do portfolio'"-->
       <!--              :to="$route.name === 'index' ?  '/blog/' : '/'"-->
