@@ -66,36 +66,7 @@ export default {
         content: "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
       },
     ],
-    link: [
-      { rel: "icon", type: "image/x-icon", href: "/favicon.png" },
-      {
-        rel: "preconnect",
-        href: "https://fonts.googleapis.com",
-        crossorigin: true,
-      },
-      {
-        rel: "preconnect",
-        href: "https://fonts.gstatic.com",
-        crossorigin: true,
-      },
-      {
-        rel: "preload",
-        as: "style",
-        href: "https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;700&family=Space+Mono:wght@400;700&display=swap",
-      },
-      {
-        rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;700&family=Space+Mono:wght@400;700&display=swap",
-        media: "print",
-        onload: `this.media='all'`,
-      },
-    ],
-    noscript: [
-      {
-        innerHTML:
-          '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;700&family=Space+Mono:wght@400;700&display=swap">',
-      },
-    ],
+    link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.png" }],
     __dangerouslyDisableSanitizers: ["noscript"],
   },
   css: ["@/assets/scss/main.scss"],
