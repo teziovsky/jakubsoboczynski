@@ -59,7 +59,16 @@
     align-items: center;
     margin: 0 auto;
     padding: 5px 20px;
+    animation: bounce-down 2s 0.2s ease-out infinite;
     transform: translateX(-50%);
+
+    @media screen and (min-width: 768px) {
+      bottom: 60px;
+    }
+
+    @media (hover: hover) {
+      animation: none;
+    }
 
     @include hover {
       animation: bounce-down 2s 0.2s ease-out infinite;
@@ -67,16 +76,14 @@
       span {
         top: -30px;
         opacity: 1;
-        transform: translateX(-50%);
       }
     }
 
     span {
       position: absolute;
-      top: -90px;
+      top: -30px;
       left: 50%;
       pointer-events: none;
-      opacity: 0;
       font-family: var(--font-family-secondary);
       font-size: clamp(0.75rem, 0.6613rem + 0.3339vw, 0.875rem);
       line-height: clamp(0.75rem, 0.6613rem + 0.3339vw, 0.875rem);
@@ -84,8 +91,12 @@
       white-space: nowrap;
       color: var(--font-color);
       transform: translateX(-50%);
-      transition: opacity var(--transition-duration) var(--transition-timing-function),
-      color var(--transition-duration) var(--transition-timing-function), top 0.45s ease-out;
+      transition: opacity var(--transition-duration) var(--transition-timing-function), color var(--transition-duration) var(--transition-timing-function), top 0.45s ease-out;
+
+      @media (hover: hover) {
+        top: -90px;
+        opacity: 0;
+      }
     }
   }
 
@@ -95,14 +106,6 @@
     path {
       transition: stroke var(--transition-duration) var(--transition-timing-function);
       stroke: var(--font-color);
-    }
-  }
-}
-
-@media screen and (min-width: 768px) {
-  .hero {
-    &__cta {
-      bottom: 60px;
     }
   }
 }
