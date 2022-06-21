@@ -12,6 +12,9 @@ export default {
     lang: "pl-PL",
   },
   head: {
+    htmlAttrs: {
+      lang: "pl-PL",
+    },
     titleTemplate: "%s | Jakub Soboczyński",
     meta: [
       { charset: "UTF-8" },
