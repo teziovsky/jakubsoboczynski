@@ -6,7 +6,8 @@
         v-if="aboutMePicture.length"
         :src="aboutMePicture[0].image"
         alt="Moje zdjęcie profilowe"
-        class="aboutMe__image" />
+        class="aboutMe__image"
+        loading="lazy" />
     </div>
     <div class="aboutMe__categories">
       <button
