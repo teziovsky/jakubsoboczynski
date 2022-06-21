@@ -1,4 +1,4 @@
 ---
 title: Profile picture
-image: /uploads/profile.png
+image: /uploads/profile.webp
 ---
