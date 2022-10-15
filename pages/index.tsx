@@ -1,5 +1,5 @@
+import Meta from "components/seo-meta";
 import type { NextPage } from "next";
-import Meta from "../components/seo-meta";
 
 const Home: NextPage = () => {
   return (

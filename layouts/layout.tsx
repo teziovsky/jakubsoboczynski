@@ -1,3 +1,6 @@
+import Footer from "components/footer";
+import Header from "components/header";
+import SocialLinks from "components/social-links";
 import React from "react";
 
 type Props = {
@@ -7,9 +10,10 @@ type Props = {
 const Layout = ({ children }: Props) => {
   return (
     <>
-      <header></header>
+      <Header />
+      <SocialLinks />
       <main className="container">{children}</main>
-      <footer></footer>
+      <Footer />
     </>
   );
 };
