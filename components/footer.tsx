@@ -21,7 +21,6 @@ const Footer = () => {
           fill="white"
         />
       </svg>
-      {/*<SocialLinks />*/}
       <div className="flex items-center flex-col text-sm font-light gap-3 md:flex-row">
         <p>
           © {new Date().getFullYear()}{" "}

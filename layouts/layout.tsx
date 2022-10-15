@@ -14,6 +14,7 @@ const Layout = ({ children }: Props) => {
       <SocialLinks />
       <main className="container">{children}</main>
       <Footer />
+      <SocialLinks />
     </>
   );
 };
