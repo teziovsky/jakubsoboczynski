@@ -1,7 +1,6 @@
 site_url: https://jakubsoboczynski.pl
-logo_url: https://jakubsoboczynski.pl/favicon.png
+logo_url: https://jakubsoboczynski.pl/favicons/apple-icon-152x152.png
 
-publish_mode: editorial_workflow
 backend:
   name: github
   branch: main
