@@ -1,6 +1,6 @@
 {
   "name": "jakubsoboczynski",
-  "version": "3.0.0",
+  "version": "1.0.0",
   "description": "My own website.",
   "homepage": "https://www.jakubsoboczynski.pl/",
   "repository": {
@@ -8,7 +8,7 @@
     "url": "git@github.com:teziovsky/jakubsoboczynski.git"
   },
   "engines": {
-    "node": ">=v16.0.0",
+    "node": ">=v18.0.0",
     "npm": ">=v8.0.0"
   },
   "bugs": {
@@ -21,47 +21,44 @@
     "url": "https://www.jakubsoboczynski.pl"
   },
   "scripts": {
-    "dev": "nuxt",
-    "build": "nuxt build",
-    "generate": "nuxt generate",
-    "start": "nuxt start",
-    "clean": "rimraf ./node_modules ./dist ./pnpm-lock.yaml ./package-lock.json ./.nuxt",
-    "prettier": "prettier --check '**/*.{vue,js,jsx,ts,tsx,json,html}'",
-    "prettier:fix": "prettier --write '**/*.{vue,js,jsx,ts,tsx,json,html}'",
-    "eslint": "eslint . --ext .vue,.js,.jsx,.ts,.tsx",
-    "eslint:fix": "eslint . --fix --ext .vue,.js,.jsx,.ts,.tsx",
-    "lint": "npm run prettier && npm run eslint",
-    "lint:fix": "npm run prettier:fix && npm run eslint:fix",
-    "prepare": "husky install"
+    "clean": "rimraf ./node_modules ./dist ./pnpm-lock.yaml ./package-lock.json ./.next",
+    "prettier": "prettier --write '**/*.{js,jsx,ts,tsx,json,html}'",
+    "eslint": "eslint . --fix --ext .js,.jsx,.ts,.tsx",
+    "dev": "next dev",
+    "build": "next build",
+    "export": "next build && next export",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   },
   "lint-staged": {
-    "*.{vue,js,jsx,ts,tsx,json,html}": "prettier --write --ignore-unknown",
-    "*.{vue,js,jsx,ts,tsx}": "eslint --cache --fix"
+    "*.{js,jsx,ts,tsx,json,html}": "prettier --write --ignore-unknown",
+    "*.{js,jsx,ts,tsx}": "eslint --cache --fix"
   },
   "dependencies": {
-    "@nuxt/content": "^1.15.1",
-    "@nuxtjs/gtm": "^2.4.0",
-    "gsap": "^3.10.4",
-    "nuxt": "^2.15.8"
+    "next": "12.3.1",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
   },
   "devDependencies": {
-    "@babel/eslint-parser": "^7.18.9",
-    "@nuxtjs/color-mode": "^2.1.1",
-    "@nuxtjs/eslint-config": "^10.0.0",
-    "@nuxtjs/eslint-module": "^3.1.0",
-    "@nuxtjs/svg": "^0.4.0",
-    "eslint": "^8.20.0",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-nuxt": "^3.2.0",
-    "eslint-plugin-prettier": "^4.2.1",
-    "eslint-plugin-vue": "^9.2.0",
-    "husky": "^8.0.1",
-    "lint-staged": "^13.0.3",
-    "netlify-cli": "^12.0.7",
-    "prettier": "^2.7.1",
+    "@types/node": "18.11.0",
+    "@types/react": "18.0.21",
+    "@types/react-dom": "18.0.6",
+    "autoprefixer": "10.4.12",
+    "eslint": "8.25.0",
+    "eslint-config-next": "12.3.1",
+    "eslint-config-prettier": "8.5.0",
+    "eslint-plugin-prettier": "4.2.1",
+    "husky": "8.0.1",
+    "lint-staged": "13.0.3",
+    "postcss": "8.4.18",
+    "prettier": "2.7.1",
     "rimraf": "3.0.2",
-    "sass": "^1.53.0",
-    "sass-loader": "^10.3.1",
-    "webpack": "^4.46.0"
+    "tailwindcss": "3.1.8",
+    "typescript": "4.8.4"
   }
 }
