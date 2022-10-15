@@ -15,7 +15,6 @@
     "url": "https://github.com/teziovsky/jakubsoboczynski/issues",
     "email": "teziovsky@gmail.com"
   },
-  "license": "MIT License",
   "author": {
     "name": "Jakub Soboczyński",
     "email": "jakub.soboczynski@icloud.com",
@@ -26,7 +25,7 @@
     "build": "nuxt build",
     "generate": "nuxt generate",
     "start": "nuxt start",
-    "clean": "rm -rf ./node_modules ./dist ./package-lock.json ./.nuxt",
+    "clean": "rimraf ./node_modules ./dist ./pnpm-lock.yaml ./package-lock.json ./.nuxt",
     "prettier": "prettier --check '**/*.{vue,js,jsx,ts,tsx,json,html}'",
     "prettier:fix": "prettier --write '**/*.{vue,js,jsx,ts,tsx,json,html}'",
     "eslint": "eslint . --ext .vue,.js,.jsx,.ts,.tsx",
@@ -60,6 +59,7 @@
     "lint-staged": "^13.0.3",
     "netlify-cli": "^10.11.0",
     "prettier": "^2.7.1",
+    "rimraf": "3.0.2",
     "sass": "^1.53.0",
     "sass-loader": "^10.3.1",
     "webpack": "^4.46.0"
