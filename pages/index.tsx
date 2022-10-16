@@ -1,52 +1,23 @@
 import Meta from "components/seo-meta";
+import Layout from "layouts/layout";
 import type { NextPage } from "next";
-import Layout from "../layouts/layout";
-import { api } from "../plugins";
-import { ISocialLinksFields, TSocialLink } from "../types/contentful";
+import AboutMe from "../views/about-me";
+import Contact from "../views/contact";
+import Hero from "../views/hero";
+import Projects from "../views/projects";
 
-type Props = {
-  socialLinks: TSocialLink[];
-};
-
-const Home: NextPage<Props> = ({ socialLinks }: Props) => {
+const Home: NextPage = () => {
   return (
     <>
       <Meta title="Hello!" description="My own page." />
       <Layout>
-        <h1>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-        {socialLinks?.map((socialLink) => (
-          <div>
-            <a key={socialLink.title} href={socialLink.url}>
-              {socialLink.title}
-            </a>
-            <img src={socialLink.icon} alt={socialLink.title} />
-          </div>
-        ))}
+        <Hero />
+        <AboutMe />
+        <Projects />
+        <Contact />
       </Layout>
     </>
   );
-};
-
-export const getStaticProps = async () => {
-  const entries = await api.getEntries<ISocialLinksFields>({
-    content_type: "socialLinks",
-  });
-
-  const socialLinks = entries.items.map((item) => {
-    return {
-      id: item.sys.id,
-      ...item.fields,
-      icon: `https:${item.fields.icon.fields.file.url}`,
-    };
-  });
-
-  return {
-    props: {
-      socialLinks,
-    },
-  };
 };
 
 export default Home;
