@@ -23,6 +23,7 @@ const Meta = ({ title, description, image = "/placeholder-social.jpg" }: Props) 
       <meta name="og:description" property="og:description" content={description} />
       <meta property="og:image" content={new URL(image, url).href} />
       <meta property="og:site_name" content="Jakub Soboczyński" />
+      <meta name="og:locale" property="og:locale" content="pl_PL" />
 
       <meta property="twitter:card" content="summary_large_image" />
       <meta property="twitter:title" content={`${title} | Jakub Soboczyński`} />

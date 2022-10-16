@@ -1,17 +1,20 @@
 import React from "react";
+import socialLinks from "content/social-links.json";
 
 const SocialLinks = () => {
   return (
     <ul className="socialLinks">
-      <li v-for="link in socialLinks" key="link.sort" className="socialLinks__item">
-        <a
-          aria-label="link.button_title"
-          href="link.url"
-          className="socialLinks__link"
-          rel="noreferrer nofollow noopener"
-          target="_blank"
-          v-html="link.icon"></a>
-      </li>
+      {socialLinks.map((link) => (
+        <li key={link.id} className="socialLinks__item">
+          <a
+            aria-label={link.buttonTitle}
+            href={link.url}
+            className="socialLinks__link"
+            rel="noreferrer nofollow noopener"
+            target="_blank"
+            dangerouslySetInnerHTML={{ __html: link.icon }}></a>
+        </li>
+      ))}
     </ul>
   );
 };
