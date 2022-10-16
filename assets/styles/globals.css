@@ -1,0 +1,77 @@
+html {
+  @apply scroll-smooth;
+}
+
+body {
+  @apply transition-colors bg-primary-light dark:bg-primary-dark text-primary-dark dark:text-primary-light overflow-x-hidden font-primary;
+
+  &.opened {
+    @apply overflow-hidden touch-none;
+  }
+}
+
+a[href]:not(:disabled),
+area[href] input:not(:disabled),
+select:not(:disabled),
+textarea:not(:disabled),
+button:not(:disabled),
+iframe,
+[tabindex],
+[contentEditable="true"] {
+  &:not([tabindex="-1"]) {
+    @apply focus-visible:outline-offset-2 focus-visible:outline-dashed focus-visible:outline-2 focus-visible:outline-accent-light dark:focus-visible:outline-accent-dark;
+  }
+}
+
+a {
+  @apply cursor-pointer no-underline text-primary-dark dark:text-primary-light transition-colors;
+}
+
+button {
+  @apply cursor-pointer bg-none border-none outline-none text-primary-dark dark:text-primary-light transition-colors;
+}
+
+img {
+  @apply w-full h-auto;
+}
+
+.sr-only {
+  @apply absolute overflow-hidden whitespace-nowrap border-none w-0 h-0 p-0 -m-px;
+}
+
+.link {
+  @apply hover:animate-pulse;
+}
+
+.flex-center {
+  @apply flex items-center justify-center;
+}
+
+.image-overlay {
+  @apply before:content-[''] before:bg-primary-dark dark:before:bg-primary-light before:absolute before:w-full before:h-full before:z-10 before:transition-colors before:mix-blend-color
+}
+
+#ghostery-tracker-tally {
+  @apply hidden;
+}
+
+::-webkit-scrollbar {
+  @apply w-4;
+
+  &-track {
+    @apply rounded-none;
+  }
+
+  &-thumb {
+    @apply rounded-none bg-accent-light/20 dark:bg-accent-dark/20 hover:bg-accent-light/40 dark:hover:bg-accent-dark/40;
+  }
+}
+
+.section-header {
+  @apply relative text-center font-secondary text-heading mb-12 pb-8 after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:w-[40px] after:h-px after:block after:opacity-30 after:-translate-x-1/2 after:bg-font-dark dark:after:bg-font-light transition-colors;
+}
+
+.button {
+  font-size: clamp(0.75rem, 0.65853656rem + 0.390244vw, 1rem);
+  @apply relative flex flex-row items-center justify-center overflow-hidden font-secondary uppercase text-primary-dark dark:text-primary-light border border-transparent py-3 px-6 transition-all duration-500 outline-1 outline outline-accent-light/50 dark:outline-accent-dark/50 outline-offset-0 hover:outline-accent-light/0 dark:hover:outline-accent-dark/0 hover:outline-offset-[15px] hover:shadow-button hover:shadow-accent-light/50 dark:hover:shadow-accent-dark/50;
+}
