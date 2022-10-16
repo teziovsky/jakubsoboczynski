@@ -24,7 +24,6 @@
     "clean": "rimraf ./node_modules ./dist ./pnpm-lock.yaml ./package-lock.json ./.next",
     "prettier": "prettier --write '**/*.{js,jsx,ts,tsx,json,html}'",
     "eslint": "eslint . --fix --ext .js,.jsx,.ts,.tsx",
-    "codegen": "env-cmd contentful-typescript-codegen --output types/contentful.d.ts",
     "dev": "next dev",
     "build": "next build",
     "export": "next build && next export",
@@ -41,7 +40,6 @@
     "*.{js,jsx,ts,tsx}": "eslint --cache --fix"
   },
   "dependencies": {
-    "contentful": "9.2.5",
     "next": "12.3.1",
     "react": "18.2.0",
     "react-dom": "18.2.0"
@@ -51,9 +49,6 @@
     "@types/react": "18.0.21",
     "@types/react-dom": "18.0.6",
     "autoprefixer": "10.4.12",
-    "contentful-management": "10.18.1",
-    "contentful-typescript-codegen": "3.2.3",
-    "env-cmd": "10.1.0",
     "eslint": "8.25.0",
     "eslint-config-next": "12.3.1",
     "eslint-config-prettier": "8.5.0",
@@ -61,6 +56,8 @@
     "husky": "8.0.1",
     "lint-staged": "13.0.3",
     "postcss": "8.4.18",
+    "postcss-import": "15.0.0",
+    "postcss-mixins": "9.0.4",
     "prettier": "2.7.1",
     "rimraf": "3.0.2",
     "tailwindcss": "3.1.8",
