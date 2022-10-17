@@ -9,7 +9,7 @@ type Props = {
 
 const Layout = ({ children }: Props) => {
   return (
-    <div className="px-4 md:px-12 container">
+    <div className="px-4 lg:px-12 container">
       <Header />
       <SocialLinks />
       <main>{children}</main>

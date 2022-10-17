@@ -12,7 +12,7 @@ const Footer = ({ className }: Props) => {
         "py-12": !className,
       })}>
       <svg
-        className="w-4 mb-4 md:mr-1"
+        className="w-4 mb-4 lg:mr-1"
         fill="none"
         height="11"
         viewBox="0 0 17 11"
@@ -29,7 +29,7 @@ const Footer = ({ className }: Props) => {
           fill="white"
         />
       </svg>
-      <div className="flex items-center flex-col text-sm font-light gap-3 md:flex-row">
+      <div className="flex items-center flex-col text-sm font-light gap-3 lg:flex-row">
         <p>
           © {new Date().getFullYear()}{" "}
           <a

@@ -10,7 +10,7 @@ const SocialLinks = ({ className }: Props) => {
   return (
     <ul
       className={cx(className, {
-        "fixed hidden left-[45px] top-1/2 -translate-y-1/2 md:flex flex-col items-center justify-center gap-y-9":
+        "fixed hidden left-[45px] top-1/2 -translate-y-1/2 lg:flex flex-col items-center justify-center gap-y-9":
           !className,
       })}>
       {socialLinks.map((link) => (

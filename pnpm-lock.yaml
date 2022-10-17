@@ -10,7 +10,7 @@ specifiers:
   eslint-config-next: 12.3.1
   eslint-config-prettier: 8.5.0
   eslint-plugin-prettier: 4.2.1
-  husky: 8.0.1
+  husky: ^8.0.0
   lint-staged: 13.0.3
   next: 12.3.1
   postcss: 8.4.18
@@ -22,12 +22,14 @@ specifiers:
   rimraf: 3.0.2
   tailwindcss: 3.1.8
   typescript: 4.8.4
+  use-breakpoint: 3.0.3
 
 dependencies:
   classnames: 2.3.2
   next: 12.3.1_biqbaboplfbrettd7655fr4n2y
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
+  use-breakpoint: 3.0.3_biqbaboplfbrettd7655fr4n2y
 
 devDependencies:
   '@types/node': 18.11.0
@@ -2575,6 +2577,17 @@ packages:
     dependencies:
       punycode: 2.1.1
     dev: true
+
+  /use-breakpoint/3.0.3_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-p73F+NZjWNZM34mZwR7iC+he1qoejtWJt5F0+6+fEfxUgOxDaf6A5QmlwY/TgzUY2YvIObN1Hj4DbHZbORmgwQ==}
+    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
+    peerDependencies:
+      react: '>=16.8'
+      react-dom: '>=16.8'
+    dependencies:
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+    dev: false
 
   /use-sync-external-store/1.2.0_react@18.2.0:
     resolution: {integrity: sha512-eEgnFxGQ1Ife9bzYs6VLi8/4X6CObHMw9Qr9tPY43iKwsPw8xE8+EFsf/2cFZ5S3esXgpWgtSCtLNS41F+sKPA==}

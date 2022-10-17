@@ -1,18 +1,40 @@
 import cx from "classnames";
 import React, { useEffect, useState } from "react";
+import useBreakpoint from "use-breakpoint";
+
+const BREAKPOINTS = {
+  xs: 0,
+  sm: 640,
+  md: 768,
+  lg: 1024,
+  xl: 1280,
+  "2xl": 1536,
+};
+
+function isMobile(breakpoint: keyof typeof BREAKPOINTS | undefined) {
+  if (!breakpoint) return false;
+  return ["xs", "sm", "md"].includes(breakpoint);
+}
 
 const Header = () => {
+  const { breakpoint } = useBreakpoint(BREAKPOINTS);
   const [opened, setOpened] = useState(false);
-  const [mobile, setMobile] = useState(true);
 
-  useEffect(() => {}, []);
+  console.log("breakpoint: ", breakpoint);
+
+  useEffect(() => {
+    const body = document.querySelector("body");
+    if (body && opened) body.classList.add("overflow-hidden", "touch-none");
+    if (body && !opened) body.classList.remove("overflow-hidden", "touch-none");
+    if (!isMobile(breakpoint)) setOpened(false);
+  }, [opened]);
 
   return (
     <header className="absolute z-10 top-0 inset-x-0">
-      <nav className="flex justify-between items-center py-8 px-5 md:px-12">
+      <nav className="flex justify-between items-center py-8 px-5 lg:px-12">
         <button
           aria-label="Pokaż/Ukryj nawigację serwisu"
-          className="relative z-20 w-12 h-9 py-px px-[7px] md:hidden group"
+          className="relative z-40 w-12 h-9 py-px px-[7px] lg:hidden group"
           onClick={() => setOpened((prevState) => !prevState)}>
           <span
             className={cx(
@@ -27,26 +49,27 @@ const Header = () => {
         <div
           className={cx("flex-center text-base gap-x-4", {
             "visible translate-x-0": opened,
-            "fixed flex-col text-2xl bg-secondary-light px-5 pt-28 pb-20 -translate-x-full gap-y-7 dark:bg-secondary-dark invisible z-30 h-full top-0 left-0 right-0 transition-all duration-700":
-              mobile,
+            "invisible -translate-x-full": !opened && isMobile(breakpoint),
+            "fixed flex-col text-2xl bg-secondary-light px-5 pt-28 pb-20 gap-y-7 dark:bg-secondary-dark z-30 h-full top-0 left-0 right-0 transition-all duration-700":
+              isMobile(breakpoint),
           })}>
           <a
             aria-label="Przejdź do sekcji o mnie"
-            className="font-secondary py-2 px-4 w-max after:bottom-1 w-3/5 link"
+            className="font-secondary py-2 px-4 w-max after:bottom-1 w-3/5 link text-center"
             href="#o_mnie"
             onClick={() => setOpened(false)}>
             o mnie
           </a>
           <a
             aria-label="Przejdź do sekcji projekty"
-            className="font-secondary py-2 px-4 w-max after:bottom-1 w-3/5 link"
+            className="font-secondary py-2 px-4 w-max after:bottom-1 w-3/5 link text-center"
             href="#projekty"
             onClick={() => setOpened(false)}>
             projekty
           </a>
           <a
             aria-label="Przejdź do sekcji kontakt"
-            className="font-secondary py-2 px-4 w-max after:bottom-1 w-3/5 link"
+            className="font-secondary py-2 px-4 w-max after:bottom-1 w-3/5 link text-center"
             href="#kontakt"
             onClick={() => setOpened(false)}>
             kontakt

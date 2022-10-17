@@ -12,7 +12,7 @@ const AboutMe = () => {
       <div className="mx-auto block max-w-about-me-image image-overlay mb-8">
         <Image src="/images/profile.webp" width={300} height={300} layout="responsive" alt="Moje zdjęcie profilowe" />
       </div>
-      <div className="flex-center flex-wrap mb-5 flex-col md:flex-row gap-x-4 gap-y-7">
+      <div className="flex-center flex-wrap mb-5 flex-col lg:flex-row gap-x-4 gap-y-7">
         {aboutMe.map((category) => (
           <button
             key={category.id}
@@ -26,7 +26,7 @@ const AboutMe = () => {
           </button>
         ))}
       </div>
-      <p className="max-w-[700px] text-center md:text-justify mx-auto text-lg font-light">
+      <p className="max-w-[700px] text-center lg:text-justify mx-auto text-lg font-light">
         {selectedDescription.description}
       </p>
     </section>

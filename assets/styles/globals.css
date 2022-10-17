@@ -48,7 +48,7 @@ img {
 }
 
 .image-overlay {
-  @apply relative before:content-[''] before:bg-primary-light dark:before:bg-primary-dark before:absolute before:w-full before:h-full before:z-10 before:transition-colors before:mix-blend-color
+  @apply relative z-0 before:content-[''] before:bg-primary-light dark:before:bg-primary-dark before:absolute before:w-full before:h-full before:z-10 before:transition-colors before:mix-blend-color
 }
 
 #ghostery-tracker-tally {

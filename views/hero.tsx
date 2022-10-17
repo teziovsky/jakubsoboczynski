@@ -11,7 +11,7 @@ const Hero = () => {
         <p className="text-hero-subtitle opacity-70 font-secondary">Frontend developer</p>
       </div>
       <a
-        className="flex group inset-x-1/3 bottom-28 md:bottom-16 flex-col items-center my-0 mx-auto py-1 px-5 absolute hover:animate-bounce -translate-y-1/4"
+        className="flex group inset-x-1/3 bottom-28 lg:bottom-16 flex-col items-center my-0 mx-auto py-1 px-5 absolute hover:animate-bounce -translate-y-1/4"
         href="#projekty">
         <span className="font-secondary relative group-hover:opacity-100 group-hover:translate-y-0 -translate-y-10 duration-500 opacity-0 text-button-span pointer-events-none transition text-font-dark dark:text-font-light whitespace-nowrap">
           Przejdź do projektów
