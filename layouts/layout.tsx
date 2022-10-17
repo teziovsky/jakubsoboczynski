@@ -9,13 +9,15 @@ type Props = {
 
 const Layout = ({ children }: Props) => {
   return (
-    <>
+    <div className="px-4 md:px-12 container">
       <Header />
       <SocialLinks />
-      <main className="container">{children}</main>
-      <Footer />
-      <SocialLinks />
-    </>
+      <main>{children}</main>
+      {/*If > md = hide classes*/}
+      <Footer className="pt-12 mb-4" />
+      {/*If > md = hide icons*/}
+      <SocialLinks className="flex justify-center items-center gap-x-8 pb-12" />
+    </div>
   );
 };
 

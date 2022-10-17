@@ -1,8 +1,16 @@
+import cx from "classnames";
 import React from "react";
 
-const Footer = () => {
+type Props = {
+  className?: string;
+};
+
+const Footer = ({ className }: Props) => {
   return (
-    <footer className="flex items-center justify-center flex-col py-12">
+    <footer
+      className={cx(className, "flex items-center justify-center flex-col", {
+        "py-12": !className,
+      })}>
       <svg
         className="w-4 mb-4 md:mr-1"
         fill="none"

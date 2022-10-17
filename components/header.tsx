@@ -1,66 +1,60 @@
-import React, { useEffect } from "react";
-
-function hideMenu() {
-  const wrapper = document.querySelector(".nav__wrapper");
-  if (wrapper) wrapper.classList.remove("opened");
-  const burger = document.querySelector(".nav__burger");
-  if (burger) burger.classList.remove("opened");
-  const body = document.querySelector("body");
-  if (body) body.removeAttribute("class");
-}
-
-function detectMobile() {
-  const width = window.innerWidth > 0 ? window.innerWidth : document.documentElement.clientWidth;
-  const nav = document.querySelector(".nav__wrapper");
-  if (width > 768) {
-    if (nav) nav.classList.remove("mobile");
-    hideMenu();
-  } else if (nav) nav.classList.add("mobile");
-}
-
-function toggleMenu() {
-  const wrapper = document.querySelector(".nav__wrapper");
-  if (wrapper) wrapper.classList.toggle("opened");
-  const burger = document.querySelector(".nav__burger");
-  if (burger) burger.classList.toggle("opened");
-  const body = document.querySelector("body");
-  if (body) body.classList.toggle("opened");
-}
+import cx from "classnames";
+import React, { useEffect, useState } from "react";
 
 const Header = () => {
-  useEffect(() => {
-    detectMobile();
-    window.addEventListener("resize", detectMobile);
-  }, []);
+  const [opened, setOpened] = useState(false);
+  const [mobile, setMobile] = useState(true);
+
+  useEffect(() => {}, []);
 
   return (
-    <header>
-      <nav>
-        <button aria-label="Pokaż/Ukryj nawigację serwisu" className="nav__burger" onClick={() => toggleMenu()}>
-          <span></span>
+    <header className="absolute z-10 top-0 inset-x-0">
+      <nav className="flex justify-between items-center py-8 px-5 md:px-12">
+        <button
+          aria-label="Pokaż/Ukryj nawigację serwisu"
+          className="relative z-20 w-12 h-9 py-px px-[7px] md:hidden group"
+          onClick={() => setOpened((prevState) => !prevState)}>
+          <span
+            className={cx(
+              "relative w-full h-[3px] block text-center bg-font-dark dark:bg-font-light rounded-sm my-0 mx-auto transition-all duration-1000 before:content-[''] after:content-[''] before:absolute after:absolute before:left-0 after:left-0 before:w-full after:w-full before:h-[3px] after:h-[3px] before:bg-font-dark after:bg-font-dark dark:before:bg-font-light dark:after:bg-font-light before:rounded-sm after:rounded-sm before:transition-all after:transition-all before:duration-1000 after:duration-1000 after:-bottom-[10px] group-hover:bg-accent-light dark:group-hover:bg-accent-dark group-hover:before:bg-accent-light dark:group-hover:before:bg-accent-dark group-hover:after:bg-accent-light dark:group-hover:after:bg-accent-dark",
+              {
+                "bg-font-dark/0 dark:bg-font-light/0 group-hover:bg-font-dark/0 group-hover:dark:bg-font-light/0 before:top-0 before:rotate-[135deg] after:top-0 after:rotate-[225deg]":
+                  opened,
+                "before:-top-[10px]": !opened,
+              }
+            )}></span>
         </button>
-        <div className="nav__wrapper">
-          <a aria-label="Przejdź do sekcji o mnie" className="nav__link link" href="#o_mnie" onClick={() => hideMenu()}>
+        <div
+          className={cx("flex-center text-base gap-x-4", {
+            "visible translate-x-0": opened,
+            "fixed flex-col text-2xl bg-secondary-light px-5 pt-28 pb-20 -translate-x-full gap-y-7 dark:bg-secondary-dark invisible z-30 h-full top-0 left-0 right-0 transition-all duration-700":
+              mobile,
+          })}>
+          <a
+            aria-label="Przejdź do sekcji o mnie"
+            className="font-secondary py-2 px-4 w-max after:bottom-1 w-3/5 link"
+            href="#o_mnie"
+            onClick={() => setOpened(false)}>
             o mnie
           </a>
           <a
             aria-label="Przejdź do sekcji projekty"
-            className="nav__link link"
+            className="font-secondary py-2 px-4 w-max after:bottom-1 w-3/5 link"
             href="#projekty"
-            onClick={() => hideMenu()}>
+            onClick={() => setOpened(false)}>
             projekty
           </a>
           <a
             aria-label="Przejdź do sekcji kontakt"
-            className="nav__link link"
+            className="font-secondary py-2 px-4 w-max after:bottom-1 w-3/5 link"
             href="#kontakt"
-            onClick={() => hideMenu()}>
+            onClick={() => setOpened(false)}>
             kontakt
           </a>
         </div>
       </nav>
       <svg
-        className="header__logo"
+        className="absolute left-1/2 -translate-x-1/2 origin-top w-logo top-logo"
         fill="none"
         height="113"
         viewBox="0 0 93 113"
@@ -68,6 +62,7 @@ const Header = () => {
         xmlns="http://www.w3.org/2000/svg">
         <title>Logo serwisu jakubsoboczynski.pl</title>
         <path
+          className="stroke-font-dark dark:stroke-font-light transition-colors"
           d="M46.7376 104.089V112M46.7376 112H38.0787L24.3421 91.3683L2 73.516L10.6055 56.5724M46.7376 112H55.2896L69.0262 91.3683L91.3683 73.516L82.7629 56.5724M10.6055 56.5724L8.89505 2L10.6055 2.05345L38.0787 30.0078M10.6055 56.5724L38.0787 30.0078M10.6055 56.5724L46.7376 78.1127M82.7629 56.5724L46.7376 78.1127M82.7629 56.5724L84.4733 2.00001H82.7629L55.2896 30.0078M82.7629 56.5724L55.2896 30.0078M38.0787 30.0078H46.7376M46.7376 78.1127L55.436 51.9757M46.7376 78.1127L38.0569 52.0292M46.7376 30.0078L35.5666 44.5462L38.0569 52.0292M46.7376 30.0078L57.9086 44.5462L55.436 51.9757M46.7376 30.0078H55.2896M55.436 51.9757L46.7376 40.6978L38.0569 52.0292M66.1399 66.4072H74.0505L67.5296 72.1263L54.274 73.8902L65.1778 67.1555M27.5491 66.4072H19.6385L26.1594 72.1263L39.415 73.8902L28.5112 67.1555L27.5491 66.4072Z"
           stroke="white"
           strokeWidth="2"

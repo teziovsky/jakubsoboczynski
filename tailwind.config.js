@@ -8,6 +8,12 @@ module.exports = {
   ],
   theme: {
     extend: {
+      inset: {
+        logo: "clamp(0.9375rem, 0.50304867rem + 1.853659vw, 2.125rem)",
+      },
+      width: {
+        logo: "clamp(4.375rem, 3.68902445rem + 2.926829vw, 6.25rem)",
+      },
       maxWidth: {
         "about-me-image": "clamp(12.5rem, 11.35670727rem + 4.878049vw, 15.625rem)",
       },
@@ -120,10 +126,6 @@ module.exports = {
     },
     container: {
       center: true,
-      padding: {
-        DEFAULT: "1rem",
-        md: "3rem",
-      },
     },
   },
   plugins: [],
