@@ -48,7 +48,7 @@ img {
 }
 
 .image-overlay {
-  @apply before:content-[''] before:bg-primary-dark dark:before:bg-primary-light before:absolute before:w-full before:h-full before:z-10 before:transition-colors before:mix-blend-color
+  @apply relative before:content-[''] before:bg-primary-light dark:before:bg-primary-dark before:absolute before:w-full before:h-full before:z-10 before:transition-colors before:mix-blend-color
 }
 
 #ghostery-tracker-tally {
@@ -72,6 +72,5 @@ img {
 }
 
 .button {
-  font-size: clamp(0.75rem, 0.65853656rem + 0.390244vw, 1rem);
-  @apply relative flex flex-row items-center justify-center overflow-hidden font-secondary uppercase text-primary-dark dark:text-primary-light border border-transparent py-3 px-6 transition-all duration-500 outline-1 outline outline-accent-light/50 dark:outline-accent-dark/50 outline-offset-0 hover:outline-accent-light/0 dark:hover:outline-accent-dark/0 hover:outline-offset-[15px] hover:shadow-button hover:shadow-accent-light/50 dark:hover:shadow-accent-dark/50;
+  @apply relative flex flex-row items-center justify-center overflow-hidden font-secondary uppercase text-primary-dark dark:text-primary-light border border-transparent py-3 px-6 transition-all duration-500 outline-1 outline outline-accent-light/50 dark:outline-accent-dark/50 outline-offset-0 hover:outline-accent-light/0 dark:hover:outline-accent-dark/0 hover:outline-offset-[15px] hover:shadow-button hover:shadow-accent-light/50 dark:hover:shadow-accent-dark/50 text-button;
 }

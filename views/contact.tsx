@@ -3,10 +3,10 @@ import contacts from "content/contacts.json";
 
 const Contact = () => {
   return (
-    <section id="kontakt" className="contact">
+    <section id="kontakt" className="p-contact">
       <h2 className="section-header">Kontakt</h2>
-      <p className="contact__description">{contacts[0].description}</p>
-      <div className="contact__button">
+      <p className="font-light text-lg mx-auto mt-0 mb-8 text-center max-w-[700px]">{contacts[0].description}</p>
+      <div className="flex-center">
         <a
           aria-label="Wyślij e-maila na adres jakub.soboczynski@icloud.com"
           className="button"

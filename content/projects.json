@@ -6,7 +6,7 @@
     "technologies": "Vue.js, Vuex, Vuetify, Vuelidate, GitHub Pages",
     "source": "https://github.com/teziovsky/car-service-book-old#readme",
     "demo": "https://teziovsky.github.io/car-service-book-old",
-    "image": "/uploads/car-service-book.webp",
+    "image": "/images/car-service-book.webp",
     "imageAlt": "Zrzut ekranu aplikacji car service book."
   },
   {
@@ -16,7 +16,7 @@
     "technologies": "Vue.js, Vuex, Vue-Router, Bootstrap, The Movie DB API, GitHub Pages",
     "source": "https://github.com/teziovsky/movie-search-engine#readme",
     "demo": "https://teziovsky.github.io/movie-search-engine",
-    "image": "/uploads/movie_search_engine.webp",
+    "image": "/images/movie_search_engine.webp",
     "imageAlt": "Zrzut ekranu aplikacji movie search engine."
   },
   {
@@ -26,7 +26,7 @@
     "technologies": "Vue.js, SCSS, Flickr API, Github Pages/",
     "source": "https://github.com/teziovsky/images-gallery#readme",
     "demo": "https://teziovsky.github.io/images-gallery",
-    "image": "/uploads/image_search_engine.webp",
+    "image": "/images/image_search_engine.webp",
     "imageAlt": "Zrzut ekranu aplikacji image search engine."
   },
   {
@@ -36,7 +36,7 @@
     "technologies": "HTML5, SCSS, Github Pages",
     "source": "https://github.com/teziovsky/lenovo-product-card#readme",
     "demo": "https://teziovsky.github.io/lenovo-product-card",
-    "image": "/uploads/lenovo.webp",
+    "image": "/images/lenovo.webp",
     "imageAlt": "Zrzut ekranu aplikacji lenovo product card."
   }
 ]
