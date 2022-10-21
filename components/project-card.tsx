@@ -1,8 +1,5 @@
-import projects from "content/projects.json";
 import Image from "next/image";
 import React from "react";
-
-console.log("projects: ", projects);
 
 type Props = {
   id: number;

@@ -8,8 +8,14 @@ module.exports = {
   ],
   theme: {
     extend: {
+      minHeight: {
+        "inner-screen": "calc(100vh - 270px)",
+        "inner-screen-lg": "calc(100vh - 205px)",
+      },
       inset: {
         logo: "clamp(0.9375rem, 0.50304867rem + 1.853659vw, 2.125rem)",
+        error: "calc(50% + 100px)",
+        "error-lg": "calc(50% + 80px)",
       },
       width: {
         logo: "clamp(4.375rem, 3.68902445rem + 2.926829vw, 6.25rem)",

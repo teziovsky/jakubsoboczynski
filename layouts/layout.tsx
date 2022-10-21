@@ -4,19 +4,20 @@ import SocialLinks from "components/social-links";
 import React from "react";
 
 type Props = {
+  className?: string;
   children: React.ReactNode;
 };
 
-const Layout = ({ children }: Props) => {
+const Layout = ({ className, children }: Props) => {
   return (
-    <div className="px-4 lg:px-12 container">
+    <div className="px-4 lg:px-20 container">
       <Header />
       <SocialLinks />
-      <main>{children}</main>
+      <main className={className}>{children}</main>
       {/*If > md = hide classes*/}
       <Footer className="pt-12 mb-4" />
       {/*If > md = hide icons*/}
-      <SocialLinks className="flex justify-center items-center gap-x-8 pb-12" />
+      <SocialLinks className="flex justify-center items-center gap-x-8 pb-12 lg:hidden" />
     </div>
   );
 };

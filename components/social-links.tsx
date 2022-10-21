@@ -10,7 +10,7 @@ const SocialLinks = ({ className }: Props) => {
   return (
     <ul
       className={cx(className, {
-        "fixed hidden left-[45px] top-1/2 -translate-y-1/2 lg:flex flex-col items-center justify-center gap-y-9":
+        "fixed z-30 hidden left-[35px] top-1/2 -translate-y-1/2 lg:flex flex-col items-center justify-center gap-y-9":
           !className,
       })}>
       {socialLinks.map((link) => (
@@ -18,7 +18,7 @@ const SocialLinks = ({ className }: Props) => {
           <a
             aria-label={link.buttonTitle}
             href={link.url}
-            className="flex items-center justify-center w-7 h-7 p-1"
+            className="social-link"
             rel="noreferrer nofollow noopener"
             target="_blank"
             dangerouslySetInnerHTML={{ __html: link.icon }}></a>

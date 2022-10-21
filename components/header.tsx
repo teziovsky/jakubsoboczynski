@@ -1,83 +1,72 @@
 import cx from "classnames";
+import { BREAKPOINTS, isMobile } from "helpers";
+import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import useBreakpoint from "use-breakpoint";
-
-const BREAKPOINTS = {
-  xs: 0,
-  sm: 640,
-  md: 768,
-  lg: 1024,
-  xl: 1280,
-  "2xl": 1536,
-};
-
-function isMobile(breakpoint: keyof typeof BREAKPOINTS | undefined) {
-  if (!breakpoint) return false;
-  return ["xs", "sm", "md"].includes(breakpoint);
-}
 
 const Header = () => {
   const { breakpoint } = useBreakpoint(BREAKPOINTS);
   const [opened, setOpened] = useState(false);
-
-  console.log("breakpoint: ", breakpoint);
+  const { pathname } = useRouter();
 
   useEffect(() => {
     const body = document.querySelector("body");
     if (body && opened) body.classList.add("overflow-hidden", "touch-none");
     if (body && !opened) body.classList.remove("overflow-hidden", "touch-none");
     if (!isMobile(breakpoint)) setOpened(false);
-  }, [opened]);
+  }, [breakpoint, opened]);
 
   return (
     <header className="absolute z-10 top-0 inset-x-0">
-      <nav className="flex justify-between items-center py-8 px-5 lg:px-12">
-        <button
-          aria-label="Pokaż/Ukryj nawigację serwisu"
-          className="relative z-40 w-12 h-9 py-px px-[7px] lg:hidden group"
-          onClick={() => setOpened((prevState) => !prevState)}>
-          <span
+      {pathname !== "/404" && (
+        <nav className="flex justify-between items-center py-8 px-5 lg:px-12">
+          <button
+            aria-label="Pokaż/Ukryj nawigację serwisu"
+            className="relative z-50 w-12 h-9 py-px px-[7px] lg:hidden group"
+            onClick={() => setOpened((prevState) => !prevState)}>
+            <span
+              className={cx(
+                "relative w-full h-[3px] block text-center bg-font-dark dark:bg-font-light rounded-sm my-0 mx-auto transition-all duration-1000 before:content-[''] after:content-[''] before:absolute after:absolute before:left-0 after:left-0 before:w-full after:w-full before:h-[3px] after:h-[3px] before:bg-font-dark after:bg-font-dark dark:before:bg-font-light dark:after:bg-font-light before:rounded-sm after:rounded-sm before:transition-all after:transition-all before:duration-1000 after:duration-1000 after:-bottom-[10px] group-hover:bg-accent-light dark:group-hover:bg-accent-dark group-hover:before:bg-accent-light dark:group-hover:before:bg-accent-dark group-hover:after:bg-accent-light dark:group-hover:after:bg-accent-dark",
+                {
+                  "bg-font-dark/0 dark:bg-font-light/0 group-hover:bg-font-dark/0 group-hover:dark:bg-font-light/0 before:top-0 before:rotate-[135deg] after:top-0 after:rotate-[225deg]":
+                    opened,
+                  "before:-top-[10px]": !opened,
+                }
+              )}></span>
+          </button>
+          <div
             className={cx(
-              "relative w-full h-[3px] block text-center bg-font-dark dark:bg-font-light rounded-sm my-0 mx-auto transition-all duration-1000 before:content-[''] after:content-[''] before:absolute after:absolute before:left-0 after:left-0 before:w-full after:w-full before:h-[3px] after:h-[3px] before:bg-font-dark after:bg-font-dark dark:before:bg-font-light dark:after:bg-font-light before:rounded-sm after:rounded-sm before:transition-all after:transition-all before:duration-1000 after:duration-1000 after:-bottom-[10px] group-hover:bg-accent-light dark:group-hover:bg-accent-dark group-hover:before:bg-accent-light dark:group-hover:before:bg-accent-dark group-hover:after:bg-accent-light dark:group-hover:after:bg-accent-dark",
+              "flex-center text-base gap-x-4 invisible -translate-x-full lg:visible lg:-translate-x-0 fixed lg:static flex-col lg:flex-row bg-secondary-light dark:bg-secondary-dark lg:bg-transparent lg:dark:bg-transparent transition-all duration-700 lg:transition-none h-full lg:h-auto gap-y-7 lg:gap-y-0 px-5 pt-28 pb-20 lg:px-0 lg:pt-0 lg:pb-0 z-40 lg:z-0 top-0 left-0 right-0 text-2xl lg:text-base",
               {
-                "bg-font-dark/0 dark:bg-font-light/0 group-hover:bg-font-dark/0 group-hover:dark:bg-font-light/0 before:top-0 before:rotate-[135deg] after:top-0 after:rotate-[225deg]":
-                  opened,
-                "before:-top-[10px]": !opened,
+                "!visible !translate-x-0": opened,
               }
-            )}></span>
-        </button>
-        <div
-          className={cx("flex-center text-base gap-x-4", {
-            "visible translate-x-0": opened,
-            "invisible -translate-x-full": !opened && isMobile(breakpoint),
-            "fixed flex-col text-2xl bg-secondary-light px-5 pt-28 pb-20 gap-y-7 dark:bg-secondary-dark z-30 h-full top-0 left-0 right-0 transition-all duration-700":
-              isMobile(breakpoint),
-          })}>
-          <a
-            aria-label="Przejdź do sekcji o mnie"
-            className="font-secondary py-2 px-4 w-max after:bottom-1 w-3/5 link text-center"
-            href="#o_mnie"
-            onClick={() => setOpened(false)}>
-            o mnie
-          </a>
-          <a
-            aria-label="Przejdź do sekcji projekty"
-            className="font-secondary py-2 px-4 w-max after:bottom-1 w-3/5 link text-center"
-            href="#projekty"
-            onClick={() => setOpened(false)}>
-            projekty
-          </a>
-          <a
-            aria-label="Przejdź do sekcji kontakt"
-            className="font-secondary py-2 px-4 w-max after:bottom-1 w-3/5 link text-center"
-            href="#kontakt"
-            onClick={() => setOpened(false)}>
-            kontakt
-          </a>
-        </div>
-      </nav>
+            )}>
+            <a
+              aria-label="Przejdź do sekcji o mnie"
+              className="font-secondary py-2 px-4 after:bottom-1 w-2/5 link text-center"
+              href="#o_mnie"
+              onClick={() => setOpened(false)}>
+              o mnie
+            </a>
+            <a
+              aria-label="Przejdź do sekcji projekty"
+              className="font-secondary py-2 px-4 after:bottom-1 w-2/5 link text-center"
+              href="#projekty"
+              onClick={() => setOpened(false)}>
+              projekty
+            </a>
+            <a
+              aria-label="Przejdź do sekcji kontakt"
+              className="font-secondary py-2 px-4 after:bottom-1 w-2/5 link text-center"
+              href="#kontakt"
+              onClick={() => setOpened(false)}>
+              kontakt
+            </a>
+          </div>
+        </nav>
+      )}
       <svg
-        className="absolute left-1/2 -translate-x-1/2 origin-top w-logo top-logo"
+        className="absolute z-30 left-1/2 -translate-x-1/2 origin-top w-logo top-logo"
         fill="none"
         height="113"
         viewBox="0 0 93 113"
