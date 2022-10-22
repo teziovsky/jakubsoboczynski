@@ -44,19 +44,22 @@ const Header = () => {
             <a
               aria-label="Przejdź do sekcji o mnie"
               className="font-secondary py-2 px-4 after:bottom-1 w-2/5 link text-center"
-              href="#o_mnie">
+              href="#o_mnie"
+              onClick={() => setOpened(false)}>
               o mnie
             </a>
             <a
               aria-label="Przejdź do sekcji projekty"
               className="font-secondary py-2 px-4 after:bottom-1 w-2/5 link text-center"
-              href="#projekty">
+              href="#projekty"
+              onClick={() => setOpened(false)}>
               projekty
             </a>
             <a
               aria-label="Przejdź do sekcji kontakt"
               className="font-secondary py-2 px-4 after:bottom-1 w-2/5 link text-center"
-              href="#kontakt">
+              href="#kontakt"
+              onClick={() => setOpened(false)}>
               kontakt
             </a>
           </div>
