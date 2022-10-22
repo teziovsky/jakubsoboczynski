@@ -1,21 +1,22 @@
-
-.fade-enter {
-  opacity: 0;
+.shrink-enter-done,
+.shrink-exit {
+  @apply opacity-100 scale-100;
 }
 
-.fade-exit {
-  opacity: 1;
+.shrink-enter,
+.shrink-exit-done {
+  @apply opacity-0 scale-50;
 }
 
-.fade-enter-active {
-  opacity: 1;
+.shrink-enter-active {
+  @apply opacity-100 scale-100;
 }
 
-.fade-exit-active {
-  opacity: 0;
+.shrink-exit-active {
+  @apply opacity-0 scale-50;
 }
 
-.fade-enter-active,
-.fade-exit-active {
-  transition: opacity 500ms;
+.shrink-enter-active,
+.shrink-exit-active {
+  @apply transition duration-500;
 }

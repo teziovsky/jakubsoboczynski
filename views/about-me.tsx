@@ -2,10 +2,11 @@ import cx from "classnames";
 import aboutMe from "content/about-me.json";
 import { imageLoader } from "helpers";
 import Image from "next/image";
-import React, { useState } from "react";
+import React from "react";
+import { SwitchTransition, CSSTransition } from "react-transition-group";
 
 const AboutMe = () => {
-  const [selectedDescription, setSelectedDescription] = useState({ ...aboutMe[0] });
+  const [selectedDescription, setSelectedDescription] = React.useState({ ...aboutMe[0] });
 
   return (
     <section id="o_mnie" className="py-24">
@@ -34,9 +35,18 @@ const AboutMe = () => {
           </button>
         ))}
       </div>
-      <p className="max-w-[700px] text-center lg:text-justify mx-auto text-lg font-light">
-        {selectedDescription.description}
-      </p>
+      <SwitchTransition>
+        <CSSTransition
+          key={selectedDescription.description}
+          classNames="shrink"
+          addEndListener={(node, done) => node.addEventListener("transitionend", done, false)}>
+          <p
+            key={selectedDescription.description}
+            className="max-w-[700px] text-center lg:text-justify mx-auto text-lg font-light">
+            {selectedDescription.description}
+          </p>
+        </CSSTransition>
+      </SwitchTransition>
     </section>
   );
 };
