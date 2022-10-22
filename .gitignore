@@ -6,6 +6,7 @@ logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+.pnpm-debug.log*
 
 # Runtime data
 pids
@@ -87,9 +88,24 @@ sw.*
 
 # Mac OSX
 .DS_Store
+*.pem
 
 # Vim swap files
 *.swp
 
 # Local Netlify folder
 .netlify
+
+# dependencies
+/.pnp
+.pnp.js
+
+# production
+/build
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
