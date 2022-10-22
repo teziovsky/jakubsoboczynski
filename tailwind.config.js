@@ -9,6 +9,7 @@ module.exports = {
   theme: {
     extend: {
       minHeight: {
+        "inner-screen-contact": "calc(100vh - 540px)",
         "inner-screen": "calc(100vh - 270px)",
         "inner-screen-lg": "calc(100vh - 205px)",
       },

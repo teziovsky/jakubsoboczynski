@@ -14,9 +14,7 @@ const Layout = ({ className, children }: Props) => {
       <Header />
       <SocialLinks />
       <main className={className}>{children}</main>
-      {/*If > md = hide classes*/}
-      <Footer className="pt-12 mb-4" />
-      {/*If > md = hide icons*/}
+      <Footer className="pt-12 mb-8 lg:pt-0" />
       <SocialLinks className="flex justify-center items-center gap-x-8 pb-12 lg:hidden" />
     </div>
   );
