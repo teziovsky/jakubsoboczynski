@@ -1,15 +1,15 @@
 import cx from "classnames";
 import { BREAKPOINTS, isMobile } from "helpers";
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import useBreakpoint from "use-breakpoint";
 
 const Header = () => {
-  const { breakpoint } = useBreakpoint(BREAKPOINTS);
-  const [opened, setOpened] = useState(false);
   const { pathname } = useRouter();
+  const { breakpoint } = useBreakpoint(BREAKPOINTS);
+  const [opened, setOpened] = React.useState(false);
 
-  useEffect(() => {
+  React.useEffect(() => {
     const body = document.querySelector("body");
     if (body && opened) body.classList.add("overflow-hidden", "touch-none");
     if (body && !opened) body.classList.remove("overflow-hidden", "touch-none");
@@ -44,22 +44,19 @@ const Header = () => {
             <a
               aria-label="Przejdź do sekcji o mnie"
               className="font-secondary py-2 px-4 after:bottom-1 w-2/5 link text-center"
-              href="#o_mnie"
-              onClick={() => setOpened(false)}>
+              href="#o_mnie">
               o mnie
             </a>
             <a
               aria-label="Przejdź do sekcji projekty"
               className="font-secondary py-2 px-4 after:bottom-1 w-2/5 link text-center"
-              href="#projekty"
-              onClick={() => setOpened(false)}>
+              href="#projekty">
               projekty
             </a>
             <a
               aria-label="Przejdź do sekcji kontakt"
               className="font-secondary py-2 px-4 after:bottom-1 w-2/5 link text-center"
-              href="#kontakt"
-              onClick={() => setOpened(false)}>
+              href="#kontakt">
               kontakt
             </a>
           </div>
