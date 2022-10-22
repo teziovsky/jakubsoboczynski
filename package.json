@@ -26,7 +26,7 @@
     "eslint": "eslint . --fix --ext .js,.jsx,.ts,.tsx",
     "dev": "next dev",
     "build": "next build",
-    "export": "next build && next export",
+    "export": "next build && next export -- -o dist",
     "start": "next start",
     "lint": "next lint",
     "prepare": "husky install"
