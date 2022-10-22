@@ -1,5 +1,6 @@
 import cx from "classnames";
 import aboutMe from "content/about-me.json";
+import { imageLoader } from "helpers";
 import Image from "next/image";
 import React, { useState } from "react";
 
@@ -10,7 +11,14 @@ const AboutMe = () => {
     <section id="o_mnie" className="py-24">
       <h2 className="section-header">O mnie</h2>
       <div className="mx-auto block max-w-about-me-image image-overlay mb-8">
-        <Image src="/images/profile.webp" width={300} height={300} layout="responsive" alt="Moje zdjęcie profilowe" />
+        <Image
+          src="profile.webp"
+          loader={imageLoader}
+          width={300}
+          height={300}
+          layout="responsive"
+          alt="Moje zdjęcie profilowe"
+        />
       </div>
       <div className="flex-center flex-wrap mb-5 flex-col lg:flex-row gap-x-4 gap-y-7">
         {aboutMe.map((category) => (

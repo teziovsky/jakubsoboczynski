@@ -1,5 +1,6 @@
 import Image from "next/image";
 import React from "react";
+import { imageLoader } from "../helpers";
 
 type Props = {
   id: number;
@@ -17,7 +18,15 @@ const ProjectCard = ({ title, description, technologies, source, demo, image, im
     <div className="mx-auto mt-0 mb-16 pb-10 relative max-w-[550px]">
       <h3 className="font-secondary mb-8 font-normal text-2xl text-center">{title}</h3>
       <div className="image-overlay">
-        <Image alt={imageAlt} src={image} className="w-full block" layout="responsive" height={309.38} width={550} />
+        <Image
+          alt={imageAlt}
+          src={image}
+          loader={imageLoader}
+          className="w-full block"
+          layout="responsive"
+          height={309.38}
+          width={550}
+        />
       </div>
       <a
         aria-label={`Przejdź do plików źródłowych projektu - ${title}`}
