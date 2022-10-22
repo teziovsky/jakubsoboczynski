@@ -26,8 +26,7 @@ module.exports = {
       },
       padding: {
         contact: "100px 0 clamp(3.75rem, 2.83536586rem + 3.902439vw, 6.25rem)",
-        "project-info":
-          "clamp(0.625rem, 0.16768281rem + 1.95122vw, 1.875rem) clamp(1.25rem, 0.79268281rem + 1.95122vw, 2.5rem)",
+        "project-info": "clamp(1.38rem, 1.208rem + 0.7337vw, 1.85rem) clamp(1.85rem, 1.6122rem + 1.0146vw, 2.5rem)",
       },
       colors: {
         "primary-dark": "#1A1A2E",
@@ -83,10 +82,11 @@ module.exports = {
           },
         ],
         "project-description": [
-          "clamp(0.75rem, 0.70426828rem + 0.195122vw, 0.875rem)",
+          "clamp(0.75rem, 0.7043rem + 0.1951vw, 0.875rem)",
           {
-            lineHeight: "clamp(0.75rem, 0.70426828rem + 0.195122vw, 0.875rem)",
-            fontWeight: "600",
+            lineHeight: "clamp(0.95rem, 0.9043rem + 0.1951vw, 1.075rem)",
+            fontWeight: "300",
+            letterSpacing: "0.02em",
           },
         ],
         "project-technologies": [
