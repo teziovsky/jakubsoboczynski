@@ -13,7 +13,7 @@ const Meta = ({ title, description, image = "/placeholder-social.jpg" }: Props) 
 
   return (
     <Head>
-      <title>{title} | Jakub Soboczyński</title>
+      <title>{`${title} | Jakub Soboczyński`}</title>
       <meta name="title" content={`${title} | Jakub Soboczyński`} />
       <meta name="description" content={description} />
 

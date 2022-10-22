@@ -36,28 +36,28 @@ const Header = () => {
           </button>
           <div
             className={cx(
-              "flex-center text-base gap-x-4 invisible -translate-x-full lg:visible lg:-translate-x-0 fixed lg:static flex-col lg:flex-row bg-secondary-light dark:bg-secondary-dark lg:bg-transparent lg:dark:bg-transparent transition-all duration-700 lg:transition-none h-full lg:h-auto gap-y-7 lg:gap-y-0 px-5 pt-28 pb-20 lg:px-0 lg:pt-0 lg:pb-0 z-40 lg:z-0 top-0 left-0 right-0 text-2xl lg:text-base",
+              "flex-center text-lg md:text-2xl lg:text-base gap-x-4 gap-y-7 md:gap-y-10 lg:gap-y-0 invisible -translate-x-full lg:visible lg:-translate-x-0 fixed lg:static flex-col lg:flex-row bg-secondary-light dark:bg-secondary-dark lg:bg-transparent lg:dark:bg-transparent transition-all duration-700 lg:transition-none h-full lg:h-auto px-5 pt-28 pb-20 lg:px-0 lg:pt-0 lg:pb-0 z-40 top-0 left-0 right-0",
               {
                 "!visible !translate-x-0": opened,
               }
             )}>
             <a
               aria-label="Przejdź do sekcji o mnie"
-              className="font-secondary py-2 px-4 after:bottom-1 w-2/5 link text-center"
+              className="font-secondary py-2 px-8 after:bottom-1 w-max link text-center"
               href="#o_mnie"
               onClick={() => setOpened(false)}>
               o mnie
             </a>
             <a
               aria-label="Przejdź do sekcji projekty"
-              className="font-secondary py-2 px-4 after:bottom-1 w-2/5 link text-center"
+              className="font-secondary py-2 px-8 after:bottom-1 w-max link text-center"
               href="#projekty"
               onClick={() => setOpened(false)}>
               projekty
             </a>
             <a
               aria-label="Przejdź do sekcji kontakt"
-              className="font-secondary py-2 px-4 after:bottom-1 w-2/5 link text-center"
+              className="font-secondary py-2 px-8 after:bottom-1 w-max link text-center"
               href="#kontakt"
               onClick={() => setOpened(false)}>
               kontakt

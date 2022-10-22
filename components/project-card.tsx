@@ -16,7 +16,7 @@ type Props = {
 const ProjectCard = ({ title, description, technologies, source, demo, image, imageAlt }: Props) => {
   return (
     <div className="mx-auto mt-0 mb-16 pb-10 relative max-w-[550px]">
-      <h3 className="font-secondary mb-8 font-normal text-2xl text-center">{title}</h3>
+      <h3 className="font-secondary mb-8 font-normal text-lg md:text-2xl text-center">{title}</h3>
       <div className="image-overlay">
         <Image
           alt={imageAlt}
@@ -31,7 +31,7 @@ const ProjectCard = ({ title, description, technologies, source, demo, image, im
       <a
         aria-label={`Przejdź do plików źródłowych projektu - ${title}`}
         href={source}
-        className="absolute bottom-0 left-0 w-8 h-8 flex-center p-1 transition-transform hover:scale-110 hover:translate-y-2 group"
+        className="absolute bottom-0 left-0 w-7 h-7 lg:w-8 lg:h-8 flex-center p-1 transition-transform hover:scale-110 hover:translate-y-2 group"
         rel="noreferrer nofollow noopener"
         target="_blank">
         <svg fill="none" height="38" viewBox="0 0 35 38" width="35" xmlns="http://www.w3.org/2000/svg">
@@ -45,7 +45,7 @@ const ProjectCard = ({ title, description, technologies, source, demo, image, im
           />
         </svg>
       </a>
-      <div className="relative z-10 bottom-0 inset-x-0 bg-secondary-light dark:bg-secondary-dark transition-colors p-project-info sm:absolute sm:inset-x-[50px] sm:-bottom-[5px]">
+      <div className="relative bottom-0 inset-x-0 bg-secondary-light dark:bg-secondary-dark transition-colors p-project-info sm:absolute sm:inset-x-[50px] sm:-bottom-[5px]">
         <p className="text-center text-project-description">{description}</p>
         <p className="relative opacity-80 text-center mt-4 pt-4 text-project-technologies before:content-[''] before:absolute before:top-0 before:left-1/2 before:w-[40px] before:h-px before:transition-colors before:-translate-x-1/2 before:bg-font-dark dark:before:bg-font-light">
           {technologies}
@@ -54,7 +54,7 @@ const ProjectCard = ({ title, description, technologies, source, demo, image, im
       <a
         aria-label={`Przejdź do prezentacji projektu - ${title}`}
         href={demo}
-        className="absolute bottom-0 right-0 w-8 h-8 flex-center p-[0.375rem] transition-transform hover:scale-110 hover:translate-y-2 group"
+        className="absolute bottom-0 right-0 w-7 h-7 lg:w-8 lg:h-8 flex-center p-[0.375rem] transition-transform hover:scale-110 hover:translate-y-2 group"
         rel="noreferrer nofollow noopener"
         target="_blank">
         <svg fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
