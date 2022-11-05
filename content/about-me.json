@@ -2,11 +2,11 @@
   {
     "id": 1,
     "title": "Doświadczenie",
-    "description": "Od stycznia 2021 jestem Frontend Developerem korzystając głównie z frameworka Vue.js. Każdego dnia doskonalę swoje umiejętności, oglądając i uczestnicząc w kursach programowania online. Obecnie rozwijam swoje umiejętności związane z budowaniem stron statycznych za pomocą Static Site Generators (SSG) takich jak Gridsome czy Nuxt.js, ale również z renderowaniem stron po stronie serwera (SSR) za pomocą Nuxt.js. W niedalekiej przyszłości moim celem jest nauczyć się budować API w Pythonowym Flasku oraz środowisku Node.js wraz z Express.js."
+    "description": "Od stycznia 2021 jestem Frontend Developerem posługującym się głównie frameworkami Vue.js oraz Nuxt.js. Obecnie rozwijam swoje umiejętności związane z ekosystemem React oraz szeroko pojętą stroną Backendową. W tym celu tworzę projekty poboczne z wykorzystaniem React lub Next.js oraz  po stronie backendowej PostgreSQL, Node.js z Express.js bądź NestJS."
   },
   {
     "id": 2,
     "title": "Zainteresowania",
-    "description": "Ostatnio bardzo zainteresowałem się automatyzacją procesów i staram się dostrzec często powtarzane przeze mnie zadania, które następnie wydeleguję do robotów. Poza zainteresowaniami związanymi ze światem IT bardzo lubię brać udział w festiwalach muzyki elektronicznej, szczególnie interesują mnie podgatunki techno i trance."
+    "description": "Ostatnio bardzo zainteresowałem się automatyzacją procesów, dlatego staram się dostrzec często powtarzane przeze mnie zadania, które następnie automatyzuję w taki sposób, żeby mieć nad tym jak największą kontrolę. Poza zainteresowaniami związanymi ze światem IT bardzo lubię brać udział w festiwalach muzyki elektronicznej, szczególnie interesują mnie gatunki techno i trance."
   }
 ]
