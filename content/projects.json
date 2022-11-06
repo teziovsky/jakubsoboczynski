@@ -2,7 +2,7 @@
   {
     "id": 1,
     "title": "Car service book V1",
-    "description": "Internetowa książka serwisowa pojazdów. Pozwala na zapisywanie historii serwisowej wraz z opisem, datą oraz aktualnym przebiegiem dla różnych samochodów dodanych do bazy danych.",
+    "description": "Internetowa książka serwisowa pojazdów. Pozwala na zapisywanie historii serwisowej wraz z opisem, datą oraz aktualnym przebiegiem dla dodanych samochodów.",
     "technologies": "Vue.js, Vuex, Vuetify, Vuelidate, GitHub Pages",
     "source": "https://github.com/teziovsky/car-service-book-old#readme",
     "demo": "https://teziovsky.github.io/car-service-book-v1/",
@@ -12,7 +12,7 @@
   {
     "id": 2,
     "title": "Movies search engine",
-    "description": "Wyszukiwarka filmów pobierająca informacje z API The Movie DB. Umożliwia wyświetlanie szczegółów konkretnego filmu oraz sortowanie listy według określonych kryteriów. Projekt stworzony na potrzeby rekrutacji na stanowisko Frontend Developer.",
+    "description": "Wyszukiwarka filmów pobierająca informacje z API The Movie DB. Umożliwia wyświetlanie szczegółów konkretnego filmu oraz sortowanie listy według określonych kryteriów.",
     "technologies": "Vue.js, Vuex, Vue-Router, Bootstrap, The Movie DB API, GitHub Pages",
     "source": "https://github.com/teziovsky/movie-search-engine#readme",
     "demo": "https://teziovsky.github.io/movie-search-engine",
@@ -21,18 +21,8 @@
   },
   {
     "id": 3,
-    "title": "Image search engine",
-    "description": "Wyszukiwarka obrazów napisana w Vue.js. Pobiera obrazy na podstawie wyszukiwanej frazy z Flickr API.",
-    "technologies": "Vue.js, SCSS, Flickr API, Github Pages",
-    "source": "https://github.com/teziovsky/images-gallery#readme",
-    "demo": "https://teziovsky.github.io/images-gallery",
-    "image": "image_search_engine.webp",
-    "imageAlt": "Zrzut ekranu aplikacji image search engine."
-  },
-  {
-    "id": 4,
     "title": "Lenovo product card",
-    "description": "Strona landing page produktu Lenovo. Została stworzona na potrzeby rekrutacji na stanowisko Frontend Developer.",
+    "description": "Strona landing page produktu Lenovo.",
     "technologies": "HTML5, SCSS, Github Pages",
     "source": "https://github.com/teziovsky/lenovo-product-card#readme",
     "demo": "https://teziovsky.github.io/lenovo-product-card",
