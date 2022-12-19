@@ -1,6 +1,8 @@
 import { Head, Html, Main, NextScript } from "next/document";
 
 const Document = () => {
+  const month = new Date().toISOString().slice(5, 7);
+
   return (
     <Html lang="pl-PL">
       <Head>
@@ -31,6 +33,9 @@ const Document = () => {
       <body>
         <Main />
         <NextScript />
+        {month === "12" || month === "1" || month === "2" ? (
+          <script src="https://app.embed.im/snow.js" defer></script>
+        ) : null}
       </body>
     </Html>
   );
