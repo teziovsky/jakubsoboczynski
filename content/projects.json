@@ -1,32 +1,42 @@
 [
   {
     "id": 1,
-    "title": "Car service book V1",
-    "description": "Internetowa książka serwisowa pojazdów. Pozwala na zapisywanie historii serwisowej wraz z opisem, datą oraz aktualnym przebiegiem dla dodanych samochodów.",
-    "technologies": "Vue.js, Vuex, Vuetify, Vuelidate, GitHub Pages",
-    "source": "https://github.com/teziovsky/car-service-book-old#readme",
-    "demo": "https://teziovsky.github.io/car-service-book-v1/",
-    "image": "car-service-book.webp",
-    "imageAlt": "Zrzut ekranu aplikacji car service book."
+    "title": "Vehicle service book",
+    "description": "Książka serwisowa pojazdów online. Umożliwia dodanie nowego pojazdu do ewidencji oraz zapisanie informacji o jego naprawach. Ma ona na celu ułatwić użytkownikom utrzymanie pojazdów w dobrym stanie technicznym oraz w szybki sposób umożliwić dostęp do informacji o historii serwisowej.",
+    "technologies": "Next.js, TypeScript, tRPC, Tailwind CSS, Prisma, Vercel, Planet Scale",
+    "source": "https://github.com/teziovsky/vehicle-service-book#readme",
+    "demo": "https://vehicle-service-book.vercel.app",
+    "image": "vehicle_service_book.webp",
+    "imageAlt": "Zrzut ekranu aplikacji - Vehicle service book."
   },
   {
     "id": 2,
+    "title": "Car service book V1",
+    "description": "Internetowa książka serwisowa samochodów. Pozwala na zapisywanie historii serwisowej wraz z opisem, datą oraz aktualnym przebiegiem dla dodanych samochodów.",
+    "technologies": "Vue.js, Vuex, Vuetify, Vuelidate, GitHub Pages",
+    "source": "https://github.com/teziovsky/car-service-book-v1#readme",
+    "demo": "https://teziovsky.github.io/car-service-book-v1/",
+    "image": "car_service_book.webp",
+    "imageAlt": "Zrzut ekranu aplikacji - Car service book."
+  },
+  {
+    "id": 3,
     "title": "Movies search engine",
     "description": "Wyszukiwarka filmów pobierająca informacje z API The Movie DB. Umożliwia wyświetlanie szczegółów konkretnego filmu oraz sortowanie listy według określonych kryteriów.",
     "technologies": "Vue.js, Vuex, Vue-Router, Bootstrap, The Movie DB API, GitHub Pages",
     "source": "https://github.com/teziovsky/movie-search-engine#readme",
     "demo": "https://teziovsky.github.io/movie-search-engine",
     "image": "movie_search_engine.webp",
-    "imageAlt": "Zrzut ekranu aplikacji movie search engine."
+    "imageAlt": "Zrzut ekranu aplikacji - Movie search engine."
   },
   {
-    "id": 3,
+    "id": 4,
     "title": "Lenovo product card",
     "description": "Strona landing page produktu Lenovo.",
     "technologies": "HTML5, SCSS, Github Pages",
     "source": "https://github.com/teziovsky/lenovo-product-card#readme",
     "demo": "https://teziovsky.github.io/lenovo-product-card",
     "image": "lenovo.webp",
-    "imageAlt": "Zrzut ekranu aplikacji lenovo product card."
+    "imageAlt": "Zrzut ekranu aplikacji - Lenovo product card."
   }
 ]
