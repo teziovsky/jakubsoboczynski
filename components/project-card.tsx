@@ -10,16 +10,15 @@ type Props = {
   source: string;
   demo: string;
   image: string;
-  imageAlt: string;
 };
 
-const ProjectCard = ({ title, description, technologies, source, demo, image, imageAlt }: Props) => {
+const ProjectCard = ({ title, description, technologies, source, demo, image }: Props) => {
   return (
     <div className="mx-auto mt-0 mb-16 pb-10 relative max-w-[550px]">
       <h3 className="font-secondary mb-8 font-normal text-lg md:text-2xl text-center">{title}</h3>
       <div className="image-overlay">
         <Image
-          alt={imageAlt}
+          alt={`Zrzut ekranu aplikacji - ${title}`}
           src={image}
           loader={imageLoader}
           className="w-full block"
