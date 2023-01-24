@@ -1,14 +1,15 @@
 import ProjectCard from "components/project-card";
 import projects from "content/projects.json";
-import React from "react";
 
 const Projects = () => {
   return (
     <section id="projekty" className="pb-24">
       <h2 className="section-header">Projekty</h2>
-      {projects.map((project) => (
-        <ProjectCard key={project.id} {...project} />
-      ))}
+      {projects
+        .sort((a, b) => b.id - a.id)
+        .map((project) => (
+          <ProjectCard key={project.id} {...project} />
+        ))}
     </section>
   );
 };
