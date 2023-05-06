@@ -18,7 +18,6 @@ const AboutMe = () => {
           width={300}
           height={300}
           loading="lazy"
-          layout="responsive"
           alt="Moje zdjęcie profilowe"
         />
       </div>

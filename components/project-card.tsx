@@ -23,7 +23,6 @@ const ProjectCard = ({ title, description, technologies, source, demo, image }: 
           loader={imageLoader}
           loading="lazy"
           className="block w-full"
-          layout="responsive"
           height={309.38}
           width={550}
         />
