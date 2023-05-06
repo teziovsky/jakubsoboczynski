@@ -1,9 +1,9 @@
 import cx from "classnames";
+import { imageLoader } from "../helpers";
 import aboutMe from "content/about-me.json";
-import { imageLoader } from "helpers";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import React from "react";
-import { SwitchTransition, CSSTransition } from "react-transition-group";
+import { CSSTransition, SwitchTransition } from "react-transition-group";
 
 const AboutMe = () => {
   const [selectedDescription, setSelectedDescription] = React.useState({ ...aboutMe[0] });
@@ -13,12 +13,11 @@ const AboutMe = () => {
       <h2 className="section-header">O mnie</h2>
       <div className="block mx-auto mb-8 max-w-about-me-image image-overlay">
         <Image
-          src="profile.webp"
           loader={imageLoader}
+          src="profile.webp"
           width={300}
           height={300}
           loading="lazy"
-          layout="responsive"
           alt="Moje zdjęcie profilowe"
         />
       </div>

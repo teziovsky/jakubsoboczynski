@@ -1,5 +1,4 @@
-import Image from "next/image";
-import React from "react";
+import Image from "next/legacy/image";
 import { imageLoader } from "../helpers";
 
 type Props = {
@@ -23,7 +22,6 @@ const ProjectCard = ({ title, description, technologies, source, demo, image }: 
           loader={imageLoader}
           loading="lazy"
           className="block w-full"
-          layout="responsive"
           height={309.38}
           width={550}
         />
