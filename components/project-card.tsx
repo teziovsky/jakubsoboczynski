@@ -1,6 +1,4 @@
-import Image from "next/image";
-import React from "react";
-import { imageLoader } from "../helpers";
+import Image from "next/legacy/image";
 
 type Props = {
   id: number;
@@ -20,7 +18,6 @@ const ProjectCard = ({ title, description, technologies, source, demo, image }: 
         <Image
           alt={`Zrzut ekranu aplikacji - ${title}`}
           src={image}
-          loader={imageLoader}
           loading="lazy"
           className="block w-full"
           height={309.38}
