@@ -3,7 +3,6 @@ const nextConfig = {
   swcMinify: true,
   images: {
     loader: "custom",
-    loaderFile: "./helpers/loader.ts",
   },
 };
 

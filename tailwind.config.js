@@ -103,7 +103,7 @@ module.exports = {
     },
     fontFamily: {
       primary: [
-        "Inter",
+        "var(--font-inter)",
         "ui-sans-serif",
         "system-ui",
         "-apple-system",
@@ -120,7 +120,7 @@ module.exports = {
         "Noto Color Emoji",
       ],
       secondary: [
-        "Space Mono",
+        "var(--font-space-mono)",
         "ui-monospace",
         "SFMono-Regular",
         "Menlo",

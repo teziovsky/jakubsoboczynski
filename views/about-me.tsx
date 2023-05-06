@@ -1,4 +1,5 @@
 import cx from "classnames";
+import { imageLoader } from "../helpers";
 import aboutMe from "content/about-me.json";
 import Image from "next/legacy/image";
 import React from "react";
@@ -11,7 +12,14 @@ const AboutMe = () => {
     <section id="o_mnie" className="py-24">
       <h2 className="section-header">O mnie</h2>
       <div className="block mx-auto mb-8 max-w-about-me-image image-overlay">
-        <Image src="profile.webp" width={300} height={300} loading="lazy" alt="Moje zdjęcie profilowe" />
+        <Image
+          loader={imageLoader}
+          src="profile.webp"
+          width={300}
+          height={300}
+          loading="lazy"
+          alt="Moje zdjęcie profilowe"
+        />
       </div>
       <div className="flex-col flex-wrap mb-5 flex-center lg:flex-row gap-x-4 gap-y-3 md:gap-y-7">
         {aboutMe.map((category) => (
