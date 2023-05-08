@@ -1,6 +1,6 @@
 import { Head, Html, Main, NextScript } from "next/document";
 
-const Document = () => {
+export default function Document() {
   const month = new Date().toISOString().slice(5, 7);
 
   return (
@@ -33,6 +33,4 @@ const Document = () => {
       </body>
     </Html>
   );
-};
-
-export default Document;
+}

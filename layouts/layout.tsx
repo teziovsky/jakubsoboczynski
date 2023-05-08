@@ -1,14 +1,14 @@
 import Footer from "components/footer";
 import Header from "components/header";
 import SocialLinks from "components/social-links";
-import React from "react";
+import { ReactNode } from "react";
 
 type Props = {
   className?: string;
-  children: React.ReactNode;
+  children: ReactNode;
 };
 
-const Layout = ({ className, children }: Props) => {
+export default function Layout({ className, children }: Props) {
   return (
     <>
       <Header />
@@ -18,6 +18,4 @@ const Layout = ({ className, children }: Props) => {
       <SocialLinks className="flex items-center justify-center pb-12 gap-x-8 lg:hidden" />
     </>
   );
-};
-
-export default Layout;
+}

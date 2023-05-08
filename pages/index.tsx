@@ -1,12 +1,11 @@
 import Meta from "components/seo-meta";
 import Layout from "layouts/layout";
-import type { NextPage } from "next";
 import AboutMe from "../views/about-me";
 import Contact from "../views/contact";
 import Hero from "../views/hero";
 import Projects from "../views/projects";
 
-const Home: NextPage = () => {
+export default function Home() {
   return (
     <>
       <Meta title="Hello!" description="My own page." />
@@ -18,6 +17,4 @@ const Home: NextPage = () => {
       </Layout>
     </>
   );
-};
-
-export default Home;
+}

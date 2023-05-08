@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Layout from "../layouts/layout";
 
-const Error404 = () => {
+export default function Error404() {
   return (
     <Layout className="relative min-h-inner-screen lg:min-h-inner-screen-lg">
       <section className="absolute z-0 flex flex-col items-center justify-center gap-4 -translate-x-1/2 -translate-y-1/2 left-1/2 top-error lg:top-error-lg">
@@ -13,6 +13,4 @@ const Error404 = () => {
       </section>
     </Layout>
   );
-};
-
-export default Error404;
+}

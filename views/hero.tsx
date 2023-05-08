@@ -1,6 +1,4 @@
-import React from "react";
-
-const Hero = () => {
+export default function Hero() {
   return (
     <section id="hero" className="relative min-h-screen">
       <div className="absolute w-full flex flex-col items-center left-1/2 top-[45%] -translate-x-1/2 -translate-y-1/2">
@@ -11,9 +9,9 @@ const Hero = () => {
         <p className="text-hero-subtitle opacity-70 font-secondary">Frontend developer</p>
       </div>
       <a
-        className="flex group inset-x-1/3 bottom-28 lg:bottom-16 flex-col items-center my-0 mx-auto py-1 px-5 absolute hover:animate-bounce -translate-y-1/4"
+        className="absolute flex flex-col items-center px-5 py-1 mx-auto my-0 group inset-x-1/3 bottom-28 lg:bottom-16 hover:animate-bounce -translate-y-1/4"
         href="#projekty">
-        <span className="font-secondary relative group-hover:opacity-100 group-hover:translate-y-0 -translate-y-10 duration-500 opacity-0 text-button-span pointer-events-none transition text-font-dark dark:text-font-light whitespace-nowrap">
+        <span className="relative transition duration-500 -translate-y-10 opacity-0 pointer-events-none font-secondary group-hover:opacity-100 group-hover:translate-y-0 text-button-span text-font-dark dark:text-font-light whitespace-nowrap">
           Przejdź do projektów
         </span>
         <svg className="w-5" fill="none" height="62" viewBox="0 0 29 62" width="29" xmlns="http://www.w3.org/2000/svg">
@@ -27,6 +25,4 @@ const Hero = () => {
       </a>
     </section>
   );
-};
-
-export default Hero;
+}

@@ -1,12 +1,11 @@
-import cx from "classnames";
-import { imageLoader } from "../helpers";
 import aboutMe from "content/about-me.json";
+import { cn, imageLoader } from "helpers";
 import Image from "next/legacy/image";
-import React from "react";
+import { useState } from "react";
 import { CSSTransition, SwitchTransition } from "react-transition-group";
 
-const AboutMe = () => {
-  const [selectedDescription, setSelectedDescription] = React.useState({ ...aboutMe[0] });
+export default function AboutMe() {
+  const [selectedDescription, setSelectedDescription] = useState({ ...aboutMe[0] });
 
   return (
     <section id="o_mnie" className="py-24">
@@ -26,7 +25,7 @@ const AboutMe = () => {
           <button
             key={category.id}
             aria-label={`Wyświetl treść kategorii - ${category.title}`}
-            className={cx(
+            className={cn(
               "relative font-secondary text-sm md:text-lg capitalize py-3 px-3 md:py-3 md:px-6 text-font-dark dark:text-font-light hover:text-accent-light hover:dark:text-accent-dark hover:shadow-button hover:shadow-accent-light/50 hover:dark:shadow-accent-dark/50 transition after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:bg-accent-light after:dark:bg-accent-dark after:opacity-0 after:transition after:-translate-x-1/2 after:h-px after:w-1/2",
               { "after:opacity-100": selectedDescription.id === category.id }
             )}
@@ -49,6 +48,4 @@ const AboutMe = () => {
       </SwitchTransition>
     </section>
   );
-};
-
-export default AboutMe;
+}

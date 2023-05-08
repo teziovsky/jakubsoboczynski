@@ -1,15 +1,14 @@
-import cx from "classnames";
 import socialLinks from "content/social-links.json";
-import React from "react";
+import { cn } from "helpers";
 
 type Props = {
   className?: string;
 };
 
-const SocialLinks = ({ className }: Props) => {
+export default function SocialLinks({ className }: Props) {
   return (
     <ul
-      className={cx(className, {
+      className={cn(className, {
         "fixed z-30 hidden left-[35px] top-1/2 -translate-y-1/2 lg:flex flex-col items-center justify-center gap-y-9":
           !className,
       })}>
@@ -26,6 +25,4 @@ const SocialLinks = ({ className }: Props) => {
       ))}
     </ul>
   );
-};
-
-export default SocialLinks;
+}

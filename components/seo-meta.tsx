@@ -7,7 +7,7 @@ type Props = {
   image?: string;
 };
 
-const Meta = ({ title, description, image = "/placeholder-social.jpg" }: Props) => {
+export default function Meta({ title, description, image = "/placeholder-social.jpg" }: Props) {
   const url = process.env.NEXT_PUBLIC_URL;
   const canonicalURL = url + useRouter().pathname;
 
@@ -35,6 +35,4 @@ const Meta = ({ title, description, image = "/placeholder-social.jpg" }: Props) 
       <link rel="canonical" href={canonicalURL} />
     </Head>
   );
-};
-
-export default Meta;
+}
