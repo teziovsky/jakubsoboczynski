@@ -1,7 +1,7 @@
 import ProjectCard from "components/project-card";
 import projects from "content/projects.json";
 
-const Projects = () => {
+export default function Projects() {
   return (
     <section id="projekty" className="pb-24">
       <h2 className="section-header">Projekty</h2>
@@ -12,6 +12,4 @@ const Projects = () => {
         ))}
     </section>
   );
-};
-
-export default Projects;
+}

@@ -11,7 +11,7 @@ type Props = {
   image: string;
 };
 
-const ProjectCard = ({ title, description, technologies, source, demo, image }: Props) => {
+export default function ProjectCard({ title, description, technologies, source, demo, image }: Props) {
   return (
     <div className="mx-auto mt-0 mb-16 pb-10 relative max-w-[550px]">
       <h3 className="mb-8 text-lg font-normal text-center font-secondary md:text-2xl">{title}</h3>
@@ -68,6 +68,4 @@ const ProjectCard = ({ title, description, technologies, source, demo, image }: 
       </a>
     </div>
   );
-};
-
-export default ProjectCard;
+}

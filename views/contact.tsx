@@ -1,7 +1,6 @@
-import React from "react";
 import contacts from "content/contacts.json";
 
-const Contact = () => {
+export default function Contact() {
   return (
     <section id="kontakt" className="p-contact min-h-inner-screen-contact lg:min-h-inner-screen-lg">
       <h2 className="section-header">Kontakt</h2>
@@ -20,6 +19,4 @@ const Contact = () => {
       </div>
     </section>
   );
-};
-
-export default Contact;
+}

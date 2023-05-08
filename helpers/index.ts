@@ -1,2 +1,3 @@
 export * from "./breakpoints";
-export * from "./loader";
+export * from "./classnames";
+export * from "./imageLoader";
