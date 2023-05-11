@@ -41,21 +41,21 @@ export default function Header() {
           )}>
           <a
             aria-label="Przejdź do sekcji o mnie"
-            className="px-8 py-2 text-center font-secondary after:bottom-1 w-max link"
+            className="px-4 py-2 text-center font-secondary after:bottom-1 w-max link"
             href="/#o_mnie"
             onClick={() => setOpened(false)}>
             o mnie
           </a>
           <a
             aria-label="Przejdź do sekcji projekty"
-            className="px-8 py-2 text-center font-secondary after:bottom-1 w-max link"
+            className="px-4 py-2 text-center font-secondary after:bottom-1 w-max link"
             href="/#projekty"
             onClick={() => setOpened(false)}>
             projekty
           </a>
           <a
             aria-label="Przejdź do sekcji kontakt"
-            className="px-8 py-2 text-center font-secondary after:bottom-1 w-max link"
+            className="px-4 py-2 text-center font-secondary after:bottom-1 w-max link"
             href="/#kontakt"
             onClick={() => setOpened(false)}>
             kontakt

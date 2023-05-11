@@ -76,7 +76,7 @@ img {
 }
 
 .social-link {
-  @apply flex items-center justify-center w-7 h-7 p-1 hover:scale-110 hover:translate-y-2 transition-transform;
+  @apply flex items-center justify-center w-7 h-7 p-1 hover:scale-150 transition-transform;
 
   svg {
     path {

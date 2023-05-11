@@ -25,7 +25,7 @@ export default function ProjectCard({ title, description, technologies, source, 
       <a
         aria-label={`Przejdź do plików źródłowych projektu - ${title}`}
         href={source}
-        className="absolute bottom-0 left-0 p-1 transition-transform w-7 h-7 lg:w-8 lg:h-8 flex-center hover:scale-110 hover:translate-y-2 group"
+        className="absolute bottom-0 left-0 p-1 transition-transform w-7 h-7 lg:w-8 lg:h-8 flex-center hover:scale-125 group"
         rel="noreferrer nofollow noopener"
         target="_blank">
         <svg fill="none" height="38" viewBox="0 0 35 38" width="35" xmlns="http://www.w3.org/2000/svg">
@@ -48,7 +48,7 @@ export default function ProjectCard({ title, description, technologies, source, 
       <a
         aria-label={`Przejdź do prezentacji projektu - ${title}`}
         href={demo}
-        className="absolute bottom-0 right-0 w-7 h-7 lg:w-8 lg:h-8 flex-center p-[0.375rem] transition-transform hover:scale-110 hover:translate-y-2 group"
+        className="absolute bottom-0 right-0 w-7 h-7 lg:w-8 lg:h-8 flex-center p-[0.375rem] transition-transform hover:scale-125 group"
         rel="noreferrer nofollow noopener"
         target="_blank">
         <svg fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
