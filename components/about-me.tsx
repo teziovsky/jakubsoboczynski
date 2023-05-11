@@ -1,24 +1,17 @@
+"use client";
+
 import aboutMe from "content/about-me.json";
-import { cn, imageLoader } from "helpers";
-import Image from "next/legacy/image";
+import { cn } from "helpers";
 import { useState } from "react";
-import { CSSTransition, SwitchTransition } from "react-transition-group";
 
 export default function AboutMe() {
   const [selectedDescription, setSelectedDescription] = useState({ ...aboutMe[0] });
 
   return (
-    <section id="o_mnie" className="py-24">
+    <section id="o_mnie" className="py-12 lg:py-24">
       <h2 className="section-header">O mnie</h2>
       <div className="block mx-auto mb-8 max-w-about-me-image image-overlay">
-        <Image
-          loader={imageLoader}
-          src="profile.webp"
-          width={300}
-          height={300}
-          loading="lazy"
-          alt="Moje zdjęcie profilowe"
-        />
+        <img src="/images/profile.webp" width={300} height={300} loading="lazy" alt="Moje zdjęcie profilowe" />
       </div>
       <div className="flex-col flex-wrap mb-5 flex-center lg:flex-row gap-x-4 gap-y-3 md:gap-y-7">
         {aboutMe.map((category) => (
@@ -34,18 +27,12 @@ export default function AboutMe() {
           </button>
         ))}
       </div>
-      <SwitchTransition>
-        <CSSTransition
-          key={selectedDescription.description}
-          classNames="shrink"
-          addEndListener={(node, done) => node.addEventListener("transitionend", done, false)}>
-          <p
-            key={selectedDescription.description}
-            className="max-w-[700px] text-center lg:text-justify mx-auto text-sm md:text-lg font-light">
-            {selectedDescription.description}
-          </p>
-        </CSSTransition>
-      </SwitchTransition>
+
+      <p
+        key={selectedDescription.description}
+        className="max-w-[700px] text-center lg:text-justify mx-auto text-sm md:text-lg font-light">
+        {selectedDescription.description}
+      </p>
     </section>
   );
 }

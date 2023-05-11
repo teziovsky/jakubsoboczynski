@@ -1,6 +1,3 @@
-import Image from "next/legacy/image";
-import { imageLoader } from "../helpers";
-
 type Props = {
   id: number;
   title: string;
@@ -16,10 +13,9 @@ export default function ProjectCard({ title, description, technologies, source, 
     <div className="mx-auto mt-0 mb-16 pb-10 relative max-w-[550px]">
       <h3 className="mb-8 text-lg font-normal text-center font-secondary md:text-2xl">{title}</h3>
       <div className="image-overlay">
-        <Image
+        <img
           alt={`Zrzut ekranu aplikacji - ${title}`}
-          src={image}
-          loader={imageLoader}
+          src={`/images/${image}`}
           loading="lazy"
           className="block w-full"
           height={309.38}

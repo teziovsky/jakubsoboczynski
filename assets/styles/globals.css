@@ -3,7 +3,7 @@ html {
 }
 
 body {
-  @apply transition-colors bg-primary-light dark:bg-primary-dark text-primary-dark dark:text-primary-light overflow-x-hidden;
+  @apply transition-colors font-primary bg-primary-light dark:bg-primary-dark text-primary-dark dark:text-primary-light overflow-x-hidden;
 
   &.opened {
     @apply overflow-hidden touch-none;

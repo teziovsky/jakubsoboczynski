@@ -11,7 +11,7 @@ export default function Hero() {
       <a
         className="absolute flex flex-col items-center px-5 py-1 mx-auto my-0 group inset-x-1/3 bottom-28 lg:bottom-16 hover:animate-bounce -translate-y-1/4"
         href="#projekty">
-        <span className="relative transition duration-500 -translate-y-10 opacity-0 pointer-events-none font-secondary group-hover:opacity-100 group-hover:translate-y-0 text-button-span text-font-dark dark:text-font-light whitespace-nowrap">
+        <span className="relative opacity-0 pointer-events-none transition duration-500 -translate-y-10 font-secondary group-hover:opacity-100 group-hover:translate-y-0 text-button-span text-font-dark dark:text-font-light whitespace-nowrap">
           Przejdź do projektów
         </span>
         <svg className="w-5" fill="none" height="62" viewBox="0 0 29 62" width="29" xmlns="http://www.w3.org/2000/svg">

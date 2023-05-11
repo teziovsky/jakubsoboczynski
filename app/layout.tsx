@@ -1,11 +1,31 @@
-import { Head, Html, Main, NextScript } from "next/document";
+import "assets/styles/main.css";
+import Footer from "components/footer";
+import Header from "components/header";
+import SocialLinks from "components/social-links";
+import { Metadata } from "next";
+import { Inter, Space_Mono } from "next/font/google";
+import { ReactNode } from "react";
 
-export default function Document() {
+const inter = Inter({ weight: ["300", "400", "700"], subsets: ["latin"], variable: "--font-inter" });
+
+const spaceMono = Space_Mono({ weight: ["400", "700"], subsets: ["latin"], variable: "--font-space-mono" });
+
+export const metadata: Metadata = {
+  title: {
+    default: "Hello!",
+    template: `%s | Jakub Soboczyński`,
+  },
+  viewport: "width=device-width,initial-scale=1",
+  keywords: "Jakub Soboczyński, Portfolio, Front-End Developer,Frontend Developer, Front-End, Frontend, Developer",
+};
+
+export default function RootLayout({ children }: { children: ReactNode }) {
   const month = new Date().toISOString().slice(5, 7);
 
   return (
-    <Html lang="pl-PL">
-      <Head>
+    <html lang="pl-PL">
+      <head>
+        <meta charSet="utf-8" />
         <link rel="apple-touch-icon" sizes="57x57" href="/favicons/apple-icon-57x57.png" />
         <link rel="apple-touch-icon" sizes="60x60" href="/favicons/apple-icon-60x60.png" />
         <link rel="apple-touch-icon" sizes="72x72" href="/favicons/apple-icon-72x72.png" />
@@ -23,14 +43,19 @@ export default function Document() {
         <meta name="msapplication-TileColor" content="#ffffff" />
         <meta name="msapplication-TileImage" content="/favicons/ms-icon-144x144.png" />
         <meta name="theme-color" content="#ffffff" />
-      </Head>
-      <body>
-        <Main />
-        <NextScript />
-        {month === "12" || month === "1" || month === "2" ? (
-          <script src="https://app.embed.im/snow.js" defer></script>
-        ) : null}
+      </head>
+      <body className={`relative min-h-screen ${inter.variable} ${spaceMono.variable}`}>
+        <div className="container px-4 lg:px-20">
+          <Header />
+          <SocialLinks />
+          {children}
+          <Footer className="pt-12 mb-8 lg:pt-0" />
+          <SocialLinks className="flex items-center justify-center pb-12 gap-x-8 lg:hidden" />
+          {month === "12" || month === "1" || month === "2" ? (
+            <script src="https://app.embed.im/snow.js" defer></script>
+          ) : null}
+        </div>
       </body>
-    </Html>
+    </html>
   );
 }
