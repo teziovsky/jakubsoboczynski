@@ -7,7 +7,7 @@ import Projects from "components/projects";
 const siteName = "Jakub Soboczyński";
 const siteTitle = "Hello!";
 const siteDescription = "My own page.";
-const siteImage = "/images/profile.webp";
+const siteImage = process.env.NEXT_PUBLIC_URL + "/images/profile.webp";
 
 export const metadata: Metadata = {
   title: `${siteTitle} | ${siteName}`,
