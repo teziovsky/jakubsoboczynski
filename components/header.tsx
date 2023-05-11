@@ -1,10 +1,13 @@
+"use client";
+
 import { BREAKPOINTS, cn, isMobile } from "helpers";
-import { useRouter } from "next/router";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import useBreakpoint from "use-breakpoint";
 
 export default function Header() {
-  const { pathname } = useRouter();
+  const pathname = usePathname();
+  console.log("pathname:", pathname);
   const { breakpoint } = useBreakpoint(BREAKPOINTS);
   const [opened, setOpened] = useState(false);
 
