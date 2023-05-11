@@ -1,0 +1,10 @@
+lib
+example
+.nuxt
+dist
+coverage
+templates
+CHANGELOG.md
+.next
+out
+public
