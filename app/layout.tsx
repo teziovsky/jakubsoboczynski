@@ -11,11 +11,17 @@ const inter = Inter({ weight: ["300", "400", "700"], subsets: ["latin"], variabl
 const spaceMono = Space_Mono({ weight: ["400", "700"], subsets: ["latin"], variable: "--font-space-mono" });
 
 export const metadata: Metadata = {
+  title: {
+    default: "Hello!",
+    template: `%s | Jakub Soboczyński`,
+  },
   viewport: "width=device-width,initial-scale=1",
   keywords: "Jakub Soboczyński, Portfolio, Front-End Developer,Frontend Developer, Front-End, Frontend, Developer",
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
+  const month = new Date().toISOString().slice(5, 7);
+
   return (
     <html lang="pl-PL">
       <head>
@@ -38,12 +44,17 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <meta name="msapplication-TileImage" content="/favicons/ms-icon-144x144.png" />
         <meta name="theme-color" content="#ffffff" />
       </head>
-      <body className={`${inter.variable} ${spaceMono.variable} font-primary`}>
-        <Header />
-        <SocialLinks />
-        {children}
-        <Footer className="pt-12 mb-8 lg:pt-0" />
-        <SocialLinks className="flex items-center justify-center pb-12 gap-x-8 lg:hidden" />
+      <body className={`relative min-h-screen ${inter.variable} ${spaceMono.variable}`}>
+        <div className="container px-4 lg:px-20">
+          <Header />
+          <SocialLinks />
+          {children}
+          <Footer className="pt-12 mb-8 lg:pt-0" />
+          <SocialLinks className="flex items-center justify-center pb-12 gap-x-8 lg:hidden" />
+          {month === "12" || month === "1" || month === "2" ? (
+            <script src="https://app.embed.im/snow.js" defer></script>
+          ) : null}
+        </div>
       </body>
     </html>
   );

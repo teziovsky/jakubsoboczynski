@@ -1,13 +1,10 @@
 "use client";
 
 import { BREAKPOINTS, cn, isMobile } from "helpers";
-import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import useBreakpoint from "use-breakpoint";
 
 export default function Header() {
-  const pathname = usePathname();
-  console.log("pathname:", pathname);
   const { breakpoint } = useBreakpoint(BREAKPOINTS);
   const [opened, setOpened] = useState(false);
 
@@ -20,53 +17,51 @@ export default function Header() {
 
   return (
     <header className="absolute inset-x-0 top-0 z-10">
-      {pathname !== "/404" && (
-        <nav className="flex items-center justify-between px-5 py-8 lg:px-12">
-          <button
-            aria-label="Pokaż/Ukryj nawigację serwisu"
-            className="relative z-50 w-12 h-9 py-px px-[7px] lg:hidden group"
-            onClick={() => setOpened((prevState) => !prevState)}>
-            <span
-              className={cn(
-                "relative w-full h-[3px] block text-center bg-font-dark dark:bg-font-light rounded-sm my-0 mx-auto transition-all duration-1000 before:content-[''] after:content-[''] before:absolute after:absolute before:left-0 after:left-0 before:w-full after:w-full before:h-[3px] after:h-[3px] before:bg-font-dark after:bg-font-dark dark:before:bg-font-light dark:after:bg-font-light before:rounded-sm after:rounded-sm before:transition-all after:transition-all before:duration-1000 after:duration-1000 after:-bottom-[10px] group-hover:bg-accent-light dark:group-hover:bg-accent-dark group-hover:before:bg-accent-light dark:group-hover:before:bg-accent-dark group-hover:after:bg-accent-light dark:group-hover:after:bg-accent-dark",
-                {
-                  "bg-font-dark/0 dark:bg-font-light/0 group-hover:bg-font-dark/0 group-hover:dark:bg-font-light/0 before:top-0 before:rotate-[135deg] after:top-0 after:rotate-[225deg]":
-                    opened,
-                  "before:-top-[10px]": !opened,
-                }
-              )}></span>
-          </button>
-          <div
+      <nav className="flex items-center justify-between px-5 py-8 lg:px-12">
+        <button
+          aria-label="Pokaż/Ukryj nawigację serwisu"
+          className="relative z-50 w-12 h-9 py-px px-[7px] lg:hidden group"
+          onClick={() => setOpened((prevState) => !prevState)}>
+          <span
             className={cn(
-              "flex-center text-lg md:text-2xl lg:text-base gap-x-4 gap-y-7 md:gap-y-10 lg:gap-y-0 invisible -translate-x-full lg:visible lg:-translate-x-0 fixed lg:static flex-col lg:flex-row bg-secondary-light dark:bg-secondary-dark lg:bg-transparent lg:dark:bg-transparent transition-all duration-700 lg:transition-none h-full lg:h-auto px-5 pt-28 pb-20 lg:px-0 lg:pt-0 lg:pb-0 z-40 top-0 left-0 right-0",
+              "relative w-full h-[3px] block text-center bg-font-dark dark:bg-font-light rounded-sm my-0 mx-auto transition-all duration-1000 before:content-[''] after:content-[''] before:absolute after:absolute before:left-0 after:left-0 before:w-full after:w-full before:h-[3px] after:h-[3px] before:bg-font-dark after:bg-font-dark dark:before:bg-font-light dark:after:bg-font-light before:rounded-sm after:rounded-sm before:transition-all after:transition-all before:duration-1000 after:duration-1000 after:-bottom-[10px] group-hover:bg-accent-light dark:group-hover:bg-accent-dark group-hover:before:bg-accent-light dark:group-hover:before:bg-accent-dark group-hover:after:bg-accent-light dark:group-hover:after:bg-accent-dark",
               {
-                "!visible !translate-x-0": opened,
+                "bg-font-dark/0 dark:bg-font-light/0 group-hover:bg-font-dark/0 group-hover:dark:bg-font-light/0 before:top-0 before:rotate-[135deg] after:top-0 after:rotate-[225deg]":
+                  opened,
+                "before:-top-[10px]": !opened,
               }
-            )}>
-            <a
-              aria-label="Przejdź do sekcji o mnie"
-              className="px-8 py-2 text-center font-secondary after:bottom-1 w-max link"
-              href="#o_mnie"
-              onClick={() => setOpened(false)}>
-              o mnie
-            </a>
-            <a
-              aria-label="Przejdź do sekcji projekty"
-              className="px-8 py-2 text-center font-secondary after:bottom-1 w-max link"
-              href="#projekty"
-              onClick={() => setOpened(false)}>
-              projekty
-            </a>
-            <a
-              aria-label="Przejdź do sekcji kontakt"
-              className="px-8 py-2 text-center font-secondary after:bottom-1 w-max link"
-              href="#kontakt"
-              onClick={() => setOpened(false)}>
-              kontakt
-            </a>
-          </div>
-        </nav>
-      )}
+            )}></span>
+        </button>
+        <div
+          className={cn(
+            "flex-center text-lg md:text-2xl lg:text-base gap-x-4 gap-y-7 md:gap-y-10 lg:gap-y-0 invisible -translate-x-full lg:visible lg:-translate-x-0 fixed lg:static flex-col lg:flex-row bg-secondary-light dark:bg-secondary-dark lg:bg-transparent lg:dark:bg-transparent transition-all duration-700 lg:transition-none h-full lg:h-auto px-5 pt-28 pb-20 lg:px-0 lg:pt-0 lg:pb-0 z-40 top-0 left-0 right-0",
+            {
+              "!visible !translate-x-0": opened,
+            }
+          )}>
+          <a
+            aria-label="Przejdź do sekcji o mnie"
+            className="px-8 py-2 text-center font-secondary after:bottom-1 w-max link"
+            href="/#o_mnie"
+            onClick={() => setOpened(false)}>
+            o mnie
+          </a>
+          <a
+            aria-label="Przejdź do sekcji projekty"
+            className="px-8 py-2 text-center font-secondary after:bottom-1 w-max link"
+            href="/#projekty"
+            onClick={() => setOpened(false)}>
+            projekty
+          </a>
+          <a
+            aria-label="Przejdź do sekcji kontakt"
+            className="px-8 py-2 text-center font-secondary after:bottom-1 w-max link"
+            href="/#kontakt"
+            onClick={() => setOpened(false)}>
+            kontakt
+          </a>
+        </div>
+      </nav>
       <svg
         className="absolute z-30 origin-top -translate-x-1/2 left-1/2 w-logo top-logo"
         fill="none"

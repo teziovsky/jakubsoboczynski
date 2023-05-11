@@ -1,22 +1,53 @@
 /** @type {import("tailwindcss").Config} */
 module.exports = {
   content: [
-    "./pages/**/*.{js,ts,jsx,tsx}",
+    "./app/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
     "./layouts/**/*.{js,ts,jsx,tsx}",
+    "./pages/**/*.{js,ts,jsx,tsx}",
     "./views/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {
+      fontFamily: {
+        primary: [
+          "var(--font-inter)",
+          "ui-sans-serif",
+          "system-ui",
+          "-apple-system",
+          "BlinkMacSystemFont",
+          "Segoe UI",
+          "Roboto",
+          "Helvetica Neue",
+          "Arial",
+          "Noto Sans",
+          "sans-serif",
+          "Apple Color Emoji",
+          "Segoe UI Emoji",
+          "Segoe UI Symbol",
+          "Noto Color Emoji",
+        ],
+        secondary: [
+          "var(--font-space-mono)",
+          "ui-monospace",
+          "SFMono-Regular",
+          "Menlo",
+          "Monaco",
+          "Consolas",
+          "Liberation Mono",
+          "Courier New",
+          "monospace",
+        ],
+      },
       minHeight: {
         "inner-screen-contact": "calc(100vh - 540px)",
-        "inner-screen": "calc(100vh - 270px)",
-        "inner-screen-lg": "calc(100vh - 205px)",
+        "inner-screen": "calc(100vh - 285px)",
+        "inner-screen-lg": "calc(100vh - 90px)",
       },
       inset: {
         logo: "clamp(0.9375rem, 0.50304867rem + 1.853659vw, 2.125rem)",
-        error: "calc(50% + 100px)",
-        "error-lg": "calc(50% + 80px)",
+        error: "calc(50% - 100px)",
+        "error-lg": "calc(50% - 80px)",
       },
       width: {
         logo: "clamp(4.375rem, 3.68902445rem + 2.926829vw, 6.25rem)",
@@ -25,7 +56,6 @@ module.exports = {
         "about-me-image": "clamp(12.5rem, 11.35670727rem + 4.878049vw, 15.625rem)",
       },
       padding: {
-        contact: "100px 0 clamp(3.75rem, 2.83536586rem + 3.902439vw, 6.25rem)",
         "project-info": "clamp(1.38rem, 1.208rem + 0.7337vw, 1.85rem) clamp(1.85rem, 1.6122rem + 1.0146vw, 2.5rem)",
       },
       colors: {
@@ -100,36 +130,6 @@ module.exports = {
       boxShadow: {
         button: "inset 0 0 20px rgba(0, 0, 0, 0.3)",
       },
-    },
-    fontFamily: {
-      primary: [
-        "var(--font-inter)",
-        "ui-sans-serif",
-        "system-ui",
-        "-apple-system",
-        "BlinkMacSystemFont",
-        "Segoe UI",
-        "Roboto",
-        "Helvetica Neue",
-        "Arial",
-        "Noto Sans",
-        "sans-serif",
-        "Apple Color Emoji",
-        "Segoe UI Emoji",
-        "Segoe UI Symbol",
-        "Noto Color Emoji",
-      ],
-      secondary: [
-        "var(--font-space-mono)",
-        "ui-monospace",
-        "SFMono-Regular",
-        "Menlo",
-        "Monaco",
-        "Consolas",
-        "Liberation Mono",
-        "Courier New",
-        "monospace",
-      ],
     },
     container: {
       center: true,

@@ -3,13 +3,12 @@
 import aboutMe from "content/about-me.json";
 import { cn } from "helpers";
 import { useState } from "react";
-import { CSSTransition, SwitchTransition } from "react-transition-group";
 
 export default function AboutMe() {
   const [selectedDescription, setSelectedDescription] = useState({ ...aboutMe[0] });
 
   return (
-    <section id="o_mnie" className="py-24">
+    <section id="o_mnie" className="py-12 lg:py-24">
       <h2 className="section-header">O mnie</h2>
       <div className="block mx-auto mb-8 max-w-about-me-image image-overlay">
         <img src="/images/profile.webp" width={300} height={300} loading="lazy" alt="Moje zdjęcie profilowe" />
@@ -28,18 +27,12 @@ export default function AboutMe() {
           </button>
         ))}
       </div>
-      <SwitchTransition>
-        <CSSTransition
-          key={selectedDescription.description}
-          classNames="shrink"
-          addEndListener={(node, done) => node.addEventListener("transitionend", done, false)}>
-          <p
-            key={selectedDescription.description}
-            className="max-w-[700px] text-center lg:text-justify mx-auto text-sm md:text-lg font-light">
-            {selectedDescription.description}
-          </p>
-        </CSSTransition>
-      </SwitchTransition>
+
+      <p
+        key={selectedDescription.description}
+        className="max-w-[700px] text-center lg:text-justify mx-auto text-sm md:text-lg font-light">
+        {selectedDescription.description}
+      </p>
     </section>
   );
 }
