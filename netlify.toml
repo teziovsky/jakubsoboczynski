@@ -1,4 +1,4 @@
 [build]
-command = "pnpm export"
+command = "pnpm build"
 publish = "dist"
 environment = { NODE_VERSION = "18.9.0", PNPM_VERSION = "7.13.5", NPM_VERSION = "8.19.1" }
