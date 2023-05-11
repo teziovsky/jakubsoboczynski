@@ -109,6 +109,3 @@ sw.*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-
-# old projects
-v1-next
