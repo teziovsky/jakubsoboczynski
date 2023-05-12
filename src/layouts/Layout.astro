@@ -1,14 +1,16 @@
 ---
 import { SEO } from "astro-seo";
+import Sidebar from "components/Sidebar.astro";
 
 export type Props = {
   title: string;
   titleTemplate?: string;
   description: string;
   image: string;
+  errorPage?: boolean;
 };
 
-const { title, titleTemplate = "%s | Jakub Soboczyński", description, image } = Astro.props;
+const { title, titleTemplate = "%s | Jakub Soboczyński", description, image, errorPage = false } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
@@ -69,7 +71,9 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
       }}
     />
   </head>
-  <body class="bg-slate-50 dark:bg-slate-950 text-neutral-800 dark:text-neutral-200">
+  <body
+    class="container flex flex-col min-h-screen gap-6 pt-4 antialiased sm:flex-row bg-slate-50 text-neutral-800 dark:bg-slate-950 dark:text-neutral-200">
+    {!errorPage && <Sidebar />}
     <slot />
   </body>
 </html>
