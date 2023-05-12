@@ -1,0 +1,47 @@
+---
+const links = [
+  {
+    title: "about",
+    href: "/",
+  },
+  {
+    title: "projects",
+    href: "/projects",
+  },
+  {
+    title: "uses",
+    href: "/uses",
+  },
+];
+
+const { pathname } = Astro.url;
+---
+
+<aside>
+  <nav class="flex flex-wrap items-center justify-between gap-3 sm:items-start sm:flex-col">
+    <a class="py-1.5 px-3" href="/">
+      <img src="/favicon-dark.svg" class="w-10 h-10" alt="logo" />
+    </a>
+    <ul class="flex gap-3 sm:flex-col">
+      {
+        links.map(({ title, href }, index) => (
+          <li>
+            <a
+              class:list={[
+                { "bg-slate-800": pathname === href },
+                { "hover:before:translate-x-0 hover:before:translate-y-0 hover:before:scale-100": pathname !== href },
+                { "before:-translate-y-5": index === 0 },
+                { "before:-translate-x-10": index === 1 },
+                { "before:translate-y-5": index === 2 },
+                { "before:translate-x-10": index === 3 },
+              ]}
+              class="relative py-1.5 px-3 rounded-lg before:transition-transform before:rounded-lg before:absolute before:inset-0 before:bg-slate-700 before:duration-300 before:scale-0 before:-z-10"
+              href={href}>
+              {title}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+</aside>
