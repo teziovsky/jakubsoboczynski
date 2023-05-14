@@ -9,9 +9,13 @@ module.exports = {
     },
     extend: {
       gridTemplateColumns: {
-        layout: "150px 1fr",
+        sidebar: "90px 1fr",
+      },
+      gridTemplateRows: {
+        mobile: "auto 1fr auto",
+        desktop: "1fr auto",
       },
     },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/typography")],
 };

@@ -1,20 +1,26 @@
 ---
-import { Icon } from "astro-icon";
 import Layout from "layouts/Layout.astro";
+import { contentfulClient } from "lib/contentful";
+
+const aboutMe = await contentfulClient.getEntries({
+  content_type: "aboutMe",
+  order: "fields.sort",
+});
 ---
 
 <Layout title="Welcome to Astro!" description="This is a description for index page" image="/favicon-dark.svg">
-  <main>
-    <h1>Jakub Soboczyński</h1>
-    <p>title</p>
-    <img src="/favicon.svg" alt="" />
-    <Icon pack="mdi" name="account" size="32" />
-
-    <p>description</p>
-    <div class="flex gap-4">
-      <a href="https://twitter.com/teziovsky/">follow me on twitter</a>
-      <a href="https://jakubsoboczynski.pl">get email updates</a>
-      <p></p>
-    </div>
+  <main class="">
+    <article class="prose prose-violet dark:prose-invert">
+      <h1>Jakub Soboczyński</h1>
+      <img src="/favicon-dark.svg" class="float-right px-6" alt="" />
+      {
+        aboutMe.items.map((about) => (
+          <>
+            <h2>{about.fields.title}</h2>
+            <h3>{about.fields.value}</h3>
+          </>
+        ))
+      }
+    </article>
   </main>
 </Layout>

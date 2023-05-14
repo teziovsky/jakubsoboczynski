@@ -1,15 +1,15 @@
 ---
 const links = [
   {
-    title: "about",
+    title: "About",
     href: "/",
   },
   {
-    title: "projects",
+    title: "Projects",
     href: "/projects",
   },
   {
-    title: "uses",
+    title: "Uses",
     href: "/uses",
   },
 ];
@@ -17,10 +17,10 @@ const links = [
 const { pathname } = Astro.url;
 ---
 
-<aside>
+<aside class="flex-shrink-0 sm:sticky w-full sm:top-4">
   <nav class="flex flex-wrap items-center justify-between gap-3 sm:items-start sm:flex-col">
-    <a class="py-1.5 px-3" href="/">
-      <img src="/favicon-dark.svg" class="w-10 h-10" alt="logo" />
+    <a class="py-1.5 px-3 self-center" href="/">
+      <img src="/favicon-dark.svg" class="w-12 sm:w-14 sm:h-14 h-12" alt="logo" />
     </a>
     <ul class="flex gap-3 sm:flex-col">
       {

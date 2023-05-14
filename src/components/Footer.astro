@@ -1,0 +1,53 @@
+---
+import Icon from "astro-icon";
+const socialLinks = [
+  {
+    title: "Github",
+    icon: "brand-github",
+    href: "https://github.com/teziovsky",
+  },
+  {
+    title: "Twitter",
+    icon: "brand-twitter",
+    href: "https://twitter.com/teziovsky/",
+  },
+  {
+    title: "LinkedIn",
+    icon: "brand-linkedin",
+    href: "https://linkedin.com/in/jakubsoboczynski/",
+  },
+  {
+    title: "Mail",
+    icon: "mail",
+    href: "mailto://jakub.soboczynski@icloud.com",
+  },
+];
+
+const { pathname } = Astro.url;
+---
+
+<footer class="flex flex-col sm:flex-row items-center justify-center sm:justify-between gap-3 sm:col-span-2">
+  <p class="text-sm">2021-PRESENT &copy; Jakub Soboczyński</p>
+  <ul class="flex gap-3">
+    {
+      socialLinks.map(({ title, icon, href }, index) => (
+        <li>
+          <a
+            class:list={[
+              { "bg-slate-800": pathname === href },
+              { "hover:before:translate-x-0 hover:before:translate-y-0 hover:before:scale-100": pathname !== href },
+              { "before:-translate-y-5": index === 0 },
+              { "before:-translate-x-10": index === 1 },
+              { "before:translate-y-5": index === 2 },
+              { "before:translate-x-10": index === 3 },
+            ]}
+            class="relative p-2 flex rounded-lg before:transition-transform before:rounded-lg before:absolute before:inset-0 before:bg-slate-700 before:duration-300 before:scale-0 before:-z-10"
+            href={href}>
+            <Icon pack="tabler" name={icon} size="24" />
+            <span class="sr-only">{title}</span>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</footer>

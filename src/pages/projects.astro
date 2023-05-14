@@ -1,9 +1,36 @@
 ---
 import Layout from "layouts/Layout.astro";
+import { contentfulClient } from "lib/contentful";
+
+const projects = await contentfulClient.getEntries({
+  content_type: "project",
+  order: "-fields.sort",
+});
 ---
 
 <Layout title="Projects" description="This is a description for projects page" image="/favicon-dark.svg">
   <main>
-    <h1>Projects</h1>
+    <article class="prose prose-violet dark:prose-invert">
+      <h1>Projects</h1>
+      <ul>
+        {
+          projects.items.map((project) => (
+            <li>
+              <h2>{project.fields.title}</h2>
+              <h3>{project.fields.description}</h3>
+              <p>{project.fields.technologies.join(", ")}</p>
+              <img
+                src={project.fields.screenshot.fields.file.url}
+                width={project.fields.screenshot.fields.file.details.image.width}
+                height={project.fields.screenshot.fields.file.details.image.height}
+                alt=""
+              />
+              <a href={project.fields.githubUrl}>Github</a>
+              <a href={project.fields.demoUrl}>Demo</a>
+            </li>
+          ))
+        }
+      </ul>
+    </article>
   </main>
 </Layout>

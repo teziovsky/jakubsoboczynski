@@ -13,7 +13,11 @@ export default defineConfig({
   integrations: [
     compress(),
     tailwind(),
-    partytown(),
+    partytown({
+      config: {
+        forward: ["dataLayer.push"],
+      },
+    }),
     sitemap(),
     image({
       serviceEntryPoint: "@astrojs/image/sharp",
