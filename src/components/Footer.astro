@@ -1,50 +1,38 @@
 ---
 import Icon from "astro-icon";
-const socialLinks = [
-  {
-    title: "Github",
-    icon: "brand-github",
-    href: "https://github.com/teziovsky",
-  },
-  {
-    title: "Twitter",
-    icon: "brand-twitter",
-    href: "https://twitter.com/teziovsky/",
-  },
-  {
-    title: "LinkedIn",
-    icon: "brand-linkedin",
-    href: "https://linkedin.com/in/jakubsoboczynski/",
-  },
-  {
-    title: "Mail",
-    icon: "mail",
-    href: "mailto://jakub.soboczynski@icloud.com",
-  },
-];
+import { contentfulClient } from "lib/contentful";
+
+const socialLinks = await contentfulClient.getEntries({
+  content_type: "socialLinks",
+  order: "fields.sort",
+});
 
 const { pathname } = Astro.url;
 ---
 
-<footer class="flex flex-col sm:flex-row items-center justify-center sm:justify-between gap-3 sm:col-span-2">
+<footer class="flex flex-col items-center justify-center gap-3 sm:flex-row sm:justify-between sm:col-span-2">
   <p class="text-sm">2021-PRESENT &copy; Jakub Soboczyński</p>
   <ul class="flex gap-3">
     {
-      socialLinks.map(({ title, icon, href }, index) => (
+      socialLinks.items.map((socialLink, index) => (
         <li>
           <a
             class:list={[
-              { "bg-slate-800": pathname === href },
-              { "hover:before:translate-x-0 hover:before:translate-y-0 hover:before:scale-100": pathname !== href },
+              { "bg-slate-800": pathname === socialLink.fields.link },
+              {
+                "hover:before:translate-x-0 hover:before:translate-y-0 hover:before:scale-100 focus:before:translate-x-0 focus:before:translate-y-0 focus:before:scale-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-50 focus:dark:ring-offset-slate-950 focus:ring-slate-500":
+                  pathname !== socialLink.fields.link,
+              },
               { "before:-translate-y-5": index === 0 },
               { "before:-translate-x-10": index === 1 },
               { "before:translate-y-5": index === 2 },
               { "before:translate-x-10": index === 3 },
             ]}
-            class="relative p-2 flex rounded-lg before:transition-transform before:rounded-lg before:absolute before:inset-0 before:bg-slate-700 before:duration-300 before:scale-0 before:-z-10"
-            href={href}>
-            <Icon pack="tabler" name={icon} size="24" />
-            <span class="sr-only">{title}</span>
+            class="relative flex p-2 rounded-lg before:transition-transform before:rounded-lg before:absolute before:inset-0 before:bg-slate-700 before:duration-300 before:scale-0 before:-z-10"
+            href={socialLink.fields.link}
+            target={socialLink.fields.openInNewTab ? "_blank" : "_self"}
+            aria-label={socialLink.fields.altText}>
+            <Icon name={socialLink.fields.icon} size="24" />
           </a>
         </li>
       ))
