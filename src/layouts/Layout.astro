@@ -13,7 +13,9 @@ export type Props = {
 
 const { title, titleTemplate = "%s | Jakub Soboczyński", description, image, errorPage = false } = Astro.props;
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const { pathname } = Astro.url;
+
+const canonicalURL = new URL(pathname, Astro.site);
 ---
 
 <!DOCTYPE html>
@@ -82,9 +84,12 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     />
   </head>
   <body
-    class="container grid items-start max-w-3xl min-h-screen gap-12 py-4 antialiased grid-rows-mobile sm:grid-rows-desktop sm:gap-6 sm:py-24 sm:grid-cols-sidebar bg-slate-50 text-neutral-800 dark:bg-slate-950 dark:text-neutral-200">
+    class="container grid items-start min-h-screen gap-12 py-4 antialiased grid-rows-mobile sm:grid-rows-desktop sm:gap-6 sm:pt-24 sm:pb-8 sm:grid-cols-sidebar bg-slate-50 text-neutral-800 dark:bg-slate-950 dark:text-neutral-200"
+    class:list={[{ "max-w-3xl": pathname !== "/projects" }]}>
     {!errorPage && <Sidebar />}
-    <slot />
+    <main class="sm:pt-4">
+      <slot />
+    </main>
     <Footer />
   </body>
 </html>

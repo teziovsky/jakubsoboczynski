@@ -17,15 +17,15 @@ const links = [
 const { pathname } = Astro.url;
 ---
 
-<aside class="flex-shrink-0 sm:sticky w-full sm:top-4">
+<aside class="flex-shrink-0 w-full sm:sticky sm:top-4">
   <nav class="flex flex-wrap items-center justify-between gap-3 sm:items-start sm:flex-col">
     <a class="py-1.5 px-3 self-center" href="/">
-      <img src="/favicon-dark.svg" class="w-12 sm:w-14 sm:h-14 h-12" alt="logo" />
+      <img src="/favicon-dark.svg" class="w-12 h-12 sm:w-14 sm:h-14" alt="logo" />
     </a>
-    <ul class="flex gap-3 sm:flex-col">
+    <ul class="flex gap-3 sm:gap-2 sm:flex-col">
       {
         links.map(({ title, href }, index) => (
-          <li>
+          <li class="flex justify-center">
             <a
               class:list={[
                 { "bg-slate-800": pathname === href },
@@ -35,7 +35,7 @@ const { pathname } = Astro.url;
                 { "before:translate-y-5": index === 2 },
                 { "before:translate-x-10": index === 3 },
               ]}
-              class="relative py-1.5 px-3 rounded-lg before:transition-transform before:rounded-lg before:absolute before:inset-0 before:bg-slate-700 before:duration-300 before:scale-0 before:-z-10"
+              class="relative px-3 py-1 rounded-lg before:transition-transform before:rounded-lg before:absolute before:inset-0 before:bg-slate-700 before:duration-300 before:scale-0 before:-z-10"
               href={href}>
               {title}
             </a>

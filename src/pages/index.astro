@@ -2,25 +2,35 @@
 import Layout from "layouts/Layout.astro";
 import { contentfulClient } from "lib/contentful";
 
-const aboutMe = await contentfulClient.getEntries({
+const { items: aboutMe } = await contentfulClient.getEntries({
   content_type: "aboutMe",
   order: "fields.sort",
 });
+
+const { items: assets } = await contentfulClient.getAssets({
+  query: "Profile",
+});
+
+const { fields: profileImage } = await contentfulClient.getAsset(assets[0].sys.id);
 ---
 
 <Layout title="Welcome to Astro!" description="This is a description for index page" image="/favicon-dark.svg">
-  <main class="">
-    <article class="prose prose-violet dark:prose-invert">
-      <h1>Jakub Soboczyński</h1>
-      <img src="/favicon-dark.svg" class="float-right px-6" alt="" />
-      {
-        aboutMe.items.map((about) => (
-          <>
-            <h2>{about.fields.title}</h2>
-            <h3>{about.fields.value}</h3>
-          </>
-        ))
-      }
-    </article>
-  </main>
+  <article class="prose prose-violet dark:prose-invert">
+    <h1>Jakub Soboczyński</h1>
+    <img
+      src={profileImage.file.url}
+      width="100"
+      height="100"
+      class="object-cover object-center w-24 h-24 rounded-full mix-blend-luminosity"
+      alt=""
+    />
+    {
+      aboutMe.map((about) => (
+        <>
+          <h2>{about.fields.title}</h2>
+          <p>{about.fields.value}</p>
+        </>
+      ))
+    }
+  </article>
 </Layout>
