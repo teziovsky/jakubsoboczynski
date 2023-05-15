@@ -17,7 +17,7 @@ const links = [
 const { pathname } = Astro.url;
 ---
 
-<aside class="flex-shrink-0 w-full sm:sticky sm:top-4">
+<aside class="w-full sm:sticky sm:top-4">
   <nav class="flex flex-wrap items-center justify-between gap-3 sm:items-start sm:flex-col">
     <a class="py-1.5 px-3 self-center" href="/">
       <img src="/favicon-dark.svg" class="w-12 h-12 sm:w-14 sm:h-14" alt="logo" />
@@ -28,14 +28,14 @@ const { pathname } = Astro.url;
           <li class="flex justify-center">
             <a
               class:list={[
-                { "bg-slate-800": pathname === href },
+                { "bg-slate-200 dark:bg-slate-800": pathname === href },
                 { "hover:before:translate-x-0 hover:before:translate-y-0 hover:before:scale-100": pathname !== href },
                 { "before:-translate-y-5": index === 0 },
                 { "before:-translate-x-10": index === 1 },
                 { "before:translate-y-5": index === 2 },
                 { "before:translate-x-10": index === 3 },
               ]}
-              class="relative px-3 py-1 rounded-lg before:transition-transform before:rounded-lg before:absolute before:inset-0 before:bg-slate-700 before:duration-300 before:scale-0 before:-z-10"
+              class="relative px-3 py-1 rounded-lg before:transition-transform before:rounded-lg before:absolute before:inset-0 before:bg-slate-300 before:dark:bg-slate-700 before:duration-300 before:scale-0 before:-z-10"
               href={href}>
               {title}
             </a>

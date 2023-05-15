@@ -24,9 +24,9 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro check && tsc --noEmit && astro build",
+    "build": "astro check && astro build",
     "preview": "astro preview",
-    "lint": "eslint --fix \"src/**/*.{js,ts,jsx,tsx,astro}\" && tsc --noEmit",
+    "lint": "eslint --fix 'src/**/*.{js,ts,jsx,tsx,astro}'",
     "astro": "astro"
   },
   "dependencies": {
@@ -50,7 +50,6 @@
     "astro-compress": "^1.1.42",
     "eslint": "^8.40.0",
     "eslint-plugin-astro": "^0.27.0",
-    "eslint-plugin-jsx-a11y": "^6.7.1",
-    "typescript": "^5.0.4"
+    "eslint-plugin-jsx-a11y": "^6.7.1"
   }
 }

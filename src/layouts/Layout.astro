@@ -91,5 +91,16 @@ const canonicalURL = new URL(pathname, Astro.site);
       <slot />
     </main>
     <Footer />
+
+    <style is:global>
+      .scrollbar-hidden {
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+      }
+
+      .scrollbar-hidden::-webkit-scrollbar {
+        display: none;
+      }
+    </style>
   </body>
 </html>
