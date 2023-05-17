@@ -10,8 +10,8 @@ const projects = await contentfulClient.getEntries({
 ---
 
 <Layout title="Projects" description="This is a description for projects page" image="/favicon-dark.svg">
-  <article class="prose prose-slate prose-h2:text-lg prose-h3:text-sm prose-h2:mt-0 dark:prose-invert max-w-none">
-    <h1>Projects</h1>
+  <article class="pb-8">
+    <h1 class="mb-8 text-4xl font-extrabold">Projects</h1>
     <ul class="grid gap-6 p-0 list-none md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
       {
         projects.items.map((project) => (
@@ -24,24 +24,28 @@ const projects = await contentfulClient.getEntries({
               class="object-cover object-center m-0 rounded-t-lg mix-blend-luminosity"
             />
             <div class="flex flex-col flex-grow gap-4 px-4 pb-4 m-0">
-              <div class="flex items-baseline justify-between">
+              <div class="flex items-start justify-between gap-2">
                 <a
+                  class="p-1 transition-transform delay-100 hover:text-slate-500 hover:scale-105 hover:-translate-y-1"
                   aria-label={`Przejdź do plików źródłowych projektu - ${project.fields.title}`}
                   href={project.fields.githubUrl}
                   target="_blank"
                   rel="noreferrer nofollow noopener">
-                  <Icon name="tabler:brand-github" size="18" />
+                  <Icon name="tabler:brand-github" class="w-5 h-5 transition-colors sm:w-6 sm:h-6" />
                 </a>
-                <h2 class="text-center">{project.fields.title}</h2>
+                <h2 class="text-base font-bold text-center sm:text-lg md:text-xl">{project.fields.title}</h2>
                 <a
+                  class="p-1 transition-transform delay-100 hover:text-slate-500 hover:scale-105 hover:-translate-y-1"
                   aria-label={`Przejdź do strony głównej projekstu - ${project.fields.title}`}
                   href={project.fields.demoUrl}
                   target="_blank"
                   rel="noreferrer nofollow noopener">
-                  <Icon name="lucide:external-link" size="18" />
+                  <Icon name="lucide:external-link" class="w-5 h-5 transition-colors" />
                 </a>
               </div>
-              <h3 class="flex-grow">{project.fields.description}</h3>
+              <h3 class="flex-grow text-justify text-xs/5 sm:text-sm text-neutral-700 dark:text-neutral-300">
+                {project.fields.description}
+              </h3>
               <div class="flex flex-wrap gap-2">
                 {project.fields.technologies.map((technology) => (
                   <span class="px-2 flex[0_0_auto] py-1 text-xs bg-gray-200 dark:bg-gray-800 rounded-lg whitespace-nowrap">
