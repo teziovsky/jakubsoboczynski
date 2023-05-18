@@ -20,5 +20,10 @@ module.exports = {
   future: {
     hoverOnlyWhenSupported: true,
   },
-  plugins: [require("@tailwindcss/typography")],
+  plugins: [
+    require("@tailwindcss/typography"),
+    ({ addVariant }) => {
+      addVariant("hocus", ["&:hover", "&:focus"]);
+    },
+  ],
 };

@@ -1,5 +1,7 @@
 ---
 import Icon from "astro-icon";
+import { twMerge } from "tailwind-merge";
+import { focusRing, hoverSquare } from "lib/tailwind";
 import { contentfulClient } from "lib/contentful";
 
 const socialLinks = await contentfulClient.getEntries({
@@ -7,28 +9,22 @@ const socialLinks = await contentfulClient.getEntries({
   order: "fields.sort",
 });
 
-const { pathname } = Astro.url;
+const directionByIndex = {
+  0: "top",
+  1: "left",
+  2: "bottom",
+  3: "right",
+};
 ---
 
 <footer class="flex flex-col items-center justify-center gap-3 sm:flex-row sm:justify-between sm:col-span-2">
-  <p class="text-sm">2021-PRESENT &copy; Jakub Soboczyński</p>
+  <p class="text-sm">2023 &copy; Jakub Soboczyńskis</p>
   <ul class="flex gap-3">
     {
       socialLinks.items.map((socialLink, index) => (
         <li>
           <a
-            class:list={[
-              { "bg-slate-800": pathname === socialLink.fields.link },
-              {
-                "hover:before:translate-x-0 hover:before:translate-y-0 hover:before:scale-100 focus:before:translate-x-0 focus:before:translate-y-0 focus:before:scale-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-50 focus:dark:ring-offset-slate-950 focus:ring-slate-500":
-                  pathname !== socialLink.fields.link,
-              },
-              { "before:-translate-y-5": index === 0 },
-              { "before:-translate-x-10": index === 1 },
-              { "before:translate-y-5": index === 2 },
-              { "before:translate-x-10": index === 3 },
-            ]}
-            class="relative flex p-2 rounded-lg before:transition-transform before:rounded-lg before:absolute before:inset-0 before:bg-slate-300 before:dark:bg-slate-700 before:duration-300 before:scale-0 before:-z-10"
+            class={twMerge("flex p-2 rounded-lg", hoverSquare(directionByIndex[index]), focusRing)}
             href={socialLink.fields.link}
             target={socialLink.fields.openInNewTab ? "_blank" : "_self"}
             aria-label={socialLink.fields.altText}>

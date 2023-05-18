@@ -1,4 +1,7 @@
 ---
+import { twMerge } from "tailwind-merge";
+import { focusRing, hoverSquare } from "lib/tailwind";
+
 const links = [
   {
     title: "About",
@@ -15,28 +18,37 @@ const links = [
 ];
 
 const { pathname } = Astro.url;
+
+function handleLinkClass(index: number, href: string) {
+  const baseClasses = "px-3 py-1 rounded-lg";
+  const isCurrent = pathname === href;
+
+  const directionByIndex = {
+    0: "top",
+    1: "left",
+    2: "bottom",
+    3: "right",
+  };
+
+  const classByCurrent = {
+    true: "bg-slate-200 dark:bg-slate-800 hocus:before:scale-0",
+    false: "",
+  };
+
+  return twMerge(baseClasses, hoverSquare(directionByIndex[index]), focusRing, classByCurrent[isCurrent]);
+}
 ---
 
 <aside class="w-full sm:sticky sm:top-4">
   <nav class="flex flex-wrap items-center justify-between gap-3 sm:items-start sm:flex-col">
-    <a class="py-1.5 px-3 self-center" href="/">
+    <a class={twMerge("py-1.5 px-3 self-center rounded-lg", focusRing)} href="/">
       <img src="/favicon-dark.svg" class="w-12 h-12 sm:w-14 sm:h-14" alt="logo" />
     </a>
     <ul class="flex gap-3 sm:gap-2 sm:flex-col">
       {
         links.map(({ title, href }, index) => (
           <li class="flex justify-center">
-            <a
-              class:list={[
-                { "bg-slate-200 dark:bg-slate-800": pathname === href },
-                { "hover:before:translate-x-0 hover:before:translate-y-0 hover:before:scale-100": pathname !== href },
-                { "before:-translate-y-5": index === 0 },
-                { "before:-translate-x-10": index === 1 },
-                { "before:translate-y-5": index === 2 },
-                { "before:translate-x-10": index === 3 },
-              ]}
-              class="relative px-3 py-1 rounded-lg before:transition-transform before:rounded-lg before:absolute before:inset-0 before:bg-slate-300 before:dark:bg-slate-700 before:duration-300 before:scale-0 before:-z-10"
-              href={href}>
+            <a class={handleLinkClass(index, href)} href={href}>
               {title}
             </a>
           </li>
