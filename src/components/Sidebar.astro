@@ -20,7 +20,7 @@ const links = [
 const { pathname } = Astro.url;
 
 function handleLinkClass(index: number, href: string) {
-  const baseClasses = "px-3 py-1 rounded-lg transition hocus:scale-110";
+  const baseClasses = "px-3 py-1 rounded-lg transition";
   const isCurrent = pathname === href;
 
   const directionByIndex = {

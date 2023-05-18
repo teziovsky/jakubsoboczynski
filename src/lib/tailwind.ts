@@ -11,3 +11,14 @@ export const hoverSquare = (direction: "left" | "top" | "right" | "bottom" = "le
 
 export const focusRing =
   "focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-50 focus:dark:ring-offset-slate-950 focus:ring-slate-500";
+
+const proseBase = "prose prose-sm sm:prose-base dark:prose-invert";
+
+const proseImg = ["mix-blend-luminosity", "object-cover", "object-center"]
+  .map((className) => `prose-img:${className}`)
+  .join(" ");
+
+// TODO: complete proseAnchor classes
+const proseAnchor = [].map((className) => `prose-a:${className}`).join(" ");
+
+export const contentfulArticle = `${proseBase} ${proseImg} ${proseAnchor}`;

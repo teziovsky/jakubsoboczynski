@@ -84,15 +84,49 @@ const canonicalURL = new URL(pathname, Astro.site);
     />
   </head>
   <body
-    class="container grid items-start min-h-screen gap-12 py-4 antialiased grid-rows-mobile sm:grid-rows-desktop sm:gap-6 sm:pt-24 sm:pb-8 sm:grid-cols-sidebar bg-slate-50 text-neutral-800 dark:bg-slate-950 dark:text-neutral-200"
+    class="container grid items-start min-h-screen gap-12 py-4 antialiased grid-rows-mobile sm:grid-rows-desktop sm:gap-6 md:gap-8 sm:pt-24 sm:pb-8 sm:grid-cols-sidebar bg-slate-50 text-neutral-800 dark:bg-slate-950 dark:text-neutral-200"
     class:list={[{ "max-w-3xl": pathname !== "/projects" }]}>
     {!errorPage && <Sidebar />}
-    <main class="sm:pt-4">
+    <main class="pb-8 sm:pt-4 sm:pb-20">
       <slot />
     </main>
     <Footer />
 
     <style is:global>
+      ::-webkit-scrollbar {
+        width: 10px;
+      }
+
+      @media (prefers-color-scheme: light) {
+        ::-webkit-scrollbar-track {
+          background-color: rgb(248 250 252 / var(--tw-bg-opacity));
+          border-left: 1px solid rgb(226 232 240 / var(--tw-bg-opacity));
+        }
+
+        ::-webkit-scrollbar-thumb {
+          background-color: rgb(226 232 240 / var(--tw-bg-opacity));
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+          background-color: rgb(203 213 225 / var(--tw-bg-opacity));
+        }
+      }
+
+      @media (prefers-color-scheme: dark) {
+        ::-webkit-scrollbar-track {
+          background-color: rgb(2 6 23 / var(--tw-bg-opacity));
+          border-left: 1px solid rgb(30 41 59 / var(--tw-text-opacity));
+        }
+
+        ::-webkit-scrollbar-thumb {
+          background-color: rgb(30 41 59 / var(--tw-bg-opacity));
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+          background-color: rgb(51 65 85 / var(--tw-bg-opacity));
+        }
+      }
+
       .scrollbar-hidden {
         scrollbar-width: none;
         -ms-overflow-style: none;
