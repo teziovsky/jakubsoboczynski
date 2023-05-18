@@ -9,6 +9,13 @@ const projects = await contentfulClient.getEntries({
   content_type: "project",
   order: "-fields.sort",
 });
+
+const directionByIndex = {
+  0: "top",
+  1: "left",
+  2: "bottom",
+  3: "right",
+};
 ---
 
 <Layout title="Projects" description="This is a description for projects page" image="/favicon-dark.svg">
@@ -28,21 +35,29 @@ const projects = await contentfulClient.getEntries({
             <div class="flex flex-col flex-grow gap-4 px-4 pb-4 m-0">
               <div class="flex items-center justify-between gap-2">
                 <a
-                  class={twMerge("z-0 flex p-1.5 rounded-lg", hoverSquare("left"), focusRing)}
+                  class={twMerge(
+                    "z-0 flex p-1.5 rounded-lg transition",
+                    hoverSquare(directionByIndex[Math.floor(Math.random() * 4)]),
+                    focusRing
+                  )}
                   aria-label={`Przejdź do plików źródłowych projektu - ${project.fields.title}`}
                   href={project.fields.githubUrl}
                   target="_blank"
                   rel="noreferrer nofollow noopener">
-                  <Icon name="tabler:brand-github" class="w-5 h-5 transition-colors sm:w-6 sm:h-6" />
+                  <Icon name="tabler:brand-github" class="w-5 h-5 sm:w-6 sm:h-6" />
                 </a>
                 <h2 class="text-base font-bold text-center sm:text-lg md:text-xl">{project.fields.title}</h2>
                 <a
-                  class={twMerge("z-0 flex p-1.5 rounded-lg", hoverSquare("right"), focusRing)}
+                  class={twMerge(
+                    "z-0 flex p-1.5 rounded-lg transition",
+                    hoverSquare(directionByIndex[Math.floor(Math.random() * 4)]),
+                    focusRing
+                  )}
                   aria-label={`Przejdź do strony głównej projekstu - ${project.fields.title}`}
                   href={project.fields.demoUrl}
                   target="_blank"
                   rel="noreferrer nofollow noopener">
-                  <Icon name="lucide:external-link" class="w-5 h-5 transition-colors" />
+                  <Icon name="lucide:external-link" class="w-5 h-5 sm:w-6 sm:h-6" />
                 </a>
               </div>
               <h3 class="flex-grow text-justify text-xs/5 sm:text-sm text-neutral-700 dark:text-neutral-300">

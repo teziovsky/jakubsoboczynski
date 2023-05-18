@@ -24,11 +24,11 @@ const directionByIndex = {
       socialLinks.items.map((socialLink, index) => (
         <li>
           <a
-            class={twMerge("flex p-2 rounded-lg", hoverSquare(directionByIndex[index]), focusRing)}
+            class={twMerge("flex p-2 rounded-lg transition", hoverSquare(directionByIndex[index]), focusRing)}
             href={socialLink.fields.link}
             target={socialLink.fields.openInNewTab ? "_blank" : "_self"}
             aria-label={socialLink.fields.altText}>
-            <Icon name={socialLink.fields.icon} size="24" />
+            <Icon name={socialLink.fields.icon} class="w-5 h-5 sm:w-6 sm:h-6" />
           </a>
         </li>
       ))
