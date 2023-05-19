@@ -1,4 +1,6 @@
 ---
+import { format } from "date-fns";
+import { pl } from "date-fns/locale";
 import Layout from "layouts/Layout.astro";
 import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
 import { contentfulClient, rendererOptions } from "lib/contentful";
@@ -10,6 +12,25 @@ const uses = await contentfulClient.getEntry("2qwVwCHd7GVimN3fQ5mk73");
 <Layout title="Uses" description="This is a description for uses page" image="/favicon-dark.svg">
   <article class={contentfulArticle}>
     <h1>Uses</h1>
-    <Fragment set:html={documentToHtmlString(uses.fields.content, rendererOptions)} />
+    <a class="block mb-9" href="#englishVersion">English Version!</a>
+    <section class="mb-20">
+      <h2 class="sr-only">Polska Wersja</h2>
+      <p class="italic">
+        Ostatnia aktualizacja: <span class="capitalize">
+          {format(new Date(uses.sys.updatedAt), "MMM yyyy", { locale: pl })}
+        </span>
+      </p>
+      <Fragment set:html={documentToHtmlString(uses.fields.content, rendererOptions)} />
+    </section>
+
+    <section id="englishVersion">
+      <h2 class="!mt-0 pt-9">English Version</h2>
+      <p class="italic">
+        Last update: <span class="capitalize">
+          {format(new Date(uses.sys.updatedAt), "MMM yyyy")}
+        </span>
+      </p>
+      <Fragment set:html={documentToHtmlString(uses.fields.content, rendererOptions)} />
+    </section>
   </article>
 </Layout>
