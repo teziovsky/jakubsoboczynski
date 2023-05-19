@@ -14,11 +14,9 @@ export const focusRing =
 
 const proseBase = "prose prose-sm sm:prose-base dark:prose-invert";
 
-const proseImg = ["mix-blend-luminosity", "object-cover", "object-center"]
-  .map((className) => `prose-img:${className}`)
-  .join(" ");
+const proseImg = "prose-img:mix-blend-luminosity prose-img:object-cover prose-img:object-center";
 
 // TODO: complete proseAnchor classes
-const proseAnchor = [].map((className) => `prose-a:${className}`).join(" ");
+const proseAnchor = "prose-a:underline";
 
 export const contentfulArticle = `${proseBase} ${proseImg} ${proseAnchor}`;

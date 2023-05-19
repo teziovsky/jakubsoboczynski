@@ -8,10 +8,9 @@ export type Props = {
   titleTemplate?: string;
   description: string;
   image: string;
-  errorPage?: boolean;
 };
 
-const { title, titleTemplate = "%s | Jakub Soboczyński", description, image, errorPage = false } = Astro.props;
+const { title, titleTemplate = "%s | Jakub Soboczyński", description, image } = Astro.props;
 
 const { pathname } = Astro.url;
 
@@ -86,7 +85,7 @@ const canonicalURL = new URL(pathname, Astro.site);
   <body
     class="container grid items-start min-h-screen gap-12 py-4 antialiased grid-rows-mobile sm:grid-rows-desktop sm:gap-6 md:gap-8 sm:pt-24 sm:pb-8 sm:grid-cols-sidebar bg-slate-50 text-neutral-800 dark:bg-slate-950 dark:text-neutral-200"
     class:list={[{ "max-w-3xl": pathname !== "/projects" }]}>
-    {!errorPage && <Sidebar />}
+    <Sidebar />
     <main class="pb-8 sm:pt-4 sm:pb-20">
       <slot />
     </main>
