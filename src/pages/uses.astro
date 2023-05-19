@@ -1,4 +1,5 @@
 ---
+import Icon from "astro-icon";
 import { format } from "date-fns";
 import { pl } from "date-fns/locale";
 import Layout from "layouts/Layout.astro";
@@ -12,8 +13,17 @@ const uses = await contentfulClient.getEntry("2qwVwCHd7GVimN3fQ5mk73");
 <Layout title="Uses" description="This is a description for uses page" image="/favicon-dark.svg">
   <article class={contentfulArticle}>
     <h1>Uses</h1>
-    <a class="inline-block mb-9" href="#englishVersion">English Version!</a>
-    <section class="mb-20">
+    <p class="!mt-0 mb-9">
+      <a class="relative !pr-5 group" href="#englishVersion">
+        English Version
+        <Icon
+          class="absolute right-0 top-[35%] group-focus:animate-bounce group-hover:animate-bounce -translate-y-1/4"
+          name="icon-park-outline:arrow-down"
+          size="16"
+        />
+      </a>
+    </p>
+    <section class="mb-24 sm:mb-36">
       <h2 class="sr-only">Polska Wersja</h2>
       <p class="italic">
         Ostatnia aktualizacja: <span class="capitalize">

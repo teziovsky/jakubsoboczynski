@@ -20,11 +20,11 @@ const directionByIndex = {
 
 <Layout title="Projects" description="This is a description for projects page" image="/favicon-dark.svg">
   <article>
-    <h1 class="mb-8 text-3xl sm:text-4xl sm:font-extrabold">Projects</h1>
-    <ul class="grid gap-6 p-0 list-none md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
+    <h1 class="mb-8 text-3xl sm:text-4xl text-gray-900 dark:text-white sm:font-extrabold">Projects</h1>
+    <ul class="grid gap-6 p-0 list-none md:gap-8 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
       {
         projects.items.map((project) => (
-          <li class="flex flex-col gap-4 p-0 m-0 bg-gray-100 border border-gray-200 rounded-lg dark:bg-gray-900 dark:border-gray-800">
+          <li class="flex flex-col gap-4 p-0 m-0 bg-gray-100 border border-gray-200 duration-300 rounded-lg dark:bg-gray-900 dark:border-gray-800 transition hover:-translate-y-1 hover:shadow-2xl hover:shadow-slate-200 hover:dark:shadow-slate-800">
             <img
               src={project.fields.screenshot.fields.file.url}
               width={project.fields.screenshot.fields.file.details.image.width}
@@ -33,7 +33,7 @@ const directionByIndex = {
               class="object-cover object-center m-0 rounded-t-lg mix-blend-luminosity"
             />
             <div class="flex flex-col flex-grow gap-4 px-4 pb-4 m-0">
-              <div class="flex items-center justify-between gap-2">
+              <div class="flex items-center justify-between gap-1">
                 <a
                   class={twMerge(
                     "z-0 flex p-1.5 rounded-lg transition",
@@ -46,7 +46,9 @@ const directionByIndex = {
                   rel="noreferrer nofollow noopener">
                   <Icon name="tabler:brand-github" class="w-5 h-5 sm:w-6 sm:h-6" />
                 </a>
-                <h2 class="text-base font-bold text-center md:text-lg lg:text-xl">{project.fields.title}</h2>
+                <h2 class="text-base font-bold text-gray-900 dark:text-white text-center md:text-lg lg:text-xl">
+                  {project.fields.title}
+                </h2>
                 <a
                   class={twMerge(
                     "z-0 flex p-1.5 rounded-lg transition",

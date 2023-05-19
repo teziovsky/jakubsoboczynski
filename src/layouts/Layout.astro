@@ -134,6 +134,11 @@ const canonicalURL = new URL(pathname, Astro.site);
       .scrollbar-hidden::-webkit-scrollbar {
         display: none;
       }
+
+      .prose :where(ul > li > p):not(:where([class~="not-prose"] *)) {
+        margin-top: 0;
+        margin-bottom: 0;
+      }
     </style>
   </body>
 </html>
