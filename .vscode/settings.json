@@ -1,7 +1,7 @@
 {
   "recommendations": ["astro-build.astro-vscode"],
   "unwantedRecommendations": [],
-  "cSpell.words": ["astrojs", "clsx", "contentful", "Didact", "storyblok", "tsconfigs"],
+  "cSpell.words": ["astrojs", "clsx", "contentful", "Didact", "storyblok", "tsconfigs", "unlighthouse"],
   "eslint.validate": [
     "javascript",
     "javascriptreact",

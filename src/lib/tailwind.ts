@@ -22,4 +22,6 @@ const proseAnchor =
 const proseCode =
   "prose-code:rounded-md prose-code:p-0.5 prose-code:font-sans prose-code:inline-block prose-code:bg-slate-300 prose-code:text-slate-950 prose-code:dark:bg-slate-600 prose-code:dark:text-slate-50";
 
-export const contentfulArticle = `${proseBase} ${proseImg} ${proseAnchor} ${proseCode}`;
+const proseHr = "prose-hr:border-t-4";
+
+export const contentfulArticle = `${proseBase} ${proseImg} ${proseAnchor} ${proseCode} ${proseHr}`;

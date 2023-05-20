@@ -27,7 +27,8 @@
     "build": "astro check && astro build",
     "preview": "astro preview",
     "lint": "eslint --fix 'src/**/*.{js,ts,jsx,tsx,astro}'",
-    "astro": "astro"
+    "astro": "astro",
+    "unlighthouse": "pnpm dlx unlighthouse --site localhost:3000"
   },
   "dependencies": {
     "@astrojs/image": "^0.16.8",

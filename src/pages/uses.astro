@@ -15,7 +15,7 @@ const usesEN = await contentfulClient.getEntry("6uUZMTYAqPt7rezQg96LyM");
 <Layout title="Uses" description="This is a description for uses page" image="/favicon-dark.svg">
   <article class={contentfulArticle}>
     <h1>Uses</h1>
-    <section id="polishVersion" class="mb-24 sm:mb-36">
+    <section id="polishVersion" class="pb-9">
       <h2 class="sr-only">Polska Wersja</h2>
       <p class="!mt-0 mb-9">
         <a class="relative !pr-5 group" href="#englishVersion">
@@ -34,9 +34,9 @@ const usesEN = await contentfulClient.getEntry("6uUZMTYAqPt7rezQg96LyM");
       </p>
       <Fragment set:html={documentToHtmlString(usesPL.fields.content, rendererOptions)} />
     </section>
-
-    <section id="englishVersion">
-      <h2 class="!mt-0 pt-9">English Version</h2>
+    <hr />
+    <section id="englishVersion" class="pt-9">
+      <h2 class="!mt-0">English Version</h2>
       <p class="!mt-0 mb-9">
         <a class="relative !pr-5 group" href="#polishVersion">
           Polish Version
