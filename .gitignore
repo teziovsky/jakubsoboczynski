@@ -109,3 +109,6 @@ sw.*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# unlighthouse
+.unlighthouse

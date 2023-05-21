@@ -2,7 +2,7 @@
 
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/teziovsky/jakubsoboczynski) [![Twitter Follow](https://img.shields.io/twitter/follow/teziovsky?style=social)](https://www.twitter.com/teziovsky)
 
-> My own website.
+> Jakub Soboczyński Portfolio
 
 ## Demo 👀
 

@@ -1,0 +1,82 @@
+---
+import Layout from "layouts/Layout.astro";
+import Icon from "astro-icon";
+import { twMerge } from "tailwind-merge";
+import { focusRing, hoverSquare } from "lib/tailwind";
+import { contentfulClient } from "lib/contentful";
+
+const projects = await contentfulClient.getEntries({
+  content_type: "project",
+  order: "-fields.sort",
+});
+
+const directionByIndex = {
+  0: "top",
+  1: "left",
+  2: "bottom",
+  3: "right",
+};
+---
+
+<Layout title="Projects" description="This is a description for projects page" image="/favicon-dark.svg">
+  <article>
+    <h1 class="mb-8 text-3xl sm:text-4xl text-gray-900 dark:text-white sm:font-extrabold">Projects</h1>
+    <ul class="grid gap-6 p-0 list-none md:gap-8 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
+      {
+        projects.items.map((project) => (
+          <li class="flex flex-col gap-4 p-0 m-0 bg-gray-100 border border-gray-200 duration-300 rounded-lg dark:bg-gray-900 dark:border-gray-800 transition hover:-translate-y-1 hover:shadow-2xl hover:shadow-slate-200 hover:dark:shadow-slate-800">
+            <img
+              src={project.fields.screenshot.fields.file.url}
+              width={project.fields.screenshot.fields.file.details.image.width}
+              height={project.fields.screenshot.fields.file.details.image.height}
+              alt={project.fields.screenshot.fields.description}
+              class="object-cover object-center m-0 rounded-t-lg mix-blend-luminosity"
+            />
+            <div class="flex flex-col flex-grow gap-4 px-4 pb-4 m-0">
+              <div class="flex items-center justify-between gap-1">
+                <a
+                  class={twMerge(
+                    "z-0 flex p-1.5 rounded-lg transition",
+                    hoverSquare(directionByIndex[Math.floor(Math.random() * 4)]),
+                    focusRing
+                  )}
+                  aria-label={`Przejdź do plików źródłowych projektu - ${project.fields.title}`}
+                  href={project.fields.githubUrl}
+                  target="_blank"
+                  rel="noreferrer nofollow noopener">
+                  <Icon name="tabler:brand-github" class="w-5 h-5 sm:w-6 sm:h-6" />
+                </a>
+                <h2 class="text-base font-bold text-gray-900 dark:text-white text-center md:text-lg lg:text-xl">
+                  {project.fields.title}
+                </h2>
+                <a
+                  class={twMerge(
+                    "z-0 flex p-1.5 rounded-lg transition",
+                    hoverSquare(directionByIndex[Math.floor(Math.random() * 4)]),
+                    focusRing
+                  )}
+                  aria-label={`Przejdź do strony głównej projekstu - ${project.fields.title}`}
+                  href={project.fields.demoUrl}
+                  target="_blank"
+                  rel="noreferrer nofollow noopener">
+                  <Icon name="lucide:external-link" class="w-5 h-5 sm:w-6 sm:h-6" />
+                </a>
+              </div>
+              <p class="flex-grow text-justify text-xs/5 sm:text-sm text-neutral-700 dark:text-neutral-300">
+                {project.fields.description}
+              </p>
+              <h3 class="font-bold text-xs/5 sm:text-sm text-neutral-700 dark:text-neutral-300">Technologies:</h3>
+              <div class="flex flex-wrap gap-2">
+                {project.fields.technologies.map((technology) => (
+                  <span class="px-2 flex[0_0_auto] py-1 text-xs bg-gray-200 dark:bg-gray-800 rounded-lg whitespace-nowrap">
+                    {technology}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+  </article>
+</Layout>

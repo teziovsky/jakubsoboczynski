@@ -1,0 +1,58 @@
+---
+import Icon from "astro-icon";
+import { format } from "date-fns";
+import { pl } from "date-fns/locale";
+import Layout from "layouts/Layout.astro";
+import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
+import { contentfulClient, rendererOptions } from "lib/contentful";
+import { contentfulArticle } from "lib/tailwind";
+
+const usesPL = await contentfulClient.getEntry("2qwVwCHd7GVimN3fQ5mk73");
+
+const usesEN = await contentfulClient.getEntry("6uUZMTYAqPt7rezQg96LyM");
+---
+
+<Layout title="Uses" description="This is a description for uses page" image="/favicon-dark.svg">
+  <article class={contentfulArticle}>
+    <h1>Uses</h1>
+    <section id="polishVersion" class="pb-9">
+      <h2 class="sr-only">Polska Wersja</h2>
+      <p class="!mt-0 mb-9">
+        <a class="relative !pr-5 group" href="#englishVersion">
+          English Version
+          <Icon
+            class="absolute right-0 top-[35%] group-focus:animate-bounce group-hover:animate-bounce -translate-y-1/4"
+            name="icon-park-outline:arrow-down"
+            size="16"
+          />
+        </a>
+      </p>
+      <p class="italic">
+        Ostatnia aktualizacja: <span class="capitalize">
+          {format(new Date(usesPL.sys.updatedAt), "MMM yyyy", { locale: pl })}
+        </span>
+      </p>
+      <Fragment set:html={documentToHtmlString(usesPL.fields.content, rendererOptions)} />
+    </section>
+    <hr />
+    <section id="englishVersion" class="pt-9">
+      <h2 class="!mt-0">English Version</h2>
+      <p class="!mt-0 mb-9">
+        <a class="relative !pr-5 group" href="#polishVersion">
+          Polish Version
+          <Icon
+            class="absolute right-0 top-[15%] group-focus:animate-bounce group-hover:animate-bounce-reverse translate-y-1/4"
+            name="icon-park-outline:arrow-up"
+            size="16"
+          />
+        </a>
+      </p>
+      <p class="italic">
+        Last update: <span class="capitalize">
+          {format(new Date(usesEN.sys.updatedAt), "MMM yyyy")}
+        </span>
+      </p>
+      <Fragment set:html={documentToHtmlString(usesEN.fields.content, rendererOptions)} />
+    </section>
+  </article>
+</Layout>

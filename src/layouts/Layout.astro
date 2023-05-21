@@ -1,0 +1,144 @@
+---
+import { SEO } from "astro-seo";
+import Sidebar from "components/Sidebar.astro";
+import Footer from "components/Footer.astro";
+
+export type Props = {
+  title: string;
+  titleTemplate?: string;
+  description: string;
+  image: string;
+};
+
+const { title, titleTemplate = "%s | Jakub Soboczyński", description, image } = Astro.props;
+
+const { pathname } = Astro.url;
+
+const canonicalURL = new URL(pathname, Astro.site);
+---
+
+<!DOCTYPE html>
+<html lang="pl-PL">
+  <head>
+    <script type="text/partytown" async src="https://www.googletagmanager.com/gtag/js?id=G-HNBWJKKETF"></script>
+    <script type="text/partytown">
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-HNBWJKKETF");
+    </script>
+    <SEO
+      canonical={canonicalURL.href}
+      charset="UTF-8"
+      description={description}
+      openGraph={{
+        basic: {
+          title: title,
+          type: "website",
+          url: canonicalURL.href,
+          image: image,
+        },
+      }}
+      title={title}
+      titleTemplate={titleTemplate}
+      twitter={{
+        card: "summary_large_image",
+        title: title,
+        description: description,
+        image: image,
+        creator: "@teziovsky",
+      }}
+      extend={{
+        meta: [
+          {
+            name: "viewport",
+            content: "width=device-width, initial-scale=1",
+          },
+          {
+            name: "generator",
+            content: Astro.generator,
+          },
+        ],
+        link: [
+          {
+            rel: "icon",
+            type: "image/svg+xml",
+            media: "(prefers-color-scheme: dark)",
+            href: "/favicon-dark.svg",
+          },
+          {
+            rel: "icon",
+            type: "image/svg+xml",
+            media: "(prefers-color-scheme: light)",
+            href: "/favicon-light.svg",
+          },
+          {
+            rel: "sitemap",
+            href: "/sitemap-index.xml",
+          },
+        ],
+      }}
+    />
+  </head>
+  <body
+    class="container grid items-start min-h-screen gap-12 py-4 antialiased grid-rows-mobile sm:grid-rows-desktop sm:gap-6 md:gap-8 sm:pt-24 sm:pb-8 sm:grid-cols-sidebar bg-slate-50 text-neutral-800 dark:bg-slate-950 dark:text-neutral-200"
+    class:list={[{ "max-w-3xl": pathname !== "/projects" }]}>
+    <Sidebar />
+    <main class="pb-8 sm:pt-4 sm:pb-20">
+      <slot />
+    </main>
+    <Footer />
+
+    <style is:global>
+      ::-webkit-scrollbar {
+        width: 10px;
+      }
+
+      @media (prefers-color-scheme: light) {
+        ::-webkit-scrollbar-track {
+          background-color: rgb(248 250 252 / var(--tw-bg-opacity));
+          border-left: 1px solid rgb(226 232 240 / var(--tw-bg-opacity));
+        }
+
+        ::-webkit-scrollbar-thumb {
+          background-color: rgb(226 232 240 / var(--tw-bg-opacity));
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+          background-color: rgb(203 213 225 / var(--tw-bg-opacity));
+        }
+      }
+
+      @media (prefers-color-scheme: dark) {
+        ::-webkit-scrollbar-track {
+          background-color: rgb(2 6 23 / var(--tw-bg-opacity));
+          border-left: 1px solid rgb(30 41 59 / var(--tw-text-opacity));
+        }
+
+        ::-webkit-scrollbar-thumb {
+          background-color: rgb(30 41 59 / var(--tw-bg-opacity));
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+          background-color: rgb(51 65 85 / var(--tw-bg-opacity));
+        }
+      }
+
+      .scrollbar-hidden {
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+      }
+
+      .scrollbar-hidden::-webkit-scrollbar {
+        display: none;
+      }
+
+      .prose :where(ul > li > p):not(:where([class~="not-prose"] *)) {
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+    </style>
+  </body>
+</html>

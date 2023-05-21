@@ -1,0 +1,37 @@
+---
+import Icon from "astro-icon";
+import { twMerge } from "tailwind-merge";
+import { focusRing, hoverSquare } from "lib/tailwind";
+import { contentfulClient } from "lib/contentful";
+
+const socialLinks = await contentfulClient.getEntries({
+  content_type: "socialLinks",
+  order: "fields.sort",
+});
+
+const directionByIndex = {
+  0: "top",
+  1: "left",
+  2: "bottom",
+  3: "right",
+};
+---
+
+<footer class="flex flex-col items-center justify-center gap-3 sm:flex-row sm:justify-between sm:col-span-2">
+  <p class="text-sm">2023 &copy; Jakub Soboczyński</p>
+  <ul class="flex gap-3">
+    {
+      socialLinks.items.map((socialLink, index) => (
+        <li>
+          <a
+            class={twMerge("flex p-2 rounded-lg transition", hoverSquare(directionByIndex[index]), focusRing)}
+            href={socialLink.fields.link}
+            target={socialLink.fields.openInNewTab ? "_blank" : "_self"}
+            aria-label={socialLink.fields.altText}>
+            <Icon name={socialLink.fields.icon} class="w-5 h-5 sm:w-6 sm:h-6" />
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</footer>

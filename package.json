@@ -1,7 +1,8 @@
 {
   "name": "jakubsoboczynski",
-  "version": "1.0.0",
-  "description": "My own website.",
+  "version": "1.0.1",
+  "type": "module",
+  "description": "Jakub Soboczyński Portfolio",
   "homepage": "https://www.jakubsoboczynski.pl/",
   "repository": {
     "type": "git",
@@ -17,44 +18,41 @@
   },
   "author": {
     "name": "Jakub Soboczyński",
-    "email": "jakub.soboczynski@icloud.com",
+    "email": "teziovsky@gmail.com",
     "url": "https://www.jakubsoboczynski.pl"
   },
   "scripts": {
-    "clean": "rimraf ./node_modules ./dist ./pnpm-lock.yaml ./package-lock.json ./.next",
-    "prettier": "prettier --write '**/*.{js,jsx,ts,tsx,json,html}'",
-    "eslint": "eslint . --fix --ext .js,.jsx,.ts,.tsx",
-    "dev": "next dev",
-    "build": "next build",
-    "export": "next build && next export -- -o dist",
-    "start": "next start",
-    "lint": "next lint"
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "lint": "eslint --fix 'src/**/*.{js,ts,jsx,tsx,astro}'",
+    "astro": "astro",
+    "unlighthouse": "pnpm dlx unlighthouse --site localhost:3000"
   },
   "dependencies": {
-    "clsx": "^1.2.1",
-    "next": "13.4.1",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
+    "@astrojs/image": "^0.16.8",
+    "@astrojs/partytown": "^1.2.1",
+    "@astrojs/sitemap": "^1.3.1",
+    "@astrojs/tailwind": "^3.1.2",
+    "@contentful/rich-text-html-renderer": "^16.0.4",
+    "astro": "^2.4.5",
+    "astro-icon": "^0.8.0",
+    "astro-robots-txt": "^0.5.0",
+    "astro-seo": "^0.7.2",
+    "contentful": "^10.2.0",
+    "date-fns": "^2.30.0",
+    "sharp": "^0.32.1",
     "tailwind-merge": "^1.12.0",
-    "use-breakpoint": "3.0.7"
+    "tailwindcss": "^3.0.24"
   },
   "devDependencies": {
-    "@types/node": "20.1.1",
-    "@types/react": "18.2.6",
-    "@types/react-dom": "18.2.4",
-    "@types/react-transition-group": "4.4.6",
-    "autoprefixer": "10.4.14",
-    "eslint": "8.40.0",
-    "eslint-config-next": "13.4.1",
-    "eslint-config-prettier": "8.8.0",
-    "eslint-plugin-prettier": "4.2.1",
-    "eslint-plugin-react-hooks": "4.6.0",
-    "postcss": "8.4.23",
-    "postcss-import": "15.1.0",
-    "postcss-mixins": "9.0.4",
-    "prettier": "2.8.8",
-    "rimraf": "5.0.0",
-    "tailwindcss": "3.3.2",
-    "typescript": "5.0.4"
+    "@tailwindcss/typography": "^0.5.9",
+    "@typescript-eslint/eslint-plugin": "^5.59.5",
+    "@typescript-eslint/parser": "^5.59.5",
+    "astro-compress": "^1.1.42",
+    "eslint": "^8.40.0",
+    "eslint-plugin-astro": "^0.27.0",
+    "eslint-plugin-jsx-a11y": "^6.7.1"
   }
 }
