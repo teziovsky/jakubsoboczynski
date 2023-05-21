@@ -7,7 +7,7 @@ import { contentfulArticle } from "lib/tailwind";
 const aboutMe = await contentfulClient.getEntry("sRSSrYR7GDzQIMWpnAA8U");
 ---
 
-<Layout title="Hello!" description="This is a description for index page" image="/favicon-dark.svg">
+<Layout title="Hello!" description="Kilka słów o mnie" image="/favicon-dark.svg">
   <article class={contentfulArticle}>
     <h1>Jakub Soboczyński</h1>
     <Fragment set:html={documentToHtmlString(aboutMe.fields.content, rendererOptions)} />
