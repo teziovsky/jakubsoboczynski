@@ -1,7 +1,7 @@
 ---
 import Icon from "astro-icon";
 import { format } from "date-fns";
-import { pl } from "date-fns/locale";
+import pl from "date-fns/locale/pl/index";
 import Layout from "layouts/Layout.astro";
 import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
 import { contentfulClient, rendererOptions } from "lib/contentful";
@@ -10,6 +10,10 @@ import { contentfulArticle } from "lib/tailwind";
 const usesPL = await contentfulClient.getEntry("2qwVwCHd7GVimN3fQ5mk73");
 
 const usesEN = await contentfulClient.getEntry("6uUZMTYAqPt7rezQg96LyM");
+
+function formatDate(date, isPolish = false) {
+  return format(new Date(date), "MMM yyyy", { locale: isPolish ? pl : undefined });
+}
 ---
 
 <Layout title="Uses" description="This is a description for uses page" image="/favicon-dark.svg">
@@ -29,7 +33,7 @@ const usesEN = await contentfulClient.getEntry("6uUZMTYAqPt7rezQg96LyM");
       </p>
       <p class="italic">
         Ostatnia aktualizacja: <span class="capitalize">
-          {format(new Date(usesPL.sys.updatedAt), "MMM yyyy", { locale: pl })}
+          {formatDate(usesPL.sys.updatedAt, true)}
         </span>
       </p>
       <Fragment set:html={documentToHtmlString(usesPL.fields.content, rendererOptions)} />
@@ -49,7 +53,7 @@ const usesEN = await contentfulClient.getEntry("6uUZMTYAqPt7rezQg96LyM");
       </p>
       <p class="italic">
         Last update: <span class="capitalize">
-          {format(new Date(usesEN.sys.updatedAt), "MMM yyyy")}
+          {formatDate(usesEN.sys.updatedAt)}
         </span>
       </p>
       <Fragment set:html={documentToHtmlString(usesEN.fields.content, rendererOptions)} />
