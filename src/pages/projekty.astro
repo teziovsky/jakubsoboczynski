@@ -1,26 +1,26 @@
 ---
-import Layout from "layouts/Layout.astro";
-import Icon from "astro-icon";
-import { twMerge } from "tailwind-merge";
-import { focusRing, hoverSquare } from "lib/tailwind";
-import { contentfulClient } from "lib/contentful";
+import Layout from 'layouts/Layout.astro';
+import Icon from 'astro-icon';
+import { twMerge } from 'tailwind-merge';
+import { focusRing, hoverSquare } from 'lib/tailwind';
+import { contentfulClient } from 'lib/contentful';
 
 const projects = await contentfulClient.getEntries({
-  content_type: "project",
-  order: "-fields.sort",
+  content_type: 'project',
+  order: '-fields.sort',
 });
 
 const directionByIndex = {
-  0: "top",
-  1: "left",
-  2: "bottom",
-  3: "right",
+  0: 'top',
+  1: 'left',
+  2: 'bottom',
+  3: 'right',
 };
 ---
 
-<Layout title="Projekty" description="Lista projektów" image="/favicon-dark.svg" isWide>
+<Layout title="Projekty" description="Lista moich dotychczasowych projektów i realizacji!" image="/og_image.png" isWide>
   <article>
-    <h1 class="mb-8 text-3xl sm:text-4xl text-gray-900 dark:text-white sm:font-extrabold">Projekty</h1>
+    <h1 class="mb-7 text-3xl sm:text-4xl text-gray-900 dark:text-white sm:font-extrabold">Projekty</h1>
     <ul class="grid gap-6 p-0 list-none md:gap-8 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
       {
         projects.items.map((project) => (
@@ -36,7 +36,7 @@ const directionByIndex = {
               <div class="flex items-center justify-between gap-1">
                 <a
                   class={twMerge(
-                    "z-0 flex p-1.5 rounded-lg transition",
+                    'z-0 flex p-1.5 rounded-lg transition',
                     hoverSquare(directionByIndex[Math.floor(Math.random() * 4)]),
                     focusRing
                   )}
@@ -51,7 +51,7 @@ const directionByIndex = {
                 </h2>
                 <a
                   class={twMerge(
-                    "z-0 flex p-1.5 rounded-lg transition",
+                    'z-0 flex p-1.5 rounded-lg transition',
                     hoverSquare(directionByIndex[Math.floor(Math.random() * 4)]),
                     focusRing
                   )}

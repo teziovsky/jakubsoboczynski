@@ -1,13 +1,16 @@
 ---
-import Layout from "layouts/Layout.astro";
-import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
-import { contentfulClient, rendererOptions } from "lib/contentful";
-import { contentfulArticle } from "lib/tailwind";
+import Layout from 'layouts/Layout.astro';
+import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
+import { contentfulClient, rendererOptions } from 'lib/contentful';
+import { contentfulArticle } from 'lib/tailwind';
 
-const aboutMe = await contentfulClient.getEntry("sRSSrYR7GDzQIMWpnAA8U");
+const aboutMe = await contentfulClient.getEntry('sRSSrYR7GDzQIMWpnAA8U');
 ---
 
-<Layout title="Hello!" description="Kilka słów o mnie" image="/favicon-dark.svg">
+<Layout
+  title="Hello!"
+  description="Kilka zdań o mnie, moim doświadczeniu, pasji, zainteresowaniach oraz aktualnych ścieżkach rozwoju!"
+  image="/og_image.png">
   <article class={contentfulArticle}>
     <h1>Jakub Soboczyński</h1>
     <Fragment set:html={documentToHtmlString(aboutMe.fields.content, rendererOptions)} />
