@@ -1,20 +1,20 @@
 ---
-import Layout from 'layouts/Layout.astro';
-import Icon from 'astro-icon';
-import { twMerge } from 'tailwind-merge';
-import { focusRing, hoverSquare } from 'lib/tailwind';
-import { contentfulClient } from 'lib/contentful';
+import Icon from "astro-icon";
+import Layout from "layouts/Layout.astro";
+import { contentfulClient } from "lib/contentful";
+import { focusRing, hoverSquare } from "lib/tailwind";
+import { twMerge } from "tailwind-merge";
 
 const projects = await contentfulClient.getEntries({
-  content_type: 'project',
-  order: '-fields.sort',
+  content_type: "project",
+  order: "-fields.sort",
 });
 
 const directionByIndex = {
-  0: 'top',
-  1: 'left',
-  2: 'bottom',
-  3: 'right',
+  0: "top",
+  1: "left",
+  2: "bottom",
+  3: "right",
 };
 ---
 
@@ -36,7 +36,7 @@ const directionByIndex = {
               <div class="flex items-center justify-between gap-1">
                 <a
                   class={twMerge(
-                    'z-0 flex p-1.5 rounded-lg transition',
+                    "z-0 flex p-1.5 rounded-lg transition",
                     hoverSquare(directionByIndex[Math.floor(Math.random() * 4)]),
                     focusRing
                   )}
@@ -51,7 +51,7 @@ const directionByIndex = {
                 </h2>
                 <a
                   class={twMerge(
-                    'z-0 flex p-1.5 rounded-lg transition',
+                    "z-0 flex p-1.5 rounded-lg transition",
                     hoverSquare(directionByIndex[Math.floor(Math.random() * 4)]),
                     focusRing
                   )}
