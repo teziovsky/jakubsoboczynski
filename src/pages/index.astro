@@ -1,10 +1,10 @@
 ---
-import Layout from 'layouts/Layout.astro';
-import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
-import { contentfulClient, rendererOptions } from 'lib/contentful';
-import { contentfulArticle } from 'lib/tailwind';
+import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
+import Layout from "layouts/Layout.astro";
+import { contentfulClient, rendererOptions } from "lib/contentful";
+import { contentfulArticle } from "lib/tailwind";
 
-const aboutMe = await contentfulClient.getEntry('sRSSrYR7GDzQIMWpnAA8U');
+const aboutMe = await contentfulClient.getEntry("sRSSrYR7GDzQIMWpnAA8U");
 ---
 
 <Layout

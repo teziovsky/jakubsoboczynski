@@ -1,8 +1,8 @@
 ---
 import Icon from "astro-icon";
-import { twMerge } from "tailwind-merge";
-import { focusRing, hoverSquare } from "lib/tailwind";
 import { contentfulClient } from "lib/contentful";
+import { focusRing, hoverSquare } from "lib/tailwind";
+import { twMerge } from "tailwind-merge";
 
 const socialLinks = await contentfulClient.getEntries({
   content_type: "socialLinks",

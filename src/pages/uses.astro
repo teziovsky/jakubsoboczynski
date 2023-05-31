@@ -1,18 +1,18 @@
 ---
-import Icon from 'astro-icon';
-import { format } from 'date-fns';
-import pl from 'date-fns/locale/pl/index';
-import Layout from 'layouts/Layout.astro';
-import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
-import { contentfulClient, rendererOptions } from 'lib/contentful';
-import { contentfulArticle } from 'lib/tailwind';
+import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
+import Icon from "astro-icon";
+import { format } from "date-fns";
+import pl from "date-fns/locale/pl/index";
+import Layout from "layouts/Layout.astro";
+import { contentfulClient, rendererOptions } from "lib/contentful";
+import { contentfulArticle } from "lib/tailwind";
 
-const usesPL = await contentfulClient.getEntry('2qwVwCHd7GVimN3fQ5mk73');
+const usesPL = await contentfulClient.getEntry("2qwVwCHd7GVimN3fQ5mk73");
 
-const usesEN = await contentfulClient.getEntry('6uUZMTYAqPt7rezQg96LyM');
+const usesEN = await contentfulClient.getEntry("6uUZMTYAqPt7rezQg96LyM");
 
 function formatDate(date, isPolish = false) {
-  return format(new Date(date), 'MMM yyyy', { locale: isPolish ? pl : undefined });
+  return format(new Date(date), "MMM yyyy", { locale: isPolish ? pl : undefined });
 }
 ---
 
