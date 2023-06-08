@@ -21,11 +21,11 @@ function formatDate(date, isPolish = false) {
   description="Aktualna lista sprzętu, oprogramowania oraz narzędzi, z których regularnie korzystam!"
   image="/og_image.png">
   <article class={contentfulArticle}>
-    <h1>Uses</h1>
-    <section id="polishVersion" class="pb-9">
+    <h1 id="polish" class="scroll-mt-8">Uses</h1>
+    <section class="pb-9">
       <h2 class="sr-only">Polska Wersja</h2>
       <p class="!mt-0 mb-9">
-        <a class="relative !pr-5 group" href="#englishVersion">
+        <a class="relative !pr-5 group" href="#english">
           English Version
           <Icon
             class="absolute right-0 top-[35%] group-focus:animate-bounce group-hover:animate-bounce -translate-y-1/4"
@@ -42,10 +42,10 @@ function formatDate(date, isPolish = false) {
       <Fragment set:html={documentToHtmlString(usesPL.fields.content, rendererOptions)} />
     </section>
     <hr />
-    <section id="englishVersion" class="pt-9">
+    <section id="english" class="pt-9">
       <h2 class="!mt-0">English Version</h2>
       <p class="!mt-0 mb-9">
-        <a class="relative !pr-5 group" href="#polishVersion">
+        <a class="relative !pr-5 group" href="#polish">
           Polish Version
           <Icon
             class="absolute right-0 top-[15%] group-focus:animate-bounce group-hover:animate-bounce-reverse translate-y-1/4"
