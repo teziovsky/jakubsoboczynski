@@ -4,18 +4,12 @@ import Layout from "layouts/Layout.astro";
 import { contentfulClient } from "lib/contentful";
 import { focusRing, hoverSquare } from "lib/tailwind";
 import { twMerge } from "tailwind-merge";
+import { directionByIndex } from "utils";
 
 const projects = await contentfulClient.getEntries({
   content_type: "project",
-  order: "-fields.sort",
+  order: ["-fields.sort"],
 });
-
-const directionByIndex = {
-  0: "top",
-  1: "left",
-  2: "bottom",
-  3: "right",
-};
 ---
 
 <Layout title="Projekty" description="Lista moich dotychczasowych projektów i realizacji!" image="/og_image.png" isWide>
@@ -25,19 +19,21 @@ const directionByIndex = {
       {
         projects.items.map((project) => (
           <li class="flex flex-col gap-4 p-0 m-0 bg-gray-100 border border-gray-200 duration-300 rounded-lg dark:bg-gray-900 dark:border-gray-800 transition hover:-translate-y-1 hover:shadow-2xl hover:shadow-slate-200 hover:dark:shadow-slate-800">
-            <img
-              src={project.fields.screenshot.fields.file.url}
-              width={project.fields.screenshot.fields.file.details.image.width}
-              height={project.fields.screenshot.fields.file.details.image.height}
-              alt={project.fields.screenshot.fields.description}
-              class="object-cover object-center m-0 rounded-t-lg mix-blend-luminosity"
-            />
+            {project.fields.screenshot && (
+              <img
+                src={project.fields.screenshot.fields.file.url}
+                width={project.fields.screenshot.fields.file.details.image.width}
+                height={project.fields.screenshot.fields.file.details.image.height}
+                alt={project.fields.screenshot.fields.description}
+                class="object-cover object-center m-0 rounded-t-lg mix-blend-luminosity"
+              />
+            )}
             <div class="flex flex-col flex-grow gap-4 px-4 pb-4 m-0">
               <div class="flex items-center justify-between gap-1">
                 <a
                   class={twMerge(
                     "z-0 flex p-1.5 rounded-lg transition",
-                    hoverSquare(directionByIndex[Math.floor(Math.random() * 4)]),
+                    hoverSquare(directionByIndex(Math.floor(Math.random() * 4))),
                     focusRing
                   )}
                   aria-label={`Przejdź do plików źródłowych projektu - ${project.fields.title}`}
@@ -52,7 +48,7 @@ const directionByIndex = {
                 <a
                   class={twMerge(
                     "z-0 flex p-1.5 rounded-lg transition",
-                    hoverSquare(directionByIndex[Math.floor(Math.random() * 4)]),
+                    hoverSquare(directionByIndex(Math.floor(Math.random() * 4))),
                     focusRing
                   )}
                   aria-label={`Przejdź do strony głównej projekstu - ${project.fields.title}`}
