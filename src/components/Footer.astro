@@ -3,18 +3,12 @@ import Icon from "astro-icon";
 import { contentfulClient } from "lib/contentful";
 import { focusRing, hoverSquare } from "lib/tailwind";
 import { twMerge } from "tailwind-merge";
+import { directionByIndex } from "utils";
 
 const socialLinks = await contentfulClient.getEntries({
   content_type: "socialLinks",
-  order: "fields.sort",
+  order: ["fields.sort"],
 });
-
-const directionByIndex = {
-  0: "top",
-  1: "left",
-  2: "bottom",
-  3: "right",
-};
 ---
 
 <footer class="flex flex-col items-center justify-center gap-3 sm:flex-row sm:justify-between sm:col-span-2">
@@ -24,7 +18,7 @@ const directionByIndex = {
       socialLinks.items.map((socialLink, index) => (
         <li>
           <a
-            class={twMerge("flex p-2 rounded-lg transition", hoverSquare(directionByIndex[index]), focusRing)}
+            class={twMerge("flex p-2 rounded-lg transition", hoverSquare(directionByIndex(index)), focusRing)}
             href={socialLink.fields.link}
             target={socialLink.fields.openInNewTab ? "_blank" : "_self"}
             aria-label={socialLink.fields.altText}>
