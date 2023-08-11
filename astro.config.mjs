@@ -19,9 +19,7 @@ export default defineConfig({
       },
     }),
     sitemap(),
-    image({
-      serviceEntryPoint: "@astrojs/image/sharp",
-    }),
+    image(),
     robotsTxt(),
   ],
 });
