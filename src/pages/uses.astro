@@ -1,15 +1,9 @@
 ---
-import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
 import Icon from "astro-icon";
 import { format } from "date-fns";
 import pl from "date-fns/locale/pl/index";
-import Layout from "layouts/Layout.astro";
-import { contentfulClient, rendererOptions } from "lib/contentful";
-import { contentfulArticle } from "lib/tailwind";
-
-const usesPL = await contentfulClient.getEntry("2qwVwCHd7GVimN3fQ5mk73");
-
-const usesEN = await contentfulClient.getEntry("6uUZMTYAqPt7rezQg96LyM");
+import Layout from "layouts/layout.astro";
+import { proseArticle } from "lib/tailwind";
 
 function formatDate(date: string, isPolish = false) {
   return format(new Date(date), "MMM yyyy", { locale: isPolish ? pl : undefined });
@@ -20,7 +14,7 @@ function formatDate(date: string, isPolish = false) {
   title="Uses"
   description="Aktualna lista sprzętu, oprogramowania oraz narzędzi, z których regularnie korzystam!"
   image="/og_image.png">
-  <article class={contentfulArticle}>
+  <article class={proseArticle}>
     <h1 transition:name="routeHeading" id="polish" class="scroll-mt-8">Uses</h1>
     <section class="pb-9">
       <h2 class="sr-only">Polska Wersja</h2>
@@ -36,10 +30,10 @@ function formatDate(date: string, isPolish = false) {
       </p>
       <p class="italic">
         Ostatnia aktualizacja: <span class="capitalize">
-          {formatDate(usesPL.sys.updatedAt, true)}
+          <!-- {formatDate(usesPL.sys.updatedAt, true)} -->
         </span>
       </p>
-      <Fragment set:html={documentToHtmlString(usesPL.fields.content, rendererOptions)} />
+      <!-- <Fragment set:html={documentToHtmlString(usesPL.fields.content, rendererOptions)} /> -->
     </section>
     <hr />
     <section id="english" class="pt-9">
@@ -56,10 +50,10 @@ function formatDate(date: string, isPolish = false) {
       </p>
       <p class="italic">
         Last update: <span class="capitalize">
-          {formatDate(usesEN.sys.updatedAt)}
+          <!-- {formatDate(usesEN.sys.updatedAt)} -->
         </span>
       </p>
-      <Fragment set:html={documentToHtmlString(usesEN.fields.content, rendererOptions)} />
+      <!-- <Fragment set:html={documentToHtmlString(usesEN.fields.content, rendererOptions)} /> -->
     </section>
   </article>
 </Layout>

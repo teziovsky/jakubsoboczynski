@@ -1,16 +1,10 @@
 ---
 import Icon from "astro-icon";
-import Layout from "layouts/Layout.astro";
-import { contentfulClient } from "lib/contentful";
+import Layout from "layouts/layout.astro";
 import { focusRing, hoverSquare } from "lib/tailwind";
 import { twMerge } from "tailwind-merge";
 import { Image } from "astro:assets";
 import { directionByIndex } from "utils";
-
-const projects = await contentfulClient.getEntries({
-  content_type: "project",
-  order: ["-fields.sort"],
-});
 ---
 
 <Layout title="Projekty" description="Lista moich dotychczasowych projektów i realizacji!" image="/og_image.png" isWide>
@@ -21,7 +15,7 @@ const projects = await contentfulClient.getEntries({
       Projekty
     </h1>
     <ul class="grid gap-6 p-0 list-none md:gap-8 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
-      {
+      <!-- {
         projects.items.map((project) => (
           <li class="flex flex-col gap-4 p-0 m-0 bg-gray-100 border border-gray-200 duration-300 rounded-lg dark:bg-gray-900 dark:border-gray-800 transition hover:-translate-y-1 hover:shadow-2xl hover:shadow-slate-200 hover:dark:shadow-slate-800">
             {project.fields.screenshot && (
@@ -77,7 +71,7 @@ const projects = await contentfulClient.getEntries({
             </div>
           </li>
         ))
-      }
+      } -->
     </ul>
   </article>
 </Layout>

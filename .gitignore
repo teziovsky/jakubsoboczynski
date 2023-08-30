@@ -112,3 +112,5 @@ next-env.d.ts
 
 # unlighthouse
 .unlighthouse
+
+node_modules

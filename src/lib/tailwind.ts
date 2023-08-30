@@ -26,4 +26,4 @@ const proseCode =
 
 const proseHr = "prose-hr:border-t-4";
 
-export const contentfulArticle = `${proseBase} ${proseH1} ${proseImg} ${proseAnchor} ${proseCode} ${proseHr}`;
+export const proseArticle = `${proseBase} ${proseH1} ${proseImg} ${proseAnchor} ${proseCode} ${proseHr}`;

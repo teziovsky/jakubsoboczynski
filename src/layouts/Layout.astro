@@ -1,7 +1,7 @@
 ---
 import { SEO } from "astro-seo";
-import Footer from "components/Footer.astro";
-import Sidebar from "components/Sidebar.astro";
+import Footer from "components/footer.astro";
+import Sidebar from "components/sidebar.astro";
 import { ViewTransitions } from "astro:transitions";
 
 export type Props = {
@@ -19,7 +19,7 @@ const { pathname } = Astro.url;
 const canonicalURL = new URL(pathname, Astro.site);
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pl-PL">
   <head>
     <script type="text/partytown" async src="https://www.googletagmanager.com/gtag/js?id=G-HNBWJKKETF"></script>
