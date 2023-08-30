@@ -2,6 +2,7 @@
 import { SEO } from "astro-seo";
 import Footer from "components/Footer.astro";
 import Sidebar from "components/Sidebar.astro";
+import { ViewTransitions } from "astro:transitions";
 
 export type Props = {
   title: string;
@@ -82,6 +83,8 @@ const canonicalURL = new URL(pathname, Astro.site);
         ],
       }}
     />
+
+    <ViewTransitions />
   </head>
   <body
     class="container grid items-start min-h-screen gap-12 py-4 antialiased grid-rows-mobile sm:grid-rows-desktop sm:gap-6 md:gap-8 sm:pt-24 sm:pb-8 sm:grid-cols-sidebar bg-slate-50 text-neutral-800 dark:bg-slate-950 dark:text-neutral-200"

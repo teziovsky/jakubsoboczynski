@@ -10,6 +10,9 @@ import robotsTxt from "astro-robots-txt";
 // https://astro.build/config
 export default defineConfig({
   site: "https://jakubsoboczynski.pl",
+  experimental: {
+    viewTransitions: true,
+  },
   integrations: [
     compress(),
     tailwind(),
