@@ -4,6 +4,7 @@ import Layout from "layouts/Layout.astro";
 import { contentfulClient } from "lib/contentful";
 import { focusRing, hoverSquare } from "lib/tailwind";
 import { twMerge } from "tailwind-merge";
+import { Image } from "astro:assets";
 import { directionByIndex } from "utils";
 
 const projects = await contentfulClient.getEntries({
@@ -24,7 +25,7 @@ const projects = await contentfulClient.getEntries({
         projects.items.map((project) => (
           <li class="flex flex-col gap-4 p-0 m-0 bg-gray-100 border border-gray-200 duration-300 rounded-lg dark:bg-gray-900 dark:border-gray-800 transition hover:-translate-y-1 hover:shadow-2xl hover:shadow-slate-200 hover:dark:shadow-slate-800">
             {project.fields.screenshot && (
-              <img
+              <Image
                 src={project.fields.screenshot.fields.file.url}
                 width={project.fields.screenshot.fields.file.details.image.width}
                 height={project.fields.screenshot.fields.file.details.image.height}
