@@ -1,82 +1,83 @@
 ---
 import Icon from "astro-icon";
-import Layout from "layouts/Layout.astro";
-import { contentfulClient } from "lib/contentful";
+import Layout from "layouts/layout.astro";
 import { focusRing, hoverSquare } from "lib/tailwind";
 import { twMerge } from "tailwind-merge";
-import { Image } from "astro:assets";
 import { directionByIndex } from "utils";
+import { getCollection } from "astro:content";
 
-const projects = await contentfulClient.getEntries({
-  content_type: "project",
-  order: ["-fields.sort"],
-});
+const projects = await getCollection("project");
 ---
 
 <Layout title="Projekty" description="Lista moich dotychczasowych projektów i realizacji!" image="/og_image.png" isWide>
   <article>
     <h1
       transition:name="routeHeading"
-      class="mb-7 text-3xl sm:text-4xl text-gray-900 dark:text-white sm:font-extrabold">
+      class="mb-7 text-3xl text-gray-900 dark:text-white sm:text-4xl sm:font-extrabold"
+    >
       Projekty
     </h1>
-    <ul class="grid gap-6 p-0 list-none md:gap-8 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
+    <ul class="grid list-none gap-6 p-0 md:grid-cols-2 md:gap-8 xl:grid-cols-3 2xl:grid-cols-4">
       {
-        projects.items.map((project) => (
-          <li class="flex flex-col gap-4 p-0 m-0 bg-gray-100 border border-gray-200 duration-300 rounded-lg dark:bg-gray-900 dark:border-gray-800 transition hover:-translate-y-1 hover:shadow-2xl hover:shadow-slate-200 hover:dark:shadow-slate-800">
-            {project.fields.screenshot && (
-              <Image
-                src={project.fields.screenshot.fields.file.url}
-                width={project.fields.screenshot.fields.file.details.image.width}
-                height={project.fields.screenshot.fields.file.details.image.height}
-                alt={project.fields.screenshot.fields.description}
-                class="object-cover object-center m-0 rounded-t-lg mix-blend-luminosity"
-              />
-            )}
-            <div class="flex flex-col flex-grow gap-4 px-4 pb-4 m-0">
-              <div class="flex items-center justify-between gap-1">
-                <a
-                  class={twMerge(
-                    "z-0 flex p-1.5 rounded-lg transition",
-                    hoverSquare(directionByIndex(Math.floor(Math.random() * 4))),
-                    focusRing
-                  )}
-                  aria-label={`Przejdź do plików źródłowych projektu - ${project.fields.title}`}
-                  href={project.fields.githubUrl}
-                  target="_blank"
-                  rel="noreferrer nofollow noopener">
-                  <Icon name="tabler:brand-github" class="w-5 h-5 sm:w-6 sm:h-6" />
-                </a>
-                <h2 class="text-base font-bold text-gray-900 dark:text-white text-center md:text-lg lg:text-xl">
-                  {project.fields.title}
-                </h2>
-                <a
-                  class={twMerge(
-                    "z-0 flex p-1.5 rounded-lg transition",
-                    hoverSquare(directionByIndex(Math.floor(Math.random() * 4))),
-                    focusRing
-                  )}
-                  aria-label={`Przejdź do strony głównej projekstu - ${project.fields.title}`}
-                  href={project.fields.demoUrl}
-                  target="_blank"
-                  rel="noreferrer nofollow noopener">
-                  <Icon name="lucide:external-link" class="w-5 h-5 sm:w-6 sm:h-6" />
-                </a>
+        projects
+          .sort((a, b) => b.data.sort - a.data.sort)
+          .map((project) => (
+            <li class="m-0 flex flex-col gap-4 rounded-lg border border-gray-200 bg-gray-100 p-0 transition duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-slate-200 dark:border-gray-800 dark:bg-gray-900 hover:dark:shadow-slate-800">
+              {project.data.screenshot && (
+                <img
+                  src={project.data.screenshot.src}
+                  width={1366}
+                  height={768}
+                  alt={project.data.screenshot.alt}
+                  class="m-0 rounded-t-lg object-cover object-center mix-blend-luminosity"
+                />
+              )}
+              <div class="m-0 flex flex-grow flex-col gap-4 px-4 pb-4">
+                <div class="flex items-center justify-between gap-1">
+                  <a
+                    class={twMerge(
+                      "z-0 flex rounded-lg p-1.5 transition",
+                      hoverSquare(directionByIndex(Math.floor(Math.random() * 4))),
+                      focusRing,
+                    )}
+                    aria-label={`Przejdź do plików źródłowych projektu - ${project.data.title}`}
+                    href={project.data.githubUrl}
+                    target="_blank"
+                    rel="noreferrer nofollow noopener"
+                  >
+                    <Icon name="tabler:brand-github" class="h-5 w-5 sm:h-6 sm:w-6" />
+                  </a>
+                  <h2 class="text-center text-base font-bold text-gray-900 dark:text-white md:text-lg lg:text-xl">
+                    {project.data.title}
+                  </h2>
+                  <a
+                    class={twMerge(
+                      "z-0 flex rounded-lg p-1.5 transition",
+                      hoverSquare(directionByIndex(Math.floor(Math.random() * 4))),
+                      focusRing,
+                    )}
+                    aria-label={`Przejdź do strony głównej projekstu - ${project.data.title}`}
+                    href={project.data.demoUrl}
+                    target="_blank"
+                    rel="noreferrer nofollow noopener"
+                  >
+                    <Icon name="lucide:external-link" class="h-5 w-5 sm:h-6 sm:w-6" />
+                  </a>
+                </div>
+                <p class="flex-grow text-justify text-xs/5 text-neutral-700 dark:text-neutral-300 sm:text-sm">
+                  {project.body}
+                </p>
+                <h3 class="text-xs/5 font-bold text-neutral-700 dark:text-neutral-300 sm:text-sm">Technologies:</h3>
+                <div class="flex flex-wrap gap-2">
+                  {project.data.technologies.map((technology: string) => (
+                    <span class="whitespace-nowrap rounded-lg bg-gray-200 px-2 py-1 text-xs dark:bg-gray-800">
+                      {technology}
+                    </span>
+                  ))}
+                </div>
               </div>
-              <p class="flex-grow text-justify text-xs/5 sm:text-sm text-neutral-700 dark:text-neutral-300">
-                {project.fields.description}
-              </p>
-              <h3 class="font-bold text-xs/5 sm:text-sm text-neutral-700 dark:text-neutral-300">Technologies:</h3>
-              <div class="flex flex-wrap gap-2">
-                {project.fields.technologies.map((technology) => (
-                  <span class="px-2 flex[0_0_auto] py-1 text-xs bg-gray-200 dark:bg-gray-800 rounded-lg whitespace-nowrap">
-                    {technology}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </li>
-        ))
+            </li>
+          ))
       }
     </ul>
   </article>

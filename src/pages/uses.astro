@@ -1,15 +1,18 @@
 ---
-import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
 import Icon from "astro-icon";
+import { getEntry } from "astro:content";
 import { format } from "date-fns";
 import pl from "date-fns/locale/pl/index";
-import Layout from "layouts/Layout.astro";
-import { contentfulClient, rendererOptions } from "lib/contentful";
-import { contentfulArticle } from "lib/tailwind";
+import Layout from "layouts/layout.astro";
+import { proseArticle } from "lib/tailwind";
 
-const usesPL = await contentfulClient.getEntry("2qwVwCHd7GVimN3fQ5mk73");
+const usesPl = await getEntry("uses", "uses-pl");
 
-const usesEN = await contentfulClient.getEntry("6uUZMTYAqPt7rezQg96LyM");
+const { Content: UsesPlContent, remarkPluginFrontmatter: usesPlFrontmatter } = await usesPl.render();
+
+const usesEn = await getEntry("uses", "uses-en");
+
+const { Content: UsesEnContent, remarkPluginFrontmatter: usesEnFrontmatter } = await usesEn.render();
 
 function formatDate(date: string, isPolish = false) {
   return format(new Date(date), "MMM yyyy", { locale: isPolish ? pl : undefined });
@@ -19,16 +22,17 @@ function formatDate(date: string, isPolish = false) {
 <Layout
   title="Uses"
   description="Aktualna lista sprzętu, oprogramowania oraz narzędzi, z których regularnie korzystam!"
-  image="/og_image.png">
-  <article class={contentfulArticle}>
+  image="/og_image.png"
+>
+  <article class={proseArticle}>
     <h1 transition:name="routeHeading" id="polish" class="scroll-mt-8">Uses</h1>
     <section class="pb-9">
       <h2 class="sr-only">Polska Wersja</h2>
       <p class="!mt-0 mb-9">
-        <a class="relative !pr-5 group" href="#english">
+        <a class="group relative !pr-5" href="#english">
           English Version
           <Icon
-            class="absolute right-0 top-[35%] group-focus:animate-bounce group-hover:animate-bounce -translate-y-1/4"
+            class="absolute right-0 top-[35%] -translate-y-1/4 group-hover:animate-bounce group-focus:animate-bounce"
             name="icon-park-outline:arrow-down"
             size="16"
           />
@@ -36,19 +40,19 @@ function formatDate(date: string, isPolish = false) {
       </p>
       <p class="italic">
         Ostatnia aktualizacja: <span class="capitalize">
-          {formatDate(usesPL.sys.updatedAt, true)}
+          {formatDate(usesPlFrontmatter.lastModified, true)}
         </span>
       </p>
-      <Fragment set:html={documentToHtmlString(usesPL.fields.content, rendererOptions)} />
+      <UsesPlContent />
     </section>
     <hr />
     <section id="english" class="pt-9">
       <h2 class="!mt-0">English Version</h2>
       <p class="!mt-0 mb-9">
-        <a class="relative !pr-5 group" href="#polish">
+        <a class="group relative !pr-5" href="#polish">
           Polish Version
           <Icon
-            class="absolute right-0 top-[15%] group-focus:animate-bounce group-hover:animate-bounce-reverse translate-y-1/4"
+            class="absolute right-0 top-[15%] translate-y-1/4 group-hover:animate-bounce-reverse group-focus:animate-bounce"
             name="icon-park-outline:arrow-up"
             size="16"
           />
@@ -56,10 +60,10 @@ function formatDate(date: string, isPolish = false) {
       </p>
       <p class="italic">
         Last update: <span class="capitalize">
-          {formatDate(usesEN.sys.updatedAt)}
+          {formatDate(usesEnFrontmatter.lastModified)}
         </span>
       </p>
-      <Fragment set:html={documentToHtmlString(usesEN.fields.content, rendererOptions)} />
+      <UsesEnContent />
     </section>
   </article>
 </Layout>

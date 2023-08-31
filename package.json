@@ -27,21 +27,23 @@
     "check": "astro check",
     "build": "astro build",
     "preview": "astro preview",
-    "lint": "eslint --fix 'src/**/*.{js,ts,jsx,tsx,astro}'",
+    "lint": "prettier --write  '**/*.{js,jsx,ts,tsx,md,mdx,json,astro}' && eslint --fix 'src/**/*.{js,ts,jsx,tsx,astro}'",
     "astro": "astro",
     "unlighthouse": "pnpm dlx unlighthouse --site localhost:3000"
   },
   "dependencies": {
+    "@astrojs/mdx": "^1.0.0",
     "@astrojs/partytown": "^2.0.0",
     "@astrojs/sitemap": "^3.0.0",
     "@astrojs/tailwind": "^5.0.0",
-    "@contentful/rich-text-html-renderer": "^16.1.1",
-    "astro": "^3.0.2",
+    "astro": "^3.0.5",
     "astro-icon": "^0.8.1",
     "astro-robots-txt": "^0.5.0",
     "astro-seo": "^0.8.0",
-    "contentful": "^10.5.1",
     "date-fns": "^2.30.0",
+    "mdast-util-to-string": "^4.0.0",
+    "reading-time": "^1.5.0",
+    "rehype-external-links": "^2.1.0",
     "tailwind-merge": "^1.14.0",
     "tailwindcss": "^3.3.3"
   },
@@ -52,6 +54,9 @@
     "astro-compress": "^2.0.14",
     "eslint": "^8.48.0",
     "eslint-plugin-astro": "^0.29.0",
-    "eslint-plugin-jsx-a11y": "^6.7.1"
+    "eslint-plugin-jsx-a11y": "^6.7.1",
+    "prettier": "^3.0.3",
+    "prettier-plugin-astro": "^0.12.0",
+    "prettier-plugin-tailwindcss": "^0.5.4"
   }
 }

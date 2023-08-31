@@ -1,7 +1,7 @@
 ---
 import { SEO } from "astro-seo";
-import Footer from "components/Footer.astro";
-import Sidebar from "components/Sidebar.astro";
+import Footer from "components/footer.astro";
+import Sidebar from "components/sidebar.astro";
 import { ViewTransitions } from "astro:transitions";
 
 export type Props = {
@@ -19,7 +19,7 @@ const { pathname } = Astro.url;
 const canonicalURL = new URL(pathname, Astro.site);
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pl-PL">
   <head>
     <script type="text/partytown" async src="https://www.googletagmanager.com/gtag/js?id=G-HNBWJKKETF"></script>
@@ -87,10 +87,11 @@ const canonicalURL = new URL(pathname, Astro.site);
     <ViewTransitions />
   </head>
   <body
-    class="container grid items-start min-h-screen gap-12 py-4 antialiased grid-rows-mobile sm:grid-rows-desktop sm:gap-6 md:gap-8 sm:pt-24 sm:pb-8 sm:grid-cols-sidebar bg-slate-50 text-neutral-800 dark:bg-slate-950 dark:text-neutral-200"
-    class:list={[{ "max-w-3xl": !isWide }]}>
+    class="container grid min-h-screen grid-rows-mobile items-start gap-12 bg-slate-50 py-4 text-neutral-800 antialiased dark:bg-slate-950 dark:text-neutral-200 sm:grid-cols-sidebar sm:grid-rows-desktop sm:gap-6 sm:pb-8 sm:pt-24 md:gap-8"
+    class:list={[{ "max-w-3xl": !isWide }]}
+  >
     <Sidebar />
-    <main class="pb-8 sm:pt-4 sm:pb-20">
+    <main class="pb-8 sm:pb-20 sm:pt-4">
       <slot />
     </main>
     <Footer />
