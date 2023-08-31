@@ -69,7 +69,7 @@ const projects = await getCollection("project");
                 </p>
                 <h3 class="text-xs/5 font-bold text-neutral-700 dark:text-neutral-300 sm:text-sm">Technologies:</h3>
                 <div class="flex flex-wrap gap-2">
-                  {project.data.technologies.split(",").map((technology: string) => (
+                  {project.data.technologies.map((technology: string) => (
                     <span class="whitespace-nowrap rounded-lg bg-gray-200 px-2 py-1 text-xs dark:bg-gray-800">
                       {technology}
                     </span>

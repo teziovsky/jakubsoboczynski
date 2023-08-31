@@ -38,7 +38,7 @@ const socialLinkCollection = defineCollection({
     sort,
     title: z.string(),
     link: z.string().url(),
-    altText: z.string(),
+    alt: z.string(),
     icon: z.string(),
     newTab: z.boolean(),
     lastModified,

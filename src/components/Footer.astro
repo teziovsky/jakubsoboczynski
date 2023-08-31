@@ -20,7 +20,7 @@ const socialLinks = await getCollection("social-link");
               class={twMerge("flex rounded-lg p-2 transition", hoverSquare(directionByIndex(index)), focusRing)}
               href={socialLink.link}
               target={socialLink.newTab ? "_blank" : "_self"}
-              aria-label={socialLink.altText}
+              aria-label={socialLink.alt}
             >
               <Icon name={socialLink.icon} class="h-5 w-5 sm:h-6 sm:w-6" />
             </a>
