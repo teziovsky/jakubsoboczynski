@@ -4,8 +4,8 @@ import compress from "astro-compress";
 import partytown from "@astrojs/partytown";
 import sitemap from "@astrojs/sitemap";
 import robotsTxt from "astro-robots-txt";
-import { remarkModifiedTime } from "./src/lib/remark-modified-time1.cjs";
-import { remarkReadingTime } from "./src/lib/remark-reading-time1.cjs";
+import { remarkModifiedTime } from "./src/lib/remark-modified-time.cjs";
+import { remarkReadingTime } from "./src/lib/remark-reading-time.cjs";
 import rehypeExternalLinks from "rehype-external-links";
 
 import mdx from "@astrojs/mdx";

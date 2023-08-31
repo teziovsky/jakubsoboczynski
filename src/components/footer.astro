@@ -1,9 +1,9 @@
 ---
 import { getCollection } from "astro:content";
 import Icon from "astro-icon";
-import { focusRing, hoverSquare } from "@/lib/tailwind1";
+import { focusRing, hoverSquare } from "@/lib/tailwind";
 import { twMerge } from "tailwind-merge";
-import { directionByIndex } from "@/lib/utils1";
+import { directionByIndex } from "@/lib/utils";
 
 const socialLinks = await getCollection("social-link");
 ---
@@ -29,3 +29,4 @@ const socialLinks = await getCollection("social-link");
     }
   </ul>
 </footer>
+ @/lib/tailwind @/lib/utils
