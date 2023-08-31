@@ -1,13 +1,20 @@
 ---
+import { getCollection } from "astro:content";
 import Layout from "layouts/layout.astro";
 import { proseArticle } from "lib/tailwind";
+
+const [aboutMe] = await getCollection("about-me");
+
+const { Content } = await aboutMe.render();
 ---
 
 <Layout
   title="Hello!"
   description="Kilka zdań o mnie, moim doświadczeniu, pasji, zainteresowaniach oraz aktualnych ścieżkach rozwoju!"
-  image="/og_image.png">
+  image="/og_image.png"
+>
   <article class={proseArticle}>
     <h1 transition:name="routeHeading">Jakub Soboczyński</h1>
+    <Content />
   </article>
 </Layout>
