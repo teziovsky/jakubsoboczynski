@@ -188,105 +188,135 @@ declare module 'astro:content' {
 } & { render(): Render[".mdx"] };
 };
 "project": {
+"Lenovo-Product-Card.mdx": {
+	id: "Lenovo-Product-Card.mdx";
+  slug: "lenovo-product-card";
+  body: string;
+  collection: "project";
+  data: InferEntrySchema<"project">
+} & { render(): Render[".mdx"] };
+"Rock-Paper-Scissors.mdx": {
+	id: "Rock-Paper-Scissors.mdx";
+  slug: "rock-paper-scissors";
+  body: string;
+  collection: "project";
+  data: InferEntrySchema<"project">
+} & { render(): Render[".mdx"] };
 "car-service-book-v1.mdx": {
 	id: "car-service-book-v1.mdx";
   slug: "car-service-book-v1";
   body: string;
   collection: "project";
-  data: any
+  data: InferEntrySchema<"project">
 } & { render(): Render[".mdx"] };
 "images-gallery.mdx": {
 	id: "images-gallery.mdx";
   slug: "images-gallery";
   body: string;
   collection: "project";
-  data: any
+  data: InferEntrySchema<"project">
 } & { render(): Render[".mdx"] };
 "jakub-soboczynski-v1.mdx": {
 	id: "jakub-soboczynski-v1.mdx";
   slug: "jakub-soboczynski-v1";
   body: string;
   collection: "project";
-  data: any
+  data: InferEntrySchema<"project">
 } & { render(): Render[".mdx"] };
 "movies-search-engine.mdx": {
 	id: "movies-search-engine.mdx";
   slug: "movies-search-engine";
   body: string;
   collection: "project";
-  data: any
+  data: InferEntrySchema<"project">
 } & { render(): Render[".mdx"] };
 "qr-code-component.mdx": {
 	id: "qr-code-component.mdx";
   slug: "qr-code-component";
   body: string;
   collection: "project";
-  data: any
+  data: InferEntrySchema<"project">
 } & { render(): Render[".mdx"] };
 "raycast-height.mdx": {
 	id: "raycast-height.mdx";
   slug: "raycast-height";
   body: string;
   collection: "project";
-  data: any
+  data: InferEntrySchema<"project">
 } & { render(): Render[".mdx"] };
 "raycast-infakt.mdx": {
 	id: "raycast-infakt.mdx";
   slug: "raycast-infakt";
   body: string;
   collection: "project";
-  data: any
+  data: InferEntrySchema<"project">
 } & { render(): Render[".mdx"] };
 "raycast-raydocs.mdx": {
 	id: "raycast-raydocs.mdx";
   slug: "raycast-raydocs";
   body: string;
   collection: "project";
-  data: any
+  data: InferEntrySchema<"project">
 } & { render(): Render[".mdx"] };
 "vehicle-service-book.mdx": {
 	id: "vehicle-service-book.mdx";
   slug: "vehicle-service-book";
   body: string;
   collection: "project";
-  data: any
+  data: InferEntrySchema<"project">
 } & { render(): Render[".mdx"] };
 };
 "social-link": {
-"Github.mdx": {
-	id: "Github.mdx";
+"github.mdx": {
+	id: "github.mdx";
   slug: "github";
   body: string;
   collection: "social-link";
   data: InferEntrySchema<"social-link">
 } & { render(): Render[".mdx"] };
-"LinkedIn.mdx": {
-	id: "LinkedIn.mdx";
+"linkedin.mdx": {
+	id: "linkedin.mdx";
   slug: "linkedin";
   body: string;
   collection: "social-link";
   data: InferEntrySchema<"social-link">
 } & { render(): Render[".mdx"] };
-"Mail.mdx": {
-	id: "Mail.mdx";
+"mail.mdx": {
+	id: "mail.mdx";
   slug: "mail";
   body: string;
   collection: "social-link";
   data: InferEntrySchema<"social-link">
 } & { render(): Render[".mdx"] };
-"Twitter.mdx": {
-	id: "Twitter.mdx";
+"twitter.mdx": {
+	id: "twitter.mdx";
   slug: "twitter";
   body: string;
   collection: "social-link";
   data: InferEntrySchema<"social-link">
 } & { render(): Render[".mdx"] };
 };
+"uses": {
+"uses-en.mdx": {
+	id: "uses-en.mdx";
+  slug: "uses-en";
+  body: string;
+  collection: "uses";
+  data: InferEntrySchema<"uses">
+} & { render(): Render[".mdx"] };
+"uses-pl.mdx": {
+	id: "uses-pl.mdx";
+  slug: "uses-pl";
+  body: string;
+  collection: "uses";
+  data: InferEntrySchema<"uses">
+} & { render(): Render[".mdx"] };
+};
 
 	};
 
 	type DataEntryMap = {
-
+		
 	};
 
 	type AnyEntryMap = ContentEntryMap & DataEntryMap;

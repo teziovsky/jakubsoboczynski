@@ -62,9 +62,23 @@ export default defineConfig({
             required: true,
           },
           {
-            type: "image",
+            type: "object",
             name: "screenshot",
             label: "Screenshot",
+            fields: [
+              {
+                type: "image",
+                name: "src",
+                label: "Source",
+                required: true,
+              },
+              {
+                type: "string",
+                name: "alt",
+                label: "Alt",
+                required: true,
+              },
+            ],
             required: true,
           },
           {
