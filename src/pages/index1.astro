@@ -1,7 +1,7 @@
 ---
 import { getCollection } from "astro:content";
-import Layout from "@/layouts/layout.astro";
-import { proseArticle } from "@/lib/tailwind";
+import Layout from "@/layouts/layout1.astro";
+import { proseArticle } from "@/lib/tailwind1";
 
 const [aboutMe] = await getCollection("about-me");
 
@@ -18,3 +18,4 @@ const { Content } = await aboutMe.render();
     <Content />
   </article>
 </Layout>
+ @/lib/tailwind1

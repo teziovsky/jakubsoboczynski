@@ -3,8 +3,8 @@ import Icon from "astro-icon";
 import { getEntry } from "astro:content";
 import { format } from "date-fns";
 import pl from "date-fns/locale/pl/index";
-import Layout from "@/layouts/layout.astro";
-import { proseArticle } from "@/lib/tailwind";
+import Layout from "@/layouts/layout1.astro";
+import { proseArticle } from "@/lib/tailwind1";
 
 const usesPl = await getEntry("uses", "uses-pl");
 
@@ -67,3 +67,4 @@ function formatDate(date: string, isPolish = false) {
     </section>
   </article>
 </Layout>
+ @/lib/tailwind1

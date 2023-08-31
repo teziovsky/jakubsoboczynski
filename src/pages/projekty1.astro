@@ -1,9 +1,9 @@
 ---
 import Icon from "astro-icon";
-import Layout from "@/layouts/layout.astro";
-import { focusRing, hoverSquare } from "@/lib/tailwind";
+import Layout from "@/layouts/layout1.astro";
+import { focusRing, hoverSquare } from "@/lib/tailwind1";
 import { twMerge } from "tailwind-merge";
-import { directionByIndex } from "@/lib/utils";
+import { directionByIndex } from "@/lib/utils1";
 import { getCollection } from "astro:content";
 
 const projects = await getCollection("project");
@@ -82,3 +82,4 @@ const projects = await getCollection("project");
     </ul>
   </article>
 </Layout>
+ @/lib/tailwind1@/lib/1 @/lib/utils1
