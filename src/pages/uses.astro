@@ -13,16 +13,17 @@ function formatDate(date: string, isPolish = false) {
 <Layout
   title="Uses"
   description="Aktualna lista sprzętu, oprogramowania oraz narzędzi, z których regularnie korzystam!"
-  image="/og_image.png">
+  image="/og_image.png"
+>
   <article class={proseArticle}>
     <h1 transition:name="routeHeading" id="polish" class="scroll-mt-8">Uses</h1>
     <section class="pb-9">
       <h2 class="sr-only">Polska Wersja</h2>
       <p class="!mt-0 mb-9">
-        <a class="relative !pr-5 group" href="#english">
+        <a class="group relative !pr-5" href="#english">
           English Version
           <Icon
-            class="absolute right-0 top-[35%] group-focus:animate-bounce group-hover:animate-bounce -translate-y-1/4"
+            class="absolute right-0 top-[35%] -translate-y-1/4 group-hover:animate-bounce group-focus:animate-bounce"
             name="icon-park-outline:arrow-down"
             size="16"
           />
@@ -39,10 +40,10 @@ function formatDate(date: string, isPolish = false) {
     <section id="english" class="pt-9">
       <h2 class="!mt-0">English Version</h2>
       <p class="!mt-0 mb-9">
-        <a class="relative !pr-5 group" href="#polish">
+        <a class="group relative !pr-5" href="#polish">
           Polish Version
           <Icon
-            class="absolute right-0 top-[15%] group-focus:animate-bounce group-hover:animate-bounce-reverse translate-y-1/4"
+            class="absolute right-0 top-[15%] translate-y-1/4 group-hover:animate-bounce-reverse group-focus:animate-bounce"
             name="icon-park-outline:arrow-up"
             size="16"
           />
