@@ -8,11 +8,11 @@ import { proseArticle } from "lib/tailwind";
 
 const usesPl = await getEntry("uses", "uses-pl");
 
-const { Content: UsesPlContent } = await usesPl.render();
+const { Content: UsesPlContent, remarkPluginFrontmatter: usesPlFrontmatter } = await usesPl.render();
 
 const usesEn = await getEntry("uses", "uses-en");
 
-const { Content: UsesEnContent } = await usesEn.render();
+const { Content: UsesEnContent, remarkPluginFrontmatter: usesEnFrontmatter } = await usesEn.render();
 
 function formatDate(date: string, isPolish = false) {
   return format(new Date(date), "MMM yyyy", { locale: isPolish ? pl : undefined });
@@ -40,7 +40,7 @@ function formatDate(date: string, isPolish = false) {
       </p>
       <p class="italic">
         Ostatnia aktualizacja: <span class="capitalize">
-          {formatDate(new Date().toISOString(), true)}
+          {formatDate(usesPlFrontmatter.lastModified, true)}
         </span>
       </p>
       <UsesPlContent />
@@ -60,7 +60,7 @@ function formatDate(date: string, isPolish = false) {
       </p>
       <p class="italic">
         Last update: <span class="capitalize">
-          {formatDate(new Date().toISOString())}
+          {formatDate(usesEnFrontmatter.lastModified)}
         </span>
       </p>
       <UsesEnContent />
