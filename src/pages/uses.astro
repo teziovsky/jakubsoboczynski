@@ -3,8 +3,8 @@ import Icon from "astro-icon";
 import { getEntry } from "astro:content";
 import { format } from "date-fns";
 import pl from "date-fns/locale/pl/index";
-import Layout from "layouts/layout.astro";
-import { proseArticle } from "lib/tailwind";
+import Layout from "@/layouts/layout.astro";
+import { proseArticle } from "@/lib/tailwind";
 
 const usesPl = await getEntry("uses", "uses-pl");
 
