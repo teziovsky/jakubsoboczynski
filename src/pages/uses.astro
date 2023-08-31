@@ -1,9 +1,18 @@
 ---
 import Icon from "astro-icon";
+import { getEntry } from "astro:content";
 import { format } from "date-fns";
 import pl from "date-fns/locale/pl/index";
 import Layout from "layouts/layout.astro";
 import { proseArticle } from "lib/tailwind";
+
+const usesPl = await getEntry("uses", "uses-pl");
+
+const { Content: UsesPlContent } = await usesPl.render();
+
+const usesEn = await getEntry("uses", "uses-en");
+
+const { Content: UsesEnContent } = await usesEn.render();
 
 function formatDate(date: string, isPolish = false) {
   return format(new Date(date), "MMM yyyy", { locale: isPolish ? pl : undefined });
@@ -31,10 +40,10 @@ function formatDate(date: string, isPolish = false) {
       </p>
       <p class="italic">
         Ostatnia aktualizacja: <span class="capitalize">
-          <!-- {formatDate(usesPL.sys.updatedAt, true)} -->
+          {formatDate(new Date().toISOString(), true)}
         </span>
       </p>
-      <!-- <Fragment set:html={documentToHtmlString(usesPL.fields.content, rendererOptions)} /> -->
+      <UsesPlContent />
     </section>
     <hr />
     <section id="english" class="pt-9">
@@ -51,10 +60,10 @@ function formatDate(date: string, isPolish = false) {
       </p>
       <p class="italic">
         Last update: <span class="capitalize">
-          <!-- {formatDate(usesEN.sys.updatedAt)} -->
+          {formatDate(new Date().toISOString())}
         </span>
       </p>
-      <!-- <Fragment set:html={documentToHtmlString(usesEN.fields.content, rendererOptions)} /> -->
+      <UsesEnContent />
     </section>
   </article>
 </Layout>
