@@ -4,5 +4,18 @@
   "tabWidth": 2,
   "jsxSingleQuote": false,
   "printWidth": 120,
-  "plugins": ["prettier-plugin-astro", "prettier-plugin-tailwindcss"]
+  "importOrder": [
+    "^astro",
+    "^@astrojs",
+    "<THIRD_PARTY_MODULES>",
+    "^@/(.*)$",
+    "^@core/(.*)$",
+    "^@server/(.*)$",
+    "^@ui/(.*)$",
+    "^[./]"
+  ],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true,
+  "plugins": ["prettier-plugin-astro", "@trivago/prettier-plugin-sort-imports", "prettier-plugin-tailwindcss"],
+  "pluginSearchDirs": false
 }

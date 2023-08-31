@@ -1,4 +1,4 @@
-import { z, defineCollection } from "astro:content";
+import { defineCollection, z } from "astro:content";
 
 const sort = z.number().int().min(1);
 const lastModified = z.string().datetime().optional();
