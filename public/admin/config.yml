@@ -35,7 +35,13 @@ collections:
         fields:
           - { label: "Image", name: "src", widget: "image", required: true }
           - { label: "Alt", name: "alt", widget: "string", required: true }
-      - { label: "Technologies", name: "technologies", widget: "list", required: true }
+      - label: "Technologies"
+        name: "technologies"
+        widget: "list"
+        minimize_collapsed: false
+        collapsed: true
+        field: { label: "Name", name: "name", widget: "string" }
+        required: true
       - { label: "Github URL", name: "githubUrl", widget: "string", required: true }
       - { label: "Demo URL", name: "demoUrl", widget: "string", required: true }
       - { label: "Content", name: "body", widget: "text", required: true }
@@ -53,7 +59,7 @@ collections:
       - { label: "Link", name: "link", widget: "string", required: true }
       - { label: "Alt", name: "alt", widget: "string", required: true }
       - { label: "Icon", name: "icon", widget: "string", required: true }
-      - { label: "Open in new tab", name: "newTab", widget: "boolean", required: true }
+      - { label: "Open in new tab", name: "newTab", widget: "boolean", default: true, required: true }
   - name: "uses"
     label: "Uses"
     folder: "src/content/uses"
