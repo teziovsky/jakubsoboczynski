@@ -25,11 +25,9 @@ function handleLinkClass(index: number, href: string) {
   const baseClasses = "px-3 py-1 rounded-lg transition";
   const isCurrent = href === "/" ? pathname === href : pathname.includes(href);
 
-  function classByCurrent(isCurrent: boolean) {
-    return isCurrent ? "bg-slate-200 dark:bg-slate-800 hocus:before:scale-0" : "";
-  }
+  const currentClasses = isCurrent ? "bg-slate-200 dark:bg-slate-800 hocus:before:scale-0" : "";
 
-  return twMerge(baseClasses, hoverSquare(directionByIndex(index)), focusRing, classByCurrent(isCurrent));
+  return twMerge(baseClasses, hoverSquare(directionByIndex(index)), focusRing, currentClasses);
 }
 ---
 
