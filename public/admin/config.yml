@@ -6,6 +6,10 @@ backend:
 publish_mode: editorial_workflow
 media_folder: "/public/images"
 public_folder: "/images"
+i18n:
+  structure: multiple_folders
+  locales: [pl, en]
+  default_locale: pl
 collections:
   - name: "about-me"
     label: "About Me"
@@ -14,11 +18,12 @@ collections:
     format: "frontmatter"
     identifier_field: "title"
     create: true
+    i18n: true
     slug: "{{slug}}"
     sortable_fields: ["title"]
     fields:
-      - { label: "Title", name: "title", widget: "string", required: true }
-      - { label: "Content", name: "body", widget: "markdown", required: true }
+      - { label: "Title", name: "title", widget: "string", required: true, i18n: true }
+      - { label: "Content", name: "body", widget: "markdown", required: true, i18n: true }
   - name: "project"
     label: "Project"
     folder: "src/content/project"
@@ -26,17 +31,28 @@ collections:
     format: "frontmatter"
     identifier_field: "title"
     create: true
+    i18n: true
     slug: "{{slug}}"
     sortable_fields: ["sort", "title"]
     fields:
-      - { label: "Sort", name: "sort", widget: "number", value_type: "int", default: 1, min: 1, required: true }
-      - { label: "Title", name: "title", widget: "string", required: true }
+      - {
+          label: "Sort",
+          name: "sort",
+          widget: "number",
+          value_type: "int",
+          default: 1,
+          min: 1,
+          required: true,
+          i18n: true,
+        }
+      - { label: "Title", name: "title", widget: "string", required: true, i18n: true }
       - label: "Screenshot"
         name: "screenshot"
         widget: "object"
+        i18n: true
         fields:
-          - { label: "Image", name: "src", widget: "image", required: true }
-          - { label: "Alt", name: "alt", widget: "string", required: true }
+          - { label: "Image", name: "src", widget: "image", required: true, i18n: true }
+          - { label: "Alt", name: "alt", widget: "text", required: true, i18n: true }
       - label: "Technologies"
         name: "technologies"
         widget: "list"
@@ -44,9 +60,10 @@ collections:
         collapsed: true
         field: { label: "Name", name: "name", widget: "string" }
         required: true
-      - { label: "Github URL", name: "githubUrl", widget: "string", required: true }
-      - { label: "Demo URL", name: "demoUrl", widget: "string", required: true }
-      - { label: "Content", name: "body", widget: "text", required: true }
+        i18n: true
+      - { label: "Github URL", name: "githubUrl", widget: "string", required: true, i18n: true }
+      - { label: "Demo URL", name: "demoUrl", widget: "string", required: true, i18n: true }
+      - { label: "Content", name: "body", widget: "text", required: true, i18n: true }
   - name: "socialLink"
     label: "Social Link"
     folder: "src/content/social-link"
@@ -54,15 +71,25 @@ collections:
     format: "frontmatter"
     identifier_field: "title"
     create: true
+    i18n: true
     slug: "{{slug}}"
     sortable_fields: ["sort", "title"]
     fields:
-      - { label: "Sort", name: "sort", widget: "number", value_type: "int", default: 1, min: 1, required: true }
-      - { label: "Title", name: "title", widget: "string", required: true }
-      - { label: "Link", name: "link", widget: "string", required: true }
-      - { label: "Alt", name: "alt", widget: "string", required: true }
-      - { label: "Icon", name: "icon", widget: "string", required: true }
-      - { label: "Open in new tab", name: "newTab", widget: "boolean", default: true, required: true }
+      - {
+          label: "Sort",
+          name: "sort",
+          widget: "number",
+          value_type: "int",
+          default: 1,
+          min: 1,
+          required: true,
+          i18n: true,
+        }
+      - { label: "Title", name: "title", widget: "string", required: true, i18n: true }
+      - { label: "Link", name: "link", widget: "string", required: true, i18n: true }
+      - { label: "Alt", name: "alt", widget: "string", required: true, i18n: true }
+      - { label: "Icon", name: "icon", widget: "string", required: true, i18n: true }
+      - { label: "Open in new tab", name: "newTab", widget: "boolean", default: true, required: true, i18n: true }
   - name: "uses"
     label: "Uses"
     folder: "src/content/uses"
@@ -70,8 +97,9 @@ collections:
     format: "frontmatter"
     identifier_field: "title"
     create: true
+    i18n: true
     slug: "{{slug}}"
     sortable_fields: ["title"]
     fields:
-      - { label: "Title", name: "title", widget: "string", required: true }
-      - { label: "Content", name: "body", widget: "markdown", required: true }
+      - { label: "Title", name: "title", widget: "string", required: true, i18n: true }
+      - { label: "Content", name: "body", widget: "markdown", required: true, i18n: true }

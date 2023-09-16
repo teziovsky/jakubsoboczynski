@@ -1,0 +1,43 @@
+---
+import { languages, type Languages } from "@/i18n/ui";
+import { getLang, useTranslations } from "@/i18n/utils";
+import Layout from "@/layouts/layout.astro";
+import { proseArticle } from "@/lib/tailwind";
+import { getEntry } from "astro:content";
+import { format } from "date-fns";
+import pl from "date-fns/locale/pl/index";
+
+export async function getStaticPaths() {
+  return Object.keys(languages).map((lang) => {
+    return { params: { lang } };
+  });
+}
+
+const { params, url } = Astro;
+const lang = getLang(params, url);
+const t = useTranslations(lang);
+
+const uses = await getEntry("uses", `${lang}/uses-tech`);
+
+if (!uses) {
+  return Astro.redirect("/404");
+}
+
+const { Content, remarkPluginFrontmatter } = await uses.render();
+
+function formatDate(date: string) {
+  return format(new Date(date), "MMM yyyy", { locale: lang === "pl" ? pl : undefined });
+}
+---
+
+<Layout title={t("uses.seo.title")} description={t("uses.seo.description")} image="/og_image.png">
+  <article class={proseArticle}>
+    <h1 transition:name="routeHeading" class="scroll-mt-8">{t("uses.title")}</h1>
+    <p class="italic">
+      {t("uses.last-update.title")}: <span class="capitalize">
+        {formatDate(remarkPluginFrontmatter.lastModified)}
+      </span>
+    </p>
+    <Content />
+  </article>
+</Layout>

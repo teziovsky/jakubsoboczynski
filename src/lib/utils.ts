@@ -1,19 +1,14 @@
+import type { ClassValue } from "clsx";
+import { clsx } from "clsx";
+import { twMerge } from "tailwind-merge";
+
 export function directionByIndex(index: number) {
-  switch (index) {
-    case 0: {
-      return "top";
-    }
-    case 1: {
-      return "left";
-    }
-    case 2: {
-      return "bottom";
-    }
-    case 3: {
-      return "right";
-    }
-    default: {
-      break;
-    }
-  }
+  if (index % 4 === 0) return "top";
+  if (index % 4 === 1) return "left";
+  if (index % 4 === 2) return "bottom";
+  if (index % 4 === 3) return "right";
+}
+
+export function cn(...inputs: ClassValue[]): string {
+  return twMerge(clsx(inputs));
 }
