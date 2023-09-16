@@ -1,15 +1,43 @@
 ---
-import { getCollection } from "astro:content";
-import Icon from "astro-icon";
+import { languages, type Languages } from "@/i18n/ui";
+import { getLang, useTranslations } from "@/i18n/utils";
 import { focusRing, hoverSquare } from "@/lib/tailwind";
-import { twMerge } from "tailwind-merge";
-import { directionByIndex } from "@/lib/utils";
+import { cn, directionByIndex } from "@/lib/utils";
+import Icon from "astro-icon";
+import { getCollection } from "astro:content";
 
-const socialLinks = await getCollection("social-link");
+const { params, url } = Astro;
+const lang = getLang(params, url);
+
+const { pathname } = url;
+
+const socialLinks = await getCollection("social-link", ({ slug }) => slug.startsWith(lang));
 ---
 
 <footer class="flex flex-col items-center justify-center gap-3 sm:col-span-2 sm:flex-row sm:justify-between">
   <p class="text-sm">2023 &copy; Jakub Soboczyński</p>
+  <ul class="flex gap-3">
+    {
+      Object.keys(languages).map((language, index) => (
+        <li>
+          <a
+            class={cn(
+              "flex h-9 w-9 items-center justify-center rounded-lg transition sm:h-10 sm:w-10",
+              hoverSquare(directionByIndex(index)),
+              {
+                "before:translate-x-0 before:translate-y-0 before:scale-100": lang === language,
+              },
+              focusRing,
+            )}
+            href={`${pathname.replace(/\w+/, language)}`}
+            aria-label={language}
+          >
+            {language.toUpperCase()}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
   <ul class="flex gap-3">
     {
       socialLinks
@@ -17,7 +45,11 @@ const socialLinks = await getCollection("social-link");
         .map(({ data: socialLink }, index) => (
           <li>
             <a
-              class={twMerge("flex rounded-lg p-2 transition", hoverSquare(directionByIndex(index)), focusRing)}
+              class={cn(
+                "flex h-9 w-9 items-center justify-center rounded-lg transition sm:h-10 sm:w-10",
+                hoverSquare(directionByIndex(index)),
+                focusRing,
+              )}
               href={socialLink.link}
               target={socialLink.newTab ? "_blank" : "_self"}
               aria-label={socialLink.alt}

@@ -9,7 +9,7 @@ module.exports = {
     },
     extend: {
       gridTemplateColumns: {
-        sidebar: "90px 1fr",
+        sidebar: "110px 1fr",
       },
       gridTemplateRows: {
         mobile: "auto 1fr auto",

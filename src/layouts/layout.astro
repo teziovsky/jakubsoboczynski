@@ -3,6 +3,7 @@ import { SEO } from "astro-seo";
 import Footer from "@/components/footer.astro";
 import Sidebar from "@/components/sidebar.astro";
 import { ViewTransitions } from "astro:transitions";
+import { getLang } from "@/i18n/utils";
 
 export type Props = {
   title: string;
@@ -14,13 +15,16 @@ export type Props = {
 
 const { title, titleTemplate = "%s | Jakub Soboczyński", description, image, isWide = false } = Astro.props;
 
-const { pathname } = Astro.url;
+const { params, url } = Astro;
+const lang = getLang(params, url);
+
+const { pathname } = url;
 
 const canonicalURL = new URL(pathname, Astro.site);
 ---
 
 <!doctype html>
-<html transition:animate="none" lang="pl-PL">
+<html transition:animate="none" lang={lang}>
   <head>
     <script type="text/partytown" async src="https://www.googletagmanager.com/gtag/js?id=G-HNBWJKKETF"></script>
     <script type="text/partytown">

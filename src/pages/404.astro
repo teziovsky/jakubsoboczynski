@@ -1,15 +1,16 @@
 ---
+import { getLang, useTranslations } from "@/i18n/utils";
 import Layout from "@/layouts/layout.astro";
 import { proseArticle } from "@/lib/tailwind";
+
+const { params, url } = Astro;
+const lang = getLang(params, url);
+const t = useTranslations(lang);
 ---
 
-<Layout
-  title="Nie odnaleziono strony"
-  description="Szukana strona nie została znaleziona. Wróć do strony głównej i dowiedz się więcej na mój temat!"
-  image="/og_image.png"
->
+<Layout title={t("404.seo.title")} description={t("404.seo.description")} image="/og_image.png">
   <section class={proseArticle}>
-    <h1 transition:name="routeHeading">404</h1>
-    <a href="/">Zabierz mnie stąd 👀</a>
+    <h1 transition:name="routeHeading">{t("404.title")}</h1>
+    <a href={`/${lang}/`}>{t("404.go-back-button")} 👀</a>
   </section>
 </Layout>
