@@ -15,8 +15,8 @@ export type Props = {
 
 const { title, titleTemplate = "%s | Jakub Soboczyński", description, image, isWide = false } = Astro.props;
 
-const { params, url } = Astro;
-const lang = getLang(params, url);
+const { url } = Astro;
+const lang = getLang(url);
 
 const { pathname } = url;
 
@@ -92,7 +92,7 @@ const canonicalURL = new URL(pathname, Astro.site);
   </head>
   <body
     class="container grid min-h-screen grid-rows-mobile items-start gap-12 bg-slate-50 py-4 text-neutral-800 antialiased dark:bg-slate-950 dark:text-neutral-200 sm:grid-cols-sidebar sm:grid-rows-desktop sm:gap-6 sm:pb-8 sm:pt-24 md:gap-8"
-    class:list={[{ "max-w-3xl": !isWide }]}
+    class:list={[{ "max-w-4xl": !isWide }]}
   >
     <Sidebar />
     <main class="pb-8 sm:pb-20 sm:pt-4">

@@ -1,13 +1,13 @@
 ---
-import { languages, type Languages } from "@/i18n/ui";
-import { getLang, useTranslations } from "@/i18n/utils";
+import { defaultLang, languages } from "@/i18n/ui";
+import { getLang } from "@/i18n/utils";
 import { focusRing, hoverSquare } from "@/lib/tailwind";
 import { cn, directionByIndex } from "@/lib/utils";
 import Icon from "astro-icon";
 import { getCollection } from "astro:content";
 
-const { params, url } = Astro;
-const lang = getLang(params, url);
+const { url } = Astro;
+const lang = getLang(url);
 
 const { pathname } = url;
 
@@ -29,7 +29,13 @@ const socialLinks = await getCollection("social-link", ({ slug }) => slug.starts
               },
               focusRing,
             )}
-            href={`${pathname.replace(/\w+/, language)}`}
+            href={
+              language === defaultLang
+                ? pathname.replace(`/${lang}`, "")
+                : pathname.startsWith(`/${lang}`)
+                ? pathname.replace(/\w+/, language)
+                : `/${language}${pathname}`
+            }
             aria-label={language}
           >
             {language.toUpperCase()}

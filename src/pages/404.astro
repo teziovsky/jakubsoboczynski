@@ -1,16 +1,17 @@
 ---
+import { defaultLang } from "@/i18n/ui";
 import { getLang, useTranslations } from "@/i18n/utils";
 import Layout from "@/layouts/layout.astro";
 import { proseArticle } from "@/lib/tailwind";
 
-const { params, url } = Astro;
-const lang = getLang(params, url);
+const { url } = Astro;
+const lang = getLang(url);
 const t = useTranslations(lang);
 ---
 
 <Layout title={t("404.seo.title")} description={t("404.seo.description")} image="/og_image.png">
   <section class={proseArticle}>
     <h1 transition:name="routeHeading">{t("404.title")}</h1>
-    <a href={`/${lang}/`}>{t("404.go-back-button")} 👀</a>
+    <a href={lang === defaultLang ? "/" : `/${lang}/`}>{t("404.go-back-button")} 👀</a>
   </section>
 </Layout>

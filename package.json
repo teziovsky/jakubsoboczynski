@@ -22,6 +22,7 @@
     "url": "https://www.jakubsoboczynski.pl"
   },
   "scripts": {
+    "clean": "rm -rf ./astro ./dist ./node_modules ./package-lock.json ./pnpm-lock.yaml",
     "dev": "concurrently \"astro dev\" \"npx decap-server\"",
     "start": "astro dev",
     "check": "astro check",

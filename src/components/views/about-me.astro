@@ -1,18 +1,11 @@
 ---
-import { languages, type Languages } from "@/i18n/ui";
 import { getLang, useTranslations } from "@/i18n/utils";
 import Layout from "@/layouts/layout.astro";
 import { proseArticle } from "@/lib/tailwind";
 import { getEntry } from "astro:content";
 
-export async function getStaticPaths() {
-  return Object.keys(languages).map((lang) => {
-    return { params: { lang } };
-  });
-}
-
-const { params, url } = Astro;
-const lang = getLang(params, url);
+const { url } = Astro;
+const lang = getLang(url);
 const t = useTranslations(lang);
 
 const aboutMe = await getEntry("about-me", `${lang}/o-mnie`);

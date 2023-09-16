@@ -1,11 +1,12 @@
 ---
+import { defaultLang } from "@/i18n/ui";
 import { getLang, useTranslations } from "@/i18n/utils";
 import { focusRing, hoverSquare } from "@/lib/tailwind";
 import { cn, directionByIndex } from "@/lib/utils";
 import Icon from "astro-icon";
 
-const { params, url } = Astro;
-const lang = getLang(params, url);
+const { url } = Astro;
+const lang = getLang(url);
 const t = useTranslations(lang);
 
 const { pathname } = url;
@@ -13,22 +14,22 @@ const { pathname } = url;
 const links = [
   {
     title: t("sidebar.about-me"),
-    href: "",
+    href: "/",
   },
   {
     title: t("sidebar.projects"),
-    href: "projekty",
+    href: "/projekty",
   },
   {
     title: t("sidebar.uses"),
-    href: "uses",
+    href: "/uses",
   },
 ];
 
 function handleLinkClass(index: number, href: string) {
   const baseClasses = "px-3 py-1 rounded-lg transition";
-  const hrefWithLang = `/${lang}/${href}`;
-  const isCurrent = href === "" ? pathname === hrefWithLang : pathname.startsWith(hrefWithLang);
+  const hrefWithLang = lang === defaultLang ? href : `/${lang}${href}`;
+  const isCurrent = href === "/" ? pathname === hrefWithLang : pathname.startsWith(hrefWithLang);
 
   const currentClasses = isCurrent ? "bg-slate-200 dark:bg-slate-800 hocus:before:scale-0" : "";
 
@@ -38,7 +39,10 @@ function handleLinkClass(index: number, href: string) {
 
 <aside class="w-full sm:sticky sm:top-4">
   <nav class="flex flex-wrap items-center justify-between gap-3 sm:flex-col sm:items-start">
-    <a class={cn("py-1.5 px-3 self-center rounded-lg transition", focusRing)} href={`/${lang}/`}>
+    <a
+      class={cn("py-1.5 px-3 self-center rounded-lg transition", focusRing)}
+      href={lang === defaultLang ? "/" : `/${lang}/`}
+    >
       <Icon name="logo" class="h-12 w-12 sm:h-14 sm:w-14" />
       <span class="sr-only">{t("sidebar.homepage")}</span>
     </a>
@@ -49,7 +53,7 @@ function handleLinkClass(index: number, href: string) {
             <a
               class={handleLinkClass(index, href)}
               aria-current={pathname === href ? "page" : undefined}
-              href={`/${lang}/${href}`}
+              href={lang === defaultLang ? href : `/${lang}${href}`}
             >
               {title}
             </a>

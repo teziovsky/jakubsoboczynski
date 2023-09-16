@@ -9,7 +9,6 @@ import tailwind from "@astrojs/tailwind";
 
 import rehypeExternalLinks from "rehype-external-links";
 
-import { defaultLang } from "./src/i18n/ui";
 import { remarkModifiedTime } from "./src/lib/remark-modified-time.cjs";
 import { remarkReadingTime } from "./src/lib/remark-reading-time.cjs";
 
@@ -19,9 +18,6 @@ export default defineConfig({
   markdown: {
     remarkPlugins: [remarkModifiedTime, remarkReadingTime],
     rehypePlugins: [[rehypeExternalLinks, { target: "_blank", rel: ["noopener", "noreferrer"] }]],
-  },
-  redirects: {
-    "/": `/${defaultLang}/`,
   },
   integrations: [
     compress(),
