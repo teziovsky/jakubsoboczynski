@@ -15,6 +15,7 @@ collections:
     identifier_field: "title"
     create: true
     slug: "{{slug}}"
+    sortable_fields: ["title"]
     fields:
       - { label: "Title", name: "title", widget: "string", required: true }
       - { label: "Content", name: "body", widget: "markdown", required: true }
@@ -26,6 +27,7 @@ collections:
     identifier_field: "title"
     create: true
     slug: "{{slug}}"
+    sortable_fields: ["sort", "title"]
     fields:
       - { label: "Sort", name: "sort", widget: "number", value_type: "int", default: 1, min: 1, required: true }
       - { label: "Title", name: "title", widget: "string", required: true }
@@ -53,6 +55,7 @@ collections:
     identifier_field: "title"
     create: true
     slug: "{{slug}}"
+    sortable_fields: ["sort", "title"]
     fields:
       - { label: "Sort", name: "sort", widget: "number", value_type: "int", default: 1, min: 1, required: true }
       - { label: "Title", name: "title", widget: "string", required: true }
@@ -68,6 +71,7 @@ collections:
     identifier_field: "title"
     create: true
     slug: "{{slug}}"
+    sortable_fields: ["title"]
     fields:
       - { label: "Title", name: "title", widget: "string", required: true }
       - { label: "Content", name: "body", widget: "markdown", required: true }
