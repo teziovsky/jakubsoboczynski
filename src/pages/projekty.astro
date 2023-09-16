@@ -1,0 +1,12 @@
+---
+import ProjectsView from "@/components/views/projects.astro";
+import { languages } from "@/i18n/ui";
+
+export async function getStaticPaths() {
+  return Object.keys(languages).map((lang) => {
+    return { params: { lang } };
+  });
+}
+---
+
+<ProjectsView />
