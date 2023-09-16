@@ -30,7 +30,7 @@
     "preview": "astro preview",
     "lint": "prettier --write  '**/*.{js,jsx,ts,tsx,md,mdx,json,astro}' && eslint --fix 'src/**/*.{js,ts,jsx,tsx,astro}'",
     "astro": "astro",
-    "unlighthouse": "pnpm dlx unlighthouse --site localhost:3000"
+    "lighthouse": "pnpm dlx unlighthouse --site localhost:3000"
   },
   "dependencies": {
     "@astrojs/mdx": "^1.1.0",
