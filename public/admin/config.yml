@@ -49,9 +49,10 @@ collections:
       - label: "Screenshot"
         name: "screenshot"
         widget: "object"
+        i18n: true
         fields:
           - { label: "Image", name: "src", widget: "image", required: true, i18n: true }
-          - { label: "Alt", name: "alt", widget: "string", required: true, i18n: true }
+          - { label: "Alt", name: "alt", widget: "text", required: true, i18n: true }
       - label: "Technologies"
         name: "technologies"
         widget: "list"
