@@ -17,7 +17,7 @@ const { params, url } = Astro;
 const lang = getLang(params, url);
 const t = useTranslations(lang);
 
-const uses = await getEntry("uses", `${lang}/uses`);
+const uses = await getEntry("uses", `${lang}/uses-tech`);
 
 if (!uses) {
   return Astro.redirect("/404");
