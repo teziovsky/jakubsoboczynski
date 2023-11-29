@@ -39,13 +39,12 @@ function handleLinkClass(index: number, href: string) {
 
 <aside class="w-full sm:sticky sm:top-4">
   <nav class="flex flex-wrap items-center justify-between gap-3 sm:flex-col sm:items-start">
-    <a
-      class={cn("py-1.5 px-3 self-center rounded-lg transition", focusRing)}
-      href={lang === defaultLang ? "/" : `/${lang}/`}
+    <div
+      class={cn("py-1.5 px-3 self-center rounded-lg")}
     >
       <Icon name="logo" class="h-12 w-12 sm:h-14 sm:w-14" />
       <span class="sr-only">{t("sidebar.homepage")}</span>
-    </a>
+    </div>
     <ul class="mx-auto flex gap-3 sm:flex-col sm:gap-2">
       {
         links.map(({ title, href }, index) => (
