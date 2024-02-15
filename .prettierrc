@@ -16,6 +16,5 @@
   ],
   "importOrderSeparation": true,
   "importOrderSortSpecifiers": true,
-  "plugins": ["prettier-plugin-astro", "@trivago/prettier-plugin-sort-imports", "prettier-plugin-tailwindcss"],
-  "pluginSearchDirs": false
+  "plugins": ["prettier-plugin-astro", "@trivago/prettier-plugin-sort-imports", "prettier-plugin-tailwindcss"]
 }

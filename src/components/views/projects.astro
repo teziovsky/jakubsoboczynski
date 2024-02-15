@@ -3,7 +3,7 @@ import { getLang, useTranslations } from "@/i18n/utils";
 import Layout from "@/layouts/layout.astro";
 import { focusRing, hoverSquare } from "@/lib/tailwind";
 import { cn, directionByIndex } from "@/lib/utils";
-import Icon from "astro-icon";
+import { Icon } from "astro-icon/components";
 import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 
@@ -18,7 +18,7 @@ const projects = await getCollection("project", ({ slug }) => slug.startsWith(la
   <article>
     <h1
       transition:name="routeHeading"
-      class="mb-7 text-3xl text-gray-900 dark:text-white sm:text-4xl sm:font-extrabold"
+      class="mb-7 text-3xl text-gray-900 sm:text-4xl sm:font-extrabold dark:text-white"
     >
       {t("projects.title")}
     </h1>
@@ -52,7 +52,7 @@ const projects = await getCollection("project", ({ slug }) => slug.startsWith(la
                   >
                     <Icon name="tabler:brand-github" class="h-5 w-5 sm:h-6 sm:w-6" />
                   </a>
-                  <h2 class="text-center text-base font-bold text-gray-900 dark:text-white md:text-lg lg:text-xl">
+                  <h2 class="text-center text-base font-bold text-gray-900 md:text-lg lg:text-xl dark:text-white">
                     {project.data.title}
                   </h2>
                   <a
@@ -69,10 +69,10 @@ const projects = await getCollection("project", ({ slug }) => slug.startsWith(la
                     <Icon name="lucide:external-link" class="h-5 w-5 sm:h-6 sm:w-6" />
                   </a>
                 </div>
-                <p class="flex-grow text-justify text-xs/5 text-neutral-700 dark:text-neutral-300 sm:text-sm">
+                <p class="flex-grow text-justify text-xs/5 text-neutral-700 sm:text-sm dark:text-neutral-300">
                   {project.body}
                 </p>
-                <h3 class="text-xs/5 font-bold text-neutral-700 dark:text-neutral-300 sm:text-sm">
+                <h3 class="text-xs/5 font-bold text-neutral-700 sm:text-sm dark:text-neutral-300">
                   {t("projects.technologies.title")}:
                 </h3>
                 <div class="flex flex-wrap gap-2">

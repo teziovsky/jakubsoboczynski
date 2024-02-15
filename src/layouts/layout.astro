@@ -91,7 +91,7 @@ const canonicalURL = new URL(pathname, Astro.site);
     <ViewTransitions />
   </head>
   <body
-    class="container grid min-h-screen grid-rows-mobile items-start gap-12 bg-slate-50 py-4 text-neutral-800 antialiased dark:bg-slate-950 dark:text-neutral-200 sm:grid-cols-sidebar sm:grid-rows-desktop sm:gap-6 sm:pb-8 sm:pt-24 md:gap-8"
+    class="container grid min-h-screen grid-rows-mobile items-start gap-12 bg-slate-50 py-4 text-neutral-800 antialiased sm:grid-cols-sidebar sm:grid-rows-desktop sm:gap-6 sm:pb-8 sm:pt-24 md:gap-8 dark:bg-slate-950 dark:text-neutral-200"
     class:list={[{ "max-w-4xl": !isWide }]}
   >
     <Sidebar />

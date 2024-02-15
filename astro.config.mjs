@@ -1,4 +1,5 @@
 import compress from "astro-compress";
+import icon from "astro-icon";
 import robotsTxt from "astro-robots-txt";
 import { defineConfig } from "astro/config";
 
@@ -21,6 +22,7 @@ export default defineConfig({
   },
   integrations: [
     compress(),
+    icon(),
     tailwind(),
     partytown({
       config: {

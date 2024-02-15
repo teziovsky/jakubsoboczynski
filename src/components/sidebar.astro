@@ -3,7 +3,7 @@ import { defaultLang } from "@/i18n/ui";
 import { getLang, useTranslations } from "@/i18n/utils";
 import { focusRing, hoverSquare } from "@/lib/tailwind";
 import { cn, directionByIndex } from "@/lib/utils";
-import Icon from "astro-icon";
+import { Icon } from "astro-icon/components";
 
 const { url } = Astro;
 const lang = getLang(url);
@@ -39,9 +39,7 @@ function handleLinkClass(index: number, href: string) {
 
 <aside class="w-full sm:sticky sm:top-4">
   <nav class="flex flex-wrap items-center justify-between gap-3 sm:flex-col sm:items-start">
-    <div
-      class={cn("py-1.5 px-3 self-center rounded-lg")}
-    >
+    <div class={cn("py-1.5 px-3 self-center rounded-lg")}>
       <Icon name="logo" class="h-12 w-12 sm:h-14 sm:w-14" />
       <span class="sr-only">{t("sidebar.homepage")}</span>
     </div>
