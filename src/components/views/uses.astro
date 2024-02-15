@@ -4,7 +4,7 @@ import Layout from "@/layouts/layout.astro";
 import { proseArticle } from "@/lib/tailwind";
 import { getEntry } from "astro:content";
 import { format } from "date-fns";
-import pl from "date-fns/locale/pl/index";
+import { pl } from "date-fns/locale/pl";
 
 const { url } = Astro;
 const lang = getLang(url);
