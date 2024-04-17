@@ -33,4 +33,7 @@ export default defineConfig({
     robotsTxt(),
     mdx(),
   ],
+  server: {
+    port: 8010,
+  },
 });
