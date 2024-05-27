@@ -32,7 +32,7 @@
     "fix": "prettier --write  '**/*.{js,jsx,ts,tsx,md,mdx,json,astro}' && eslint --fix '**/*.{js,ts,jsx,tsx,astro}'",
     "astro": "astro",
     "lighthouse": "bunx unlighthouse --site localhost:3000",
-    "commitlint": "commitlint --edit",
+    "commitlint": "commitlint",
     "lint-staged": "lint-staged",
     "prepare": "husky && husky install"
   },
