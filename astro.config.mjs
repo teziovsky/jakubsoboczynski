@@ -10,8 +10,8 @@ import tailwind from "@astrojs/tailwind";
 
 import rehypeExternalLinks from "rehype-external-links";
 
-import { remarkModifiedTime } from "./src/lib/remark-modified-time.cjs";
-import { remarkReadingTime } from "./src/lib/remark-reading-time.cjs";
+import { remarkModifiedTime } from "./src/lib/remark-modified-time.mjs";
+import { remarkReadingTime } from "./src/lib/remark-reading-time.mjs";
 
 // https://astro.build/config
 export default defineConfig({
