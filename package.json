@@ -28,8 +28,8 @@
     "check": "astro check",
     "build": "astro build",
     "preview": "astro preview",
-    "lint": "prettier --check '**/*.{js,jsx,ts,tsx,md,mdx,json,astro}' && eslint '**/*.{js,ts,jsx,tsx,astro}'",
-    "fix": "prettier --write  '**/*.{js,jsx,ts,tsx,md,mdx,json,astro}' && eslint --fix '**/*.{js,ts,jsx,tsx,astro}'",
+    "lint": "prettier --check '**/*.{js,jsx,ts,tsx,md,mdx,json,astro}' && eslint ./src",
+    "fix": "prettier --write  '**/*.{js,jsx,ts,tsx,md,mdx,json,astro}' && eslint --fix ./src",
     "astro": "astro",
     "lighthouse": "bunx unlighthouse --site localhost:3000",
     "commitlint": "commitlint",
@@ -47,13 +47,13 @@
     "*.{js,css,md}": "prettier --write"
   },
   "dependencies": {
-    "@astrojs/mdx": "^3.1.2",
+    "@astrojs/mdx": "^3.1.3",
     "@astrojs/partytown": "^2.1.1",
     "@astrojs/sitemap": "^3.1.6",
     "@astrojs/tailwind": "^5.1.0",
-    "@iconify-json/lucide": "^1.1.198",
-    "@iconify-json/tabler": "^1.1.116",
-    "astro": "^4.11.5",
+    "@iconify-json/lucide": "^1.1.206",
+    "@iconify-json/tabler": "^1.1.120",
+    "astro": "^4.13.4",
     "astro-icon": "^1.1.0",
     "astro-robots-txt": "^1.0.0",
     "astro-seo": "^0.8.4",
@@ -62,30 +62,36 @@
     "mdast-util-to-string": "^4.0.0",
     "reading-time": "^1.5.0",
     "rehype-external-links": "^3.0.0",
-    "tailwind-merge": "^2.4.0",
-    "tailwindcss": "^3.4.4"
+    "tailwind-merge": "^2.5.2",
+    "tailwindcss": "^3.4.10"
   },
   "devDependencies": {
-    "@commitlint/cli": "^19.3.0",
+    "@commitlint/cli": "^19.4.0",
     "@commitlint/config-conventional": "^19.2.2",
-    "@tailwindcss/typography": "^0.5.13",
+    "@tailwindcss/typography": "^0.5.14",
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
-    "@typescript-eslint/eslint-plugin": "^7.15.0",
-    "@typescript-eslint/parser": "^7.15.0",
-    "astro-compress": "^2.2.28",
+    "@typescript-eslint/eslint-plugin": "^8.1.0",
+    "@typescript-eslint/parser": "^8.1.0",
+    "astro-compress": "^2.3.1",
     "concurrently": "^8.2.2",
-    "eslint": "^9.6.0",
-    "eslint-plugin-astro": "^1.2.2",
+    "eslint": "^9.9.0",
+    "eslint-plugin-astro": "^1.2.3",
     "eslint-plugin-jsx-a11y": "^6.9.0",
-    "husky": "^9.0.11",
-    "lint-staged": "^15.2.7",
-    "prettier": "^3.3.2",
-    "prettier-plugin-astro": "^0.14.0",
-    "prettier-plugin-tailwindcss": "^0.6.5"
+    "husky": "^9.1.4",
+    "lint-staged": "^15.2.9",
+    "prettier": "^3.3.3",
+    "prettier-plugin-astro": "^0.14.1",
+    "prettier-plugin-tailwindcss": "^0.6.6"
+  },
+  "overrides": {
+    "astro-icon": {
+      "@iconify/tools": "^4.0.0"
+    }
   },
   "pnpm": {
     "overrides": {
-      "zod@<=3.22.2": ">=3.22.3"
+      "zod@<=3.22.2": ">=3.22.3",
+      "@iconify/tools": "^4.0.0"
     }
   }
 }
