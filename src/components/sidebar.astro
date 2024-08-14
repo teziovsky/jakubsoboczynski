@@ -26,6 +26,9 @@ const links = [
   },
 ];
 
+/**
+ * Returns the CSS classes for a link based on its index and href.
+ */
 function handleLinkClass(index: number, href: string) {
   const baseClasses = "px-3 py-1 rounded-lg transition";
   const hrefWithLang = lang === defaultLang ? href : `/${lang}${href}`;
