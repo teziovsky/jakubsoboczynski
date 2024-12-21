@@ -2,7 +2,7 @@
 import { getLang, useTranslations } from "@/i18n/utils";
 import Layout from "@/layouts/layout.astro";
 import { proseArticle } from "@/lib/tailwind";
-import { getEntry } from "astro:content";
+import { getEntry, render } from "astro:content";
 
 const { url } = Astro;
 const lang = getLang(url);
@@ -14,7 +14,7 @@ if (!aboutMe) {
   return Astro.redirect("/404");
 }
 
-const { Content } = await aboutMe.render();
+const { Content } = await render(aboutMe);
 ---
 
 <Layout title="Hello!" description={t("about-me.seo.description")} image="/og_image.png">

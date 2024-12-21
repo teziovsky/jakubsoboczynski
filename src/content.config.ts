@@ -9,7 +9,7 @@ const minutesRead = z
   .optional();
 
 const aboutMeCollection = defineCollection({
-  loader: glob({ pattern: "**/*.md", base: "content/about-me" }),
+  loader: glob({ base: "./src/data/about-me", pattern: "**/*.{md,mdx}" }),
   schema: z.object({
     title: z.string(),
     minutesRead,
@@ -18,7 +18,7 @@ const aboutMeCollection = defineCollection({
 });
 
 const projectCollection = defineCollection({
-  loader: glob({ pattern: "**/*.md", base: "content/project" }),
+  loader: glob({ base: "./src/data/project", pattern: "**/*.{md,mdx}" }),
   schema: z.object({
     sort,
     title: z.string(),
@@ -34,7 +34,7 @@ const projectCollection = defineCollection({
 });
 
 const socialLinkCollection = defineCollection({
-  loader: glob({ pattern: "**/*.md", base: "content/social-link" }),
+  loader: glob({ base: "./src/data/social-link", pattern: "**/*.{md,mdx}" }),
   schema: z.object({
     sort,
     title: z.string(),
@@ -47,7 +47,7 @@ const socialLinkCollection = defineCollection({
 });
 
 const usesCollection = defineCollection({
-  loader: glob({ pattern: "**/*.md", base: "content/uses" }),
+  loader: glob({ base: "./src/data/uses", pattern: "**/*.{md,mdx}" }),
   schema: z.object({
     title: z.string(),
     minutesRead,
