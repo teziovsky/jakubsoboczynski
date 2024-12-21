@@ -11,7 +11,7 @@ const lang = getLang(url);
 
 const { pathname } = url;
 
-const socialLinks = await getCollection("social-link", ({ slug }) => slug.startsWith(lang));
+const socialLinks = await getCollection("social-link", ({ id }) => id.startsWith(lang));
 ---
 
 <footer class="flex flex-col items-center justify-center gap-3 sm:col-span-2 sm:flex-row sm:justify-between">

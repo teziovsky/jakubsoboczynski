@@ -2,7 +2,7 @@
 import { SEO } from "astro-seo";
 import Footer from "@/components/footer.astro";
 import Sidebar from "@/components/sidebar.astro";
-import { ViewTransitions } from "astro:transitions";
+import { ClientRouter } from "astro:transitions";
 import { getLang } from "@/i18n/utils";
 
 export type Props = {
@@ -26,8 +26,9 @@ const canonicalURL = new URL(pathname, Astro.site);
 <!doctype html>
 <html transition:animate="none" lang={lang}>
   <head>
-    <script type="text/partytown" async src="https://www.googletagmanager.com/gtag/js?id=G-HNBWJKKETF"></script>
-    <script type="text/partytown">
+    <script is:inline type="text/partytown" async src="https://www.googletagmanager.com/gtag/js?id=G-HNBWJKKETF"
+    ></script>
+    <script is:inline type="text/partytown">
       window.dataLayer = window.dataLayer || [];
       function gtag() {
         dataLayer.push(arguments);
@@ -88,7 +89,7 @@ const canonicalURL = new URL(pathname, Astro.site);
       }}
     />
 
-    <ViewTransitions />
+    <ClientRouter />
   </head>
   <body
     class="container grid min-h-screen grid-rows-mobile items-start gap-12 bg-slate-50 py-4 text-neutral-800 antialiased sm:grid-cols-sidebar sm:grid-rows-desktop sm:gap-6 sm:pb-8 sm:pt-24 md:gap-8 dark:bg-slate-950 dark:text-neutral-200"

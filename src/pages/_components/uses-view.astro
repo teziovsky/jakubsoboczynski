@@ -2,13 +2,15 @@
 import { getLang, useTranslations } from "@/i18n/utils";
 import Layout from "@/layouts/layout.astro";
 import { proseArticle } from "@/lib/tailwind";
-import { getEntry } from "astro:content";
+import { getEntry, render } from "astro:content";
 import { format } from "date-fns";
-import { pl } from "date-fns/locale/pl";
+import { pl, enGB } from "date-fns/locale";
 
 const { url } = Astro;
 const lang = getLang(url);
 const t = useTranslations(lang);
+
+const locales = { pl, en: enGB };
 
 const uses = await getEntry("uses", `${lang}/uses-tech`);
 
@@ -16,10 +18,10 @@ if (!uses) {
   return Astro.redirect("/404");
 }
 
-const { Content, remarkPluginFrontmatter } = await uses.render();
+const { Content, remarkPluginFrontmatter } = await render(uses);
 
 function formatDate(date: string) {
-  return format(new Date(date), "MMM yyyy", { locale: lang === "pl" ? pl : undefined });
+  return format(new Date(date), "MMM yyyy", { locale: locales[lang] });
 }
 ---
 

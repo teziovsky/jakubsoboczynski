@@ -1,32 +1,52 @@
+import astroEslintParser from "astro-eslint-parser";
+
+import eslintPluginTypeScript from "@typescript-eslint/eslint-plugin";
+import typescriptEslintParser from "@typescript-eslint/parser";
 import eslintPluginAstro from "eslint-plugin-astro";
 
-/** @type {import('eslint').Linter.FlatConfig[]} */
+const commonRules = {
+  "no-mixed-spaces-and-tabs": ["error", "smart-tabs"],
+};
+
+/** @type {import('eslint').Linter.Config[]} */
 export default [
   ...eslintPluginAstro.configs.recommended,
   {
     files: ["*.js"],
-    rules: {
-      "no-mixed-spaces-and-tabs": ["error", "smart-tabs"],
-    },
+    rules: commonRules,
   },
   {
     files: ["*.astro"],
-    parser: "astro-eslint-parser",
-    parserOptions: {
-      parser: "@typescript-eslint/parser",
-      extraFileExtensions: [".astro"],
+    languageOptions: {
+      parser: astroEslintParser,
+      parserOptions: {
+        parser: "@typescript-eslint/parser",
+        extraFileExtensions: [".astro"],
+      },
     },
     rules: {
+      ...commonRules,
       "astro/no-set-html-directive": "warn",
-      "no-mixed-spaces-and-tabs": ["error", "smart-tabs"],
     },
   },
   {
     files: ["*.ts"],
-    parser: "@typescript-eslint/parser",
-    extends: ["plugin:@typescript-eslint/recommended"],
+    languageOptions: {
+      parser: typescriptEslintParser,
+    },
+    plugins: {
+      "@typescript-eslint": eslintPluginTypeScript,
+    },
     rules: {
-      "@typescript-eslint/no-unused-vars": ["error", { argsIgnorePattern: "^_", destructuredArrayIgnorePattern: "^_" }],
+      ...commonRules,
+      ...eslintPluginTypeScript.configs.recommended.rules,
+      "@typescript-eslint/no-unused-vars": [
+        "error",
+        {
+          argsIgnorePattern: "^_",
+          destructuredArrayIgnorePattern: "^_",
+        },
+      ],
     },
   },
 ];

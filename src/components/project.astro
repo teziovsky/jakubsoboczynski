@@ -1,0 +1,88 @@
+---
+import { getLang, useTranslations } from "@/i18n/utils";
+import { focusRing, hoverSquare } from "@/lib/tailwind";
+import { cn, directionByIndex } from "@/lib/utils";
+import { Icon } from "astro-icon/components";
+import { Image } from "astro:assets";
+
+const { url } = Astro;
+const lang = getLang(url);
+const t = useTranslations(lang);
+
+const { project, index } = Astro.props;
+---
+
+<li
+  class="m-0 flex flex-col gap-4 rounded-lg border border-gray-200 bg-gray-100 p-0 transition duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-slate-200 dark:border-gray-800 dark:bg-gray-900 hover:dark:shadow-slate-800"
+>
+  {
+    project.data.screenshot && (
+      <Image
+        src={project.data.screenshot.src}
+        width={1366}
+        height={768}
+        loading={index < 4 ? "eager" : "lazy"}
+        alt={project.data.screenshot.alt}
+        class="m-0 aspect-video rounded-t-lg object-cover object-center mix-blend-luminosity"
+      />
+    )
+  }
+  <div class="m-0 flex flex-grow flex-col gap-4 px-4 pb-4">
+    <div class="flex items-center justify-between gap-1">
+      <div class="size-9">
+        {
+          project.data.githubUrl ? (
+            <a
+              class={cn(
+                "z-0 flex rounded-lg p-1.5 transition",
+                hoverSquare(directionByIndex(Math.floor(Math.random() * 4))),
+                focusRing,
+              )}
+              aria-label={`${t("projects.github.aria-label")} - ${project.data.title}`}
+              href={project.data.githubUrl}
+              target="_blank"
+              rel="noreferrer nofollow noopener"
+            >
+              <Icon name="tabler:brand-github" class="h-5 w-5 sm:h-6 sm:w-6" />
+            </a>
+          ) : null
+        }
+      </div>
+      <h2 class="text-center text-base font-bold text-gray-900 md:text-lg lg:text-xl dark:text-white">
+        {project.data.title}
+      </h2>
+      <div class="size-9">
+        {
+          project.data.demoUrl ? (
+            <a
+              class={cn(
+                "z-0 flex rounded-lg p-1.5 transition",
+                hoverSquare(directionByIndex(Math.floor(Math.random() * 4))),
+                focusRing,
+              )}
+              aria-label={`${t("projects.demo.aria-label")} - ${project.data.title}`}
+              href={project.data.demoUrl}
+              target="_blank"
+              rel="noreferrer nofollow noopener"
+            >
+              <Icon name="lucide:external-link" class="h-5 w-5 sm:h-6 sm:w-6" />
+            </a>
+          ) : null
+        }
+      </div>
+    </div>
+    <p class="flex-grow text-justify text-xs/5 text-neutral-700 sm:text-sm dark:text-neutral-300">
+      {project.body}
+    </p>
+    <h3 class="text-xs/5 font-bold text-neutral-700 sm:text-sm dark:text-neutral-300">
+      {t("projects.technologies.title")}:
+    </h3>
+    <div class="flex flex-wrap gap-2">
+      {
+        project.data.technologies.map((technology: string) => (
+          <span class="whitespace-nowrap rounded-lg bg-gray-200 px-2 py-1 text-xs dark:bg-gray-800">{technology}</span>
+        ))
+      }
+    </div>
+  </div>
+</li>

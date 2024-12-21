@@ -16,6 +16,10 @@ import { remarkReadingTime } from "./src/lib/remark-reading-time.mjs";
 // https://astro.build/config
 export default defineConfig({
   site: "https://jakubsoboczynski.pl",
+  i18n: {
+    locales: ["en", "pl"],
+    defaultLocale: "en",
+  },
   markdown: {
     remarkPlugins: [remarkModifiedTime, remarkReadingTime],
     rehypePlugins: [[rehypeExternalLinks, { target: "_blank", rel: ["noopener", "noreferrer"] }]],
