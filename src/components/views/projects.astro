@@ -11,7 +11,7 @@ const { url } = Astro;
 const lang = getLang(url);
 const t = useTranslations(lang);
 
-const projects = await getCollection("project", ({ slug }) => slug.startsWith(lang));
+const projects = await getCollection("project", ({ id }) => id.startsWith(lang));
 ---
 
 <Layout title={t("projects.seo.title")} description={t("projects.seo.description")} image="/og_image.png" isWide>
@@ -40,35 +40,43 @@ const projects = await getCollection("project", ({ slug }) => slug.startsWith(la
               )}
               <div class="m-0 flex flex-grow flex-col gap-4 px-4 pb-4">
                 <div class="flex items-center justify-between gap-1">
-                  <a
-                    class={cn(
-                      "z-0 flex rounded-lg p-1.5 transition",
-                      hoverSquare(directionByIndex(Math.floor(Math.random() * 4))),
-                      focusRing,
-                    )}
-                    aria-label={`${t("projects.github.aria-label")} - ${project.data.title}`}
-                    href={project.data.githubUrl}
-                    target="_blank"
-                    rel="noreferrer nofollow noopener"
-                  >
-                    <Icon name="tabler:brand-github" class="h-5 w-5 sm:h-6 sm:w-6" />
-                  </a>
+                  <div class="size-9">
+                    {project.data.githubUrl ? (
+                      <a
+                        class={cn(
+                          "z-0 flex rounded-lg p-1.5 transition",
+                          hoverSquare(directionByIndex(Math.floor(Math.random() * 4))),
+                          focusRing,
+                        )}
+                        aria-label={`${t("projects.github.aria-label")} - ${project.data.title}`}
+                        href={project.data.githubUrl}
+                        target="_blank"
+                        rel="noreferrer nofollow noopener"
+                      >
+                        <Icon name="tabler:brand-github" class="h-5 w-5 sm:h-6 sm:w-6" />
+                      </a>
+                    ) : null}
+                  </div>
                   <h2 class="text-center text-base font-bold text-gray-900 md:text-lg lg:text-xl dark:text-white">
                     {project.data.title}
                   </h2>
-                  <a
-                    class={cn(
-                      "z-0 flex rounded-lg p-1.5 transition",
-                      hoverSquare(directionByIndex(Math.floor(Math.random() * 4))),
-                      focusRing,
-                    )}
-                    aria-label={`${t("projects.demo.aria-label")} - ${project.data.title}`}
-                    href={project.data.demoUrl}
-                    target="_blank"
-                    rel="noreferrer nofollow noopener"
-                  >
-                    <Icon name="lucide:external-link" class="h-5 w-5 sm:h-6 sm:w-6" />
-                  </a>
+                  <div class="size-9">
+                    {project.data.demoUrl ? (
+                      <a
+                        class={cn(
+                          "z-0 flex rounded-lg p-1.5 transition",
+                          hoverSquare(directionByIndex(Math.floor(Math.random() * 4))),
+                          focusRing,
+                        )}
+                        aria-label={`${t("projects.demo.aria-label")} - ${project.data.title}`}
+                        href={project.data.demoUrl}
+                        target="_blank"
+                        rel="noreferrer nofollow noopener"
+                      >
+                        <Icon name="lucide:external-link" class="h-5 w-5 sm:h-6 sm:w-6" />
+                      </a>
+                    ) : null}
+                  </div>
                 </div>
                 <p class="flex-grow text-justify text-xs/5 text-neutral-700 sm:text-sm dark:text-neutral-300">
                   {project.body}

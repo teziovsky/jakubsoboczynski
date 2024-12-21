@@ -1,3 +1,4 @@
+import { glob } from "astro/loaders";
 import { defineCollection, z } from "astro:content";
 
 const sort = z.number().int().min(1);
@@ -8,7 +9,7 @@ const minutesRead = z
   .optional();
 
 const aboutMeCollection = defineCollection({
-  type: "content",
+  loader: glob({ pattern: "**/*.md", base: "content/about-me" }),
   schema: z.object({
     title: z.string(),
     minutesRead,
@@ -17,7 +18,7 @@ const aboutMeCollection = defineCollection({
 });
 
 const projectCollection = defineCollection({
-  type: "content",
+  loader: glob({ pattern: "**/*.md", base: "content/project" }),
   schema: z.object({
     sort,
     title: z.string(),
@@ -26,14 +27,14 @@ const projectCollection = defineCollection({
       alt: z.string(),
     }),
     technologies: z.array(z.string()),
-    githubUrl: z.string().url(),
+    githubUrl: z.string().url().nullable().optional(),
     demoUrl: z.string().url(),
     lastModified,
   }),
 });
 
 const socialLinkCollection = defineCollection({
-  type: "content",
+  loader: glob({ pattern: "**/*.md", base: "content/social-link" }),
   schema: z.object({
     sort,
     title: z.string(),
@@ -46,7 +47,7 @@ const socialLinkCollection = defineCollection({
 });
 
 const usesCollection = defineCollection({
-  type: "content",
+  loader: glob({ pattern: "**/*.md", base: "content/uses" }),
   schema: z.object({
     title: z.string(),
     minutesRead,
