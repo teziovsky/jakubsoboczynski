@@ -86,7 +86,7 @@ const projects = await getCollection("project", ({ id }) => id.startsWith(lang))
                 </h3>
                 <div class="flex flex-wrap gap-2">
                   {project.data.technologies.map((technology: string) => (
-                    <span class="whitespace-nowrap rounded-lg bg-gray-200 px-2 py-1 text-xs dark:bg-gray-800">
+                    <span class="rounded-lg bg-gray-200 px-2 py-1 text-xs whitespace-nowrap dark:bg-gray-800">
                       {technology}
                     </span>
                   ))}

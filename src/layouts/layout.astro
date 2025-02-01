@@ -4,6 +4,7 @@ import Footer from "@/components/footer.astro";
 import Sidebar from "@/components/sidebar.astro";
 import { ClientRouter } from "astro:transitions";
 import { getLang } from "@/i18n/utils";
+import "@/global.css";
 
 export type Props = {
   title: string;
@@ -91,12 +92,13 @@ const canonicalURL = new URL(pathname, Astro.site);
 
     <ClientRouter />
   </head>
+
   <body
-    class="container grid min-h-screen grid-rows-mobile items-start gap-12 bg-slate-50 py-4 text-neutral-800 antialiased sm:grid-cols-sidebar sm:grid-rows-desktop sm:gap-6 sm:pb-8 sm:pt-24 md:gap-8 dark:bg-slate-950 dark:text-neutral-200"
+    class="grid-rows-mobile sm:grid-cols-sidebar sm:grid-rows-desktop container grid min-h-screen items-start gap-12 bg-slate-50 py-4 text-neutral-800 antialiased sm:gap-6 sm:pt-24 sm:pb-8 md:gap-8 dark:bg-slate-950 dark:text-neutral-200"
     class:list={[{ "max-w-4xl": !isWide }]}
   >
     <Sidebar />
-    <main class="pb-8 sm:pb-20 sm:pt-4">
+    <main class="pb-8 sm:pt-4 sm:pb-20">
       <slot />
     </main>
     <Footer />
