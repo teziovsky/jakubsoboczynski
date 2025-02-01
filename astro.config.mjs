@@ -6,8 +6,8 @@ import { defineConfig } from "astro/config";
 import mdx from "@astrojs/mdx";
 import partytown from "@astrojs/partytown";
 import sitemap from "@astrojs/sitemap";
-import tailwind from "@astrojs/tailwind";
 
+import tailwindcss from "@tailwindcss/vite";
 import rehypeExternalLinks from "rehype-external-links";
 
 import { remarkModifiedTime } from "./src/lib/remark-modified-time.mjs";
@@ -27,7 +27,6 @@ export default defineConfig({
   integrations: [
     compress(),
     icon(),
-    tailwind(),
     partytown({
       config: {
         forward: ["dataLayer.push"],
@@ -37,6 +36,9 @@ export default defineConfig({
     robotsTxt(),
     mdx(),
   ],
+  vite: {
+    plugins: [tailwindcss()],
+  },
   server: {
     port: 8010,
   },
