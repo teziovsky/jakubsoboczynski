@@ -13,17 +13,22 @@ import rehypeExternalLinks from "rehype-external-links";
 import { remarkModifiedTime } from "./src/lib/remark-modified-time.mjs";
 import { remarkReadingTime } from "./src/lib/remark-reading-time.mjs";
 
+import cloudflare from "@astrojs/cloudflare";
+
 // https://astro.build/config
 export default defineConfig({
   site: "https://jakubsoboczynski.pl",
+
   i18n: {
     locales: ["en", "pl"],
     defaultLocale: "en",
   },
+
   markdown: {
     remarkPlugins: [remarkModifiedTime, remarkReadingTime],
     rehypePlugins: [[rehypeExternalLinks, { target: "_blank", rel: ["noopener", "noreferrer"] }]],
   },
+
   integrations: [
     compress(),
     icon(),
@@ -36,10 +41,14 @@ export default defineConfig({
     robotsTxt(),
     mdx(),
   ],
+
   vite: {
     plugins: [tailwindcss()],
   },
+
   server: {
     port: 8010,
   },
+
+  adapter: cloudflare(),
 });
