@@ -12,6 +12,7 @@ const lang = getLang(url);
 const { pathname } = url;
 
 const socialLinks = await getCollection("social-link", ({ id }) => id.startsWith(lang));
+const socialLinksSorted = socialLinks.sort((a, b) => a.data.sort - b.data.sort);
 ---
 
 <footer class="flex flex-col items-center justify-center gap-3 sm:col-span-2 sm:flex-row sm:justify-between">
@@ -46,24 +47,22 @@ const socialLinks = await getCollection("social-link", ({ id }) => id.startsWith
   </ul>
   <ul class="flex gap-3">
     {
-      socialLinks
-        .sort((a, b) => a.data.sort - b.data.sort)
-        .map(({ data: socialLink }, index) => (
-          <li>
-            <a
-              class={cn(
-                "flex h-9 w-9 items-center justify-center rounded-lg transition sm:h-10 sm:w-10",
-                hoverSquare(directionByIndex(index)),
-                focusRing,
-              )}
-              href={socialLink.link}
-              target={socialLink.newTab ? "_blank" : "_self"}
-              aria-label={socialLink.alt}
-            >
-              <Icon name={socialLink.icon} class="h-5 w-5 sm:h-6 sm:w-6" />
-            </a>
-          </li>
-        ))
+      socialLinksSorted.map(({ data: socialLink }, index) => (
+        <li>
+          <a
+            class={cn(
+              "flex h-9 w-9 items-center justify-center rounded-lg transition sm:h-10 sm:w-10",
+              hoverSquare(directionByIndex(index)),
+              focusRing,
+            )}
+            href={socialLink.link}
+            target={socialLink.newTab ? "_blank" : "_self"}
+            aria-label={socialLink.alt}
+          >
+            <Icon name={socialLink.icon} class="h-5 w-5 sm:h-6 sm:w-6" />
+          </a>
+        </li>
+      ))
     }
   </ul>
 </footer>
