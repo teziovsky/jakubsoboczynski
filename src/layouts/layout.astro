@@ -1,5 +1,6 @@
 ---
 import { SEO } from "astro-seo";
+import { Head } from "astro-capo";
 import Footer from "@/components/footer.astro";
 import Sidebar from "@/components/sidebar.astro";
 import { ClientRouter } from "astro:transitions";
@@ -26,7 +27,7 @@ const canonicalURL = new URL(pathname, Astro.site);
 
 <!doctype html>
 <html transition:animate="none" lang={lang}>
-  <head>
+  <Head>
     <script is:inline type="text/partytown" async src="https://www.googletagmanager.com/gtag/js?id=G-HNBWJKKETF"
     ></script>
     <script is:inline type="text/partytown">
@@ -91,7 +92,7 @@ const canonicalURL = new URL(pathname, Astro.site);
     />
 
     <ClientRouter />
-  </head>
+  </Head>
 
   <body
     class="grid-rows-mobile sm:grid-cols-sidebar sm:grid-rows-desktop container grid min-h-screen items-start gap-12 bg-slate-50 py-4 text-neutral-800 antialiased sm:gap-6 sm:pt-24 sm:pb-8 md:gap-8 dark:bg-slate-950 dark:text-neutral-200"
