@@ -1,0 +1,207 @@
+---
+import { getLang, useTranslations } from "@/i18n/utils";
+import { focusRing, hoverSquare } from "@/lib/tailwind";
+import { cn, directionByIndex } from "@/lib/utils";
+import { Icon } from "astro-icon/components";
+import { Image, getImage } from "astro:assets";
+
+const { url } = Astro;
+const lang = getLang(url);
+const t = useTranslations(lang);
+
+const { project, index } = Astro.props;
+
+// Generate responsive image srcset
+const imageConfig = {
+  widths: [400, 800, 1366],
+  formats: ["avif", "webp"] as const,
+  quality: 80,
+};
+
+// Import images dynamically (in a real app, you'd have these in src/assets/)
+const imageModules = import.meta.glob("/public/images/*.webp", {
+  eager: true,
+  import: "default",
+});
+
+// Get the image source
+const imageSrc = project.data.screenshot?.src
+  ? imageModules[`/public${project.data.screenshot.src}`] || project.data.screenshot.src
+  : null;
+
+// Generate optimized images if we have a source
+let optimizedAvif, optimizedWebp;
+if (imageSrc && typeof imageSrc !== "string") {
+  [optimizedAvif, optimizedWebp] = await Promise.all([
+    getImage({
+      src: imageSrc,
+      format: "avif",
+      widths: imageConfig.widths,
+      quality: 70,
+    }),
+    getImage({
+      src: imageSrc,
+      format: "webp",
+      widths: imageConfig.widths,
+      quality: imageConfig.quality,
+    }),
+  ]);
+}
+
+// Determine loading strategy based on position
+const isAboveFold = index < 2;
+const loading = isAboveFold ? "eager" : "lazy";
+const fetchpriority = isAboveFold ? "high" : "auto";
+const decoding = isAboveFold ? "sync" : "async";
+---
+
+<li
+  class="m-0 flex flex-col gap-4 rounded-lg border border-gray-200 bg-gray-100 p-0 transition duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-slate-200 dark:border-gray-800 dark:bg-gray-900 hover:dark:shadow-slate-800"
+>
+  {
+    project.data.screenshot && (
+      <picture class="m-0 aspect-video overflow-hidden rounded-t-lg bg-gray-200 dark:bg-gray-800">
+        {optimizedAvif && (
+          <source
+            type="image/avif"
+            srcset={optimizedAvif.srcSet.attribute}
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          />
+        )}
+        {optimizedWebp && (
+          <source
+            type="image/webp"
+            srcset={optimizedWebp.srcSet.attribute}
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          />
+        )}
+        <img
+          src={typeof imageSrc === "string" ? imageSrc : imageSrc.src}
+          alt={project.data.screenshot.alt}
+          width={1366}
+          height={768}
+          loading={loading}
+          fetchpriority={fetchpriority}
+          decoding={decoding}
+          class="m-0 h-full w-full object-cover object-center mix-blend-luminosity"
+          onload="this.classList.add('loaded')"
+          style="opacity: 0; transition: opacity 0.3s;"
+        />
+      </picture>
+    )
+  }
+
+  <div class="m-0 flex flex-grow flex-col gap-4 px-4 pb-4">
+    <div class="flex items-center justify-between gap-1">
+      <div class="size-9">
+        {
+          project.data.githubUrl ? (
+            <a
+              class={cn(
+                "z-0 flex rounded-lg p-1.5 transition",
+                hoverSquare(directionByIndex(Math.floor(Math.random() * 4))),
+                focusRing,
+              )}
+              aria-label={`${t("projects.github.aria-label")} - ${project.data.title}`}
+              href={project.data.githubUrl}
+              target="_blank"
+              rel="noreferrer nofollow noopener"
+            >
+              <Icon name="tabler:brand-github" class="h-5 w-5 sm:h-6 sm:w-6" />
+            </a>
+          ) : null
+        }
+      </div>
+
+      <h2 class="text-center text-base font-bold text-gray-900 md:text-lg lg:text-xl dark:text-white">
+        {project.data.title}
+      </h2>
+
+      <div class="size-9">
+        {
+          project.data.demoUrl ? (
+            <a
+              class={cn(
+                "z-0 flex rounded-lg p-1.5 transition",
+                hoverSquare(directionByIndex(Math.floor(Math.random() * 4))),
+                focusRing,
+              )}
+              aria-label={`${t("projects.demo.aria-label")} - ${project.data.title}`}
+              href={project.data.demoUrl}
+              target="_blank"
+              rel="noreferrer nofollow noopener"
+            >
+              <Icon name="lucide:external-link" class="h-5 w-5 sm:h-6 sm:w-6" />
+            </a>
+          ) : null
+        }
+      </div>
+    </div>
+
+    <p class="flex-grow text-justify text-xs/5 text-neutral-700 sm:text-sm dark:text-neutral-300">
+      {project.body}
+    </p>
+
+    <h3 class="text-xs/5 font-bold text-neutral-700 sm:text-sm dark:text-neutral-300">
+      {t("projects.technologies.title")}:
+    </h3>
+
+    <div class="flex flex-wrap gap-2">
+      {
+        project.data.technologies.map((technology: string) => (
+          <span class="rounded-lg bg-gray-200 px-2 py-1 text-xs whitespace-nowrap dark:bg-gray-800">{technology}</span>
+        ))
+      }
+    </div>
+  </div>
+</li>
+
+<style>
+  picture img.loaded {
+    opacity: 1 !important;
+  }
+
+  /* Skeleton loading for images */
+  picture {
+    position: relative;
+  }
+
+  picture::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      90deg,
+      rgba(156, 163, 175, 0.1) 0%,
+      rgba(156, 163, 175, 0.3) 50%,
+      rgba(156, 163, 175, 0.1) 100%
+    );
+    animation: shimmer 1.5s infinite;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  picture img.loaded + ::before {
+    display: none;
+  }
+
+  @keyframes shimmer {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    picture::before {
+      background: linear-gradient(
+        90deg,
+        rgba(71, 85, 105, 0.1) 0%,
+        rgba(71, 85, 105, 0.3) 50%,
+        rgba(71, 85, 105, 0.1) 100%
+      );
+    }
+  }
+</style>

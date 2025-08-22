@@ -1,0 +1,54 @@
+# Static assets - 1 year cache
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+  X-Content-Type-Options: nosniff
+
+/images/*
+  Cache-Control: public, max-age=31536000, immutable
+  X-Content-Type-Options: nosniff
+
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+  X-Content-Type-Options: nosniff
+
+# Favicons - 1 week cache
+/favicon*.svg
+  Cache-Control: public, max-age=604800
+  X-Content-Type-Options: nosniff
+
+# HTML pages - short cache with revalidation
+/*.html
+  Cache-Control: public, max-age=300, stale-while-revalidate=600
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()
+
+/
+  Cache-Control: public, max-age=300, stale-while-revalidate=600
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()
+
+# XML files (sitemap, RSS)
+/*.xml
+  Cache-Control: public, max-age=3600
+  X-Content-Type-Options: nosniff
+
+# Partytown files
+/~partytown/*
+  Cache-Control: public, max-age=86400
+  X-Content-Type-Options: nosniff
+
+# JSON files
+/*.json
+  Cache-Control: public, max-age=3600
+  X-Content-Type-Options: nosniff
+
+# Default for everything else
+/*
+  Cache-Control: public, max-age=3600
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  Referrer-Policy: strict-origin-when-cross-origin
