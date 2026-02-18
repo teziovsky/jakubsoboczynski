@@ -8,6 +8,13 @@
 
 #### [🏠 Link to demo here!](https://www.jakubsoboczynski.pl/)
 
+## Automatic project screenshot updates
+
+- Projects that should have screenshots refreshed automatically must set `autoUpdateScreenshot: true` in frontmatter (in `src/data/project/en/*.mdx`).
+- Screenshot file path is read from `screenshot.src` and replaced in place.
+- Use `npm run update:project-screenshots` to run the update manually.
+- GitHub Actions workflow `.github/workflows/update-project-screenshots.yml` runs this weekly and can be triggered manually.
+
 ## Author 🙎🏼‍
 
 #### [@teziovsky](https://www.github.com/teziovsky)

@@ -1,0 +1,41 @@
+name: Update project screenshots
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 8 * * 1"
+
+permissions:
+  contents: write
+
+jobs:
+  update-screenshots:
+    if: github.ref == "refs/heads/main"
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install system dependencies
+        run: sudo apt-get update && sudo apt-get install -y webp
+
+      - name: Install Playwright
+        run: npm install --no-save playwright && npx playwright install --with-deps chromium
+
+      - name: Update project screenshots
+        run: npm run update:project-screenshots
+
+      - name: Commit updated screenshots
+        uses: stefanzweifel/git-auto-commit-action@v6
+        with:
+          commit_message: "chore: update project screenshots"
+          file_pattern: public/images/*.webp
