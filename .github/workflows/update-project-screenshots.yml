@@ -3,14 +3,13 @@ name: Update project screenshots
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 8 * * 1"
+    - cron: "0 8 1 * *"
 
 permissions:
   contents: write
 
 jobs:
   update-screenshots:
-    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
 
     steps:
