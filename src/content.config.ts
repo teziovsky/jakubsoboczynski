@@ -26,6 +26,7 @@ const projectCollection = defineCollection({
       src: z.string(),
       alt: z.string(),
     }),
+    autoUpdateScreenshot: z.boolean().default(false),
     technologies: z.array(z.string()),
     githubUrl: z.string().url().nullable().optional(),
     demoUrl: z.string().url(),
