@@ -36,7 +36,8 @@
     "lighthouse": "bunx unlighthouse --site localhost:3000",
     "commitlint": "commitlint --edit",
     "lint-staged": "lint-staged",
-    "prepare": "husky"
+    "prepare": "husky",
+    "update:project-screenshots": "node scripts/update-project-screenshots.mjs"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,astro}": [
