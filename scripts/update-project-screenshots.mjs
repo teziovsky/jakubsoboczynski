@@ -116,7 +116,7 @@ async function main() {
     playwright = await import("playwright");
   } catch {
     throw new Error(
-      "Missing dependency: playwright. Install it with `npm install --no-save playwright` or add it to your dependencies.",
+      "Missing dependency: playwright. Install it with your package manager (for example, `pnpm add -D playwright`) or add it to your dependencies.",
     );
   }
 
