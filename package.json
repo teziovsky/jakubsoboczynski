@@ -34,7 +34,6 @@
     "fix": "npm run format && npm run lint && npm run typecheck",
     "astro": "astro",
     "lighthouse": "bunx unlighthouse --site localhost:3000",
-    "commitlint": "commitlint --edit",
     "lint-staged": "lint-staged",
     "prepare": "husky",
     "update:project-screenshots": "node scripts/update-project-screenshots.mjs"
@@ -69,8 +68,6 @@
     "tailwind-merge": "^3.4.0"
   },
   "devDependencies": {
-    "@commitlint/cli": "^20.1.0",
-    "@commitlint/config-conventional": "^20.0.0",
     "@tailwindcss/typography": "^0.5.19",
     "@trivago/prettier-plugin-sort-imports": "^6.0.0",
     "@typescript-eslint/eslint-plugin": "^8.46.4",
