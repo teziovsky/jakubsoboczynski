@@ -16,6 +16,7 @@ export const ui = {
 
     "footer.i18n.aria-label": "Otwórz bieżącą stronę w języku",
 
+    "about-me.seo.title": "Cześć!",
     "about-me.seo.description":
       "Kilka zdań o mnie, moim doświadczeniu, pasji, zainteresowaniach oraz aktualnych ścieżkach rozwoju!",
 
@@ -26,7 +27,7 @@ export const ui = {
     "projects.demo.aria-label": "Przejdź do strony głównej projekstu",
     "projects.technologies.title": "Technologie",
 
-    "uses.seo.title": "Uses",
+    "uses.seo.title": "Sprzęt i narzędzia",
     "uses.seo.description": "Aktualna lista sprzętu, oprogramowania oraz narzędzi, z których regularnie korzystam!",
     "uses.title": "Uses",
     "uses.last-update.title": "Ostatnia aktualizacja",
@@ -45,6 +46,7 @@ export const ui = {
 
     "footer.i18n.aria-label": "Open the current page in the language",
 
+    "about-me.seo.title": "Hello!",
     "about-me.seo.description":
       "A few words about me, my experience, passion, interests and current development paths!",
 

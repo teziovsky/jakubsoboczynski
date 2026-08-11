@@ -1,0 +1,18 @@
+# Jakub Soboczyński
+
+> Frontend developer portfolio — Vue/Nuxt, React/Next, Astro, Node.js, and open-source Raycast extensions.
+
+## Core pages
+
+- [About me (PL)](https://jakubsoboczynski.pl/): Polish introduction, experience, and interests
+- [About me (EN)](https://jakubsoboczynski.pl/en/): English introduction, experience, and interests
+- [Projects (PL)](https://jakubsoboczynski.pl/projekty/): Selected projects and implementations
+- [Projects (EN)](https://jakubsoboczynski.pl/en/projekty/): Selected projects and implementations
+- [Uses (PL)](https://jakubsoboczynski.pl/uses/): Hardware, software, and tools in regular use
+- [Uses (EN)](https://jakubsoboczynski.pl/en/uses/): Hardware, software, and tools in regular use
+
+## Optional
+
+- [GitHub](https://github.com/teziovsky)
+- [X / Twitter](https://x.com/teziovsky/)
+- [LinkedIn](https://linkedin.com/in/jakubsoboczynski/)

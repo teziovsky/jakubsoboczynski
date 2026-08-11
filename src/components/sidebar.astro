@@ -18,18 +18,23 @@ const links = [
   },
   {
     title: t("sidebar.projects"),
-    href: "/projekty",
+    href: "/projekty/",
   },
-];
+].map(({ title, href }) => {
+  const localizedHref = lang === defaultLang ? href : href === "/" ? `/${lang}/` : `/${lang}${href}`;
+  const isCurrent =
+    href === "/"
+      ? pathname === "/" || pathname === "/en" || pathname === "/en/"
+      : pathname === localizedHref || pathname === localizedHref.replace(/\/$/, "");
+
+  return { title, href: localizedHref, isCurrent };
+});
 
 /**
- * Returns the CSS classes for a link based on its index and href.
+ * Returns the CSS classes for a link based on its index and active state.
  */
-function handleLinkClass(index: number, href: string) {
+function handleLinkClass(index: number, isCurrent: boolean) {
   const baseClasses = "px-3 py-1 rounded-lg transition";
-  const hrefWithLang = lang === defaultLang ? href : `/${lang}${href}`;
-  const isCurrent = href === "/" ? pathname === hrefWithLang : pathname.startsWith(hrefWithLang);
-
   const currentClasses = isCurrent ? "bg-slate-200 dark:bg-slate-800 hocus:before:scale-0" : "";
 
   return cn(baseClasses, hoverSquare(directionByIndex(index)), focusRing, currentClasses);
@@ -44,13 +49,9 @@ function handleLinkClass(index: number, href: string) {
     </div>
     <ul class="mx-auto flex gap-3 sm:flex-col sm:gap-2">
       {
-        links.map(({ title, href }, index) => (
+        links.map(({ title, href, isCurrent }, index) => (
           <li class="flex justify-center">
-            <a
-              class={handleLinkClass(index, href)}
-              aria-current={pathname === href ? "page" : undefined}
-              href={lang === defaultLang ? href : `/${lang}${href}`}
-            >
+            <a class={handleLinkClass(index, isCurrent)} aria-current={isCurrent ? "page" : undefined} href={href}>
               {title}
             </a>
           </li>

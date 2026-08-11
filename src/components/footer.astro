@@ -30,13 +30,18 @@ const socialLinksSorted = socialLinks.sort((a, b) => a.data.sort - b.data.sort);
               },
               focusRing,
             )}
-            href={
-              language === defaultLang
-                ? pathname.replace(`/${lang}`, "")
-                : pathname.startsWith(`/${lang}`)
-                  ? pathname.replace(/\w+/, language)
-                  : `/${language}${pathname}`
-            }
+            href={(() => {
+              if (language === defaultLang) {
+                const stripped = pathname.replace(`/${lang}`, "") || "/";
+                return stripped === "/" ? "/" : stripped.endsWith("/") ? stripped : `${stripped}/`;
+              }
+
+              if (pathname.startsWith(`/${lang}`)) {
+                return pathname.replace(`/${lang}`, `/${language}`);
+              }
+
+              return pathname === "/" ? `/${language}/` : `/${language}${pathname}`;
+            })()}
             aria-label={language}
           >
             {language.toUpperCase()}

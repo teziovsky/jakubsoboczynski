@@ -4,7 +4,7 @@ import { Head } from "astro-capo";
 import Footer from "@/components/footer.astro";
 import Sidebar from "@/components/sidebar.astro";
 import { ClientRouter } from "astro:transitions";
-import { getLang } from "@/i18n/utils";
+import { getLang, getLanguageAlternates } from "@/i18n/utils";
 import "@/global.css";
 
 export type Props = {
@@ -23,6 +23,44 @@ const lang = getLang(url);
 const { pathname } = url;
 
 const canonicalURL = new URL(pathname, Astro.site);
+const absoluteImage = new URL(image, Astro.site).href;
+const fullTitle = titleTemplate.replace(/%s/g, title);
+const languageAlternates = getLanguageAlternates(pathname, Astro.site);
+const ogLocale = lang === "pl" ? "pl_PL" : "en_US";
+const ogLocaleAlternate = lang === "pl" ? "en_US" : "pl_PL";
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://jakubsoboczynski.pl/#website",
+      url: "https://jakubsoboczynski.pl/",
+      name: "Jakub Soboczyński",
+      inLanguage: ["pl", "en"],
+      publisher: { "@id": "https://jakubsoboczynski.pl/#person" },
+    },
+    {
+      "@type": "Person",
+      "@id": "https://jakubsoboczynski.pl/#person",
+      name: "Jakub Soboczyński",
+      url: "https://jakubsoboczynski.pl/",
+      email: "kontakt@jakubsoboczynski.pl",
+      jobTitle: "Frontend Developer",
+      sameAs: ["https://github.com/teziovsky", "https://x.com/teziovsky/", "https://linkedin.com/in/jakubsoboczynski/"],
+    },
+    {
+      "@type": "WebPage",
+      "@id": `${canonicalURL.href}#webpage`,
+      url: canonicalURL.href,
+      name: fullTitle,
+      description,
+      isPartOf: { "@id": "https://jakubsoboczynski.pl/#website" },
+      about: { "@id": "https://jakubsoboczynski.pl/#person" },
+      inLanguage: lang,
+    },
+  ],
+};
 ---
 
 <!doctype html>
@@ -42,21 +80,31 @@ const canonicalURL = new URL(pathname, Astro.site);
       canonical={canonicalURL.href}
       charset="UTF-8"
       description={description}
+      languageAlternates={languageAlternates}
       openGraph={{
         basic: {
-          title: title,
+          title: fullTitle,
           type: "website",
           url: canonicalURL.href,
-          image: image,
+          image: absoluteImage,
+        },
+        optional: {
+          description,
+          locale: ogLocale,
+          localeAlternate: [ogLocaleAlternate],
+          siteName: "Jakub Soboczyński",
+        },
+        image: {
+          alt: "Jakub Soboczyński",
         },
       }}
       title={title}
       titleTemplate={titleTemplate}
       twitter={{
         card: "summary_large_image",
-        title: title,
+        title: fullTitle,
         description: description,
-        image: image,
+        image: absoluteImage,
         creator: "@teziovsky",
       }}
       extend={{
@@ -90,6 +138,7 @@ const canonicalURL = new URL(pathname, Astro.site);
         ],
       }}
     />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(structuredData)} />
 
     <ClientRouter />
   </Head>

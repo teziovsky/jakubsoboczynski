@@ -17,7 +17,7 @@ if (!aboutMe) {
 const { Content } = await render(aboutMe);
 ---
 
-<Layout title="Hello!" description={t("about-me.seo.description")} image="/og_image.png">
+<Layout title={t("about-me.seo.title")} description={t("about-me.seo.description")} image="/og_image.png">
   <article class={proseArticle}>
     <h1 transition:name="routeHeading">Jakub Soboczyński</h1>
     <Content />
