@@ -30,9 +30,10 @@ export function mountTerminal(root: HTMLElement, payload: TerminalPayload) {
   };
 
   const syncCursor = () => {
+    const focused = document.activeElement === input;
     const empty = input.value.length === 0;
-    cursor.classList.toggle("hidden", !empty);
-    input.style.caretColor = empty ? "transparent" : "#6ee7b7";
+    cursor.classList.toggle("hidden", !(focused && empty));
+    input.style.caretColor = focused && !empty ? "#6ee7b7" : "transparent";
   };
 
   const showHint = (matches: string[]) => {
@@ -240,11 +241,15 @@ export function mountTerminal(root: HTMLElement, payload: TerminalPayload) {
   });
 
   input.addEventListener("focus", () => {
+    syncCursor();
     scheduleLayout();
     window.setTimeout(scheduleLayout, 250);
     window.setTimeout(scheduleLayout, 700);
   });
-  input.addEventListener("blur", scheduleLayout);
+  input.addEventListener("blur", () => {
+    syncCursor();
+    scheduleLayout();
+  });
 
   window.visualViewport?.addEventListener("resize", scheduleLayout);
   window.visualViewport?.addEventListener("scroll", scheduleLayout);

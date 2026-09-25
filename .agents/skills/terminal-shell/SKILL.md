@@ -16,7 +16,7 @@ Use this when editing `src/lib/terminal/` or the homepage shell in `src/pages/_c
 3. Treat a single token, and any other command-shaped line, as a shell command. Unknown names use `terminal.error.command-not-found` (`bash: <name>: nie znaleziono polecenia` / `bash: <name>: command not found`).
 4. Keep write commands (`rm`, `mv`, and the rest of `WRITE_COMMANDS`) and redirection on `terminal.error.denied`.
 5. Leave questions and prose to the content answer path. A line is not a command when it contains `?` or `!`, a question word, or four or more tokens with no flag or path.
-6. Tab, while the input is focused, calls `suggestInput` and must not move focus. Print several matches in the scrollback and insert their shared prefix. One match completes the token. Escape blurs the input and does not clear it.
+6. Tab, while the input is focused, calls `suggestInput` and must not move focus. Print several matches in the scrollback and insert their shared prefix. One match completes the token. Escape blurs the input and does not clear it. The block cursor blinks only while the input is focused.
 7. Add any new visitor-facing help or error string to both locales in `src/i18n/ui.ts`.
 
 ## What not to do

@@ -13,7 +13,7 @@ Use this when editing tooling, `package.json`, lockfile pins, or before claiming
 
 1. Format with the existing scripts. `oxfmt` owns JS, TS, JSON, CSS, Markdown, and MDX (`.oxfmtrc.json`). Prettier owns `*.astro` only.
 2. Lint with `oxlint` first, then ESLint. Oxlint holds the TypeScript recommended rules and `no-unused-vars` (see `.oxlintrc.json`). ESLint holds `eslint-plugin-astro` template rules and `no-mixed-spaces-and-tabs` (`eslint.config.js`).
-3. Keep `minimumReleaseAge` enabled. If install fails with `ERR_PNPM_MINIMUM_RELEASE_AGE_VIOLATION`, pin the newest version older than the window in `package.json` and `pnpm.overrides`. Re-run `pnpm install` with the policy still on.
+3. Keep `minimumReleaseAge` enabled. If install fails with `ERR_PNPM_MINIMUM_RELEASE_AGE_VIOLATION`, pin the newest version older than the window in `package.json` and in `overrides` in `pnpm-workspace.yaml`. Do not put overrides back in the `pnpm` field of `package.json`. Re-run `pnpm install` with the policy still on.
 4. Finish with `npm run fix`, then `pnpm run build`.
 
 ## What not to do

@@ -36,7 +36,10 @@ type ApiRepo = {
   topics?: unknown;
   pushed_at?: string | null;
   updated_at?: string | null;
+  owner?: { login?: string };
 };
+
+type ListedRepo = GitHubRepo & { ownerLogin: string };
 
 let pendingRepos: Promise<GitHubRepo[]> | null = null;
 let pendingUsername: string | null = null;
@@ -108,29 +111,48 @@ async function loadGitHubRepos(username: string) {
 }
 
 async function fetchRepos(username: string) {
-  const headers = githubHeaders();
-  const repos: GitHubRepo[] = [];
-  let url = `https://api.github.com/users/${encodeURIComponent(username)}/repos?per_page=100&sort=pushed&type=owner`;
-  let pages = 0;
+  const publicRepos = await fetchRepoPages(
+    `https://api.github.com/users/${encodeURIComponent(username)}/repos?per_page=100&sort=pushed&type=owner`,
+    githubHeaders(),
+    false,
+  );
 
-  while (url && pages < 10) {
-    const response = await fetch(url, { headers });
-    if (!response.ok) {
-      throw new Error(`GitHub repository request failed (${response.status} ${response.statusText}) for ${username}`);
+  const token = readBuildToken();
+  let listed = publicRepos;
+  let acceptedToken = "";
+  if (token) {
+    try {
+      const visible = await fetchRepoPages(
+        "https://api.github.com/user/repos?per_page=100&sort=pushed&visibility=all&affiliation=owner",
+        githubHeaders(token),
+        true,
+      );
+      if (visible) {
+        acceptedToken = token;
+        const owned = visible.filter((repo) => repo.ownerLogin.toLowerCase() === username.toLowerCase());
+        listed = mergeListed(publicRepos, owned);
+      }
+    } catch {
+      acceptedToken = "";
     }
-
-    const page = (await response.json()) as ApiRepo[];
-    for (const repo of page) repos.push(...normalizeRepo(repo));
-    url = nextPage(response.headers.get("link")) ?? "";
-    pages += 1;
   }
 
-  return repos.sort((a, b) => b.pushedAt.localeCompare(a.pushedAt));
+  const portfolio = await keepPortfolioRepos(username, listed, acceptedToken);
+  return portfolio.map(withoutOwner).sort((a, b) => b.pushedAt.localeCompare(a.pushedAt));
 }
 
-function githubHeaders() {
+function readBuildToken() {
   const env = globalThis.process?.env;
-  const token = env?.GITHUB_TOKEN || env?.GH_TOKEN || "";
+  if (!env) return "";
+  const names = ["GITHUB_TOKEN", "GH_TOKEN"];
+  for (const name of names) {
+    const value = env[name];
+    if (typeof value === "string" && value.trim()) return value.trim();
+  }
+  return "";
+}
+
+function githubHeaders(token = "") {
   const headers: Record<string, string> = {
     Accept: "application/vnd.github+json",
     "User-Agent": "jakubsoboczynski-portfolio",
@@ -141,8 +163,40 @@ function githubHeaders() {
   return headers;
 }
 
-function normalizeRepo(repo: ApiRepo): GitHubRepo[] {
-  if (repo.fork || repo.private) return [];
+async function fetchRepoPages(
+  initialUrl: string,
+  headers: Record<string, string>,
+  includePrivate: false,
+): Promise<ListedRepo[]>;
+async function fetchRepoPages(
+  initialUrl: string,
+  headers: Record<string, string>,
+  includePrivate: true,
+): Promise<ListedRepo[] | null>;
+async function fetchRepoPages(initialUrl: string, headers: Record<string, string>, includePrivate: boolean) {
+  const repos: ListedRepo[] = [];
+  let url: string | null = initialUrl;
+  let pages = 0;
+
+  while (url && pages < 10) {
+    const response = await fetch(url, { headers });
+    if (includePrivate && (response.status === 401 || response.status === 403)) return null;
+    if (!response.ok) {
+      throw new Error(`GitHub repository request failed (${response.status} ${response.statusText})`);
+    }
+
+    const page = (await response.json()) as ApiRepo[];
+    for (const repo of page) repos.push(...normalizeRepo(repo, includePrivate));
+    url = nextPage(response.headers.get("link"));
+    pages += 1;
+  }
+
+  return repos;
+}
+
+function normalizeRepo(repo: ApiRepo, includePrivate: boolean): ListedRepo[] {
+  if (repo.fork) return [];
+  if (repo.private && !includePrivate) return [];
   if (!repo.name || !repo.html_url) return [];
 
   const homepage = typeof repo.homepage === "string" ? repo.homepage.trim() : "";
@@ -155,13 +209,76 @@ function normalizeRepo(repo: ApiRepo): GitHubRepo[] {
       description: repo.description?.trim() || null,
       language: repo.language?.trim() || null,
       stars: typeof repo.stargazers_count === "number" ? repo.stargazers_count : 0,
-      topics: Array.isArray(repo.topics)
-        ? repo.topics.filter((topic): topic is string => typeof topic === "string")
-        : [],
+      topics: topicNames(repo.topics),
       pushedAt: repo.pushed_at ?? "",
       updatedAt: repo.updated_at ?? "",
+      ownerLogin: repo.owner?.login ?? "",
     },
   ];
+}
+
+function mergeListed(base: ListedRepo[], extra: ListedRepo[]) {
+  const byName = new Map(base.map((repo) => [repo.name.toLowerCase(), repo]));
+  for (const repo of extra) byName.set(repo.name.toLowerCase(), repo);
+  return [...byName.values()];
+}
+
+function withoutOwner(repo: ListedRepo): GitHubRepo {
+  return {
+    name: repo.name,
+    htmlUrl: repo.htmlUrl,
+    homepage: repo.homepage,
+    description: repo.description,
+    language: repo.language,
+    stars: repo.stars,
+    topics: repo.topics,
+    pushedAt: repo.pushedAt,
+    updatedAt: repo.updatedAt,
+  };
+}
+
+function topicNames(value: unknown) {
+  return Array.isArray(value) ? value.filter((topic): topic is string => typeof topic === "string") : [];
+}
+
+function isPortfolioTopic(topic: string) {
+  return topic.toLowerCase() === "portfolio";
+}
+
+async function keepPortfolioRepos(username: string, repos: ListedRepo[], token: string) {
+  const headers = githubHeaders(token);
+  const detailed: ListedRepo[] = new Array(repos.length);
+  let next = 0;
+
+  async function worker() {
+    while (next < repos.length) {
+      const index = next;
+      next += 1;
+      const repo = repos[index];
+      if (!repo) continue;
+      const topics = await topicNamesFor(username, repo, headers);
+      detailed[index] = { ...repo, topics };
+    }
+  }
+
+  await Promise.all(Array.from({ length: Math.min(4, repos.length) }, () => worker()));
+  return detailed.filter((repo) => repo?.topics?.some(isPortfolioTopic));
+}
+
+async function topicNamesFor(username: string, repo: ListedRepo, headers: Record<string, string>) {
+  if (repo.topics.some(isPortfolioTopic)) return repo.topics;
+
+  try {
+    const response = await fetch(
+      `https://api.github.com/repos/${encodeURIComponent(username)}/${encodeURIComponent(repo.name)}/topics`,
+      { headers },
+    );
+    if (!response.ok) return repo.topics;
+    const body = (await response.json()) as { names?: unknown };
+    return topicNames(body.names);
+  } catch {
+    return repo.topics;
+  }
 }
 
 function nextPage(link: string | null) {

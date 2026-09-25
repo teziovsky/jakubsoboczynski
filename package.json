@@ -89,15 +89,5 @@
     "tailwindcss": "^4.3.3",
     "typescript": "6.0.3",
     "wrangler": "4.139.0"
-  },
-  "pnpm": {
-    "overrides": {
-      "@cloudflare/vite-plugin": "1.59.0",
-      "prettier-plugin-astro": "1.0.1",
-      "vscode-jsonrpc@9.0.3": "9.0.2",
-      "vscode-languageserver-protocol@3.18.4": "3.18.3",
-      "vscode-languageserver-types@3.18.4": "3.18.3",
-      "wrangler": "4.139.0"
-    }
   }
 }
