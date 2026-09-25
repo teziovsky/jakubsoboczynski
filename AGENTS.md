@@ -15,7 +15,7 @@
 - Astro 7 portfolio, Cloudflare adapter. `wrangler.jsonc` serves `./dist/client` with `not_found_handling: "404-page"`.
 - `@/*` resolves to `src/*`.
 - Tailwind v4 via `@tailwindcss/vite`, configured in `src/global.css` with `@theme`, `@utility`, and `@variant`. There is no `tailwind.config`.
-- Combine class names with `cn` from the `cn` package. `src/lib/utils.ts` re-exports it. Do not add `clsx` or `tailwind-merge`.
+- Combine class names with `import { cn } from "cn"` in the file that uses it. Do not re-export `cn`, and do not add `clsx` or `tailwind-merge`.
 
 ## I18n and content
 

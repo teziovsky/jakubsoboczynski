@@ -1,10 +1,11 @@
 ---
+import { cn } from "cn";
+
 import ProjectFacts from "@/components/project-facts.astro";
 import { getLang, useTranslations } from "@/i18n/utils";
 import Layout from "@/layouts/layout.astro";
 import { getProjects } from "@/lib/projects";
 import { focusRing } from "@/lib/tailwind";
-import { cn } from "@/lib/utils";
 
 const { url } = Astro;
 const lang = getLang(url);

@@ -1,10 +1,12 @@
 ---
+import { Icon } from "astro-icon/components";
+import { getCollection } from "astro:content";
+
+import { cn } from "cn";
+
 import { defaultLang, languages } from "@/i18n/ui";
 import { getLang, useTranslations } from "@/i18n/utils";
 import { focusRing } from "@/lib/tailwind";
-import { cn } from "@/lib/utils";
-import { Icon } from "astro-icon/components";
-import { getCollection } from "astro:content";
 
 const { url } = Astro;
 const lang = getLang(url);

@@ -1,5 +1,3 @@
-export { cn } from "cn";
-
 export function directionByIndex(index: number) {
   if (index % 4 === 0) return "top";
   if (index % 4 === 1) return "left";
