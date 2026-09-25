@@ -60,7 +60,7 @@ export const ui = {
       "Zapytaj o Jakuba albo przeglądaj portfolio komendami powłoki. Odpowiedzi pochodzą tylko z treści tej strony.",
     "terminal.banner": "agent — jakub@portfolio",
     "terminal.welcome":
-      "To dodatkowy sposób, żeby zapytać o Jakuba. Te same działy są w menu i na przyciskach powyżej.\nhelp — komendy, ls — katalogi, open <projekt> — podstrona projektu.",
+      "To dodatkowy sposób, żeby zapytać o Jakuba. Te same działy są w menu.\nhelp — komendy, ls — katalogi, open <projekt> — podstrona projektu.",
     "terminal.input.label": "Polecenie lub pytanie",
     "terminal.output.label": "Historia terminala",
     "terminal.help.header": "Komendy tylko do odczytu (nazwy po angielsku):",
@@ -185,7 +185,7 @@ export const ui = {
       "Ask about Jakub or browse the portfolio with shell commands. Answers come only from the content on this site.",
     "terminal.banner": "agent — jakub@portfolio",
     "terminal.welcome":
-      "This is an extra way to ask about Jakub. The same sections are in the menu and the buttons above.\nhelp — commands, ls — directories, open <project> — project page.",
+      "This is an extra way to ask about Jakub. The same sections are in the menu.\nhelp — commands, ls — directories, open <project> — project page.",
     "terminal.input.label": "Command or question",
     "terminal.output.label": "Terminal history",
     "terminal.help.header": "Read-only commands:",
