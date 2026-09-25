@@ -74,7 +74,11 @@ const structuredData = {
 <!doctype html>
 <html transition:animate="none" lang={lang}>
   <Head>
-    <script is:inline type="text/partytown" async src="https://www.googletagmanager.com/gtag/js?id=G-HNBWJKKETF"
+    <script
+      is:inline
+      type="text/partytown"
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-HNBWJKKETF"
     ></script>
     <script is:inline type="text/partytown">
       window.dataLayer = window.dataLayer || [];
@@ -147,7 +151,6 @@ const structuredData = {
       }}
     />
     <script is:inline type="application/ld+json" set:html={JSON.stringify(structuredData)} />
-
     <ClientRouter />
   </Head>
 

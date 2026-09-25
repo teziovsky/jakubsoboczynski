@@ -57,21 +57,17 @@ const linkClass = cn(
       >
         {project.name}
       </h1>
-      {
-        project.summary && (
-          <p class="text-base leading-7 break-words text-neutral-800 sm:text-lg sm:leading-8 dark:text-neutral-200">
-            {project.summary}
-          </p>
-        )
-      }
-    </header>
-    {
-      project.intro && (
-        <p class="text-base leading-7 break-words whitespace-pre-wrap text-neutral-800 dark:text-neutral-200">
-          {project.intro}
+      {project.summary && (
+        <p class="text-base leading-7 break-words text-neutral-800 sm:text-lg sm:leading-8 dark:text-neutral-200">
+          {project.summary}
         </p>
-      )
-    }
+      )}
+    </header>
+    {project.intro && (
+      <p class="text-base leading-7 break-words whitespace-pre-wrap text-neutral-800 dark:text-neutral-200">
+        {project.intro}
+      </p>
+    )}
     <ProjectFacts project={project} />
     <div class="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
       <a
@@ -82,21 +78,19 @@ const linkClass = cn(
       >
         {t("projects.repository")}
       </a>
-      {
-        project.homepage && (
-          <a
-            class={cn(
-              linkClass,
-              "border border-slate-300 bg-white text-slate-900 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100",
-            )}
-            href={project.homepage}
-            target="_blank"
-            rel="noreferrer noopener"
-          >
-            {t("projects.homepage")}
-          </a>
-        )
-      }
+      {project.homepage && (
+        <a
+          class={cn(
+            linkClass,
+            "border border-slate-300 bg-white text-slate-900 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100",
+          )}
+          href={project.homepage}
+          target="_blank"
+          rel="noreferrer noopener"
+        >
+          {t("projects.homepage")}
+        </a>
+      )}
     </div>
   </article>
 </Layout>

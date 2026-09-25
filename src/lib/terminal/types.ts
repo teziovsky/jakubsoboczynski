@@ -67,9 +67,7 @@ export type TerminalMessages = {
 };
 
 export type CommandResult =
-  | { type: "output"; lines: TermLine[] }
-  | { type: "clear" }
-  | { type: "navigate"; href: string; lines: TermLine[] };
+  { type: "output"; lines: TermLine[] } | { type: "clear" } | { type: "navigate"; href: string; lines: TermLine[] };
 
 export type TerminalPayload = {
   corpus: TerminalCorpus;

@@ -1,11 +1,11 @@
+import { unified } from "@astrojs/markdown-remark";
+import mdx from "@astrojs/mdx";
+import partytown from "@astrojs/partytown";
+import sitemap from "@astrojs/sitemap";
 import compress from "astro-compress";
 import icon from "astro-icon";
 import robotsTxt from "astro-robots-txt";
 import { defineConfig } from "astro/config";
-
-import mdx from "@astrojs/mdx";
-import partytown from "@astrojs/partytown";
-import sitemap from "@astrojs/sitemap";
 
 import tailwindcss from "@tailwindcss/vite";
 import rehypeExternalLinks from "rehype-external-links";
@@ -25,8 +25,10 @@ export default defineConfig({
   },
 
   markdown: {
-    remarkPlugins: [remarkModifiedTime, remarkReadingTime],
-    rehypePlugins: [[rehypeExternalLinks, { target: "_blank", rel: ["noopener", "noreferrer"] }]],
+    processor: unified({
+      remarkPlugins: [remarkModifiedTime, remarkReadingTime],
+      rehypePlugins: [[rehypeExternalLinks, { target: "_blank", rel: ["noopener", "noreferrer"] }]],
+    }),
   },
 
   integrations: [

@@ -14,46 +14,38 @@ const updated = project.updatedAt ? formatProjectDate(project.updatedAt, lang) :
 ---
 
 <dl class="m-0 grid grid-cols-1 gap-3 p-0 text-sm sm:grid-cols-2">
-  {
-    project.language && (
-      <div class="min-w-0">
-        <dt class="font-medium text-neutral-500 dark:text-neutral-400">{t("projects.language")}</dt>
-        <dd class="mt-1 break-words text-neutral-900 dark:text-neutral-100">{project.language}</dd>
-      </div>
-    )
-  }
+  {project.language && (
+    <div class="min-w-0">
+      <dt class="font-medium text-neutral-500 dark:text-neutral-400">{t("projects.language")}</dt>
+      <dd class="mt-1 break-words text-neutral-900 dark:text-neutral-100">{project.language}</dd>
+    </div>
+  )}
   <div>
     <dt class="font-medium text-neutral-500 dark:text-neutral-400">{t("projects.stars")}</dt>
     <dd class="mt-1 text-neutral-900 dark:text-neutral-100">{project.stars}</dd>
   </div>
-  {
-    pushed && (
-      <div>
-        <dt class="font-medium text-neutral-500 dark:text-neutral-400">{t("projects.pushed")}</dt>
-        <dd class="mt-1 text-neutral-900 dark:text-neutral-100">{pushed}</dd>
-      </div>
-    )
-  }
-  {
-    updated && (
-      <div>
-        <dt class="font-medium text-neutral-500 dark:text-neutral-400">{t("projects.updated")}</dt>
-        <dd class="mt-1 text-neutral-900 dark:text-neutral-100">{updated}</dd>
-      </div>
-    )
-  }
-</dl>
-{
-  project.topics.length > 0 && (
-    <div class="flex min-w-0 flex-col gap-2">
-      <h3 class="text-sm font-medium text-neutral-500 dark:text-neutral-400">{t("projects.topics")}</h3>
-      <ul class="m-0 flex list-none flex-wrap gap-2 p-0">
-        {project.topics.map((topic) => (
-          <li class="rounded-lg bg-gray-200 px-3 py-1.5 text-sm break-words text-neutral-800 dark:bg-gray-800 dark:text-neutral-100">
-            {topic}
-          </li>
-        ))}
-      </ul>
+  {pushed && (
+    <div>
+      <dt class="font-medium text-neutral-500 dark:text-neutral-400">{t("projects.pushed")}</dt>
+      <dd class="mt-1 text-neutral-900 dark:text-neutral-100">{pushed}</dd>
     </div>
-  )
-}
+  )}
+  {updated && (
+    <div>
+      <dt class="font-medium text-neutral-500 dark:text-neutral-400">{t("projects.updated")}</dt>
+      <dd class="mt-1 text-neutral-900 dark:text-neutral-100">{updated}</dd>
+    </div>
+  )}
+</dl>
+{project.topics.length > 0 && (
+  <div class="flex min-w-0 flex-col gap-2">
+    <h3 class="text-sm font-medium text-neutral-500 dark:text-neutral-400">{t("projects.topics")}</h3>
+    <ul class="m-0 flex list-none flex-wrap gap-2 p-0">
+      {project.topics.map((topic) => (
+        <li class="rounded-lg bg-gray-200 px-3 py-1.5 text-sm break-words text-neutral-800 dark:bg-gray-800 dark:text-neutral-100">
+          {topic}
+        </li>
+      ))}
+    </ul>
+  </div>
+)}

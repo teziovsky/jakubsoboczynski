@@ -3,7 +3,7 @@
   "name": "jakubsoboczynski",
   "compatibility_date": "2025-03-25",
   "assets": {
-    "directory": "./dist",
+    "directory": "./dist/client",
     "not_found_handling": "404-page"
   }
 }

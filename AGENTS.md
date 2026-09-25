@@ -8,7 +8,7 @@
 
 ## App Shape
 
-- This is an Astro 5 portfolio deployed through the Cloudflare adapter; `wrangler.jsonc` serves `./dist` with `not_found_handling: "404-page"`.
+- This is an Astro portfolio deployed through the Cloudflare adapter; `wrangler.jsonc` serves `./dist/client` with `not_found_handling: "404-page"`.
 - `@/*` resolves to `src/*`; keep imports in that style when matching existing code.
 - Tailwind is v4 via `@tailwindcss/vite` and configured in `src/global.css` with `@theme`, `@utility`, and `@variant`, not a `tailwind.config.*` file.
 

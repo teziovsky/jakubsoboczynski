@@ -27,11 +27,11 @@ function formatDate(date: string) {
 
 <Layout title={t("uses.seo.title")} description={t("uses.seo.description")} image="/og_image.png">
   <article class={proseArticle}>
-    <h1 transition:name="routeHeading" class="scroll-mt-8">{t("uses.title")}</h1>
+    <h1 transition:name="routeHeading" class="scroll-mt-8">
+      {t("uses.title")}
+    </h1>
     <p class="italic">
-      {t("uses.last-update.title")}: <span class="capitalize">
-        {formatDate(remarkPluginFrontmatter.lastModified)}
-      </span>
+      {t("uses.last-update.title")}: <span class="capitalize">{formatDate(remarkPluginFrontmatter.lastModified)}</span>
     </p>
     <Content />
   </article>

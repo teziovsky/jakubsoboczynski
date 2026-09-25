@@ -111,19 +111,17 @@ const sectionLinks = [
     <h1 class="text-3xl font-extrabold break-words text-gray-900 sm:text-4xl dark:text-white">Jakub Soboczyński</h1>
     <p class="text-base leading-7 text-neutral-700 dark:text-neutral-300">{t("home.intro")}</p>
     <nav class="grid grid-cols-1 gap-2 sm:grid-cols-3" aria-label={t("home.nav")}>
-      {
-        sectionLinks.map(({ href, label }) => (
-          <a
-            class={cn(
-              focusRing,
-              "inline-flex min-h-12 items-center justify-center rounded-lg border border-slate-300 bg-white px-4 text-center text-base font-medium text-slate-900 transition hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:hover:bg-slate-800",
-            )}
-            href={href}
-          >
-            {label}
-          </a>
-        ))
-      }
+      {sectionLinks.map(({ href, label }) => (
+        <a
+          class={cn(
+            focusRing,
+            "inline-flex min-h-12 items-center justify-center rounded-lg border border-slate-300 bg-white px-4 text-center text-base font-medium text-slate-900 transition hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:hover:bg-slate-800",
+          )}
+          href={href}
+        >
+          {label}
+        </a>
+      ))}
     </nav>
   </div>
   <section
@@ -145,7 +143,9 @@ const sectionLinks = [
       aria-label={t("terminal.output.label")}
       tabindex="0"
     >
-      {welcome.map((line) => <p class="break-words whitespace-pre-wrap text-slate-300">{line}</p>)}
+      {welcome.map((line) => (
+        <p class="break-words whitespace-pre-wrap text-slate-300">{line}</p>
+      ))}
     </div>
     <form
       data-form
@@ -153,7 +153,9 @@ const sectionLinks = [
       autocomplete="off"
     >
       <div class="flex flex-col gap-1 sm:flex-row sm:items-center sm:gap-3">
-        <span data-prompt class="shrink-0 text-sm break-all text-emerald-300 sm:text-base">jakub@portfolio:~$</span>
+        <span data-prompt class="shrink-0 text-sm break-all text-emerald-300 sm:text-base">
+          jakub@portfolio:~$
+        </span>
         <label class="relative flex min-h-12 min-w-0 flex-1 items-center">
           <span class="sr-only">{t("terminal.input.label")}</span>
           <input
@@ -170,8 +172,10 @@ const sectionLinks = [
           <span
             data-cursor
             class="terminal-cursor pointer-events-none absolute top-1/2 left-0 -translate-y-1/2 text-emerald-300"
-            aria-hidden="true">▊</span
+            aria-hidden="true"
           >
+            ▊
+          </span>
         </label>
       </div>
       <p data-hint class="mt-1 hidden min-h-6 overflow-hidden text-xs break-words text-slate-500"></p>

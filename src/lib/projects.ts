@@ -2,9 +2,6 @@ import { getCollection } from "astro:content";
 
 import { format } from "date-fns";
 import { enGB, pl } from "date-fns/locale";
-import { mkdir, readFile, stat, writeFile } from "node:fs/promises";
-import { dirname } from "node:path";
-import { fileURLToPath } from "node:url";
 
 import { type Languages, defaultLang } from "@/i18n/ui";
 
@@ -40,14 +37,6 @@ type ApiRepo = {
   pushed_at?: string | null;
   updated_at?: string | null;
 };
-
-type RepoCache = {
-  username: string;
-  repos: GitHubRepo[];
-};
-
-const CACHE_PATH = fileURLToPath(new URL("../../.astro/github-repos.json", import.meta.url));
-const CACHE_MAX_AGE_MS = 15 * 60 * 1000;
 
 let pendingRepos: Promise<GitHubRepo[]> | null = null;
 let pendingUsername: string | null = null;
@@ -112,36 +101,10 @@ export async function getProject(lang: Languages, slug: string) {
 async function loadGitHubRepos(username: string) {
   if (!pendingRepos || pendingUsername !== username) {
     pendingUsername = username;
-    pendingRepos = readOrFetchRepos(username);
+    pendingRepos = fetchRepos(username);
   }
 
   return pendingRepos;
-}
-
-async function readOrFetchRepos(username: string) {
-  const cached = await readCache(username);
-  if (cached) return cached;
-
-  const repos = await fetchRepos(username);
-  await writeCache({ username, repos });
-  return repos;
-}
-
-async function readCache(username: string) {
-  try {
-    const info = await stat(CACHE_PATH);
-    if (Date.now() - info.mtimeMs > CACHE_MAX_AGE_MS) return null;
-    const parsed = JSON.parse(await readFile(CACHE_PATH, "utf8")) as RepoCache;
-    if (parsed.username !== username || !Array.isArray(parsed.repos)) return null;
-    return parsed.repos;
-  } catch {
-    return null;
-  }
-}
-
-async function writeCache(cache: RepoCache) {
-  await mkdir(dirname(CACHE_PATH), { recursive: true });
-  await writeFile(CACHE_PATH, JSON.stringify(cache));
 }
 
 async function fetchRepos(username: string) {
@@ -166,7 +129,8 @@ async function fetchRepos(username: string) {
 }
 
 function githubHeaders() {
-  const token = process.env.GITHUB_TOKEN || process.env.GH_TOKEN || "";
+  const env = globalThis.process?.env;
+  const token = env?.GITHUB_TOKEN || env?.GH_TOKEN || "";
   const headers: Record<string, string> = {
     Accept: "application/vnd.github+json",
     "User-Agent": "jakubsoboczynski-portfolio",

@@ -26,53 +26,51 @@ const linkClass = cn(
     </h1>
     <p class="mb-7 max-w-3xl text-base leading-7 text-neutral-700 dark:text-neutral-300">{t("projects.lead")}</p>
     <ul class="grid list-none gap-6 p-0 md:grid-cols-2 xl:grid-cols-3">
-      {
-        projects.map((project) => (
-          <li class="m-0 flex min-w-0 flex-col gap-4 rounded-lg border border-gray-200 bg-gray-100 p-4 dark:border-gray-800 dark:bg-gray-900">
-            <h2 class="text-xl font-bold break-words text-gray-900 dark:text-white">
-              <a class={cn(focusRing, "rounded-md")} href={project.href}>
-                {project.name}
-              </a>
-            </h2>
-            {project.summary && (
-              <p class="text-sm leading-6 break-words text-neutral-700 dark:text-neutral-300">{project.summary}</p>
-            )}
-            <ProjectFacts project={project} />
-            <div class="mt-auto flex flex-col gap-2 sm:flex-row sm:flex-wrap">
-              <a
-                class={cn(linkClass, "bg-slate-900 text-white dark:bg-slate-100 dark:text-slate-950")}
-                href={project.href}
-              >
-                {t("projects.read-more")}
-              </a>
+      {projects.map((project) => (
+        <li class="m-0 flex min-w-0 flex-col gap-4 rounded-lg border border-gray-200 bg-gray-100 p-4 dark:border-gray-800 dark:bg-gray-900">
+          <h2 class="text-xl font-bold break-words text-gray-900 dark:text-white">
+            <a class={cn(focusRing, "rounded-md")} href={project.href}>
+              {project.name}
+            </a>
+          </h2>
+          {project.summary && (
+            <p class="text-sm leading-6 break-words text-neutral-700 dark:text-neutral-300">{project.summary}</p>
+          )}
+          <ProjectFacts project={project} />
+          <div class="mt-auto flex flex-col gap-2 sm:flex-row sm:flex-wrap">
+            <a
+              class={cn(linkClass, "bg-slate-900 text-white dark:bg-slate-100 dark:text-slate-950")}
+              href={project.href}
+            >
+              {t("projects.read-more")}
+            </a>
+            <a
+              class={cn(
+                linkClass,
+                "border border-slate-300 bg-white text-slate-900 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100",
+              )}
+              href={project.htmlUrl}
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              {t("projects.repository")}
+            </a>
+            {project.homepage && (
               <a
                 class={cn(
                   linkClass,
                   "border border-slate-300 bg-white text-slate-900 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100",
                 )}
-                href={project.htmlUrl}
+                href={project.homepage}
                 target="_blank"
                 rel="noreferrer noopener"
               >
-                {t("projects.repository")}
+                {t("projects.homepage")}
               </a>
-              {project.homepage && (
-                <a
-                  class={cn(
-                    linkClass,
-                    "border border-slate-300 bg-white text-slate-900 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100",
-                  )}
-                  href={project.homepage}
-                  target="_blank"
-                  rel="noreferrer noopener"
-                >
-                  {t("projects.homepage")}
-                </a>
-              )}
-            </div>
-          </li>
-        ))
-      }
+            )}
+          </div>
+        </li>
+      ))}
     </ul>
   </article>
 </Layout>

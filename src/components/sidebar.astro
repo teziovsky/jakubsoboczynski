@@ -55,15 +55,13 @@ function handleLinkClass(index: number, isCurrent: boolean) {
       <Icon name="logo" class="h-12 w-12 sm:h-14 sm:w-14" />
     </a>
     <ul class="mx-auto flex gap-3 sm:flex-col sm:gap-2">
-      {
-        links.map(({ title, href, isCurrent }, index) => (
-          <li class="flex justify-center">
-            <a class={handleLinkClass(index, isCurrent)} aria-current={isCurrent ? "page" : undefined} href={href}>
-              {title}
-            </a>
-          </li>
-        ))
-      }
+      {links.map(({ title, href, isCurrent }, index) => (
+        <li class="flex justify-center">
+          <a class={handleLinkClass(index, isCurrent)} aria-current={isCurrent ? "page" : undefined} href={href}>
+            {title}
+          </a>
+        </li>
+      ))}
     </ul>
   </nav>
 </aside>

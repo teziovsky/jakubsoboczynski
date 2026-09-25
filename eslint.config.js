@@ -1,4 +1,4 @@
-import astroEslintParser from "astro-eslint-parser";
+import * as astroEslintParser from "astro-eslint-parser";
 
 import eslintPluginTypeScript from "@typescript-eslint/eslint-plugin";
 import typescriptEslintParser from "@typescript-eslint/parser";
