@@ -12,43 +12,36 @@ const t = useTranslations(lang);
 const projects = await getProjects(lang);
 const linkClass = cn(
   focusRing,
-  "inline-flex min-h-12 w-full items-center justify-center rounded-lg px-4 text-center text-sm font-medium transition sm:w-auto",
+  "inline-flex min-h-12 items-center justify-center border px-4 text-center font-mono text-sm transition",
 );
 ---
 
 <Layout title={t("projects.seo.title")} description={t("projects.seo.description")} image="/og_image.png" isWide>
   <article class="min-w-0">
-    <h1
-      transition:name="routeHeading"
-      class="mb-4 text-3xl break-words text-gray-900 sm:text-4xl sm:font-extrabold dark:text-white"
-    >
+    <h1 transition:name="routeHeading" class="mb-4 font-mono text-3xl break-words text-amber-100 sm:text-4xl">
       {t("projects.title")}
     </h1>
-    <p class="mb-7 max-w-3xl text-base leading-7 text-neutral-700 dark:text-neutral-300">{t("projects.lead")}</p>
-    <ul class="grid list-none gap-6 p-0 md:grid-cols-2 xl:grid-cols-3">
+    <p class="mb-7 max-w-3xl font-mono text-base leading-7 text-emerald-100/90">{t("projects.lead")}</p>
+    <ul class="project-list m-0 list-none p-0">
       {projects.map((project) => (
-        <li class="m-0 flex min-w-0 flex-col gap-4 rounded-lg border border-gray-200 bg-gray-100 p-4 dark:border-gray-800 dark:bg-gray-900">
-          <h2 class="text-xl font-bold break-words text-gray-900 dark:text-white">
-            <a class={cn(focusRing, "rounded-md")} href={project.href}>
+        <li class="project-card m-0 min-w-0">
+          <h2 class="project-card-title font-mono text-xl break-words text-amber-100">
+            <a class={cn(focusRing, "rounded-sm")} href={project.href}>
               {project.name}
             </a>
           </h2>
           {project.summary && (
-            <p class="text-sm leading-6 break-words text-neutral-700 dark:text-neutral-300">{project.summary}</p>
+            <p class="project-card-summary text-sm leading-6 break-words text-emerald-100/80">{project.summary}</p>
           )}
-          <ProjectFacts project={project} />
-          <div class="mt-auto flex flex-col gap-2 sm:flex-row sm:flex-wrap">
-            <a
-              class={cn(linkClass, "bg-slate-900 text-white dark:bg-slate-100 dark:text-slate-950")}
-              href={project.href}
-            >
+          <div class="project-card-facts">
+            <ProjectFacts project={project} />
+          </div>
+          <div class="project-card-actions">
+            <a class={cn(linkClass, "border-emerald-700 bg-emerald-950 text-emerald-50")} href={project.href}>
               {t("projects.read-more")}
             </a>
             <a
-              class={cn(
-                linkClass,
-                "border border-slate-300 bg-white text-slate-900 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100",
-              )}
+              class={cn(linkClass, "border-slate-600 bg-slate-950 text-sky-200")}
               href={project.htmlUrl}
               target="_blank"
               rel="noreferrer noopener"
@@ -57,10 +50,7 @@ const linkClass = cn(
             </a>
             {project.homepage && (
               <a
-                class={cn(
-                  linkClass,
-                  "border border-slate-300 bg-white text-slate-900 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100",
-                )}
+                class={cn(linkClass, "border-slate-600 bg-slate-950 text-sky-200")}
                 href={project.homepage}
                 target="_blank"
                 rel="noreferrer noopener"

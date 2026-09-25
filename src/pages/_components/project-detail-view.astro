@@ -24,54 +24,38 @@ const homeHref = getLocalizedPath("/", lang);
 const description = project.summary?.slice(0, 180) || t("projects.seo.description");
 const linkClass = cn(
   focusRing,
-  "inline-flex min-h-12 w-full items-center justify-center rounded-lg px-4 text-center text-base font-medium transition sm:w-auto",
+  "inline-flex min-h-12 items-center justify-center border px-4 text-center font-mono text-sm transition",
 );
 ---
 
 <Layout title={project.name} description={description} image="/og_image.png">
-  <article class="flex min-w-0 flex-col gap-6 overflow-x-clip" data-project={project.name}>
-    <nav class="flex flex-col gap-2 sm:flex-row sm:flex-wrap" aria-label={t("project.nav")}>
-      <a
-        class={cn(
-          linkClass,
-          "border border-slate-300 bg-white text-slate-900 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100",
-        )}
-        href={homeHref}
-      >
+  <article class="project-page min-w-0 overflow-x-clip" data-project={project.name}>
+    <p data-show="terminal" class="font-mono text-sm text-emerald-300">
+      ~/projects/{project.name}
+    </p>
+    <nav class="project-nav flex flex-col gap-2 sm:flex-row sm:flex-wrap" aria-label={t("project.nav")}>
+      <a class={cn(linkClass, "border-slate-600 bg-slate-950 text-sky-200")} href={homeHref}>
         {t("project.back-terminal")}
       </a>
-      <a
-        class={cn(
-          linkClass,
-          "border border-slate-300 bg-white text-slate-900 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100",
-        )}
-        href={projectsHref}
-      >
+      <a class={cn(linkClass, "border-slate-600 bg-slate-950 text-sky-200")} href={projectsHref}>
         {t("project.back")}
       </a>
     </nav>
-    <header class="flex flex-col gap-3">
-      <h1
-        transition:name="routeHeading"
-        class="text-3xl font-extrabold break-words text-gray-900 sm:text-4xl dark:text-white"
-      >
+    <header class="project-lead flex flex-col gap-3">
+      <h1 transition:name="routeHeading" class="font-mono text-3xl break-words text-amber-100 sm:text-4xl">
         {project.name}
       </h1>
-      {project.summary && (
-        <p class="text-base leading-7 break-words text-neutral-800 sm:text-lg sm:leading-8 dark:text-neutral-200">
-          {project.summary}
-        </p>
+      {project.summary && <p class="text-base leading-7 break-words text-emerald-100/90">{project.summary}</p>}
+      {project.intro && (
+        <p class="text-base leading-7 break-words whitespace-pre-wrap text-emerald-100/80">{project.intro}</p>
       )}
     </header>
-    {project.intro && (
-      <p class="text-base leading-7 break-words whitespace-pre-wrap text-neutral-800 dark:text-neutral-200">
-        {project.intro}
-      </p>
-    )}
-    <ProjectFacts project={project} />
-    <div class="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+    <div class="project-side">
+      <ProjectFacts project={project} />
+    </div>
+    <div class="project-actions flex flex-col gap-2 sm:flex-row sm:flex-wrap">
       <a
-        class={cn(linkClass, "bg-slate-900 text-white dark:bg-slate-100 dark:text-slate-950")}
+        class={cn(linkClass, "border-emerald-700 bg-emerald-950 text-emerald-50")}
         href={project.htmlUrl}
         target="_blank"
         rel="noreferrer noopener"
@@ -80,10 +64,7 @@ const linkClass = cn(
       </a>
       {project.homepage && (
         <a
-          class={cn(
-            linkClass,
-            "border border-slate-300 bg-white text-slate-900 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100",
-          )}
+          class={cn(linkClass, "border-slate-600 bg-slate-950 text-sky-200")}
           href={project.homepage}
           target="_blank"
           rel="noreferrer noopener"

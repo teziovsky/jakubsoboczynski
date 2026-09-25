@@ -9,10 +9,139 @@ import type {
   TerminalMessages,
 } from "@/lib/terminal/types";
 
-const COMMANDS = ["cat", "cd", "clear", "help", "ls", "open", "pwd", "whoami"] as const;
+const COMMANDS = [
+  "cat",
+  "cd",
+  "clear",
+  "date",
+  "echo",
+  "file",
+  "find",
+  "grep",
+  "head",
+  "help",
+  "history",
+  "ls",
+  "man",
+  "open",
+  "pwd",
+  "tail",
+  "tree",
+  "uname",
+  "wc",
+  "whoami",
+] as const;
+
+const WRITE_COMMANDS = new Set([
+  "chmod",
+  "chown",
+  "cp",
+  "dd",
+  "install",
+  "ln",
+  "mkdir",
+  "mv",
+  "rm",
+  "rmdir",
+  "tee",
+  "touch",
+  "truncate",
+  "unlink",
+]);
+
+const PATH_COMMANDS = new Set(["cat", "cd", "file", "find", "head", "ls", "tail", "tree", "wc"]);
 
 function isCommand(value: string): value is (typeof COMMANDS)[number] {
   return (COMMANDS as readonly string[]).includes(value);
+}
+
+const QUESTION_WORDS = new Set([
+  "about",
+  "am",
+  "are",
+  "can",
+  "co",
+  "could",
+  "czy",
+  "czym",
+  "describe",
+  "did",
+  "dlaczego",
+  "do",
+  "does",
+  "gdzie",
+  "how",
+  "is",
+  "jak",
+  "jaka",
+  "jakie",
+  "jaki",
+  "jest",
+  "jestem",
+  "jestes",
+  "kiedy",
+  "kim",
+  "kto",
+  "lubie",
+  "lubisz",
+  "mam",
+  "masz",
+  "me",
+  "moj",
+  "moje",
+  "my",
+  "nie",
+  "opisz",
+  "opowiedz",
+  "please",
+  "pokaz",
+  "powiedz",
+  "prosze",
+  "robi",
+  "robisz",
+  "sa",
+  "sie",
+  "sobie",
+  "tell",
+  "the",
+  "tobie",
+  "twoj",
+  "twoje",
+  "what",
+  "when",
+  "where",
+  "which",
+  "who",
+  "why",
+  "your",
+]);
+
+function isShellInvocation(raw: string, tokens: string[]): boolean {
+  const command = tokens[0];
+  if (!command || tokens.length === 1) return true;
+  if (/[?¿!]/.test(raw)) return false;
+  if (!/^[A-Za-z][A-Za-z0-9_+.-]*$/.test(command)) return false;
+  if (tokens.some((token) => QUESTION_WORDS.has(fold(token)))) return false;
+  const args = tokens.slice(1);
+  const hasShellArg = args.some((token) => token.startsWith("-") || /[~/]/.test(token) || token.includes("."));
+  if (!hasShellArg && tokens.length >= 4) return false;
+  return true;
+}
+
+function hasRedirection(raw: string): boolean {
+  let quote: '"' | "'" | null = null;
+  for (const char of raw) {
+    if (quote) {
+      if (char === quote) quote = null;
+      continue;
+    }
+    if (char === '"' || char === "'") {
+      quote = char;
+      continue;
+    }
+    if (char === ">" || char === "<") return true;
+  }
+  return false;
 }
 
 type Intent = "about" | "projects" | "uses" | "social";
@@ -76,16 +205,36 @@ function helpLines(messages: TerminalMessages): TermLine[] {
   return [
     line(messages.helpHeader, "accent"),
     line(messages.helpHelp, "text"),
+    line(messages.helpMan, "text"),
     line(messages.helpLs, "text"),
     line(messages.helpCd, "text"),
     line(messages.helpPwd, "text"),
     line(messages.helpCat, "text"),
+    line(messages.helpHead, "text"),
+    line(messages.helpTail, "text"),
+    line(messages.helpWc, "text"),
+    line(messages.helpGrep, "text"),
+    line(messages.helpFind, "text"),
+    line(messages.helpTree, "text"),
+    line(messages.helpFile, "text"),
+    line(messages.helpEcho, "text"),
+    line(messages.helpHistory, "text"),
+    line(messages.helpDate, "text"),
+    line(messages.helpUname, "text"),
     line(messages.helpOpen, "text"),
     line(messages.helpWhoami, "text"),
     line(messages.helpClear, "text"),
     line(messages.helpAsk, "muted"),
     line(messages.helpTab, "muted"),
   ];
+}
+
+function helpFor(topic: string | undefined, messages: TerminalMessages): TermLine[] {
+  const lines = helpLines(messages);
+  if (!topic || topic === "help" || topic === "man") return lines;
+  const matched = lines.filter((entry) => entry.text.startsWith(`${topic} `));
+  if (matched.length === 0) return [line(`${topic}: ${messages.noSuch}`, "error"), ...lines];
+  return [line(messages.helpHeader, "accent"), ...matched];
 }
 
 function listDir(dir: FsDir): TermLine[] {
@@ -345,11 +494,105 @@ function runOpen(query: string, corpus: TerminalCorpus, messages: TerminalMessag
   return { type: "output", lines: [line(`${messages.openNone}: ${query}`, "error")] };
 }
 
+function readFile(target: string, cwd: string, root: FsDir, messages: TerminalMessages, command: string) {
+  const path = normalizePath(cwd, target);
+  const node = nodeAt(root, path);
+  if (!node) return { error: line(`${command}: ${target}: ${messages.noSuch}`, "error") };
+  if (node.type === "dir") return { error: line(`${command}: ${target}: ${messages.isDir}`, "error") };
+  return { path, file: node };
+}
+
+function parseLineCount(args: string[], usage: string): { count: number; paths: string[]; error: TermLine | null } {
+  const paths: string[] = [];
+  let count = 10;
+
+  for (let index = 0; index < args.length; index += 1) {
+    const arg = args[index] ?? "";
+    if (arg === "-n") {
+      const value = Number(args[index + 1]);
+      if (!Number.isInteger(value) || value < 0) return { count, paths, error: line(usage, "error") };
+      count = value;
+      index += 1;
+      continue;
+    }
+    if (/^-\d+$/.test(arg)) {
+      count = Number(arg.slice(1));
+      continue;
+    }
+    if (arg.startsWith("-")) return { count, paths, error: line(usage, "error") };
+    paths.push(arg);
+  }
+
+  return { count, paths, error: null };
+}
+
+function sliceFile(content: string, count: number, fromEnd: boolean): string[] {
+  const rows = content.split("\n");
+  if (count === 0) return [];
+  return fromEnd ? rows.slice(-count) : rows.slice(0, count);
+}
+
+function showHeadTail(
+  args: string[],
+  fromEnd: boolean,
+  cwd: string,
+  root: FsDir,
+  messages: TerminalMessages,
+  command: "head" | "tail",
+): TermLine[] {
+  const usage = command === "head" ? messages.usageHead : messages.usageTail;
+  const parsed = parseLineCount(args, usage);
+  if (parsed.error) return [parsed.error];
+  if (parsed.paths.length === 0) return [line(usage, "error")];
+
+  const lines: TermLine[] = [];
+  for (const target of parsed.paths) {
+    const file = readFile(target, cwd, root, messages, command);
+    if (file.error || !file.file) {
+      if (file.error) lines.push(file.error);
+      continue;
+    }
+    if (parsed.paths.length > 1) lines.push(line(`==> ${displayPath(file.path ?? target)} <==`, "muted"));
+    for (const row of sliceFile(file.file.content, parsed.count, fromEnd)) lines.push(line(row, "text"));
+  }
+  return lines;
+}
+
+function walk(node: FsNode, path: string, found: { path: string; node: FsNode }[]) {
+  found.push({ path, node });
+  if (node.type !== "dir") return;
+  for (const child of node.children) {
+    walk(child, `${path === "/" ? "" : path}/${child.name}`, found);
+  }
+}
+
+function nameMatches(name: string, pattern: string): boolean {
+  const source = pattern
+    .replace(/[.+^${}()|[\]\\]/g, "\\$&")
+    .replaceAll("*", ".*")
+    .replaceAll("?", ".");
+  return new RegExp(`^${source}$`, "i").test(name);
+}
+
+function treeLines(dir: FsDir, prefix = ""): TermLine[] {
+  const lines: TermLine[] = [];
+  dir.children.forEach((child, index) => {
+    const last = index === dir.children.length - 1;
+    const branch = last ? "└── " : "├── ";
+    const next = last ? "    " : "│   ";
+    const name = child.type === "dir" ? `${child.name}/` : child.name;
+    lines.push(line(`${prefix}${branch}${name}`, child.type === "dir" ? "dir" : "text"));
+    if (child.type === "dir") lines.push(...treeLines(child, `${prefix}${next}`));
+  });
+  return lines;
+}
+
 export function runCommand(
   raw: string,
   cwd: string,
   corpus: TerminalCorpus,
   messages: TerminalMessages,
+  history: readonly string[] = [],
 ): {
   cwd: string;
   result: CommandResult;
@@ -358,16 +601,182 @@ export function runCommand(
   const command = tokens[0];
   if (!command) return { cwd, result: { type: "output", lines: [] } };
 
+  if (hasRedirection(raw) || WRITE_COMMANDS.has(command)) {
+    return { cwd, result: { type: "output", lines: [line(`${command}: ${messages.denied}`, "error")] } };
+  }
+
   const args = tokens.slice(1);
   if (!isCommand(command)) {
+    if (isShellInvocation(raw, tokens)) {
+      return {
+        cwd,
+        result: {
+          type: "output",
+          lines: [line(messages.commandNotFound.replaceAll("{command}", command), "error")],
+        },
+      };
+    }
     return { cwd, result: { type: "output", lines: answerQuestion(raw, corpus, messages) } };
   }
 
   switch (command) {
     case "help":
-      return { cwd, result: { type: "output", lines: helpLines(messages) } };
+    case "man":
+      return { cwd, result: { type: "output", lines: helpFor(command === "man" ? args[0] : undefined, messages) } };
     case "pwd":
-      return { cwd, result: { type: "output", lines: [line(cwd, "text")] } };
+      return { cwd, result: { type: "output", lines: [line(displayPath(cwd), "text")] } };
+    case "echo":
+      return { cwd, result: { type: "output", lines: [line(args.join(" "), "text")] } };
+    case "history":
+      return {
+        cwd,
+        result: {
+          type: "output",
+          lines: [...history, raw.trim()].map((entry, index) =>
+            line(`${String(index + 1).padStart(4, " ")}  ${entry}`, "text"),
+          ),
+        },
+      };
+    case "date":
+      return {
+        cwd,
+        result: {
+          type: "output",
+          lines: [
+            line(
+              new Intl.DateTimeFormat(corpus.lang === "pl" ? "pl-PL" : "en-GB", {
+                dateStyle: "full",
+                timeStyle: "short",
+              }).format(new Date()),
+              "text",
+            ),
+          ],
+        },
+      };
+    case "uname":
+      return { cwd, result: { type: "output", lines: [line(messages.unameValue, "text")] } };
+    case "head":
+      return { cwd, result: { type: "output", lines: showHeadTail(args, false, cwd, corpus.root, messages, "head") } };
+    case "tail":
+      return { cwd, result: { type: "output", lines: showHeadTail(args, true, cwd, corpus.root, messages, "tail") } };
+    case "wc": {
+      const paths = args.filter((arg) => !arg.startsWith("-"));
+      if (paths.length === 0) return { cwd, result: { type: "output", lines: [line(messages.usageWc, "error")] } };
+      const lines: TermLine[] = [];
+      for (const target of paths) {
+        const file = readFile(target, cwd, corpus.root, messages, "wc");
+        if (file.error || !file.file || !file.path) {
+          if (file.error) lines.push(file.error);
+          continue;
+        }
+        const content = file.file.content;
+        const lineCount = content.length === 0 ? 0 : content.split("\n").length;
+        const wordCount = content.trim() ? content.trim().split(/\s+/).length : 0;
+        lines.push(
+          line(
+            `${messages.wcLines}: ${lineCount}  ${messages.wcWords}: ${wordCount}  ${messages.wcChars}: ${content.length}  ${displayPath(file.path)}`,
+            "text",
+          ),
+        );
+      }
+      return { cwd, result: { type: "output", lines } };
+    }
+    case "file": {
+      if (args.length === 0) return { cwd, result: { type: "output", lines: [line(messages.usageFile, "error")] } };
+      const lines: TermLine[] = [];
+      for (const target of args) {
+        const path = normalizePath(cwd, target);
+        const node = nodeAt(corpus.root, path);
+        if (!node) {
+          lines.push(line(`file: ${target}: ${messages.noSuch}`, "error"));
+          continue;
+        }
+        lines.push(line(`${displayPath(path)}: ${node.type === "dir" ? messages.fileDir : messages.fileText}`, "text"));
+      }
+      return { cwd, result: { type: "output", lines } };
+    }
+    case "tree": {
+      const target = args.filter((arg) => !arg.startsWith("-"))[0] ?? ".";
+      const path = normalizePath(cwd, target);
+      const node = nodeAt(corpus.root, path);
+      if (!node)
+        return { cwd, result: { type: "output", lines: [line(`tree: ${target}: ${messages.noSuch}`, "error")] } };
+      if (node.type !== "dir") {
+        return { cwd, result: { type: "output", lines: [line(displayPath(path), "text")] } };
+      }
+      return {
+        cwd,
+        result: { type: "output", lines: [line(displayPath(path), "dir"), ...treeLines(node)] },
+      };
+    }
+    case "find": {
+      let start = ".";
+      let pattern = "";
+      for (let index = 0; index < args.length; index += 1) {
+        const arg = args[index] ?? "";
+        if (arg === "-name") {
+          pattern = args[index + 1] ?? "";
+          if (!pattern) return { cwd, result: { type: "output", lines: [line(messages.usageFind, "error")] } };
+          index += 1;
+          continue;
+        }
+        if (arg.startsWith("-")) return { cwd, result: { type: "output", lines: [line(messages.usageFind, "error")] } };
+        start = arg;
+      }
+      const path = normalizePath(cwd, start);
+      const node = nodeAt(corpus.root, path);
+      if (!node)
+        return { cwd, result: { type: "output", lines: [line(`find: ${start}: ${messages.noSuch}`, "error")] } };
+      const found: { path: string; node: FsNode }[] = [];
+      walk(node, path, found);
+      const matches = found.filter((entry) => !pattern || nameMatches(entry.node.name, pattern));
+      if (matches.length === 0) return { cwd, result: { type: "output", lines: [line(messages.findNone, "muted")] } };
+      return {
+        cwd,
+        result: {
+          type: "output",
+          lines: matches.map((entry) => line(displayPath(entry.path), entry.node.type === "dir" ? "dir" : "text")),
+        },
+      };
+    }
+    case "grep": {
+      const paths: string[] = [];
+      let pattern = "";
+      for (const arg of args) {
+        if (arg.startsWith("-")) continue;
+        if (!pattern) pattern = arg;
+        else paths.push(arg);
+      }
+      if (!pattern) return { cwd, result: { type: "output", lines: [line(messages.usageGrep, "error")] } };
+      const starts = paths.length > 0 ? paths : ["."];
+      const files: { path: string; file: FsFile }[] = [];
+      const lines: TermLine[] = [];
+      for (const target of starts) {
+        const path = normalizePath(cwd, target);
+        const node = nodeAt(corpus.root, path);
+        if (!node) {
+          lines.push(line(`grep: ${target}: ${messages.noSuch}`, "error"));
+          continue;
+        }
+        const found: { path: string; node: FsNode }[] = [];
+        walk(node, path, found);
+        for (const entry of found) {
+          if (entry.node.type === "file") files.push({ path: entry.path, file: entry.node });
+        }
+      }
+      const needle = pattern.toLowerCase();
+      for (const entry of files) {
+        entry.file.content.split("\n").forEach((row, index) => {
+          if (row.toLowerCase().includes(needle)) {
+            lines.push(line(`${displayPath(entry.path)}:${index + 1}: ${row}`, "text"));
+          }
+        });
+      }
+      const visible = lines.slice(0, 40);
+      if (visible.length === 0) return { cwd, result: { type: "output", lines: [line(messages.grepNone, "muted")] } };
+      if (lines.length > visible.length) visible.push(line(messages.grepMore, "muted"));
+      return { cwd, result: { type: "output", lines: visible } };
+    }
     case "whoami": {
       const about = filesIn(corpus.root).find((entry) => entry.file.kind === "about");
       const bio = about ? firstSentence(about.file.sections[0]?.text ?? "", 500) : "";
@@ -403,16 +812,17 @@ export function runCommand(
       return { cwd: target, result: { type: "output", lines: [] } };
     }
     case "ls": {
-      const targets = args.length > 0 ? args : ["."];
+      const targets = args.filter((arg) => !arg.startsWith("-"));
+      const listed = targets.length > 0 ? targets : ["."];
       const lines: TermLine[] = [];
-      for (const target of targets) {
+      for (const target of listed) {
         const path = normalizePath(cwd, target);
         const node = nodeAt(corpus.root, path);
         if (!node) {
           lines.push(line(`ls: ${target}: ${messages.noSuch}`, "error"));
           continue;
         }
-        if (targets.length > 1) lines.push(line(`${target}:`, "muted"));
+        if (listed.length > 1) lines.push(line(`${target}:`, "muted"));
         if (node.type === "dir") lines.push(...listDir(node));
         else lines.push(line(node.name, "text"));
       }
@@ -487,8 +897,11 @@ export function suggestInput(raw: string, cwd: string, corpus: TerminalCorpus): 
     matches = COMMANDS.filter((command) => command.startsWith(partial));
   } else {
     const command = tokenizeCommand(raw)[0];
-    if (command === "ls" || command === "cd" || command === "cat") {
+    if (command && PATH_COMMANDS.has(command)) {
       matches = completePath(partial, cwd, corpus.root);
+    } else if (command === "grep") {
+      const typed = tokenizeCommand(raw);
+      if (typed.length > 2 || /\s$/.test(raw)) matches = completePath(partial, cwd, corpus.root);
     } else if (command === "open") {
       matches = completeOpen(partial, projectsIn(corpus.root));
     }
@@ -500,10 +913,7 @@ export function suggestInput(raw: string, cwd: string, corpus: TerminalCorpus): 
   const unique = matches.length === 1;
   const command = tokenizeCommand(raw)[0] ?? "";
   let completedToken = unique
-    ? finishToken(
-        matches[0] ?? prefix,
-        typingCommand || command === "open" || command === "cat" || command === "cd" || command === "ls",
-      )
+    ? finishToken(matches[0] ?? prefix, typingCommand || command === "open" || PATH_COMMANDS.has(command))
     : prefix;
   if (!unique && partial && (!completedToken.startsWith(partial) || completedToken.length < partial.length)) {
     completedToken = partial;

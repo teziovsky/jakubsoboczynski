@@ -10,6 +10,6 @@ export const hoverSquare = (direction: "left" | "top" | "right" | "bottom" = "le
 };
 
 export const focusRing =
-  "focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-50 focus:dark:ring-offset-slate-950 focus:ring-slate-500";
+  "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-400";
 
-export const proseArticle = "prose prose-sm sm:prose-base dark:prose-invert";
+export const proseArticle = "prose prose-sm sm:prose-base prose-invert max-w-none font-mono";

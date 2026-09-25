@@ -1,67 +1,184 @@
 ---
 import { getLang, getLocalizedPath, useTranslations } from "@/i18n/utils";
-import { focusRing, hoverSquare } from "@/lib/tailwind";
-import { cn, directionByIndex } from "@/lib/utils";
+import { focusRing } from "@/lib/tailwind";
+import { cn } from "@/lib/utils";
 import { Icon } from "astro-icon/components";
 
 const { url } = Astro;
 const lang = getLang(url);
 const t = useTranslations(lang);
-
 const { pathname } = url;
-
 const homeHref = getLocalizedPath("/", lang);
 
 const links = [
-  {
-    title: t("sidebar.homepage"),
-    href: "/",
-  },
-  {
-    title: t("sidebar.about-me"),
-    href: "/o-mnie/",
-  },
-  {
-    title: t("sidebar.projects"),
-    href: "/projekty/",
-  },
-  {
-    title: t("sidebar.uses"),
-    href: "/uses/",
-  },
+  { title: t("sidebar.homepage"), href: "/" },
+  { title: t("sidebar.about-me"), href: "/o-mnie/" },
+  { title: t("sidebar.projects"), href: "/projekty/" },
+  { title: t("sidebar.uses"), href: "/uses/" },
 ].map(({ title, href }) => {
   const localizedHref = getLocalizedPath(href, lang);
   const path = pathname.endsWith("/") ? pathname : `${pathname}/`;
   const target = localizedHref.endsWith("/") ? localizedHref : `${localizedHref}/`;
   const isCurrent = href === "/" ? path === target : path === target || path.startsWith(target);
-
   return { title, href: localizedHref, isCurrent };
 });
 
-/**
- * Returns the CSS classes for a link based on its index and active state.
- */
-function handleLinkClass(index: number, isCurrent: boolean) {
-  const baseClasses = "inline-flex min-h-11 items-center rounded-lg px-3 py-2 transition";
-  const currentClasses = isCurrent ? "bg-slate-200 dark:bg-slate-800 hocus:before:scale-0" : "";
-
-  return cn(baseClasses, hoverSquare(directionByIndex(index)), focusRing, currentClasses);
+function linkClass(isCurrent: boolean) {
+  return cn(
+    focusRing,
+    "flex min-h-12 items-center gap-2 border px-3 font-mono text-base text-emerald-100 hover:border-emerald-700 hover:text-amber-200",
+    isCurrent ? "border-emerald-700 bg-slate-900 text-amber-200" : "border-transparent",
+  );
 }
 ---
 
-<aside class="w-full sm:sticky sm:top-4">
-  <nav class="flex flex-wrap items-center justify-between gap-3 sm:flex-col sm:items-start">
-    <a class={cn(focusRing, "self-center rounded-lg px-3 py-1.5")} href={homeHref} aria-label={t("sidebar.homepage")}>
-      <Icon name="logo" class="h-12 w-12 sm:h-14 sm:w-14" />
-    </a>
-    <ul class="mx-auto flex gap-3 sm:flex-col sm:gap-2">
-      {links.map(({ title, href, isCurrent }, index) => (
-        <li class="flex justify-center">
-          <a class={handleLinkClass(index, isCurrent)} aria-current={isCurrent ? "page" : undefined} href={href}>
-            {title}
-          </a>
-        </li>
-      ))}
-    </ul>
-  </nav>
+<aside class="w-full min-w-0 sm:sticky sm:top-4" data-site-nav data-open="false">
+  <div class="border border-slate-700 bg-slate-950 sm:border-0 sm:bg-transparent">
+    <div class="flex items-center justify-between gap-2 px-2 sm:mb-3 sm:block sm:px-0">
+      <a
+        class={cn(focusRing, "flex min-h-12 items-center gap-2 rounded-sm px-1")}
+        href={homeHref}
+        aria-label={t("sidebar.homepage")}
+      >
+        <Icon name="logo" class="h-10 w-10 sm:mx-auto sm:h-14 sm:w-14" />
+        <span class="font-mono text-sm text-emerald-300 sm:hidden">jakub@portfolio</span>
+      </a>
+      <button
+        class={cn(
+          focusRing,
+          "inline-flex min-h-12 min-w-12 items-center justify-center border border-emerald-800 px-3 font-mono text-sm text-emerald-200 sm:hidden",
+        )}
+        type="button"
+        data-menu-button
+        aria-expanded="false"
+        aria-controls="site-menu"
+      >
+        <span data-menu-label-closed>{t("sidebar.menu")}</span>
+        <span data-menu-label-open class="hidden">
+          {t("sidebar.close")}
+        </span>
+      </button>
+    </div>
+    <nav id="site-menu" class="hidden border-t border-slate-800 sm:block sm:border-0" data-menu-panel>
+      <div class="border-b border-slate-800 p-2 sm:mb-3 sm:p-0 sm:pb-3" role="group" aria-label={t("layout.label")}>
+        <p class="mb-2 px-1 font-mono text-xs tracking-wide text-emerald-300">{t("layout.label")}</p>
+        <div class="grid grid-cols-2 gap-2">
+          <button
+            class={cn(
+              focusRing,
+              "inline-flex min-h-12 items-center justify-center border border-slate-700 px-2 font-mono text-sm text-emerald-100",
+            )}
+            type="button"
+            data-layout-choice="terminal"
+            aria-pressed="true"
+          >
+            {t("layout.terminal")}
+          </button>
+          <button
+            class={cn(
+              focusRing,
+              "inline-flex min-h-12 items-center justify-center border border-slate-700 px-2 font-mono text-sm text-emerald-100",
+            )}
+            type="button"
+            data-layout-choice="normal"
+            aria-pressed="false"
+          >
+            {t("layout.normal")}
+          </button>
+        </div>
+      </div>
+      <ul class="m-0 flex list-none flex-col gap-1 p-2 sm:p-0">
+        {links.map(({ title, href, isCurrent }) => (
+          <li>
+            <a class={linkClass(isCurrent)} aria-current={isCurrent ? "page" : undefined} href={href}>
+              <span class="w-4 text-emerald-500" aria-hidden="true">
+                {isCurrent ? ">" : ""}
+              </span>
+              {title}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </div>
 </aside>
+
+<script>
+  function closeMenu(nav: HTMLElement) {
+    nav.dataset.open = "false";
+    nav.querySelector("[data-menu-button]")?.setAttribute("aria-expanded", "false");
+    nav.querySelector("[data-menu-panel]")?.classList.add("hidden");
+    nav.querySelector("[data-menu-label-closed]")?.classList.remove("hidden");
+    nav.querySelector("[data-menu-label-open]")?.classList.add("hidden");
+  }
+
+  function openMenu(nav: HTMLElement) {
+    nav.dataset.open = "true";
+    nav.querySelector("[data-menu-button]")?.setAttribute("aria-expanded", "true");
+    nav.querySelector("[data-menu-panel]")?.classList.remove("hidden");
+    nav.querySelector("[data-menu-label-closed]")?.classList.add("hidden");
+    nav.querySelector("[data-menu-label-open]")?.classList.remove("hidden");
+  }
+
+  function bindNav() {
+    const nav = document.querySelector<HTMLElement>("[data-site-nav]");
+    const button = nav?.querySelector<HTMLButtonElement>("[data-menu-button]");
+    const panel = nav?.querySelector<HTMLElement>("[data-menu-panel]");
+    if (!nav || !button || !panel || nav.dataset.bound === "true") return;
+    nav.dataset.bound = "true";
+
+    button.addEventListener("click", () => {
+      if (nav.dataset.open === "true") closeMenu(nav);
+      else openMenu(nav);
+    });
+
+    panel.addEventListener("click", (event) => {
+      const target = event.target;
+      if (target instanceof Element && target.closest("a")) closeMenu(nav);
+    });
+  }
+
+  function currentLayout() {
+    return document.documentElement.dataset.layout === "normal" ? "normal" : "terminal";
+  }
+
+  function syncLayoutControls() {
+    const layout = currentLayout();
+    document.querySelectorAll<HTMLButtonElement>("[data-layout-choice]").forEach((button) => {
+      button.setAttribute("aria-pressed", button.dataset.layoutChoice === layout ? "true" : "false");
+    });
+  }
+
+  function bindLayout() {
+    document.querySelectorAll<HTMLButtonElement>("[data-layout-choice]").forEach((button) => {
+      if (button.dataset.bound === "true") return;
+      button.dataset.bound = "true";
+      button.addEventListener("click", () => {
+        const choice = button.dataset.layoutChoice;
+        if (choice !== "terminal" && choice !== "normal") return;
+        try {
+          localStorage.setItem("site-layout", choice);
+        } catch {
+          /* ignore private-mode storage failures */
+        }
+        document.documentElement.dataset.layout = choice;
+        syncLayoutControls();
+        const nav = document.querySelector<HTMLElement>("[data-site-nav]");
+        if (nav?.dataset.open === "true" && window.matchMedia("(max-width: 639px)").matches) closeMenu(nav);
+      });
+    });
+    syncLayoutControls();
+  }
+
+  bindNav();
+  bindLayout();
+  document.addEventListener("astro:page-load", () => {
+    bindNav();
+    bindLayout();
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key !== "Escape") return;
+    const nav = document.querySelector<HTMLElement>("[data-site-nav]");
+    if (nav?.dataset.open === "true") closeMenu(nav);
+  });
+</script>

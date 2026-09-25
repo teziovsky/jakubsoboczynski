@@ -26,7 +26,10 @@ function formatDate(date: string) {
 ---
 
 <Layout title={t("uses.seo.title")} description={t("uses.seo.description")} image="/og_image.png">
-  <article class={proseArticle}>
+  <article class:list={["doc-panel", proseArticle]}>
+    <p data-show="terminal" class="mb-3 font-mono text-sm text-emerald-300">
+      ~/uses
+    </p>
     <h1 transition:name="routeHeading" class="scroll-mt-8">
       {t("uses.title")}
     </h1>

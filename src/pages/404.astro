@@ -10,7 +10,7 @@ const t = useTranslations(lang);
 ---
 
 <Layout title={t("404.seo.title")} description={t("404.seo.description")} image="/og_image.png">
-  <section class={proseArticle}>
+  <section class:list={["doc-panel", proseArticle]}>
     <h1 transition:name="routeHeading">{t("404.title")}</h1>
     <a href={lang === defaultLang ? "/" : `/${lang}/`}>{t("404.go-back-button")} 👀</a>
   </section>

@@ -78,6 +78,18 @@ const messages = {
   helpOpen: t("terminal.help.open"),
   helpWhoami: t("terminal.help.whoami"),
   helpClear: t("terminal.help.clear"),
+  helpEcho: t("terminal.help.echo"),
+  helpHistory: t("terminal.help.history"),
+  helpHead: t("terminal.help.head"),
+  helpTail: t("terminal.help.tail"),
+  helpWc: t("terminal.help.wc"),
+  helpFind: t("terminal.help.find"),
+  helpGrep: t("terminal.help.grep"),
+  helpTree: t("terminal.help.tree"),
+  helpFile: t("terminal.help.file"),
+  helpUname: t("terminal.help.uname"),
+  helpDate: t("terminal.help.date"),
+  helpMan: t("terminal.help.man"),
   helpAsk: t("terminal.help.ask"),
   helpTab: t("terminal.help.tab"),
   noSuch: t("terminal.error.no-such"),
@@ -85,6 +97,23 @@ const messages = {
   notDir: t("terminal.error.not-dir"),
   usageCd: t("terminal.error.usage-cd"),
   usageCat: t("terminal.error.usage-cat"),
+  denied: t("terminal.error.denied"),
+  commandNotFound: t("terminal.error.command-not-found"),
+  usageHead: t("terminal.error.usage-head"),
+  usageTail: t("terminal.error.usage-tail"),
+  usageWc: t("terminal.error.usage-wc"),
+  usageGrep: t("terminal.error.usage-grep"),
+  usageFind: t("terminal.error.usage-find"),
+  usageFile: t("terminal.error.usage-file"),
+  grepNone: t("terminal.grep.none"),
+  grepMore: t("terminal.grep.more"),
+  findNone: t("terminal.find.none"),
+  fileDir: t("terminal.file.dir"),
+  fileText: t("terminal.file.text"),
+  unameValue: t("terminal.uname"),
+  wcLines: t("terminal.wc.lines"),
+  wcWords: t("terminal.wc.words"),
+  wcChars: t("terminal.wc.chars"),
   usageOpen: t("terminal.error.usage-open"),
   openOnly: t("terminal.error.open-only"),
   openNone: t("terminal.error.open-none"),
@@ -107,26 +136,32 @@ const sectionLinks = [
 ---
 
 <Layout title={t("home.seo.title")} description={t("home.seo.description")} image="/og_image.png" compact>
-  <div class="mb-4 flex flex-col gap-3">
-    <h1 class="text-3xl font-extrabold break-words text-gray-900 sm:text-4xl dark:text-white">Jakub Soboczyński</h1>
-    <p class="text-base leading-7 text-neutral-700 dark:text-neutral-300">{t("home.intro")}</p>
-    <nav class="grid grid-cols-1 gap-2 sm:grid-cols-3" aria-label={t("home.nav")}>
-      {sectionLinks.map(({ href, label }) => (
-        <a
-          class={cn(
-            focusRing,
-            "inline-flex min-h-12 items-center justify-center rounded-lg border border-slate-300 bg-white px-4 text-center text-base font-medium text-slate-900 transition hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:hover:bg-slate-800",
-          )}
-          href={href}
-        >
-          {label}
-        </a>
-      ))}
-    </nav>
-  </div>
+  <header class="mb-4 flex flex-col gap-3">
+    <h1 class="font-mono text-3xl break-words text-amber-100 sm:text-4xl">Jakub Soboczyński</h1>
+    <p data-show="terminal" class="font-mono text-base leading-7 text-emerald-100/90">
+      {t("home.intro")}
+    </p>
+    <p data-show="normal" class="font-mono text-base leading-7 text-emerald-100/90">
+      {t("home.intro.normal")}
+    </p>
+  </header>
+  <nav data-show="normal" class="grid grid-cols-1 gap-3 sm:grid-cols-3" aria-label={t("home.nav")}>
+    {sectionLinks.map(({ href, label }) => (
+      <a
+        class={cn(
+          focusRing,
+          "flex min-h-28 items-end border border-slate-700 bg-slate-900 p-4 font-mono text-lg text-amber-100 hover:border-emerald-700 hover:text-emerald-100",
+        )}
+        href={href}
+      >
+        {label}
+      </a>
+    ))}
+  </nav>
   <section
+    data-show="terminal"
     data-terminal
-    class="flex h-[calc(100dvh-15rem)] min-h-60 w-full min-w-0 touch-manipulation flex-col overflow-hidden rounded-xl border border-slate-700 bg-slate-950 font-mono text-sm text-emerald-100 shadow-2xl shadow-slate-950/40 sm:h-[calc(100dvh-14rem)] sm:min-h-[28rem] sm:text-base"
+    class="flex h-[calc(100dvh-12rem)] min-h-60 w-full min-w-0 touch-manipulation flex-col overflow-hidden border border-slate-700 bg-slate-950 font-mono text-sm text-emerald-100 sm:h-[calc(100dvh-11rem)] sm:min-h-[28rem] sm:text-base"
   >
     <header class="flex h-11 shrink-0 items-center gap-2 border-b border-slate-800 px-3">
       <span class="size-2.5 shrink-0 rounded-full bg-rose-500/90"></span>

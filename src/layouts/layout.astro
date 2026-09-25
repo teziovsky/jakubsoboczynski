@@ -72,8 +72,28 @@ const structuredData = {
 ---
 
 <!doctype html>
-<html transition:animate="none" lang={lang}>
+<html transition:animate="none" lang={lang} data-layout="terminal">
   <Head>
+    <script is:inline>
+      (function () {
+        var key = "site-layout";
+        function readLayout() {
+          try {
+            var stored = localStorage.getItem(key);
+            if (stored === "normal" || stored === "terminal") return stored;
+          } catch (e) {}
+          return "terminal";
+        }
+        function applyLayout() {
+          document.documentElement.dataset.layout = readLayout();
+        }
+        applyLayout();
+        if (!window.__siteLayoutBound) {
+          window.__siteLayoutBound = true;
+          document.addEventListener("astro:after-swap", applyLayout);
+        }
+      })();
+    </script>
     <script
       is:inline
       type="text/partytown"
@@ -156,7 +176,7 @@ const structuredData = {
 
   <body
     class:list={[
-      "grid-rows-mobile sm:grid-cols-sidebar sm:grid-rows-desktop container grid min-h-dvh items-start bg-slate-50 text-neutral-800 antialiased sm:gap-6 sm:pt-24 sm:pb-8 md:gap-8 dark:bg-slate-950 dark:text-neutral-200",
+      "grid-rows-mobile sm:grid-cols-sidebar sm:grid-rows-desktop container grid min-h-dvh items-start overflow-x-clip bg-slate-950 font-mono text-emerald-50 antialiased sm:gap-6 sm:pt-8 sm:pb-8 md:gap-8",
       compact ? "gap-3 py-3" : "gap-12 py-4",
       { "max-w-4xl": !isWide },
     ]}

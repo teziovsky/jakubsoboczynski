@@ -118,7 +118,7 @@ export function mountTerminal(root: HTMLElement, payload: TerminalPayload) {
     const command = input.value;
     if (!command.trim()) return;
 
-    const { cwd: nextCwd, result } = runCommand(command, cwd, payload.corpus, payload.messages);
+    const { cwd: nextCwd, result } = runCommand(command, cwd, payload.corpus, payload.messages, history);
     if (result.type === "clear") {
       scrollback.replaceChildren();
     } else if (result.type === "navigate") {
