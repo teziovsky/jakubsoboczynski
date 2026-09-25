@@ -33,7 +33,11 @@ const linkClass = cn(
     <p data-show="terminal" class="font-mono text-sm text-emerald-300">
       ~/projects/{project.name}
     </p>
-    <nav class="project-nav flex flex-col gap-2 sm:flex-row sm:flex-wrap" aria-label={t("project.nav")}>
+    <nav
+      data-show="normal"
+      class="project-nav flex flex-col gap-2 sm:flex-row sm:flex-wrap"
+      aria-label={t("project.nav")}
+    >
       <a class={cn(linkClass, "border-slate-600 bg-slate-950 text-sky-200")} href={homeHref}>
         {t("project.back-terminal")}
       </a>

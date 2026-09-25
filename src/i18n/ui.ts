@@ -20,7 +20,7 @@ export const ui = {
     "home.seo.title": "Cześć!",
     "home.seo.description":
       "Portfolio Jakuba Soboczyńskiego. Przejdź do informacji o mnie, projektów oraz sprzętu i narzędzi. Terminal na stronie głównej jest dodatkowym sposobem, żeby o to zapytać.",
-    "home.intro": "Wybierz dział albo skorzystaj z terminala poniżej.",
+    "home.intro": "Przeglądaj komendami powłoki. Przełącznik powyżej zmienia układ.",
     "home.nav": "Działy strony",
 
     "about-me.seo.title": "Cześć!",
@@ -60,7 +60,7 @@ export const ui = {
       "Zapytaj o Jakuba albo przeglądaj portfolio komendami powłoki. Odpowiedzi pochodzą tylko z treści tej strony.",
     "terminal.banner": "agent — jakub@portfolio",
     "terminal.welcome":
-      "To dodatkowy sposób, żeby zapytać o Jakuba. Te same działy są w menu.\nhelp — komendy, ls — katalogi, open <projekt> — podstrona projektu.",
+      "Pytaj o Jakuba albo przeglądaj komendami. Odpowiedzi pochodzą tylko z treści tej strony.\nhelp — komendy, ls — katalogi, open <projekt> — podstrona projektu.",
     "terminal.input.label": "Polecenie lub pytanie",
     "terminal.output.label": "Historia terminala",
     "terminal.help.header": "Komendy tylko do odczytu (nazwy po angielsku):",
@@ -145,7 +145,7 @@ export const ui = {
     "home.seo.title": "Hello!",
     "home.seo.description":
       "Jakub Soboczyński's portfolio. Open about, projects, or gear and tools. The terminal on the homepage is an extra way to ask about them.",
-    "home.intro": "Choose a section, or use the terminal below.",
+    "home.intro": "Browse with shell commands. The switch above changes the layout.",
     "home.nav": "Site sections",
 
     "about-me.seo.title": "Hello!",
@@ -185,7 +185,7 @@ export const ui = {
       "Ask about Jakub or browse the portfolio with shell commands. Answers come only from the content on this site.",
     "terminal.banner": "agent — jakub@portfolio",
     "terminal.welcome":
-      "This is an extra way to ask about Jakub. The same sections are in the menu.\nhelp — commands, ls — directories, open <project> — project page.",
+      "Ask about Jakub or browse with commands. Answers come only from this site.\nhelp — commands, ls — directories, open <project> — project page.",
     "terminal.input.label": "Command or question",
     "terminal.output.label": "Terminal history",
     "terminal.help.header": "Read-only commands:",

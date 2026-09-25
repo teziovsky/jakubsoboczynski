@@ -34,72 +34,74 @@ function linkClass(isCurrent: boolean) {
 
 <aside class="w-full min-w-0 sm:sticky sm:top-4" data-site-nav data-open="false">
   <div class="border border-slate-700 bg-slate-950 sm:border-0 sm:bg-transparent">
-    <div class="flex items-center justify-between gap-2 px-2 sm:mb-3 sm:block sm:px-0">
-      <a
-        class={cn(focusRing, "flex min-h-12 items-center gap-2 rounded-sm px-1")}
-        href={homeHref}
-        aria-label={t("sidebar.homepage")}
-      >
-        <Icon name="logo" class="h-10 w-10 sm:mx-auto sm:h-14 sm:w-14" />
-        <span class="font-mono text-sm text-emerald-300 sm:hidden">jakub@portfolio</span>
-      </a>
-      <button
-        class={cn(
-          focusRing,
-          "inline-flex min-h-12 min-w-12 items-center justify-center border border-emerald-800 px-3 font-mono text-sm text-emerald-200 sm:hidden",
-        )}
-        type="button"
-        data-menu-button
-        aria-expanded="false"
-        aria-controls="site-menu"
-      >
-        <span data-menu-label-closed>{t("sidebar.menu")}</span>
-        <span data-menu-label-open class="hidden">
-          {t("sidebar.close")}
-        </span>
-      </button>
-    </div>
-    <nav id="site-menu" class="hidden border-t border-slate-800 sm:block sm:border-0" data-menu-panel>
-      <div class="border-b border-slate-800 p-2 sm:mb-3 sm:p-0 sm:pb-3" role="group" aria-label={t("layout.label")}>
-        <p class="mb-2 px-1 font-mono text-xs tracking-wide text-emerald-300">{t("layout.label")}</p>
-        <div class="grid grid-cols-2 gap-2">
-          <button
-            class={cn(
-              focusRing,
-              "inline-flex min-h-12 items-center justify-center border border-slate-700 px-2 font-mono text-sm text-emerald-100",
-            )}
-            type="button"
-            data-layout-choice="terminal"
-            aria-pressed="true"
-          >
-            {t("layout.terminal")}
-          </button>
-          <button
-            class={cn(
-              focusRing,
-              "inline-flex min-h-12 items-center justify-center border border-slate-700 px-2 font-mono text-sm text-emerald-100",
-            )}
-            type="button"
-            data-layout-choice="normal"
-            aria-pressed="false"
-          >
-            {t("layout.normal")}
-          </button>
-        </div>
+    <div class="p-2 sm:px-0 sm:pt-0 sm:pb-3" role="group" aria-label={t("layout.label")}>
+      <p class="mb-2 px-1 font-mono text-xs tracking-wide text-emerald-300">{t("layout.label")}</p>
+      <div class="grid grid-cols-2 gap-2">
+        <button
+          class={cn(
+            focusRing,
+            "inline-flex min-h-12 items-center justify-center border border-slate-700 px-2 font-mono text-sm text-emerald-100",
+          )}
+          type="button"
+          data-layout-choice="terminal"
+          aria-pressed="true"
+        >
+          {t("layout.terminal")}
+        </button>
+        <button
+          class={cn(
+            focusRing,
+            "inline-flex min-h-12 items-center justify-center border border-slate-700 px-2 font-mono text-sm text-emerald-100",
+          )}
+          type="button"
+          data-layout-choice="normal"
+          aria-pressed="false"
+        >
+          {t("layout.normal")}
+        </button>
       </div>
-      <ul class="m-0 flex list-none flex-col gap-1 p-2 sm:p-0">
-        {links.map(({ title, href, isCurrent }) => (
-          <li>
-            <a class={linkClass(isCurrent)} aria-current={isCurrent ? "page" : undefined} href={href}>
-              <span class="w-4 text-emerald-500" aria-hidden="true">
-                {isCurrent ? ">" : ""}
-              </span>
-              {title}
-            </a>
-          </li>
-        ))}
-      </ul>
-    </nav>
+    </div>
+    <div data-show="normal">
+      <div class="flex items-center justify-between gap-2 border-t border-slate-800 px-2 py-2 sm:mb-3 sm:block sm:border-0 sm:px-0 sm:py-0">
+        <a
+          class={cn(focusRing, "flex min-h-12 items-center gap-2 rounded-sm px-1")}
+          href={homeHref}
+          aria-label={t("sidebar.homepage")}
+        >
+          <Icon name="logo" class="h-10 w-10 sm:mx-auto sm:h-14 sm:w-14" />
+          <span class="font-mono text-sm text-emerald-300 sm:hidden">jakub@portfolio</span>
+        </a>
+        <button
+          class={cn(
+            focusRing,
+            "inline-flex min-h-12 min-w-12 items-center justify-center border border-emerald-800 px-3 font-mono text-sm text-emerald-200 sm:hidden",
+          )}
+          type="button"
+          data-menu-button
+          aria-expanded="false"
+          aria-controls="site-menu"
+        >
+          <span data-menu-label-closed>{t("sidebar.menu")}</span>
+          <span data-menu-label-open class="hidden">
+            {t("sidebar.close")}
+          </span>
+        </button>
+      </div>
+      <nav id="site-menu" class="hidden border-t border-slate-800 sm:block sm:border-0" data-menu-panel>
+        <ul class="m-0 flex list-none flex-col gap-1 p-2 sm:p-0">
+          {links.map(({ title, href, isCurrent }) => (
+            <li>
+              <a class={linkClass(isCurrent)} aria-current={isCurrent ? "page" : undefined} href={href}>
+                <span class="w-4 text-emerald-500" aria-hidden="true">
+                  {isCurrent ? ">" : ""}
+                </span>
+                {title}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </div>
   </div>
 </aside>
 

@@ -10,7 +10,7 @@
 @variant hocus (&:hover, &:focus);
 
 @theme {
-  --grid-template-columns-sidebar: "110px 1fr";
+  --grid-template-columns-sidebar: minmax(13rem, 16rem) minmax(0, 1fr);
   --grid-template-rows-mobile: "auto 1fr auto";
   --grid-template-rows-desktop: "1fr auto";
 
@@ -84,6 +84,10 @@ html {
 html[data-layout="terminal"] [data-show="normal"],
 html[data-layout="normal"] [data-show="terminal"] {
   display: none !important;
+}
+
+html[data-layout="terminal"] body {
+  grid-template-columns: minmax(0, 1fr);
 }
 
 .project-list {
