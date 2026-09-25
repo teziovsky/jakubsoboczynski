@@ -1,95 +1,74 @@
 ---
+import ProjectFacts from "@/components/project-facts.astro";
 import { getLang, useTranslations } from "@/i18n/utils";
 import Layout from "@/layouts/layout.astro";
-import { focusRing, hoverSquare } from "@/lib/tailwind";
-import { cn, directionByIndex } from "@/lib/utils";
-import { Icon } from "astro-icon/components";
-import { Image } from "astro:assets";
-import { getCollection } from "astro:content";
+import { getProjects } from "@/lib/projects";
+import { focusRing } from "@/lib/tailwind";
+import { cn } from "@/lib/utils";
 
 const { url } = Astro;
 const lang = getLang(url);
 const t = useTranslations(lang);
-
-const projects = await getCollection("project", ({ id }) => id.startsWith(lang));
-const sortedProjects = projects.sort((a, b) => b.data.sort - a.data.sort);
+const projects = await getProjects(lang);
+const linkClass = cn(
+  focusRing,
+  "inline-flex min-h-12 w-full items-center justify-center rounded-lg px-4 text-center text-sm font-medium transition sm:w-auto",
+);
 ---
 
 <Layout title={t("projects.seo.title")} description={t("projects.seo.description")} image="/og_image.png" isWide>
-  <article>
+  <article class="min-w-0">
     <h1
       transition:name="routeHeading"
-      class="mb-7 text-3xl text-gray-900 sm:text-4xl sm:font-extrabold dark:text-white"
+      class="mb-4 text-3xl break-words text-gray-900 sm:text-4xl sm:font-extrabold dark:text-white"
     >
       {t("projects.title")}
     </h1>
-    <ul class="grid list-none gap-6 p-0 md:grid-cols-2 md:gap-8 xl:grid-cols-3 2xl:grid-cols-4">
+    <p class="mb-7 max-w-3xl text-base leading-7 text-neutral-700 dark:text-neutral-300">{t("projects.lead")}</p>
+    <ul class="grid list-none gap-6 p-0 md:grid-cols-2 xl:grid-cols-3">
       {
-        sortedProjects.map((project, index) => (
-          <li class="m-0 flex flex-col gap-4 rounded-lg border border-gray-200 bg-gray-100 p-0 transition duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-slate-200 dark:border-gray-800 dark:bg-gray-900 hover:dark:shadow-slate-800">
-            {project.data.screenshot && (
-              <Image
-                src={project.data.screenshot.src}
-                width={1366}
-                height={768}
-                loading={index < 4 ? "eager" : "lazy"}
-                alt={project.data.screenshot.alt}
-                class="m-0 aspect-video rounded-t-lg object-cover object-center mix-blend-luminosity"
-              />
+        projects.map((project) => (
+          <li class="m-0 flex min-w-0 flex-col gap-4 rounded-lg border border-gray-200 bg-gray-100 p-4 dark:border-gray-800 dark:bg-gray-900">
+            <h2 class="text-xl font-bold break-words text-gray-900 dark:text-white">
+              <a class={cn(focusRing, "rounded-md")} href={project.href}>
+                {project.name}
+              </a>
+            </h2>
+            {project.summary && (
+              <p class="text-sm leading-6 break-words text-neutral-700 dark:text-neutral-300">{project.summary}</p>
             )}
-            <div class="m-0 flex flex-grow flex-col gap-4 px-4 pb-4">
-              <div class="flex items-center justify-between gap-1">
-                <div class="size-9">
-                  {project.data.githubUrl ? (
-                    <a
-                      class={cn(
-                        "z-0 flex rounded-lg p-1.5 transition",
-                        hoverSquare(directionByIndex(Math.floor(Math.random() * 4))),
-                        focusRing,
-                      )}
-                      aria-label={`${t("projects.github.aria-label")} - ${project.data.title}`}
-                      href={project.data.githubUrl}
-                      target="_blank"
-                      rel="noreferrer nofollow noopener"
-                    >
-                      <Icon name="tabler:brand-github" class="h-5 w-5 sm:h-6 sm:w-6" />
-                    </a>
-                  ) : null}
-                </div>
-                <h2 class="text-center text-base font-bold text-gray-900 md:text-lg lg:text-xl dark:text-white">
-                  {project.data.title}
-                </h2>
-                <div class="size-9">
-                  {project.data.demoUrl ? (
-                    <a
-                      class={cn(
-                        "z-0 flex rounded-lg p-1.5 transition",
-                        hoverSquare(directionByIndex(Math.floor(Math.random() * 4))),
-                        focusRing,
-                      )}
-                      aria-label={`${t("projects.demo.aria-label")} - ${project.data.title}`}
-                      href={project.data.demoUrl}
-                      target="_blank"
-                      rel="noreferrer nofollow noopener"
-                    >
-                      <Icon name="lucide:external-link" class="h-5 w-5 sm:h-6 sm:w-6" />
-                    </a>
-                  ) : null}
-                </div>
-              </div>
-              <p class="flex-grow text-justify text-xs/5 text-neutral-700 sm:text-sm dark:text-neutral-300">
-                {project.body}
-              </p>
-              <h3 class="text-xs/5 font-bold text-neutral-700 sm:text-sm dark:text-neutral-300">
-                {t("projects.technologies.title")}:
-              </h3>
-              <div class="flex flex-wrap gap-2">
-                {project.data.technologies.map((technology: string) => (
-                  <span class="rounded-lg bg-gray-200 px-2 py-1 text-xs whitespace-nowrap dark:bg-gray-800">
-                    {technology}
-                  </span>
-                ))}
-              </div>
+            <ProjectFacts project={project} />
+            <div class="mt-auto flex flex-col gap-2 sm:flex-row sm:flex-wrap">
+              <a
+                class={cn(linkClass, "bg-slate-900 text-white dark:bg-slate-100 dark:text-slate-950")}
+                href={project.href}
+              >
+                {t("projects.read-more")}
+              </a>
+              <a
+                class={cn(
+                  linkClass,
+                  "border border-slate-300 bg-white text-slate-900 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100",
+                )}
+                href={project.htmlUrl}
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                {t("projects.repository")}
+              </a>
+              {project.homepage && (
+                <a
+                  class={cn(
+                    linkClass,
+                    "border border-slate-300 bg-white text-slate-900 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100",
+                  )}
+                  href={project.homepage}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                >
+                  {t("projects.homepage")}
+                </a>
+              )}
             </div>
           </li>
         ))

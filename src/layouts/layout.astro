@@ -13,9 +13,17 @@ export type Props = {
   description: string;
   image: string;
   isWide?: boolean;
+  compact?: boolean;
 };
 
-const { title, titleTemplate = "%s | Jakub Soboczyński", description, image, isWide = false } = Astro.props;
+const {
+  title,
+  titleTemplate = "%s | Jakub Soboczyński",
+  description,
+  image,
+  isWide = false,
+  compact = false,
+} = Astro.props;
 
 const { url } = Astro;
 const lang = getLang(url);
@@ -111,7 +119,7 @@ const structuredData = {
         meta: [
           {
             name: "viewport",
-            content: "width=device-width, initial-scale=1",
+            content: "width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content",
           },
           {
             name: "generator",
@@ -144,11 +152,14 @@ const structuredData = {
   </Head>
 
   <body
-    class="grid-rows-mobile sm:grid-cols-sidebar sm:grid-rows-desktop container grid min-h-screen items-start gap-12 bg-slate-50 py-4 text-neutral-800 antialiased sm:gap-6 sm:pt-24 sm:pb-8 md:gap-8 dark:bg-slate-950 dark:text-neutral-200"
-    class:list={[{ "max-w-4xl": !isWide }]}
+    class:list={[
+      "grid-rows-mobile sm:grid-cols-sidebar sm:grid-rows-desktop container grid min-h-dvh items-start bg-slate-50 text-neutral-800 antialiased sm:gap-6 sm:pt-24 sm:pb-8 md:gap-8 dark:bg-slate-950 dark:text-neutral-200",
+      compact ? "gap-3 py-3" : "gap-12 py-4",
+      { "max-w-4xl": !isWide },
+    ]}
   >
     <Sidebar />
-    <main class="pb-8 sm:pt-4 sm:pb-20">
+    <main class:list={["min-w-0 sm:pt-4", compact ? "pb-3 sm:pb-4" : "pb-8 sm:pb-20"]}>
       <slot />
     </main>
     <Footer />

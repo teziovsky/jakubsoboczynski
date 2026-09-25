@@ -20,16 +20,8 @@ const aboutMeCollection = defineCollection({
 const projectCollection = defineCollection({
   loader: glob({ base: "./src/data/project", pattern: "**/*.{md,mdx}" }),
   schema: z.object({
-    sort,
-    title: z.string(),
-    screenshot: z.object({
-      src: z.string(),
-      alt: z.string(),
-    }),
-    autoUpdateScreenshot: z.boolean().default(false),
-    technologies: z.array(z.string()),
-    githubUrl: z.string().url().nullable().optional(),
-    demoUrl: z.string().url(),
+    intro: z.string().optional(),
+    minutesRead,
     lastModified,
   }),
 });

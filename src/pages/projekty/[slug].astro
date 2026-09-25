@@ -1,0 +1,20 @@
+---
+import ProjectDetailView from "@/pages/_components/project-detail-view.astro";
+import { getProjectSlugs } from "@/lib/projects";
+
+export async function getStaticPaths() {
+  const slugs = await getProjectSlugs();
+
+  return slugs.map((slug) => ({
+    params: { slug },
+  }));
+}
+
+const { slug } = Astro.params;
+
+if (!slug) {
+  return Astro.redirect("/404");
+}
+---
+
+<ProjectDetailView slug={slug} />

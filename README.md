@@ -8,12 +8,11 @@
 
 #### [🏠 Link to demo here!](https://www.jakubsoboczynski.pl/)
 
-## Automatic project screenshot updates
+## Projects
 
-- Projects that should have screenshots refreshed automatically must set `autoUpdateScreenshot: true` in frontmatter (in `src/data/project/en/*.mdx`).
-- Screenshot file path is read from `screenshot.src` and replaced in place.
-- Use `npm run update:project-screenshots` to run the update manually.
-- GitHub Actions workflow `.github/workflows/update-project-screenshots.yml` runs this weekly and can be triggered manually.
+- The project list is the site owner's public GitHub repositories (the account linked in the social links), excluding forks.
+- `src/data/project/{pl,en}/<repo-name>.md` holds optional translated copy only. The file body is a short blurb. GitHub still supplies the name, URL, homepage, description, language, stars, topics, and dates.
+- If a locale file is missing, the page shows the GitHub description.
 
 ## Author 🙎🏼‍
 

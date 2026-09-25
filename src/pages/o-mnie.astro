@@ -1,6 +1,6 @@
 ---
-import TerminalView from "@/pages/_components/terminal-view.astro";
 import { languages } from "@/i18n/ui";
+import AboutMeView from "@/pages/_components/about-me-view.astro";
 
 export async function getStaticPaths() {
   return Object.keys(languages).map((lang) => {
@@ -9,4 +9,4 @@ export async function getStaticPaths() {
 }
 ---
 
-<TerminalView />
+<AboutMeView />

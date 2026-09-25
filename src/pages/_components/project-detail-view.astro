@@ -1,0 +1,102 @@
+---
+import ProjectFacts from "@/components/project-facts.astro";
+import { getLang, getLocalizedPath, useTranslations } from "@/i18n/utils";
+import Layout from "@/layouts/layout.astro";
+import { getProject } from "@/lib/projects";
+import { focusRing } from "@/lib/tailwind";
+import { cn } from "@/lib/utils";
+
+interface Props {
+  slug: string;
+}
+
+const { slug } = Astro.props;
+const lang = getLang(Astro.url);
+const t = useTranslations(lang);
+const project = await getProject(lang, slug);
+
+if (!project) {
+  return Astro.redirect("/404");
+}
+
+const projectsHref = getLocalizedPath("/projekty/", lang);
+const homeHref = getLocalizedPath("/", lang);
+const description = project.summary?.slice(0, 180) || t("projects.seo.description");
+const linkClass = cn(
+  focusRing,
+  "inline-flex min-h-12 w-full items-center justify-center rounded-lg px-4 text-center text-base font-medium transition sm:w-auto",
+);
+---
+
+<Layout title={project.name} description={description} image="/og_image.png">
+  <article class="flex min-w-0 flex-col gap-6 overflow-x-clip" data-project={project.name}>
+    <nav class="flex flex-col gap-2 sm:flex-row sm:flex-wrap" aria-label={t("project.nav")}>
+      <a
+        class={cn(
+          linkClass,
+          "border border-slate-300 bg-white text-slate-900 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100",
+        )}
+        href={homeHref}
+      >
+        {t("project.back-terminal")}
+      </a>
+      <a
+        class={cn(
+          linkClass,
+          "border border-slate-300 bg-white text-slate-900 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100",
+        )}
+        href={projectsHref}
+      >
+        {t("project.back")}
+      </a>
+    </nav>
+    <header class="flex flex-col gap-3">
+      <h1
+        transition:name="routeHeading"
+        class="text-3xl font-extrabold break-words text-gray-900 sm:text-4xl dark:text-white"
+      >
+        {project.name}
+      </h1>
+      {
+        project.summary && (
+          <p class="text-base leading-7 break-words text-neutral-800 sm:text-lg sm:leading-8 dark:text-neutral-200">
+            {project.summary}
+          </p>
+        )
+      }
+    </header>
+    {
+      project.intro && (
+        <p class="text-base leading-7 break-words whitespace-pre-wrap text-neutral-800 dark:text-neutral-200">
+          {project.intro}
+        </p>
+      )
+    }
+    <ProjectFacts project={project} />
+    <div class="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+      <a
+        class={cn(linkClass, "bg-slate-900 text-white dark:bg-slate-100 dark:text-slate-950")}
+        href={project.htmlUrl}
+        target="_blank"
+        rel="noreferrer noopener"
+      >
+        {t("projects.repository")}
+      </a>
+      {
+        project.homepage && (
+          <a
+            class={cn(
+              linkClass,
+              "border border-slate-300 bg-white text-slate-900 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100",
+            )}
+            href={project.homepage}
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            {t("projects.homepage")}
+          </a>
+        )
+      }
+    </div>
+  </article>
+</Layout>

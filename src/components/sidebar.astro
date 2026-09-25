@@ -1,6 +1,5 @@
 ---
-import { defaultLang } from "@/i18n/ui";
-import { getLang, useTranslations } from "@/i18n/utils";
+import { getLang, getLocalizedPath, useTranslations } from "@/i18n/utils";
 import { focusRing, hoverSquare } from "@/lib/tailwind";
 import { cn, directionByIndex } from "@/lib/utils";
 import { Icon } from "astro-icon/components";
@@ -11,21 +10,30 @@ const t = useTranslations(lang);
 
 const { pathname } = url;
 
+const homeHref = getLocalizedPath("/", lang);
+
 const links = [
   {
-    title: t("sidebar.about-me"),
+    title: t("sidebar.homepage"),
     href: "/",
+  },
+  {
+    title: t("sidebar.about-me"),
+    href: "/o-mnie/",
   },
   {
     title: t("sidebar.projects"),
     href: "/projekty/",
   },
+  {
+    title: t("sidebar.uses"),
+    href: "/uses/",
+  },
 ].map(({ title, href }) => {
-  const localizedHref = lang === defaultLang ? href : href === "/" ? `/${lang}/` : `/${lang}${href}`;
-  const isCurrent =
-    href === "/"
-      ? pathname === "/" || pathname === "/en" || pathname === "/en/"
-      : pathname === localizedHref || pathname === localizedHref.replace(/\/$/, "");
+  const localizedHref = getLocalizedPath(href, lang);
+  const path = pathname.endsWith("/") ? pathname : `${pathname}/`;
+  const target = localizedHref.endsWith("/") ? localizedHref : `${localizedHref}/`;
+  const isCurrent = href === "/" ? path === target : path === target || path.startsWith(target);
 
   return { title, href: localizedHref, isCurrent };
 });
@@ -34,7 +42,7 @@ const links = [
  * Returns the CSS classes for a link based on its index and active state.
  */
 function handleLinkClass(index: number, isCurrent: boolean) {
-  const baseClasses = "px-3 py-1 rounded-lg transition";
+  const baseClasses = "inline-flex min-h-11 items-center rounded-lg px-3 py-2 transition";
   const currentClasses = isCurrent ? "bg-slate-200 dark:bg-slate-800 hocus:before:scale-0" : "";
 
   return cn(baseClasses, hoverSquare(directionByIndex(index)), focusRing, currentClasses);
@@ -43,10 +51,9 @@ function handleLinkClass(index: number, isCurrent: boolean) {
 
 <aside class="w-full sm:sticky sm:top-4">
   <nav class="flex flex-wrap items-center justify-between gap-3 sm:flex-col sm:items-start">
-    <div class={cn("py-1.5 px-3 self-center rounded-lg")}>
+    <a class={cn(focusRing, "self-center rounded-lg px-3 py-1.5")} href={homeHref} aria-label={t("sidebar.homepage")}>
       <Icon name="logo" class="h-12 w-12 sm:h-14 sm:w-14" />
-      <span class="sr-only">{t("sidebar.homepage")}</span>
-    </div>
+    </a>
     <ul class="mx-auto flex gap-3 sm:flex-col sm:gap-2">
       {
         links.map(({ title, href, isCurrent }, index) => (

@@ -1,0 +1,221 @@
+---
+import { getCollection } from "astro:content";
+
+import { getLang, getLocalizedPath, useTranslations } from "@/i18n/utils";
+import Layout from "@/layouts/layout.astro";
+import { getProjects } from "@/lib/projects";
+import { focusRing } from "@/lib/tailwind";
+import { buildCorpus } from "@/lib/terminal/corpus";
+import { cn } from "@/lib/utils";
+
+const { url } = Astro;
+const lang = getLang(url);
+const t = useTranslations(lang);
+
+const [aboutEntries, socialEntries, usesEntries, projects] = await Promise.all([
+  getCollection("about-me", ({ id }) => id.startsWith(`${lang}/`)),
+  getCollection("social-link", ({ id }) => id.startsWith(`${lang}/`)),
+  getCollection("uses", ({ id }) => id.startsWith(`${lang}/`)),
+  getProjects(lang),
+]);
+
+const about = aboutEntries.find((entry) => entry.id === `${lang}/o-mnie`) ?? aboutEntries[0];
+const uses = usesEntries.find((entry) => entry.id === `${lang}/uses-tech`) ?? usesEntries[0];
+
+function terminalProjectBody(project: (typeof projects)[number]) {
+  const lines = [
+    project.summary,
+    project.intro,
+    project.language ? `${t("projects.language")}: ${project.language}` : null,
+    `${t("projects.stars")}: ${project.stars}`,
+    project.topics.length > 0 ? `${t("projects.topics")}: ${project.topics.join(", ")}` : null,
+    project.homepage ? `${t("projects.homepage")}: ${project.homepage}` : null,
+    `${t("projects.repository")}: ${project.htmlUrl}`,
+    project.pushedAt ? `${t("projects.pushed")}: ${project.pushedAt}` : null,
+    project.updatedAt ? `${t("projects.updated")}: ${project.updatedAt}` : null,
+  ];
+
+  return lines.filter((line): line is string => Boolean(line)).join("\n\n");
+}
+
+const corpus = buildCorpus({
+  lang,
+  labels: {
+    technologies: t("projects.technologies.title"),
+    github: t("project.github"),
+    demo: t("project.demo"),
+    page: t("terminal.label.page"),
+    link: t("terminal.label.link"),
+  },
+  about: about ? { title: about.data.title, body: about.body ?? "" } : null,
+  uses: uses ? { title: uses.data.title, body: uses.body ?? "" } : null,
+  projects: projects.map((project, index) => ({
+    slug: project.name,
+    title: project.name,
+    body: terminalProjectBody(project),
+    technologies: [],
+    githubUrl: null,
+    demoUrl: "",
+    sort: projects.length - index,
+    href: project.href,
+  })),
+  socials: socialEntries.map((social) => ({
+    slug: social.id.slice(lang.length + 1),
+    title: social.data.title,
+    link: social.data.link,
+    alt: social.data.alt,
+    sort: social.data.sort,
+  })),
+});
+
+const messages = {
+  helpHeader: t("terminal.help.header"),
+  helpHelp: t("terminal.help.help"),
+  helpLs: t("terminal.help.ls"),
+  helpCd: t("terminal.help.cd"),
+  helpPwd: t("terminal.help.pwd"),
+  helpCat: t("terminal.help.cat"),
+  helpOpen: t("terminal.help.open"),
+  helpWhoami: t("terminal.help.whoami"),
+  helpClear: t("terminal.help.clear"),
+  helpAsk: t("terminal.help.ask"),
+  helpTab: t("terminal.help.tab"),
+  noSuch: t("terminal.error.no-such"),
+  isDir: t("terminal.error.is-dir"),
+  notDir: t("terminal.error.not-dir"),
+  usageCd: t("terminal.error.usage-cd"),
+  usageCat: t("terminal.error.usage-cat"),
+  usageOpen: t("terminal.error.usage-open"),
+  openOnly: t("terminal.error.open-only"),
+  openNone: t("terminal.error.open-none"),
+  openMany: t("terminal.error.open-many"),
+  openGoing: t("terminal.open.going"),
+  askNone: t("terminal.ask.none"),
+  askProjects: t("terminal.ask.projects"),
+  askSocial: t("terminal.ask.social"),
+  askUses: t("terminal.ask.uses"),
+  labelTechnologies: t("projects.technologies.title"),
+};
+
+const payload = JSON.stringify({ corpus, messages }).replace(/</g, "\\u003c");
+const welcome = t("terminal.welcome").split("\n");
+const sectionLinks = [
+  { href: getLocalizedPath("/o-mnie/", lang), label: t("sidebar.about-me") },
+  { href: getLocalizedPath("/projekty/", lang), label: t("sidebar.projects") },
+  { href: getLocalizedPath("/uses/", lang), label: t("sidebar.uses") },
+];
+---
+
+<Layout title={t("home.seo.title")} description={t("home.seo.description")} image="/og_image.png" compact>
+  <div class="mb-4 flex flex-col gap-3">
+    <h1 class="text-3xl font-extrabold break-words text-gray-900 sm:text-4xl dark:text-white">Jakub Soboczyński</h1>
+    <p class="text-base leading-7 text-neutral-700 dark:text-neutral-300">{t("home.intro")}</p>
+    <nav class="grid grid-cols-1 gap-2 sm:grid-cols-3" aria-label={t("home.nav")}>
+      {
+        sectionLinks.map(({ href, label }) => (
+          <a
+            class={cn(
+              focusRing,
+              "inline-flex min-h-12 items-center justify-center rounded-lg border border-slate-300 bg-white px-4 text-center text-base font-medium text-slate-900 transition hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:hover:bg-slate-800",
+            )}
+            href={href}
+          >
+            {label}
+          </a>
+        ))
+      }
+    </nav>
+  </div>
+  <section
+    data-terminal
+    class="flex h-[calc(100dvh-15rem)] min-h-60 w-full min-w-0 touch-manipulation flex-col overflow-hidden rounded-xl border border-slate-700 bg-slate-950 font-mono text-sm text-emerald-100 shadow-2xl shadow-slate-950/40 sm:h-[calc(100dvh-14rem)] sm:min-h-[28rem] sm:text-base"
+  >
+    <header class="flex h-11 shrink-0 items-center gap-2 border-b border-slate-800 px-3">
+      <span class="size-2.5 shrink-0 rounded-full bg-rose-500/90"></span>
+      <span class="size-2.5 shrink-0 rounded-full bg-amber-400/90"></span>
+      <span class="size-2.5 shrink-0 rounded-full bg-emerald-500/90"></span>
+      <p class="ml-2 truncate text-xs font-medium text-slate-400 sm:text-sm">{t("terminal.banner")}</p>
+    </header>
+    <div
+      data-scrollback
+      class="min-h-0 flex-1 space-y-2 overflow-x-hidden overflow-y-auto overscroll-contain px-3 py-3 sm:px-4"
+      role="log"
+      aria-live="polite"
+      aria-relevant="additions"
+      aria-label={t("terminal.output.label")}
+      tabindex="0"
+    >
+      {welcome.map((line) => <p class="break-words whitespace-pre-wrap text-slate-300">{line}</p>)}
+    </div>
+    <form
+      data-form
+      class="shrink-0 border-t border-slate-800 bg-slate-950 px-3 pt-2 pb-[max(0.5rem,env(safe-area-inset-bottom))]"
+      autocomplete="off"
+    >
+      <div class="flex flex-col gap-1 sm:flex-row sm:items-center sm:gap-3">
+        <span data-prompt class="shrink-0 text-sm break-all text-emerald-300 sm:text-base">jakub@portfolio:~$</span>
+        <label class="relative flex min-h-12 min-w-0 flex-1 items-center">
+          <span class="sr-only">{t("terminal.input.label")}</span>
+          <input
+            data-command
+            class="min-h-12 w-full bg-transparent text-base text-emerald-50 outline-none"
+            type="text"
+            enterkeyhint="send"
+            autocapitalize="off"
+            autocomplete="off"
+            autocorrect="off"
+            spellcheck="false"
+            aria-label={t("terminal.input.label")}
+          />
+          <span
+            data-cursor
+            class="terminal-cursor pointer-events-none absolute top-1/2 left-0 -translate-y-1/2 text-emerald-300"
+            aria-hidden="true">▊</span
+          >
+        </label>
+      </div>
+      <p data-hint class="mt-1 hidden min-h-6 overflow-hidden text-xs break-words text-slate-500"></p>
+    </form>
+  </section>
+  <script id="terminal-data" is:inline type="application/json" set:html={payload} />
+</Layout>
+
+<script>
+  import { mountTerminal } from "@/lib/terminal/mount";
+  import type { TerminalPayload } from "@/lib/terminal/types";
+
+  function boot() {
+    const root = document.querySelector<HTMLElement>("[data-terminal]");
+    const data = document.getElementById("terminal-data");
+    if (!root || !data?.textContent || root.dataset.booted === "true") return;
+    root.dataset.booted = "true";
+    mountTerminal(root, JSON.parse(data.textContent) as TerminalPayload);
+  }
+
+  document.addEventListener("astro:page-load", boot);
+  boot();
+</script>
+
+<style>
+  .terminal-cursor {
+    animation: terminal-blink 1.05s steps(1, end) infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .terminal-cursor {
+      animation: none;
+    }
+  }
+
+  @keyframes terminal-blink {
+    0%,
+    45% {
+      opacity: 1;
+    }
+
+    50%,
+    100% {
+      opacity: 0;
+    }
+  }
+</style>
