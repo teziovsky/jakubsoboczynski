@@ -92,7 +92,7 @@ export const ui = {
     "home.intro.normal": "Wybierz dział. To zwykły układ tych samych stron, bez terminala.",
     "terminal.help.ask":
       "Zdanie albo pytanie dotyczy Jakuba i korzysta tylko z treści strony. Sama nieznana komenda wypisuje komunikat jak w bashu.",
-    "terminal.help.tab": "Tab uzupełnia komendy, ścieżki i nazwy projektów.",
+    "terminal.help.tab": "Tab uzupełnia komendy, ścieżki i nazwy. Escape wychodzi z pola.",
     "terminal.error.no-such": "brak takiego pliku lub katalogu",
     "terminal.error.is-dir": "to katalog",
     "terminal.error.not-dir": "to nie katalog",
@@ -217,7 +217,7 @@ export const ui = {
     "home.intro.normal": "Choose a section. This is the ordinary layout of the same pages, without the terminal.",
     "terminal.help.ask":
       "A sentence or question about Jakub uses only this site's content. A lone unknown command prints a bash-style not-found line.",
-    "terminal.help.tab": "Tab completes commands, paths, and project names.",
+    "terminal.help.tab": "Tab completes commands, paths, and names. Escape leaves the input.",
     "terminal.error.no-such": "no such file or directory",
     "terminal.error.is-dir": "is a directory",
     "terminal.error.not-dir": "not a directory",

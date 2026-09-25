@@ -1,19 +1,19 @@
+import { defineConfig } from "astro/config";
+
+import cloudflare from "@astrojs/cloudflare";
 import { unified } from "@astrojs/markdown-remark";
 import mdx from "@astrojs/mdx";
 import partytown from "@astrojs/partytown";
 import sitemap from "@astrojs/sitemap";
+
+import tailwindcss from "@tailwindcss/vite";
 import compress from "astro-compress";
 import icon from "astro-icon";
 import robotsTxt from "astro-robots-txt";
-import { defineConfig } from "astro/config";
-
-import tailwindcss from "@tailwindcss/vite";
 import rehypeExternalLinks from "rehype-external-links";
 
 import { remarkModifiedTime } from "./src/lib/remark-modified-time.mjs";
 import { remarkReadingTime } from "./src/lib/remark-reading-time.mjs";
-
-import cloudflare from "@astrojs/cloudflare";
 
 // https://astro.build/config
 export default defineConfig({

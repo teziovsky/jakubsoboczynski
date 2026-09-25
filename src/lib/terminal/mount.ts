@@ -49,6 +49,15 @@ export function mountTerminal(root: HTMLElement, payload: TerminalPayload) {
     scrollback.scrollTop = scrollback.scrollHeight;
   };
 
+  const printCompletions = (matches: string[]) => {
+    const block = document.createElement("div");
+    block.className = "mt-2 break-words whitespace-pre-wrap text-emerald-100";
+    block.dataset.completions = "true";
+    block.textContent = matches.join("  ");
+    scrollback.append(block);
+    scrollToEnd();
+  };
+
   const appendLine = (parent: HTMLElement, entry: TermLine, href?: string) => {
     const row = document.createElement("div");
     row.className = `whitespace-pre-wrap break-words ${TONE_CLASS[entry.tone]}`;
@@ -145,12 +154,23 @@ export function mountTerminal(root: HTMLElement, payload: TerminalPayload) {
   });
 
   input.addEventListener("keydown", (event) => {
-    if (event.key === "Tab") {
+    if (event.key === "Tab" && !event.shiftKey && !event.altKey && !event.ctrlKey && !event.metaKey) {
       event.preventDefault();
       const suggestion = suggestInput(input.value, cwd, payload.corpus);
+      if (suggestion.matches.length > 1) printCompletions(suggestion.matches);
       if (suggestion.value !== input.value) input.value = suggestion.value;
-      showHint(suggestion.matches);
+      const end = input.value.length;
+      input.setSelectionRange(end, end);
+      showHint([]);
       syncCursor();
+      input.focus();
+      return;
+    }
+
+    if (event.key === "Escape") {
+      event.preventDefault();
+      event.stopPropagation();
+      input.blur();
       return;
     }
 

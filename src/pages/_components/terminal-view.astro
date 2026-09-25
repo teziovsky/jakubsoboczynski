@@ -176,7 +176,6 @@ const sectionLinks = [
       aria-live="polite"
       aria-relevant="additions"
       aria-label={t("terminal.output.label")}
-      tabindex="0"
     >
       {welcome.map((line) => (
         <p class="break-words whitespace-pre-wrap text-slate-300">{line}</p>
@@ -216,7 +215,7 @@ const sectionLinks = [
       <p data-hint class="mt-1 hidden min-h-6 overflow-hidden text-xs break-words text-slate-500"></p>
     </form>
   </section>
-  <script id="terminal-data" is:inline type="application/json" set:html={payload} />
+  <script id="terminal-data" is:inline type="application/json" set:html={payload}></script>
 </Layout>
 
 <script>

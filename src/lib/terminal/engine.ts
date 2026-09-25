@@ -897,7 +897,9 @@ export function suggestInput(raw: string, cwd: string, corpus: TerminalCorpus): 
     matches = COMMANDS.filter((command) => command.startsWith(partial));
   } else {
     const command = tokenizeCommand(raw)[0];
-    if (command && PATH_COMMANDS.has(command)) {
+    if (command === "help" || command === "man") {
+      matches = COMMANDS.filter((name) => name.startsWith(partial));
+    } else if (command && PATH_COMMANDS.has(command)) {
       matches = completePath(partial, cwd, corpus.root);
     } else if (command === "grep") {
       const typed = tokenizeCommand(raw);

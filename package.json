@@ -28,8 +28,8 @@
     "check": "astro check",
     "build": "astro build",
     "preview": "astro preview",
-    "format": "prettier --write --log-level warn '**/*.{js,jsx,ts,tsx,md,mdx,json,astro}'",
-    "lint": "eslint --quiet --fix .",
+    "format": "oxfmt && prettier --write --log-level warn \"**/*.astro\"",
+    "lint": "oxlint --fix && eslint --quiet --fix .",
     "typecheck": "astro check",
     "fix": "npm run format && npm run lint && npm run typecheck",
     "astro": "astro",
@@ -39,11 +39,15 @@
     "update:project-screenshots": "node scripts/update-project-screenshots.mjs"
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx,astro}": [
+    "*.{js,mjs,cjs,ts,tsx,jsx,astro}": [
+      "oxlint --fix",
       "eslint --quiet --fix"
     ],
-    "*.{js,jsx,ts,tsx,md,mdx,json,astro,css}": [
+    "*.astro": [
       "prettier --write --ignore-unknown"
+    ],
+    "*.{js,mjs,cjs,ts,tsx,jsx,md,mdx,json,jsonc,css}": [
+      "oxfmt"
     ]
   },
   "dependencies": {
@@ -61,32 +65,39 @@
     "astro-icon": "^1.2.0",
     "astro-robots-txt": "^1.0.0",
     "astro-seo": "^1.2.0",
-    "clsx": "^2.1.1",
+    "cn": "0.4.0",
     "date-fns": "^4.4.0",
     "mdast-util-to-string": "^4.0.0",
     "reading-time": "^1.5.0",
-    "rehype-external-links": "^3.0.0",
-    "tailwind-merge": "^3.7.0"
+    "rehype-external-links": "^3.0.0"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
     "@tailwindcss/typography": "^0.5.20",
     "@trivago/prettier-plugin-sort-imports": "^6.0.2",
-    "@typescript-eslint/eslint-plugin": "^8.70.1",
     "@typescript-eslint/parser": "^8.70.1",
     "astro-compress": "^2.4.3",
-    "astro-eslint-parser": "^3.2.0",
-    "concurrently": "^10.0.5",
     "eslint": "^10.11.0",
     "eslint-plugin-astro": "^3.2.1",
-    "eslint-plugin-jsx-a11y": "^6.10.2",
     "husky": "^9.1.7",
     "lint-staged": "^17.5.1",
+    "oxfmt": "0.70.0",
+    "oxlint": "1.85.0",
     "prettier": "^3.9.9",
-    "prettier-plugin-astro": "^1.1.0",
+    "prettier-plugin-astro": "1.0.1",
     "prettier-plugin-tailwindcss": "^0.8.1",
     "tailwindcss": "^4.3.3",
     "typescript": "6.0.3",
-    "wrangler": "^4.140.0"
+    "wrangler": "4.139.0"
+  },
+  "pnpm": {
+    "overrides": {
+      "@cloudflare/vite-plugin": "1.59.0",
+      "prettier-plugin-astro": "1.0.1",
+      "vscode-jsonrpc@9.0.3": "9.0.2",
+      "vscode-languageserver-protocol@3.18.4": "3.18.3",
+      "vscode-languageserver-types@3.18.4": "3.18.3",
+      "wrangler": "4.139.0"
+    }
   }
 }

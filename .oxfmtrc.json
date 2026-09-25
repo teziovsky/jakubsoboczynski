@@ -1,0 +1,32 @@
+{
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+  "printWidth": 120,
+  "semi": true,
+  "singleQuote": false,
+  "jsxSingleQuote": false,
+  "tabWidth": 2,
+  "sortPackageJson": false,
+  "ignorePatterns": ["**/*.astro", "**/.astro/**", "**/.wrangler/**", "**/dist/**", "pnpm-lock.yaml"],
+  "sortImports": {
+    "newlinesBetween": true,
+    "customGroups": [
+      {
+        "groupName": "astro",
+        "elementNamePattern": ["astro", "astro/*", "astro:*"]
+      },
+      {
+        "groupName": "astrojs",
+        "elementNamePattern": ["@astrojs", "@astrojs/*"]
+      },
+      {
+        "groupName": "alias",
+        "elementNamePattern": ["@/*", "@core/*", "@server/*", "@ui/*"]
+      }
+    ],
+    "groups": ["astro", "astrojs", ["builtin", "external"], "alias", ["parent", "sibling", "index"]]
+  },
+  "sortTailwindcss": {
+    "stylesheet": "./src/global.css",
+    "functions": ["cn"]
+  }
+}
