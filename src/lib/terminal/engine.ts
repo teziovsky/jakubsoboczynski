@@ -1,3 +1,4 @@
+import { pageHref } from "@/lib/terminal/routes";
 import { excerpt, firstSentence, fold, queryTokens, searchForms, tokenizeCommand } from "@/lib/terminal/text";
 import type {
   CommandResult,
@@ -463,6 +464,11 @@ export function answerQuestion(query: string, corpus: TerminalCorpus, messages: 
 function runOpen(query: string, corpus: TerminalCorpus, messages: TerminalMessages): CommandResult {
   if (!query.trim()) return { type: "output", lines: [line(messages.usageOpen, "error")] };
 
+  const page = pageHref(query, corpus.lang);
+  if (page) {
+    return { type: "navigate", href: page, lines: [line(`${messages.openGoing} ${page}`, "accent")] };
+  }
+
   const matches = matchProjects(query, projectsIn(corpus.root));
   const first = matches[0];
   if (matches.length === 1 && first?.href && first.kind === "project") {
@@ -874,17 +880,21 @@ function completePath(partial: string, cwd: string, root: FsDir): string[] {
     .map((child) => `${dirPart}${child.name}${child.type === "dir" ? "/" : ""}`);
 }
 
+const OPEN_PAGES = ["about", "projects", "uses"] as const;
+
 function completeOpen(partial: string, projects: FsFile[]): string[] {
   const quoted = partial.startsWith('"') || partial.startsWith("'");
   const bare = partial.replace(/^["']/, "").replace(/["']$/, "");
   const q = fold(bare);
+  const pages = OPEN_PAGES.filter((page) => page.startsWith(q));
   const slugs = projects.filter((project) => fold(project.name).startsWith(q)).map((project) => project.name);
   const titles = projects
     .filter((project) => fold(project.title).startsWith(q))
     .map((project) => (quoted || /\s/.test(project.title) ? `"${project.title}"` : project.title));
 
   if (quoted || /[A-ZĄĆĘŁŃÓŚŹŻ]/.test(partial)) return titles;
-  if (slugs.length > 0) return slugs;
+  const names = [...new Set([...pages, ...slugs])];
+  if (names.length > 0) return names;
   return titles;
 }
 
