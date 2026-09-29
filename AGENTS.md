@@ -6,7 +6,7 @@
 - `npm run fix` formats, lints, then runs `astro check`.
 - Format: `oxfmt` (`.oxfmtrc.json`) for JS, TS, JSON, CSS, Markdown, and MDX. Prettier formats `*.astro` only. Oxfmt does not format Astro, so that Prettier scope stays: `prettier`, `prettier-plugin-astro`, `@trivago/prettier-plugin-sort-imports`, and `prettier-plugin-tailwindcss`.
 - Lint: `oxlint` (`.oxlintrc.json`) runs the TypeScript recommended set and `no-unused-vars` on JS/TS, including Astro script blocks. ESLint runs only `eslint-plugin-astro` template rules plus `no-mixed-spaces-and-tabs`, which oxlint does not implement. Do not enable the same rule in both.
-- `pnpm run typecheck` is `astro check`. `pnpm run build` is the production build. There is no test script.
+- `pnpm run typecheck` is `astro check`. `pnpm run build` is the production build. `pnpm test` runs `src/**/*.test.ts` with Node's built-in runner (Node 24+, `scripts/test-resolve.mjs` maps `@/`). Test files are excluded from `astro check`.
 - Do not run `pnpm run clean`.
 - Do not add Vite+. It ships Vite 8, and this Astro 7 Cloudflare adapter breaks when Vite 8 is resolved as the top-level Vite.
 
@@ -36,5 +36,5 @@
 ## Projects and the shell
 
 - Projects are non-fork GitHub repos for the login in `src/data/social-link/{pl,en}/github.mdx` whose topics include `portfolio` (case-insensitive). Public repos load with no token. `GITHUB_TOKEN` or `GH_TOKEN` is read only at build time; when it is accepted, private `portfolio` repos of that account are included too, and a missing or rejected token keeps the public list. Optional blurbs are `src/data/project/{pl,en}/<repo-name>.md` and apply only to repos that pass the filter. A missing blurb falls back to the GitHub description.
-- The homepage shell is `src/lib/terminal/`. It is read-only. `open <project>` navigates to that project's page. A single unknown token, and any other command-shaped line, prints bash "command not found" in the page language. Write commands and redirection stay permission-denied. Sentences that are not command-shaped are answered only from site content.
+- The shell is `src/lib/terminal/`, mounted on every page by `src/components/shell-frame.astro` inside `layout.astro`. In terminal layout each page is the output of the command in `src/lib/terminal/routes.ts` (`open about`, `open uses`, `open projects`, `open <project>`). It is read-only. `open` navigates to any of those pages. The corpus is served from `/terminal/{lang}.json`. Scrollback and history persist in `sessionStorage` (`terminal-session:<lang>`). A single unknown token, and any other command-shaped line, prints bash "command not found" in the page language. Write commands and redirection stay permission-denied. Sentences that are not command-shaped are answered only from site content.
 - While the terminal input is focused, Tab completes and does not move focus. Several matches are printed in the scrollback and the shared prefix is inserted. Escape blurs the input and does not clear it. The block cursor blinks only while that input is focused. When the input is not focused, Tab and Shift+Tab move through the page controls, including the layout toggle.

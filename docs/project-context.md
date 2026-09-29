@@ -12,7 +12,7 @@ The site should feel like a nerdy AI-agent terminal, and a non-technical visitor
 
 The design does not change between modes: dark background, monospace, terminal panels, the same colors.
 
-- **Terminal** is the default. No menu, no section links, no footer. The only chrome is the layout switch. Browsing is the shell. `open <project>` still opens that project’s page, and that page also has no menu, only the switch.
+- **Terminal** is the default. No menu, no section links, no footer. The only chrome is the layout switch. Every page is shell output: the page content renders under a prompt line such as `jakub@portfolio:~$ open uses`, with a sticky live prompt below. `open` reaches every page (`about`, `uses`, `projects`, a project, `~`). The scrollback and history survive navigation within the tab (`sessionStorage`).
 - **Normal** (`Zwykły` / `Normal`) shows the menu and clickable pages: about, projects, uses, project pages, footer. Same design, ordinary arrangement.
 
 The choice is stored in `localStorage` and must survive navigation. The switch is on screen in terminal mode without opening a menu, and available in normal mode too. Polish is the unprefixed locale. English is `/en`.
@@ -26,7 +26,8 @@ Prompt: `jakub@portfolio:~$`. Answers come only from site content. No LLM and no
 - Unknown command: bash-style `command not found` in the page language (`bash: foobar: nie znaleziono polecenia` / `bash: foobar: command not found`).
 - A sentence or question that is not a command still answers from content (`jakie projekty`, `who are you`). A single unknown token is a command, not a question.
 - Write or delete commands (`rm`, `mv`, `mkdir`, `touch`, redirection) are refused with a permission-denied style line. The shell is read-only.
-- Implemented read-only commands include `help`, `man`, `ls`, `cd`, `pwd`, `cat`, `head`, `tail`, `wc`, `grep`, `find`, `tree`, `file`, `echo`, `history`, `date`, `uname`, `open`, `whoami`, `clear`.
+- Implemented read-only commands include `help`, `man`, `ls`, `cd`, `pwd`, `cat`, `head`, `tail`, `wc`, `grep`, `find`, `tree`, `file`, `echo`, `history`, `date`, `uname`, `open`, `whoami`, `clear`. `open` navigates; the others print in place. `clear` also clears the saved scrollback, not the history.
+- Planned next: agent-style tool traces (B), suggested commands for non-technical visitors (C), generated `llms.txt` and `.md` versions of pages (D).
 
 ## Projects
 
