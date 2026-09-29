@@ -11,6 +11,10 @@ export const BLOCK_LIMIT = 150;
 
 const TONES: readonly TermTone[] = ["text", "error", "muted", "dir", "accent"];
 
+// Markers only ever point at this site's pages. A looser "starts with /" check lets `/\host` or
+// `/\t/host` through, which browsers resolve to another origin.
+const SITE_PAGE = /^\/(?:en\/)?(?:o-mnie\/|uses\/|projekty\/(?:[A-Za-z0-9._-]+\/)?)?$/;
+
 export function emptySession(): Session {
   return { v: 1, history: [], blocks: [] };
 }
@@ -29,7 +33,7 @@ function isLine(value: unknown): value is TermLine {
 
 function isBlock(value: unknown): value is Block {
   if (!isRecord(value) || typeof value.cwd !== "string" || typeof value.command !== "string") return false;
-  if (typeof value.href === "string") return value.href.startsWith("/") && !value.href.startsWith("//");
+  if (typeof value.href === "string") return SITE_PAGE.test(value.href);
   return Array.isArray(value.lines) && value.lines.every(isLine);
 }
 

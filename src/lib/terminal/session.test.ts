@@ -39,6 +39,9 @@ test("parseSession drops malformed blocks and off-site hrefs", () => {
       { cwd: "/", command: "open a", href: "//evil.example/" },
       { cwd: "/", command: "open b", href: "javascript:alert(1)" },
       { cwd: "/", command: "open c", href: "https://evil.example/" },
+      { cwd: "/", command: "open d", href: "/\\evil.example/" },
+      { cwd: "/", command: "open e", href: "/\t/evil.example/" },
+      { cwd: "/", command: "open f", href: "/\n/evil.example" },
       marker,
     ],
   });
