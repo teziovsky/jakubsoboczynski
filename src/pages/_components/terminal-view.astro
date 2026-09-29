@@ -4,13 +4,11 @@ import { cn } from "cn";
 import { getLang, getLocalizedPath, useTranslations } from "@/i18n/utils";
 import Layout from "@/layouts/layout.astro";
 import { focusRing } from "@/lib/tailwind";
-import { buildPayload } from "@/lib/terminal/payload";
 
 const { url } = Astro;
 const lang = getLang(url);
 const t = useTranslations(lang);
 
-const payload = JSON.stringify(await buildPayload(lang)).replace(/</g, "\\u003c");
 const welcome = t("terminal.welcome").split("\n");
 const sectionLinks = [
   { href: getLocalizedPath("/o-mnie/", lang), label: t("sidebar.about-me") },
@@ -42,102 +40,9 @@ const sectionLinks = [
       </a>
     ))}
   </nav>
-  <section
-    data-show="terminal"
-    data-terminal
-    class="flex h-[calc(100dvh-12rem)] min-h-60 w-full min-w-0 touch-manipulation flex-col overflow-hidden border border-slate-700 bg-slate-950 font-mono text-sm text-emerald-100 sm:h-[calc(100dvh-11rem)] sm:min-h-[28rem] sm:text-base"
-  >
-    <header class="flex h-11 shrink-0 items-center gap-2 border-b border-slate-800 px-3">
-      <span class="size-2.5 shrink-0 rounded-full bg-rose-500/90"></span>
-      <span class="size-2.5 shrink-0 rounded-full bg-amber-400/90"></span>
-      <span class="size-2.5 shrink-0 rounded-full bg-emerald-500/90"></span>
-      <p class="ml-2 truncate text-xs font-medium text-slate-400 sm:text-sm">{t("terminal.banner")}</p>
-    </header>
-    <div
-      data-scrollback
-      class="min-h-0 flex-1 space-y-2 overflow-x-hidden overflow-y-auto overscroll-contain px-3 py-3 sm:px-4"
-      role="log"
-      aria-live="polite"
-      aria-relevant="additions"
-      aria-label={t("terminal.output.label")}
-    >
-      {welcome.map((line) => (
-        <p class="break-words whitespace-pre-wrap text-slate-300">{line}</p>
-      ))}
-    </div>
-    <form
-      data-form
-      class="shrink-0 border-t border-slate-800 bg-slate-950 px-3 pt-2 pb-[max(0.5rem,env(safe-area-inset-bottom))]"
-      autocomplete="off"
-    >
-      <div class="flex flex-col gap-1 sm:flex-row sm:items-center sm:gap-3">
-        <span data-prompt class="shrink-0 text-sm break-all text-emerald-300 sm:text-base">
-          jakub@portfolio:~$
-        </span>
-        <label class="relative flex min-h-12 min-w-0 flex-1 items-center">
-          <span class="sr-only">{t("terminal.input.label")}</span>
-          <input
-            data-command
-            class="min-h-12 w-full bg-transparent text-base text-emerald-50 outline-none"
-            type="text"
-            enterkeyhint="send"
-            autocapitalize="off"
-            autocomplete="off"
-            autocorrect="off"
-            spellcheck="false"
-            aria-label={t("terminal.input.label")}
-          />
-          <span
-            data-cursor
-            class="terminal-cursor pointer-events-none absolute top-1/2 left-0 -translate-y-1/2 text-emerald-300"
-            aria-hidden="true"
-          >
-            ▊
-          </span>
-        </label>
-      </div>
-      <p data-hint class="mt-1 hidden min-h-6 overflow-hidden text-xs break-words text-slate-500"></p>
-    </form>
-  </section>
-  <script id="terminal-data" is:inline type="application/json" set:html={payload}></script>
+  <div data-show="terminal" class="font-mono text-sm sm:text-base">
+    {welcome.map((line) => (
+      <p class="break-words whitespace-pre-wrap text-slate-300">{line}</p>
+    ))}
+  </div>
 </Layout>
-
-<script>
-  import { mountTerminal } from "@/lib/terminal/mount";
-  import type { TerminalPayload } from "@/lib/terminal/types";
-
-  function boot() {
-    const root = document.querySelector<HTMLElement>("[data-terminal]");
-    const data = document.getElementById("terminal-data");
-    if (!root || !data?.textContent || root.dataset.booted === "true") return;
-    root.dataset.booted = "true";
-    mountTerminal(root, JSON.parse(data.textContent) as TerminalPayload);
-  }
-
-  document.addEventListener("astro:page-load", boot);
-  boot();
-</script>
-
-<style>
-  .terminal-cursor {
-    animation: terminal-blink 1.05s steps(1, end) infinite;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .terminal-cursor {
-      animation: none;
-    }
-  }
-
-  @keyframes terminal-blink {
-    0%,
-    45% {
-      opacity: 1;
-    }
-
-    50%,
-    100% {
-      opacity: 0;
-    }
-  }
-</style>

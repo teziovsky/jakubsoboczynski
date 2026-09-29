@@ -1,0 +1,113 @@
+---
+import { getLang, useTranslations } from "@/i18n/utils";
+import { promptFor } from "@/lib/terminal/engine";
+import { routeForPath } from "@/lib/terminal/routes";
+
+const lang = getLang(Astro.url);
+const t = useTranslations(lang);
+const route = routeForPath(Astro.url.pathname);
+---
+
+<div data-shell class="shell-frame min-w-0" data-load-error={t("terminal.error.load")}>
+  <header data-show="terminal" class="flex h-11 shrink-0 items-center gap-2 border-b border-slate-800 px-3">
+    <span class="size-2.5 shrink-0 rounded-full bg-rose-500/90"></span>
+    <span class="size-2.5 shrink-0 rounded-full bg-amber-400/90"></span>
+    <span class="size-2.5 shrink-0 rounded-full bg-emerald-500/90"></span>
+    <p class="ml-2 truncate font-mono text-xs font-medium text-slate-400 sm:text-sm">{t("terminal.banner")}</p>
+  </header>
+  <div
+    data-show="terminal"
+    data-scrollback-restored
+    class="shell-text px-3 font-mono text-sm text-emerald-100 sm:px-4 sm:text-base"
+  ></div>
+  <div data-page-output class="shell-page min-w-0">
+    {route?.command && (
+      <p data-show="terminal" aria-hidden="true" class="mb-3 flex flex-wrap gap-x-2 font-mono text-sm sm:text-base">
+        <span class="text-emerald-300">{promptFor("/")}</span>
+        <span class="text-emerald-50">{route.command}</span>
+      </p>
+    )}
+    <slot />
+  </div>
+  <div
+    data-show="terminal"
+    data-live
+    class="shell-text flex-1 px-3 pb-3 font-mono text-sm text-emerald-100 sm:px-4 sm:text-base"
+    role="log"
+    aria-live="polite"
+    aria-relevant="additions"
+    aria-label={t("terminal.output.label")}
+  ></div>
+  <form
+    data-show="terminal"
+    data-form
+    class="sticky bottom-0 z-10 border-t border-slate-800 bg-slate-950 px-3 pt-2 pb-[max(0.5rem,env(safe-area-inset-bottom))] font-mono"
+    autocomplete="off"
+  >
+    <div class="flex flex-col gap-1 sm:flex-row sm:items-center sm:gap-3">
+      <span data-prompt class="shrink-0 text-sm break-all text-emerald-300 sm:text-base">
+        jakub@portfolio:~$
+      </span>
+      <label class="relative flex min-h-12 min-w-0 flex-1 items-center">
+        <span class="sr-only">{t("terminal.input.label")}</span>
+        <input
+          data-command
+          class="min-h-12 w-full bg-transparent text-base text-emerald-50 outline-none"
+          type="text"
+          enterkeyhint="send"
+          autocapitalize="off"
+          autocomplete="off"
+          autocorrect="off"
+          spellcheck="false"
+          aria-label={t("terminal.input.label")}
+        />
+        <span
+          data-cursor
+          class="terminal-cursor pointer-events-none absolute top-1/2 left-0 hidden -translate-y-1/2 text-emerald-300"
+          aria-hidden="true"
+        >
+          ▊
+        </span>
+      </label>
+    </div>
+    <p data-hint class="mt-1 hidden min-h-6 overflow-hidden text-xs break-words text-slate-500"></p>
+  </form>
+</div>
+
+<script>
+  import { mountShell } from "@/lib/terminal/mount";
+
+  function boot() {
+    const root = document.querySelector<HTMLElement>("[data-shell]");
+    if (!root || root.dataset.booted === "true") return;
+    root.dataset.booted = "true";
+    mountShell(root);
+  }
+
+  document.addEventListener("astro:page-load", boot);
+  boot();
+</script>
+
+<style>
+  .terminal-cursor {
+    animation: terminal-blink 1.05s steps(1, end) infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .terminal-cursor {
+      animation: none;
+    }
+  }
+
+  @keyframes terminal-blink {
+    0%,
+    45% {
+      opacity: 1;
+    }
+
+    50%,
+    100% {
+      opacity: 0;
+    }
+  }
+</style>

@@ -3,6 +3,7 @@ import { SEO } from "astro-seo";
 import { Head } from "astro-capo";
 import Footer from "@/components/footer.astro";
 import Sidebar from "@/components/sidebar.astro";
+import ShellFrame from "@/components/shell-frame.astro";
 import { ClientRouter } from "astro:transitions";
 import { getLang, getLanguageAlternates } from "@/i18n/utils";
 import "@/global.css";
@@ -183,7 +184,9 @@ const structuredData = {
   >
     <Sidebar />
     <main class:list={["min-w-0 sm:pt-4", compact ? "pb-3 sm:pb-4" : "pb-8 sm:pb-20"]}>
-      <slot />
+      <ShellFrame>
+        <slot />
+      </ShellFrame>
     </main>
     <Footer />
 

@@ -1,29 +1,81 @@
 import { navigate } from "astro:transitions/client";
 
+import { renderBlock, renderCompletions, renderNote } from "@/lib/terminal/dom";
 import { promptFor, runCommand, suggestInput } from "@/lib/terminal/engine";
-import type { TermLine, TerminalPayload } from "@/lib/terminal/types";
+import { loadPayload } from "@/lib/terminal/payload-client";
+import { routeForPath } from "@/lib/terminal/routes";
+import {
+  type Block,
+  type Session,
+  type SessionStore,
+  clearBlocks,
+  isPageBlock,
+  loadSession,
+  saveSession,
+  withBlock,
+  withHistory,
+} from "@/lib/terminal/session";
+import type { TerminalLang, TerminalPayload } from "@/lib/terminal/types";
 
-const TONE_CLASS: Record<TermLine["tone"], string> = {
-  text: "text-emerald-100",
-  error: "text-rose-300",
-  muted: "text-slate-500",
-  dir: "text-sky-300",
-  accent: "text-amber-200",
-};
+function sessionStore(): SessionStore | null {
+  try {
+    return window.sessionStorage;
+  } catch {
+    return null;
+  }
+}
 
-export function mountTerminal(root: HTMLElement, payload: TerminalPayload) {
-  const scrollback = root.querySelector<HTMLElement>("[data-scrollback]");
+function whenIdle(callback: () => void) {
+  // Safari has no requestIdleCallback.
+  if (typeof window.requestIdleCallback === "function") window.requestIdleCallback(callback);
+  else window.setTimeout(callback, 200);
+}
+
+function safeDecode(path: string): string {
+  try {
+    return decodeURI(path);
+  } catch {
+    return path;
+  }
+}
+
+export function mountShell(root: HTMLElement) {
+  const restored = root.querySelector<HTMLElement>("[data-scrollback-restored]");
+  const pageOutput = root.querySelector<HTMLElement>("[data-page-output]");
+  const live = root.querySelector<HTMLElement>("[data-live]");
   const prompt = root.querySelector<HTMLElement>("[data-prompt]");
   const form = root.querySelector<HTMLFormElement>("[data-form]");
   const input = root.querySelector<HTMLInputElement>("[data-command]");
   const cursor = root.querySelector<HTMLElement>("[data-cursor]");
   const hint = root.querySelector<HTMLElement>("[data-hint]");
-  if (!scrollback || !prompt || !form || !input || !cursor || !hint) return;
+  if (!restored || !pageOutput || !live || !prompt || !form || !input || !cursor || !hint) return;
 
-  let cwd = "/";
-  const history: string[] = [];
+  const lang: TerminalLang = document.documentElement.lang === "en" ? "en" : "pl";
+  const loadError = root.dataset.loadError ?? "terminal: error";
+  const store = sessionStore();
+  const route = routeForPath(location.pathname);
+  const controller = new AbortController();
+  const { signal } = controller;
+
+  let session: Session = loadSession(store, lang);
+  let cwd = route?.cwd ?? "/";
+  let payload: TerminalPayload | null = null;
+  let queue: Promise<void> = Promise.resolve();
   let historyIndex = -1;
   let draft = "";
+
+  const persist = (next: Session) => {
+    session = next;
+    saveSession(store, lang, session);
+  };
+
+  const warm = () =>
+    loadPayload(lang)
+      .then((loaded) => {
+        payload = loaded;
+        return loaded;
+      })
+      .catch(() => null);
 
   const renderPrompt = () => {
     prompt.textContent = promptFor(cwd);
@@ -37,102 +89,51 @@ export function mountTerminal(root: HTMLElement, payload: TerminalPayload) {
   };
 
   const showHint = (matches: string[]) => {
-    if (matches.length < 2) {
-      hint.textContent = "";
-      hint.classList.add("hidden");
-      return;
-    }
-    hint.textContent = matches.slice(0, 12).join("   ");
-    hint.classList.remove("hidden");
+    hint.textContent = matches.length < 2 ? "" : matches.slice(0, 12).join("   ");
+    hint.classList.toggle("hidden", matches.length < 2);
   };
 
   const scrollToEnd = () => {
-    scrollback.scrollTop = scrollback.scrollHeight;
+    window.scrollTo({ top: document.documentElement.scrollHeight });
   };
 
-  const printCompletions = (matches: string[]) => {
-    const block = document.createElement("div");
-    block.className = "mt-2 break-words whitespace-pre-wrap text-emerald-100";
-    block.dataset.completions = "true";
-    block.textContent = matches.join("  ");
-    scrollback.append(block);
+  const appendLive = (element: HTMLElement) => {
+    live.append(element);
     scrollToEnd();
   };
 
-  const appendLine = (parent: HTMLElement, entry: TermLine, href?: string) => {
-    const row = document.createElement("div");
-    row.className = `whitespace-pre-wrap break-words ${TONE_CLASS[entry.tone]}`;
-    if (href && entry.tone === "accent") {
-      const anchor = document.createElement("a");
-      anchor.href = href;
-      anchor.textContent = entry.text;
-      anchor.className = "inline-flex min-h-11 items-center break-all underline underline-offset-2";
-      row.append(anchor);
-    } else {
-      appendLinkified(row, entry.text);
-    }
-    parent.append(row);
+  const clearScreen = () => {
+    restored.replaceChildren();
+    live.replaceChildren();
+    pageOutput.dataset.cleared = "true";
+    persist(clearBlocks(session));
   };
 
-  const appendBlock = (command: string, lines: TermLine[], href?: string) => {
-    const block = document.createElement("div");
-    block.className = "mt-3";
-    const typed = document.createElement("div");
-    typed.className = "flex flex-wrap gap-x-2";
-    const promptEl = document.createElement("span");
-    promptEl.className = "shrink-0 text-emerald-300";
-    promptEl.textContent = promptFor(cwd);
-    const commandEl = document.createElement("span");
-    commandEl.className = "min-w-0 break-all text-emerald-50";
-    commandEl.textContent = command;
-    typed.append(promptEl, commandEl);
-    block.append(typed);
-    for (const entry of lines) appendLine(block, entry, href);
-    scrollback.append(block);
-    scrollToEnd();
-  };
-
-  const layout = () => {
-    const viewport = window.visualViewport;
-    const viewportHeight = viewport?.height ?? window.innerHeight;
-    const offsetTop = viewport?.offsetTop ?? 0;
-    const wide = window.matchMedia("(min-width: 640px)").matches;
-    const keyboardOpen = !wide && viewportHeight < window.innerHeight - 80;
-
-    if (keyboardOpen) {
-      const topInVisual = root.getBoundingClientRect().top - offsetTop;
-      if (topInVisual > 8) window.scrollBy(0, topInVisual - 8);
+  async function execute(command: string) {
+    let loaded = payload;
+    if (!loaded) {
+      const waiting = renderNote("…", "muted");
+      appendLive(waiting);
+      loaded = await warm();
+      waiting.remove();
     }
 
-    const topInVisual = root.getBoundingClientRect().top - offsetTop;
-    const footer = document.querySelector("footer");
-    const main = root.closest("main");
-    const padBottom = main ? Number.parseFloat(getComputedStyle(main).paddingBottom) || 0 : 0;
-    const footerHeight = footer?.offsetHeight ?? 0;
-    const reserve = keyboardOpen ? 8 : footerHeight + padBottom + 12;
-    const available = viewportHeight - Math.max(topInVisual, 0) - reserve;
-    const next = Math.max(keyboardOpen ? 168 : 260, Math.floor(available));
-    root.style.height = `${next}px`;
+    const from = cwd;
+    if (!loaded) {
+      const block: Block = { cwd: from, command, lines: [{ text: loadError, tone: "error" }] };
+      appendLive(renderBlock(block));
+      persist(withBlock(withHistory(session, command), block));
+      return;
+    }
 
-    if (document.activeElement === input) input.scrollIntoView({ block: "nearest" });
-  };
+    const { cwd: nextCwd, result } = runCommand(command, cwd, loaded.corpus, loaded.messages, session.history);
+    cwd = nextCwd;
+    persist(withHistory(session, command));
 
-  let frame = 0;
-  const scheduleLayout = () => {
-    cancelAnimationFrame(frame);
-    frame = requestAnimationFrame(layout);
-  };
-
-  form.addEventListener("submit", (event) => {
-    event.preventDefault();
-    const command = input.value;
-    if (!command.trim()) return;
-
-    const { cwd: nextCwd, result } = runCommand(command, cwd, payload.corpus, payload.messages, history);
     if (result.type === "clear") {
-      scrollback.replaceChildren();
+      clearScreen();
     } else if (result.type === "navigate") {
-      appendBlock(command, result.lines, result.href);
+      appendLive(renderBlock({ cwd: from, command, lines: result.lines }));
       const href = result.href;
       window.setTimeout(() => {
         void navigate(href).catch(() => {
@@ -140,25 +141,35 @@ export function mountTerminal(root: HTMLElement, payload: TerminalPayload) {
         });
       }, 40);
     } else if (result.lines.length > 0 || command.trim().startsWith("cd")) {
-      appendBlock(command, result.lines);
+      const block: Block = { cwd: from, command, lines: result.lines };
+      appendLive(renderBlock(block));
+      persist(withBlock(session, block));
     }
 
-    cwd = nextCwd;
-    history.push(command);
+    renderPrompt();
+  }
+
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const command = input.value;
+    if (!command.trim()) return;
+    input.value = "";
     historyIndex = -1;
     draft = "";
-    input.value = "";
     showHint([]);
     syncCursor();
-    renderPrompt();
-    scheduleLayout();
+    queue = queue.then(() => execute(command));
   });
 
   input.addEventListener("keydown", (event) => {
     if (event.key === "Tab" && !event.shiftKey && !event.altKey && !event.ctrlKey && !event.metaKey) {
       event.preventDefault();
+      if (!payload) {
+        void warm();
+        return;
+      }
       const suggestion = suggestInput(input.value, cwd, payload.corpus);
-      if (suggestion.matches.length > 1) printCompletions(suggestion.matches);
+      if (suggestion.matches.length > 1) appendLive(renderCompletions(suggestion.matches));
       if (suggestion.value !== input.value) input.value = suggestion.value;
       const end = input.value.length;
       input.setSelectionRange(end, end);
@@ -177,6 +188,7 @@ export function mountTerminal(root: HTMLElement, payload: TerminalPayload) {
 
     if (event.key === "ArrowUp") {
       event.preventDefault();
+      const history = session.history;
       if (history.length === 0) return;
       if (historyIndex === -1) {
         draft = input.value;
@@ -193,6 +205,7 @@ export function mountTerminal(root: HTMLElement, payload: TerminalPayload) {
     if (event.key === "ArrowDown") {
       if (historyIndex === -1) return;
       event.preventDefault();
+      const history = session.history;
       if (historyIndex < history.length - 1) {
         historyIndex += 1;
         input.value = history[historyIndex] ?? "";
@@ -205,7 +218,7 @@ export function mountTerminal(root: HTMLElement, payload: TerminalPayload) {
       return;
     }
 
-    if (event.key === "c" && event.ctrlKey) {
+    if ((event.key === "c" || event.key === "u") && event.ctrlKey) {
       event.preventDefault();
       input.value = "";
       showHint([]);
@@ -215,84 +228,80 @@ export function mountTerminal(root: HTMLElement, payload: TerminalPayload) {
 
     if (event.key === "l" && event.ctrlKey) {
       event.preventDefault();
-      scrollback.replaceChildren();
-      return;
-    }
-
-    if (event.key === "u" && event.ctrlKey) {
-      event.preventDefault();
-      input.value = "";
-      showHint([]);
-      syncCursor();
+      clearScreen();
     }
   });
 
   input.addEventListener("input", () => {
     historyIndex = -1;
-    const suggestion = suggestInput(input.value, cwd, payload.corpus);
-    showHint(suggestion.matches);
+    showHint(payload ? suggestInput(input.value, cwd, payload.corpus).matches : []);
     syncCursor();
   });
 
-  root.addEventListener("click", (event) => {
+  form.addEventListener("click", (event) => {
     const target = event.target;
     if (target instanceof Element && target.closest("a, input, button")) return;
     input.focus();
   });
 
-  input.addEventListener("focus", () => {
-    syncCursor();
-    scheduleLayout();
-    window.setTimeout(scheduleLayout, 250);
-    window.setTimeout(scheduleLayout, 700);
-  });
-  input.addEventListener("blur", () => {
-    syncCursor();
-    scheduleLayout();
+  input.addEventListener("focus", syncCursor);
+  input.addEventListener("blur", syncCursor);
+
+  // In terminal layout, typing anywhere on the page goes to the prompt.
+  document.addEventListener(
+    "keydown",
+    (event) => {
+      if (document.documentElement.dataset.layout !== "terminal") return;
+      if (event.defaultPrevented || event.ctrlKey || event.metaKey || event.altKey) return;
+      if (event.key.length !== 1 || event.key === " ") return;
+      const active = document.activeElement;
+      if (active && active !== document.body) return;
+      input.focus();
+    },
+    { signal },
+  );
+
+  document.addEventListener("astro:before-swap", () => controller.abort(), { once: true, signal });
+
+  root.querySelectorAll<HTMLElement>("[data-missing-path]").forEach((missing) => {
+    missing.textContent = safeDecode(location.pathname);
   });
 
-  window.visualViewport?.addEventListener("resize", scheduleLayout);
-  window.visualViewport?.addEventListener("scroll", scheduleLayout);
-  window.addEventListener("resize", scheduleLayout);
+  // Arriving on this page: log it as a collapsed marker so the scrollback reads like a shell history.
+  // It is rendered only on later pages, since this page's own output is already on screen (a reload
+  // finds it as the last block and neither repeats nor renders it).
+  const last = session.blocks[session.blocks.length - 1];
+  const alreadyLogged = last !== undefined && isPageBlock(last) && last.href === location.pathname;
+  const visible = alreadyLogged ? session.blocks.slice(0, -1) : session.blocks;
+  for (const block of visible) restored.append(renderBlock(block));
+  if (visible.length > 0) pageOutput.scrollIntoView({ block: "start", behavior: "instant" });
+
+  const logArrival = () => {
+    const previous = session.blocks[session.blocks.length - 1];
+    const logged = previous !== undefined && isPageBlock(previous) && previous.href === location.pathname;
+    if (route?.command && !logged) {
+      persist(withBlock(session, { cwd: "/", command: route.command, href: location.pathname }));
+    }
+  };
+  logArrival();
+
+  // A back/forward-cache restore keeps this closure's session, which other pages may have changed since.
+  window.addEventListener(
+    "pageshow",
+    (event) => {
+      if (!event.persisted) return;
+      session = loadSession(store, lang);
+      logArrival();
+    },
+    { signal },
+  );
 
   renderPrompt();
   syncCursor();
-  scheduleLayout();
+  whenIdle(() => void warm());
 
   const coarse = window.matchMedia("(pointer: coarse)").matches;
   const wide = window.matchMedia("(min-width: 640px)").matches;
-  if (wide && !coarse) input.focus();
-}
-
-function appendLinkified(parent: HTMLElement, text: string) {
-  const pattern = /https?:\/\/[^\s<>)]+|mailto:[^\s<>)]+|\/(?:en\/)?projekty\/[a-z0-9-]+\/?/g;
-  let last = 0;
-
-  for (const match of text.matchAll(pattern)) {
-    const index = match.index ?? 0;
-    const raw = match[0] ?? "";
-    if (!raw) continue;
-    if (index > last) parent.append(text.slice(last, index));
-
-    let url = raw;
-    let trailing = "";
-    while (/[.,;:]$/.test(url)) {
-      trailing = url.slice(-1) + trailing;
-      url = url.slice(0, -1);
-    }
-
-    const anchor = document.createElement("a");
-    anchor.href = url;
-    anchor.textContent = url;
-    anchor.className = "break-all text-sky-300 underline decoration-sky-300/50 underline-offset-2";
-    if (/^https?:|^mailto:/.test(url)) {
-      anchor.target = "_blank";
-      anchor.rel = "noreferrer noopener";
-    }
-    parent.append(anchor);
-    if (trailing) parent.append(trailing);
-    last = index + raw.length;
-  }
-
-  if (last < text.length) parent.append(text.slice(last));
+  const home = route?.command === null;
+  if (home && wide && !coarse && document.documentElement.dataset.layout === "terminal") input.focus();
 }

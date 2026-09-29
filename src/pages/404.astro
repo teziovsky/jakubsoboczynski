@@ -11,6 +11,9 @@ const t = useTranslations(lang);
 
 <Layout title={t("404.seo.title")} description={t("404.seo.description")} image="/og_image.png">
   <section class:list={["doc-panel", proseArticle]}>
+    <p data-show="terminal" class="font-mono text-rose-300">
+      bash: <span data-missing-path>{url.pathname}</span>: {t("terminal.error.no-such")}
+    </p>
     <h1 transition:name="routeHeading">{t("404.title")}</h1>
     <a href={lang === defaultLang ? "/" : `/${lang}/`}>{t("404.go-back-button")} 👀</a>
   </section>

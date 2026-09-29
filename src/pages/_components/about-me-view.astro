@@ -19,9 +19,6 @@ const { Content } = await render(aboutMe);
 
 <Layout title={t("about-me.seo.title")} description={t("about-me.seo.description")} image="/og_image.png">
   <article class:list={["doc-panel", proseArticle]}>
-    <p data-show="terminal" class="mb-3 font-mono text-sm text-emerald-300">
-      ~/about
-    </p>
     <h1 transition:name="routeHeading">Jakub Soboczyński</h1>
     <Content />
   </article>
