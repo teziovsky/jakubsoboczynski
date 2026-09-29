@@ -41,14 +41,16 @@ const linkClass = cn(
             <a class={cn(linkClass, "border-emerald-700 bg-emerald-950 text-emerald-50")} href={project.href}>
               {t("projects.read-more")}
             </a>
-            <a
-              class={cn(linkClass, "border-slate-600 bg-slate-950 text-sky-200")}
-              href={project.htmlUrl}
-              target="_blank"
-              rel="noreferrer noopener"
-            >
-              {t("projects.repository")}
-            </a>
+            {project.htmlUrl && (
+              <a
+                class={cn(linkClass, "border-slate-600 bg-slate-950 text-sky-200")}
+                href={project.htmlUrl}
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                {t("projects.repository")}
+              </a>
+            )}
             {project.homepage && (
               <a
                 class={cn(linkClass, "border-slate-600 bg-slate-950 text-sky-200")}

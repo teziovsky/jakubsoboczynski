@@ -37,15 +37,16 @@ Include a repo only when all of these hold:
 
 - topics include `portfolio` (case-insensitive)
 - it is not a fork
+- it has a preview URL (the repo's homepage field on GitHub)
 - it is public, or it is private and the build accepted a token
 
 `GITHUB_TOKEN` or `GH_TOKEN` is read only at build time. Never commit it, print it, or send it to the browser. Public `portfolio` repos still load with no token. A missing or rejected token must not fail the build.
 
-With no token, the list is: `movie-search-engine`, `raycast-height`, `raycast-infakt`, `raycast-meta-music`, `raycast-raydocs`, `rock-paper-scissors`.
+With no token, the list is: `movie-search-engine`, `raycast-height`, `raycast-infakt`, `raycast-raydocs`, `rock-paper-scissors`. `raycast-meta-music` has no preview URL, so it is not listed.
 
 Locale blurbs stay in `src/data/project/{pl,en}/<repo-name>.md`, keyed by repo name. They are copy only, not a second catalog. If a blurb is missing, show the GitHub description. Do not invent text.
 
-Private-repo fields that are rendered (name, description, homepage, language, stars, topics, dates, blurbs) are public on the deployed site. Do not pull extra file contents.
+Private-repo fields that are rendered (name, description, homepage, language, stars, topics, dates, blurbs) are public on the deployed site. A private repo never links to GitHub; only its preview URL is shown. Do not pull extra file contents.
 
 Vehicle Service Book was removed. It is not a public `portfolio` repo. Do not add it back unless Jakub asks.
 

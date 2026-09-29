@@ -27,7 +27,7 @@ export async function buildPayload(lang: Languages): Promise<TerminalPayload> {
       `${t("projects.stars")}: ${project.stars}`,
       project.topics.length > 0 ? `${t("projects.topics")}: ${project.topics.join(", ")}` : null,
       project.homepage ? `${t("projects.homepage")}: ${project.homepage}` : null,
-      `${t("projects.repository")}: ${project.htmlUrl}`,
+      project.htmlUrl ? `${t("projects.repository")}: ${project.htmlUrl}` : null,
       project.pushedAt ? `${t("projects.pushed")}: ${project.pushedAt}` : null,
       project.updatedAt ? `${t("projects.updated")}: ${project.updatedAt}` : null,
     ];

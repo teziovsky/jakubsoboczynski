@@ -56,14 +56,16 @@ const linkClass = cn(
       <ProjectFacts project={project} />
     </div>
     <div class="project-actions flex flex-col gap-2 sm:flex-row sm:flex-wrap">
-      <a
-        class={cn(linkClass, "border-emerald-700 bg-emerald-950 text-emerald-50")}
-        href={project.htmlUrl}
-        target="_blank"
-        rel="noreferrer noopener"
-      >
-        {t("projects.repository")}
-      </a>
+      {project.htmlUrl && (
+        <a
+          class={cn(linkClass, "border-emerald-700 bg-emerald-950 text-emerald-50")}
+          href={project.htmlUrl}
+          target="_blank"
+          rel="noreferrer noopener"
+        >
+          {t("projects.repository")}
+        </a>
+      )}
       {project.homepage && (
         <a
           class={cn(linkClass, "border-slate-600 bg-slate-950 text-sky-200")}

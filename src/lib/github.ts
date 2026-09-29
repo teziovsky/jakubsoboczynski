@@ -1,6 +1,9 @@
 export type GitHubRepo = {
   name: string;
-  htmlUrl: string;
+  /** Null for private repos: their GitHub page must never be linked. */
+  htmlUrl: string | null;
+  private: boolean;
+  /** The preview URL. Repos without one are not listed. */
   homepage: string | null;
   description: string | null;
   language: string | null;
@@ -25,9 +28,9 @@ type ApiRepo = {
   owner?: { login?: string };
 };
 
-type ListedRepo = GitHubRepo & { ownerLogin: string };
+type ListedRepo = Omit<GitHubRepo, "htmlUrl"> & { htmlUrl: string; ownerLogin: string };
 
-/** Non-fork repos of `username` tagged `portfolio`, plus private ones when `token` is accepted. */
+/** Non-fork repos of `username` tagged `portfolio` with a preview URL, plus private ones when `token` is accepted. */
 export async function fetchPortfolioRepos(
   username: string,
   token: string,
@@ -61,7 +64,8 @@ export async function fetchPortfolioRepos(
   );
   const listed = mergeListed(publicRepos, owned);
 
-  const portfolio = await keepPortfolioRepos(fetchImpl, username, listed, acceptedToken);
+  const withPreview = listed.filter((repo) => repo.homepage);
+  const portfolio = await keepPortfolioRepos(fetchImpl, username, withPreview, acceptedToken);
   return portfolio.map(withoutOwner).sort((a, b) => b.pushedAt.localeCompare(a.pushedAt));
 }
 
@@ -125,6 +129,7 @@ function normalizeRepo(repo: ApiRepo, includePrivate: boolean): ListedRepo[] {
     {
       name: repo.name,
       htmlUrl: repo.html_url,
+      private: repo.private === true,
       homepage: homepage || null,
       description: repo.description?.trim() || null,
       language: repo.language?.trim() || null,
@@ -146,7 +151,8 @@ function mergeListed(base: ListedRepo[], extra: ListedRepo[]) {
 function withoutOwner(repo: ListedRepo): GitHubRepo {
   return {
     name: repo.name,
-    htmlUrl: repo.htmlUrl,
+    htmlUrl: repo.private ? null : repo.htmlUrl,
+    private: repo.private,
     homepage: repo.homepage,
     description: repo.description,
     language: repo.language,
