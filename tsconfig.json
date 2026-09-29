@@ -1,5 +1,6 @@
 {
   "extends": "astro/tsconfigs/strictest",
+  "exclude": ["dist", "**/*.test.ts"],
   "compilerOptions": {
     "strictNullChecks": true,
     "allowJs": true,

@@ -31,6 +31,7 @@
     "format": "oxfmt && prettier --write --log-level warn \"**/*.astro\"",
     "lint": "oxlint --fix && eslint --quiet --fix .",
     "typecheck": "astro check",
+    "test": "node --import ./scripts/test-resolve.mjs --test \"src/**/*.test.ts\"",
     "fix": "npm run format && npm run lint && npm run typecheck",
     "astro": "astro",
     "lighthouse": "bunx unlighthouse --site localhost:3000",
