@@ -115,3 +115,14 @@ next-env.d.ts
 
 node_modules
 .astro
+
+# Cloudflare / Wrangler local state and local secrets
+.wrangler
+.dev.vars*
+
+# Local env files (the example stays tracked)
+.env.*
+!.env.example
+
+# Agent scratch workspaces
+.superpowers
