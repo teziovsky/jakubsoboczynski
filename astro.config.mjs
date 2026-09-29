@@ -52,5 +52,7 @@ export default defineConfig({
     port: 8010,
   },
 
-  adapter: cloudflare(),
+  // Every page is prerendered. Node gives the build `process.env`, where GITHUB_TOKEN / GH_TOKEN are read;
+  // workerd does not pass the shell environment through.
+  adapter: cloudflare({ prerenderEnvironment: "node" }),
 });
