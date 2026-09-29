@@ -13,6 +13,7 @@
 ## App
 
 - Astro 7 portfolio, Cloudflare adapter. `wrangler.jsonc` serves `./dist/client` with `not_found_handling: "404-page"`.
+- Every page is prerendered, with `prerenderEnvironment: "node"`. Keep it: under workerd the build's `process.env` has no `GITHUB_TOKEN`/`GH_TOKEN`. Never read the token through `import.meta.env`, which inlines it into the bundle.
 - `@/*` resolves to `src/*`.
 - Tailwind v4 via `@tailwindcss/vite`, configured in `src/global.css` with `@theme`, `@utility`, and `@variant`. There is no `tailwind.config`.
 - Combine class names with `import { cn } from "cn"` in the file that uses it. Do not re-export `cn`, and do not add `clsx` or `tailwind-merge`.
