@@ -40,6 +40,7 @@ function safeDecode(path: string): string {
 }
 
 export function mountShell(root: HTMLElement) {
+  const scrollBody = root.querySelector<HTMLElement>("[data-scroll-body]");
   const restored = root.querySelector<HTMLElement>("[data-scrollback-restored]");
   const pageOutput = root.querySelector<HTMLElement>("[data-page-output]");
   const live = root.querySelector<HTMLElement>("[data-live]");
@@ -48,7 +49,7 @@ export function mountShell(root: HTMLElement) {
   const input = root.querySelector<HTMLInputElement>("[data-command]");
   const cursor = root.querySelector<HTMLElement>("[data-cursor]");
   const hint = root.querySelector<HTMLElement>("[data-hint]");
-  if (!restored || !pageOutput || !live || !prompt || !form || !input || !cursor || !hint) return;
+  if (!scrollBody || !restored || !pageOutput || !live || !prompt || !form || !input || !cursor || !hint) return;
 
   const lang: TerminalLang = document.documentElement.lang === "en" ? "en" : "pl";
   const loadError = root.dataset.loadError ?? "terminal: error";
@@ -94,7 +95,7 @@ export function mountShell(root: HTMLElement) {
   };
 
   const scrollToEnd = () => {
-    window.scrollTo({ top: document.documentElement.scrollHeight });
+    scrollBody.scrollTop = scrollBody.scrollHeight;
   };
 
   const appendLive = (element: HTMLElement) => {
@@ -274,7 +275,8 @@ export function mountShell(root: HTMLElement) {
   const alreadyLogged = last !== undefined && isPageBlock(last) && last.href === location.pathname;
   const visible = alreadyLogged ? session.blocks.slice(0, -1) : session.blocks;
   for (const block of visible) restored.append(renderBlock(block));
-  if (visible.length > 0) pageOutput.scrollIntoView({ block: "start", behavior: "instant" });
+  // Start at this page's output; the restored scrollback stays above it.
+  if (visible.length > 0) scrollBody.scrollTop = pageOutput.offsetTop;
 
   const logArrival = () => {
     const previous = session.blocks[session.blocks.length - 1];

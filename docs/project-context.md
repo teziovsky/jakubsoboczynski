@@ -12,8 +12,8 @@ The site should feel like a nerdy AI-agent terminal, and a non-technical visitor
 
 The design does not change between modes: dark background, monospace, terminal panels, the same colors.
 
-- **Terminal** is the default. No menu, no section links, no footer. The only chrome is the layout switch. Every page is shell output: the page content renders under a prompt line such as `jakub@portfolio:~$ open uses`, with a sticky live prompt below. `open` reaches every page (`about`, `uses`, `projects`, a project, `~`). The scrollback and history survive navigation within the tab (`sessionStorage`).
-- **Normal** (`Zwykły` / `Normal`) shows the menu and clickable pages: about, projects, uses, project pages, footer. Same design, ordinary arrangement.
+- **Terminal** is the default. No menu, no section links, no footer. The only chrome is the layout switch. Every page is shell output: the page content renders under a prompt line such as `jakub@portfolio:~$ open uses`, with a live prompt below. The viewport is fixed: only the terminal body scrolls, and the prompt stays at the bottom of the frame. `open` reaches every page (`about`, `uses`, `projects`, a project, `~`). The scrollback and history survive navigation within the tab (`sessionStorage`).
+- **Normal** (`Zwykły` / `Normal`) shows the menu and clickable pages: about, projects, uses, project pages, footer. Same design, ordinary arrangement. The page scrolls normally, with its scrollbar always shown, and the footer stays pinned to the bottom of the viewport.
 
 The choice is stored in `localStorage` and must survive navigation. The switch is on screen in terminal mode without opening a menu, and available in normal mode too. Polish is the unprefixed locale. English is `/en`.
 

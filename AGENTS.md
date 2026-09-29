@@ -30,6 +30,7 @@
 ## Layout
 
 - `localStorage` key `site-layout`, default `terminal`, applied as `html[data-layout]`.
+- Terminal layout keeps the viewport fixed: `html` and `body` do not scroll, only `[data-scroll-body]` inside the shell frame does. Normal layout scrolls the page with the scrollbar always shown, and the footer is sticky at the bottom.
 - Terminal layout shows only the layout toggle (`[data-layout-choice]`). No menu, sidebar links, footer links, or section links. The toggle stays visible on desktop and phone without opening a menu.
 - Normal layout shows the menu, readable pages, and footer. The same toggle stays visible.
 - The toggle changes layout only. Both modes use the same dark monospace styles. Chrome that belongs to one layout uses `data-show="terminal"` or `data-show="normal"`.

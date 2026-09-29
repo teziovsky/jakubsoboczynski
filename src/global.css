@@ -200,12 +200,65 @@ html[data-layout="terminal"] .doc-panel {
   gap: 0.75rem;
 }
 
+/* Normal layout: the page scrolls with its scrollbar always shown, and the footer stays in view. */
+html[data-layout="normal"] {
+  overflow-y: scroll;
+}
+
+/* The @theme row templates are quoted strings, which browsers reject, so the rows are set here. */
+html[data-layout="normal"] body {
+  grid-template-rows: auto 1fr auto;
+  padding-bottom: 0;
+}
+
+@media (min-width: 640px) {
+  html[data-layout="normal"] body {
+    grid-template-rows: 1fr auto;
+  }
+}
+
+html[data-layout="normal"] body > footer {
+  position: sticky;
+  bottom: 0;
+  z-index: 10;
+  padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
+  background: #020617;
+}
+
+/* Terminal layout: the viewport is fixed and only the terminal body scrolls. */
+html[data-layout="terminal"],
+html[data-layout="terminal"] body {
+  height: 100dvh;
+  overflow: hidden;
+}
+
+html[data-layout="terminal"] body {
+  grid-template-rows: auto minmax(0, 1fr);
+  align-items: stretch;
+}
+
+html[data-layout="terminal"] main {
+  min-height: 0;
+  padding-bottom: 0;
+}
+
 html[data-layout="terminal"] .shell-frame {
   display: flex;
-  min-height: calc(100dvh - 2rem);
+  height: 100%;
+  min-height: 0;
   flex-direction: column;
   border: 1px solid #334155;
   background: #020617;
+}
+
+html[data-layout="terminal"] .shell-body {
+  position: relative;
+  display: flex;
+  min-height: 0;
+  flex: 1;
+  flex-direction: column;
+  overflow-y: auto;
+  overscroll-behavior: contain;
 }
 
 html[data-layout="terminal"] .shell-page {
@@ -219,51 +272,6 @@ html[data-layout="terminal"] .shell-page[data-cleared] {
 @media (min-width: 640px) {
   html[data-layout="terminal"] .shell-page {
     padding: 1rem 1rem 0;
-  }
-
-  /* The document scrolls under the sticky layout switch, so it needs its own background. */
-  html[data-layout="terminal"] [data-site-nav] {
-    z-index: 20;
-    top: 0;
-    padding-block: 1rem 0.5rem;
-    background: #020617;
-  }
-
-  html[data-layout="terminal"] .shell-page {
-    scroll-margin-top: 7.5rem;
-  }
-}
-
-html[data-layout="normal"] .project-page {
-  display: grid;
-  gap: 1.25rem;
-  padding: 1.25rem;
-}
-
-html[data-layout="normal"] .doc-panel {
-  display: block;
-  max-width: 68ch;
-  padding: 1.5rem 1.25rem;
-}
-
-@media (min-width: 800px) {
-  html[data-layout="normal"] .project-page {
-    grid-template-columns: minmax(0, 1.5fr) minmax(14rem, 0.7fr);
-  }
-
-  html[data-layout="normal"] .project-nav,
-  html[data-layout="normal"] .project-actions {
-    grid-column: 1 / -1;
-  }
-
-  html[data-layout="normal"] .project-lead {
-    grid-column: 1;
-    grid-row: 2;
-  }
-
-  html[data-layout="normal"] .project-side {
-    grid-column: 2;
-    grid-row: 2;
   }
 }
 
