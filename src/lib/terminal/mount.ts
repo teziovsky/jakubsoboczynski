@@ -117,6 +117,8 @@ export function mountShell(root: HTMLElement) {
       appendLive(waiting);
       loaded = await warm();
       waiting.remove();
+      // The visitor left this page while the data loaded: a stale command must not navigate or save.
+      if (signal.aborted) return;
     }
 
     const from = cwd;
@@ -137,6 +139,7 @@ export function mountShell(root: HTMLElement) {
       appendLive(renderBlock({ cwd: from, command, lines: result.lines }));
       const href = result.href;
       window.setTimeout(() => {
+        if (signal.aborted) return;
         void navigate(href).catch(() => {
           window.location.assign(href);
         });
